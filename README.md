@@ -38,7 +38,7 @@ What is Venture Build?
 
 Venture Build is a entrepreneurship platform developed to aid African startups begin their ventures as part of the African Impact Challenge. The platform is currently in development with the goal of completing a MVP by October 2023.
 
-The frontend of the application will be developed using React with a heavy reliance on Redux architecture.
+The frontend of the application will be developed using React with a heavy reliance on Redux architecture. Furthermore, the frontend is written in TypeScript.
 
 To learn more about setting up the application for local development, please continue reading below.
 
