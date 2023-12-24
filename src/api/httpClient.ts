@@ -11,7 +11,8 @@ class HttpClient<T> implements IHttpClient<T> {
     }
 
     async get(query: string | null, endpoint: string = ''): Promise<AxiosResponse<T>> {
-        return await this.client.get<T>(`${endpoint}?${query}`)
+        const url = query === null? endpoint : `${endpoint}?${query}`
+        return await this.client.get<T>(url)
     }
 
     async put(id: string | number, obj: T, endpoint: string = ''): Promise<AxiosResponse<T>> {
