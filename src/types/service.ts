@@ -1,6 +1,6 @@
 import ServiceResponse from "./serviceResponse"
 
-interface Service<T> {
+interface IService<T> {
     baseUrl : string
 
     buildRes(res: any, error: boolean): ServiceResponse<T>
@@ -12,4 +12,4 @@ interface Service<T> {
     destroy(id: number):  ServiceResponse<T>
 }
 
-export default Service
+export default IService
