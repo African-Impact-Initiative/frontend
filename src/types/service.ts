@@ -4,7 +4,7 @@ import { Id } from './propertyTypes'
 
 interface IService<T> {
     buildRes<V>(res: AxiosResponse<V>, error: boolean): ServiceResponse<V>
-    retrieve(query?: string):  Promise<ServiceResponse<T>>
+    retrieve(query?: string):  Promise<ServiceResponse<Array<T>>>
     retrieveSingle(id: Id):  Promise<ServiceResponse<T>>
     create(data: T):  Promise<ServiceResponse<T>>
     update(id: Id, data: T):  Promise<ServiceResponse<T>>

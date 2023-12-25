@@ -27,13 +27,13 @@ class Service<T> implements IService<T> {
         }
     }
 
-    async retrieve(query?: string): Promise<ServiceResponse<T>> {
+    async retrieve(query?: string): Promise<ServiceResponse<Array<T>>> {
         const res = await this.client.get(query)
-        return this.buildRes<T>(res, true)
+        return this.buildRes<Array<T>>(res, true)
     }
 
     async retrieveSingle(id: Id): Promise<ServiceResponse<T>> {
-        const res = await this.client.get(undefined, `${id}/`)
+        const res = await this.client.getSingle(`${id}/`)
         return this.buildRes<T>(res, true)
     }
 

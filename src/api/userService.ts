@@ -9,7 +9,7 @@ import { UpdatePersonalInfo, UpdateTerms } from './contracts/userContracts'
 
 const userService = new Service<User>(apiRoutes.userOperations.baseUrl)
 
-const retrieve = async (): Promise<ServiceResponse<User>> => {
+const retrieve = async (): Promise<ServiceResponse<Array<User>>> => {
     return await userService.retrieve()
 }
 

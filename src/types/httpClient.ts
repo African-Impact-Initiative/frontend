@@ -2,7 +2,8 @@ import { AxiosResponse, Method } from 'axios'
 import { Id } from './propertyTypes'
 
 interface IHttpClient<T> {
-    get(query?: string, endpoint?: string):  Promise<AxiosResponse<T>>
+    get(query?: string, endpoint?: string):  Promise<AxiosResponse<Array<T>>>
+    getSingle(endpoint: string): Promise<AxiosResponse<T>>
     put(id: Id, obj: T, endpoint?: string):  Promise<AxiosResponse<T>>
     patch(id: Id, obj: T, endpoint?: string):  Promise<AxiosResponse<T>>
     post(obj: T, endpoint?: string):  Promise<AxiosResponse<T>>

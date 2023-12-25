@@ -27,9 +27,13 @@ class HttpClient<T> implements IHttpClient<T> {
         return header
     }
 
-    async get(query?: string, endpoint: string = ''): Promise<AxiosResponse<T>> {
+    async get(query?: string, endpoint: string = ''): Promise<AxiosResponse<Array<T>>> {
         const url = query === undefined? endpoint : `${endpoint}?${query}`
-        return await this.client.get<T>(url, { headers: this.getAuthorizationHeader() })
+        return await this.client.get<Array<T>>(url, { headers: this.getAuthorizationHeader() })
+    }
+
+    async getSingle(endpoint: string = ''): Promise<AxiosResponse<T>> {
+        return await this.client.get<T>(endpoint, { headers: this.getAuthorizationHeader() })
     }
 
     async put(id: Id, obj: T, endpoint: string = ''): Promise<AxiosResponse<T>> {
