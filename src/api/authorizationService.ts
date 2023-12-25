@@ -4,7 +4,7 @@ import apiRoutes from './apiRoutes'
 import { RefreshToken, UserCredentials, GoogleCredentials, LoginResponse, RevokeAuthorization } from './contracts/authorizationContracts'
 import Service from './service'
 import { METHODS } from './utils'
-import { EmptyResponse } from './contracts/generalContracts'
+import { Empty } from './contracts/generalContracts'
 import ITokenStateManager from '../types/tokenStateManager'
 import TokenStateManager from './tokenStateManager'
 
@@ -49,13 +49,13 @@ const refreshGoogle = async (): Promise<ServiceResponse<LoginResponse>> => {
 }
 
 const revokeTokens = async (): Promise<boolean> => {
-    const res = await authorizationService.requestWith<EmptyResponse, RevokeAuthorization>(METHODS.post, { clientId: passwordId }, apiRoutes.authorizationOperations.kill)
+    const res = await authorizationService.requestWith<Empty, RevokeAuthorization>(METHODS.post, { clientId: passwordId }, apiRoutes.authorizationOperations.kill)
     stateManager.revokeTokens()
     return res.success
 }
 
 const revokeGoogleTokens = async (): Promise<boolean> => {
-    const res = await authorizationService.requestWith<EmptyResponse, RevokeAuthorization>(METHODS.post, { clientId: googleId }, apiRoutes.authorizationOperations.kill)
+    const res = await authorizationService.requestWith<Empty, RevokeAuthorization>(METHODS.post, { clientId: googleId }, apiRoutes.authorizationOperations.kill)
     stateManager.revokeTokens()
     return res.success
 }

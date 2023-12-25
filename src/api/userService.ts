@@ -4,6 +4,8 @@ import { Id } from '../types/propertyTypes'
 import apiRoutes from './apiRoutes'
 import Service from './service'
 import { METHODS } from './utils'
+import { Empty } from './contracts/generalContracts'
+import { UpdatePersonalInfo, UpdateTerms } from './contracts/userContracts'
 
 const userService = new Service<User>(apiRoutes.userOperations.baseUrl)
 
@@ -16,11 +18,11 @@ const retrieveSingle = async (id: Id): Promise<ServiceResponse<User>> => {
 }
 
 const getCurrent = async (): Promise<ServiceResponse<User>> => {
-    return await userService.request<User>(METHODS.get, undefined, apiRoutes.userOperations.userUrl)
+    return await userService.requestWith<User, Empty>(METHODS.get, {}, apiRoutes.userOperations.userUrl)
 }
 
 const getAdmins = async (): Promise<ServiceResponse<User>> => {
-    return await userService.request<User>(METHODS.get, undefined, apiRoutes.userOperations.adminUrl)
+    return await userService.requestWith<User, Empty>(METHODS.get, {}, apiRoutes.userOperations.adminUrl)
 }
 
 const create = async (user: User): Promise<ServiceResponse<User>> => {
@@ -35,12 +37,12 @@ const destroy = async (id: Id): Promise<ServiceResponse<User>> => {
     return await userService.destroy(id)
 }
 
-const agreeToTerms = async (user: User): Promise<ServiceResponse<User>> => {
-    return await userService.request<User>(METHODS.put, user, apiRoutes.userOperations.terms)
+const agreeToTerms = async (): Promise<ServiceResponse<UpdateTerms>> => {
+    return await userService.request<UpdateTerms>(METHODS.put, { terms: true }, apiRoutes.userOperations.terms)
 }
 
-const updatePersonalInformation = async (user: User): Promise<ServiceResponse<User>> => {
-    return await userService.request<User>(METHODS.put, user, apiRoutes.userOperations.personalInfo)
+const updatePersonalInformation = async (personalInfo: UpdatePersonalInfo): Promise<ServiceResponse<UpdatePersonalInfo>> => {
+    return await userService.request<UpdatePersonalInfo>(METHODS.put, personalInfo, apiRoutes.userOperations.personalInfo)
 }
 
 export default {

@@ -6,7 +6,7 @@ type User = {
     email: string
     firstName: string
     lastName: string
-    role: string
+    role: null | string
     linkedin: null | string
     photo: null | string
     country: null | string
