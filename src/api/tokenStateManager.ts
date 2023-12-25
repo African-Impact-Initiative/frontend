@@ -1,6 +1,4 @@
 import ITokenStateManager from "../types/tokenStateManager"
-import { AuthorizationHeader } from "./contracts/authorizationContracts"
-import { getCookie } from "./utils"
 
 class TokenStateManager implements ITokenStateManager {
     private static stateManager: TokenStateManager
@@ -38,19 +36,6 @@ class TokenStateManager implements ITokenStateManager {
     getToken = (): string | null => (TokenStateManager.stateManager.token !== null)? `Bearer ${TokenStateManager.stateManager.token}` : null
 
     getRefreshToken = (): string | null => TokenStateManager.stateManager.refreshToken
-
-    getAuthorizationHeader = (): AuthorizationHeader => {
-        const token = TokenStateManager.stateManager.getToken()
-
-        const header: AuthorizationHeader = {
-            header: {
-                'X-CSRFToken': getCookie('csrftoken'),
-            }
-        }
-        if(token) header.header.Authorization = token
-
-        return header
-    }
 
     isTokenValid = (): boolean => TokenStateManager.stateManager.tokensValidUntil === null? false : (new Date().getTime() < TokenStateManager.stateManager.tokensValidUntil.getTime())
 
