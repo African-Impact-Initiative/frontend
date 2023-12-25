@@ -1,24 +1,30 @@
 const apiRoutes = {
     userOperations: {
         baseUrl: 'accounts/',
-        userUrl: 'accounts/me/',
-        adminUrl: 'accounts/admins/',
+        userUrl: 'me/',
+        adminUrl: 'admins/',
         passwordResetUrl: 'password_reset/',
         passwordResetConfirmUrl: 'password_reset/confirm/',
-        passwordChangeUrl: 'accounts/change_password/',
-        emailChangeUrl: 'accounts/change_email/',
-        activateUrl: 'accounts/activate/',
-        terms: 'accounts/onboarding/terms/',
-        personalInfo: 'accounts/onboarding/personal-info/',
-        addOrganization: 'accounts/onboarding/add-organization/',
+        passwordChangeUrl: 'change_password/',
+        emailChangeUrl: 'change_email/',
+        activateUrl: 'activate/',
+        terms: 'onboarding/terms/',
+        personalInfo: 'onboarding/personal-info/',
+        addOrganization: 'onboarding/add-organization/',
     },
     organizationOperations: {
         baseUrl: 'organizations/',
-        stageUrl: 'organizations/stages/',
-        challengeUrl: 'organizations/challenges/',
-        fundingUrl: 'organizations/funding/',
-        findById: 'organizations/identifier/',
-    }
+        stageUrl: 'stages/',
+        challengeUrl: 'challenges/',
+        fundingUrl: 'funding/',
+        findById: 'identifier/',
+    },
+    authorizationOperations: {
+        baseUrl: 'auth/',
+        password: 'token/',
+        google: 'convert-token/',
+        kill: 'invalidate-sessions/'
+    },
 }
 
 export default apiRoutes
