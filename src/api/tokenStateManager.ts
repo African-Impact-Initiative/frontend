@@ -1,4 +1,4 @@
-import ITokenStateManager from "../types/tokenStateManager"
+import ITokenStateManager from '../types/tokenStateManager'
 
 class TokenStateManager implements ITokenStateManager {
     private static stateManager: TokenStateManager
@@ -14,9 +14,9 @@ class TokenStateManager implements ITokenStateManager {
     }
 
     static getStateManager(): TokenStateManager {
-        if (TokenStateManager.stateManager === null) {
+        if (TokenStateManager.stateManager === null) 
             TokenStateManager.stateManager = new TokenStateManager()
-        }
+        
 
         return TokenStateManager.stateManager
     }
