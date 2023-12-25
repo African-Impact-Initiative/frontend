@@ -1,9 +1,9 @@
-import { AxiosResponse, HttpStatusCode } from 'axios'
+import { AxiosResponse, HttpStatusCode, Method } from 'axios'
 import IService from '../types/service'
 import ServiceResponse from '../types/serviceResponse'
 import IHttpClient from '../types/httpClient'
 import HttpClient from './httpClient'
-import { Id } from '../types/user'
+import { Id } from "../types/propertyTypes"
 
 class Service<T> implements IService<T> {
     baseUrl: string
@@ -14,7 +14,7 @@ class Service<T> implements IService<T> {
         this.client = new HttpClient<T>(endpoint)
     }
 
-    buildRes(res: AxiosResponse<T>, error: boolean): ServiceResponse<T> {
+    buildRes<V>(res: AxiosResponse<V>, error: boolean): ServiceResponse<V> {
         const success = HttpStatusCode.Ok <= res.status && res.status < HttpStatusCode.MultipleChoices
 
         if (error && !success)
@@ -29,36 +29,37 @@ class Service<T> implements IService<T> {
 
     async retrieve(query?: string): Promise<ServiceResponse<T>> {
         const res = await this.client.get(query)
-        return this.buildRes(res, true)
+        return this.buildRes<T>(res, true)
     }
 
     async retrieveSingle(id: Id): Promise<ServiceResponse<T>> {
         const res = await this.client.get(undefined, `${id}/`)
-        return this.buildRes(res, true)
+        return this.buildRes<T>(res, true)
     }
 
     async create(data: T): Promise<ServiceResponse<T>> {
         const res = await this.client.post(data)
-        return this.buildRes(res, true)
+        return this.buildRes<T>(res, true)
     }
 
     async update(id: Id, data: T): Promise<ServiceResponse<T>> {
         const res = await this.client.put(id, data)
-        return this.buildRes(res, true)
+        return this.buildRes<T>(res, true)
     }
 
     async modify(id: Id, data: T): Promise<ServiceResponse<T>> {
         const res = await this.client.patch(id, data)
-        return this.buildRes(res, true)
+        return this.buildRes<T>(res, true)
     }
 
     async destroy(id: Id): Promise<ServiceResponse<T>> {
         const res = await this.client.delete(id)
-        return this.buildRes(res, true)
+        return this.buildRes<T>(res, true)
     }
 
-    getClient(): IHttpClient<T> {
-        return this.client
+    async request<K>(method: Method, data?: K, endpoint?: string): Promise<ServiceResponse<K>> {
+        const res = await this.client.request<K>(method, data, endpoint)
+        return this.buildRes<K>(res, true)
     }
 }
 

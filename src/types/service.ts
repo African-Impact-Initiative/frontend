@@ -1,10 +1,9 @@
-import { AxiosResponse } from 'axios'
+import { AxiosResponse, Method } from 'axios'
 import ServiceResponse from './serviceResponse'
-import { Id } from './user'
-import IHttpClient from './httpClient'
+import { Id } from "./propertyTypes"
 
 interface IService<T> {
-    buildRes(res: AxiosResponse<T>, error: boolean): ServiceResponse<T>
+    buildRes<V>(res: AxiosResponse<V>, error: boolean): ServiceResponse<V>
     retrieve(query?: string):  Promise<ServiceResponse<T>>
     retrieveSingle(id: Id):  Promise<ServiceResponse<T>>
     create(data: T):  Promise<ServiceResponse<T>>
@@ -12,7 +11,7 @@ interface IService<T> {
     modify(id: Id, data: T):  Promise<ServiceResponse<T>>
     destroy(id: Id):  Promise<ServiceResponse<T>>
 
-    getClient(): IHttpClient<T>
+    request<K>(method: Method, data?: K, endpoint?: string): Promise<ServiceResponse<K>>
 }
 
 export default IService

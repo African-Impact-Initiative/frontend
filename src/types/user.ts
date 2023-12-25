@@ -1,4 +1,4 @@
-export type Id = string | number
+import { ForeignRelation, Id } from "./propertyTypes"
 
 type User = {
     // personal data
@@ -19,7 +19,7 @@ type User = {
     termsOfUse: null | boolean
 
     // organizations
-    organizations: [number]
+    organizations: ForeignRelation
 
     // meta data
     joined: string

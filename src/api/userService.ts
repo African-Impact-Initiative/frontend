@@ -1,7 +1,9 @@
 import ServiceResponse from '../types/serviceResponse'
-import User, { Id } from '../types/user'
+import User from '../types/user'
+import { Id } from "../types/propertyTypes"
 import apiRoutes from './apiRoutes'
 import Service from './service'
+import { METHODS } from './utils'
 
 const userService = new Service<User>(apiRoutes.userOperations.baseUrl)
 
@@ -14,15 +16,11 @@ const retrieveSingle = async (id: Id): Promise<ServiceResponse<User>> => {
 }
 
 const getCurrent = async (): Promise<ServiceResponse<User>> => {
-    const res = await userService.getClient()
-        .get(apiRoutes.userOperations.userUrl)
-    return userService.buildRes(res, true)
+    return await userService.request<User>(METHODS.get, undefined, apiRoutes.userOperations.userUrl)
 }
 
 const getAdmins = async (): Promise<ServiceResponse<User>> => {
-    const res = await userService.getClient()
-        .get(apiRoutes.userOperations.adminUrl)
-    return userService.buildRes(res, true)
+    return await userService.request<User>(METHODS.get, undefined, apiRoutes.userOperations.adminUrl)
 }
 
 const create = async (user: User): Promise<ServiceResponse<User>> => {
@@ -34,20 +32,15 @@ const update = async (id: Id, user: User): Promise<ServiceResponse<User>> => {
 }
 
 const destroy = async (id: Id): Promise<ServiceResponse<User>> => {
-    const res = await userService.getClient().delete(id)
-    return userService.buildRes(res, true)
+    return await userService.destroy(id)
 }
 
 const agreeToTerms = async (user: User): Promise<ServiceResponse<User>> => {
-    const res = await userService.getClient()
-        .put(apiRoutes.userOperations.terms, user)
-    return userService.buildRes(res, true)
+    return await userService.request<User>(METHODS.put, user, apiRoutes.userOperations.terms)
 }
 
 const updatePersonalInformation = async (user: User): Promise<ServiceResponse<User>> => {
-    const res = await userService.getClient()
-        .put(apiRoutes.userOperations.personalInfo, user)
-    return userService.buildRes(res, true)
+    return await userService.request<User>(METHODS.put, user, apiRoutes.userOperations.personalInfo)
 }
 
 export default {
