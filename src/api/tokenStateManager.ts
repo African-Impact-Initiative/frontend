@@ -1,46 +1,31 @@
 import ITokenStateManager from '../types/tokenStateManager'
 
 class TokenStateManager implements ITokenStateManager {
-    private static stateManager: TokenStateManager
-
-    token: string | null
-    refreshToken: string | null
-    tokensValidUntil: Date | null
-
-    private constructor() {
-        this.token = null
-        this.refreshToken = null
-        this.tokensValidUntil = null
-    }
-
-    static getStateManager(): TokenStateManager {
-        if (TokenStateManager.stateManager === undefined)
-            TokenStateManager.stateManager = new TokenStateManager()
-
-        return TokenStateManager.stateManager
-    }
+    private static token: string | null
+    private static refreshToken: string | null
+    private static tokensValidUntil: Date | null
 
     setTokensValidUntil = (time: number): void => {
-        TokenStateManager.stateManager.tokensValidUntil = new Date(new Date().getTime() + time * 1000)
+        TokenStateManager.tokensValidUntil = new Date(new Date().getTime() + time * 1000)
     }
 
     setToken = (newToken: string): void => {
-        TokenStateManager.stateManager.token = newToken
+        TokenStateManager.token = newToken
     }
 
     setRefreshToken = (newRefreshToken: string): void => {
-        TokenStateManager.stateManager.refreshToken = newRefreshToken
+        TokenStateManager.refreshToken = newRefreshToken
     }
 
-    getToken = (): string | null => (TokenStateManager.stateManager.token !== null)? `Bearer ${TokenStateManager.stateManager.token}` : null
+    getToken = (): string | null => (TokenStateManager.token !== null)? `Bearer ${TokenStateManager.token}` : null
 
-    getRefreshToken = (): string | null => TokenStateManager.stateManager.refreshToken
+    getRefreshToken = (): string | null => TokenStateManager.refreshToken
 
-    isTokenValid = (): boolean => TokenStateManager.stateManager.tokensValidUntil === null? false : (new Date().getTime() < TokenStateManager.stateManager.tokensValidUntil.getTime())
+    isTokenValid = (): boolean => TokenStateManager.tokensValidUntil === null? false : (new Date().getTime() < TokenStateManager.tokensValidUntil.getTime())
 
     revokeTokens(): void {
-        this.refreshToken = null
-        this.token = null
+        TokenStateManager.refreshToken = null
+        TokenStateManager.token = null
     }
 }
 

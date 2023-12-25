@@ -9,7 +9,7 @@ import ITokenStateManager from '../types/tokenStateManager'
 import TokenStateManager from './tokenStateManager'
 
 const authorizationService = new Service<User>(apiRoutes.authorizationOperations.baseUrl)
-const stateManager: ITokenStateManager = TokenStateManager.getStateManager()
+const stateManager: ITokenStateManager = new TokenStateManager()
 
 const googleId = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_ID
 const googleSecret = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_SECRET

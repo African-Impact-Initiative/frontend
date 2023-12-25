@@ -13,7 +13,7 @@ class HttpClient<T> implements IHttpClient<T> {
         this.client = axios.create({
             baseURL: `${import.meta.env.VITE_APP_HOST_BACKEND}/${root}`,
         })
-        this.stateManager = TokenStateManager.getStateManager()
+        this.stateManager = new TokenStateManager()
     }
 
     getAuthorizationHeader = (): AxiosHeaders => {
