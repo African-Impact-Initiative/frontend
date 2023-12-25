@@ -14,9 +14,8 @@ class TokenStateManager implements ITokenStateManager {
     }
 
     static getStateManager(): TokenStateManager {
-        if (TokenStateManager.stateManager === null) 
+        if (TokenStateManager.stateManager === undefined)
             TokenStateManager.stateManager = new TokenStateManager()
-        
 
         return TokenStateManager.stateManager
     }
