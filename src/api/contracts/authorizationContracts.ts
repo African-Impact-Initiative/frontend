@@ -1,4 +1,4 @@
-type UserCredentials = {
+export type UserCredentials = {
     username: string,
     password: string,
     grantType: 'password',
@@ -6,7 +6,7 @@ type UserCredentials = {
     clientSecret: string
 }
 
-type GoogleCredentials = {
+export type GoogleCredentials = {
     token: string,
     backend: 'google-oauth2',
     grantType: 'convert_token',
@@ -14,20 +14,28 @@ type GoogleCredentials = {
     clientSecret: string
 }
 
-type RefreshToken = {
+export type RefreshToken = {
     grantType: 'refresh_token',
     clientId: string,
     clientSecret: string,
     refreshToken: string
 }
 
-type RevokeAuthorization = {
+export type RevokeAuthorization = {
     clientId: string
 }
 
-type AuthorizationHeader = {
+export type AuthorizationHeader = {
     header: {
-        'X-CSRFToken': string,
+        'X-CSRFToken': string | null,
         Authorization?: string
     }
+}
+
+export type LoginResponse = {
+    accessToken: string,
+    expiresIn: number,
+    tokenType: string,
+    scope: string,
+    refreshToken: string
 }
