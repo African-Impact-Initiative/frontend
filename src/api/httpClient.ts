@@ -1,6 +1,6 @@
-import axios, { AxiosResponse, AxiosInstance } from "axios"
-import IHttpClient from "../types/httpClient";
-import { Id } from "../types/user";
+import axios, { AxiosResponse, AxiosInstance } from 'axios'
+import IHttpClient from '../types/httpClient'
+import { Id } from '../types/user'
 
 class HttpClient<T> implements IHttpClient<T> {
     client: AxiosInstance
@@ -20,7 +20,7 @@ class HttpClient<T> implements IHttpClient<T> {
         return await this.client.put<T>(`${endpoint}${id}/`, obj)
     }
 
-    async patch(id: Id, obj: any, endpoint: string = ''): Promise<AxiosResponse<T>> {
+    async patch(id: Id, obj: T, endpoint: string = ''): Promise<AxiosResponse<T>> {
         return await this.client.patch<T>(`${endpoint}${id}/`, obj)
     }
 

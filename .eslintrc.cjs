@@ -22,7 +22,7 @@ module.exports = {
     'no-dupe-else-if': 'error',
     'no-duplicate-imports': 'error',
     'no-unreachable': 'error',
-    'no-unused-vars': 'warn',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'camelcase': 'error',
     'capitalized-comments': ['error', 'never'],
     'curly': ['error', 'multi-or-nest'],

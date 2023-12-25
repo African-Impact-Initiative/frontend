@@ -1,7 +1,7 @@
-import ServiceResponse from "../types/serviceResponse";
-import User, { Id } from "../types/user";
-import apiRoutes from "./apiRoutes";
-import Service from "./service";
+import ServiceResponse from '../types/serviceResponse'
+import User, { Id } from '../types/user'
+import apiRoutes from './apiRoutes'
+import Service from './service'
 
 const userService = new Service<User>(apiRoutes.userOperations.baseUrl)
 

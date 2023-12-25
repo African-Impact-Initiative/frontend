@@ -1,9 +1,9 @@
-import { AxiosResponse, HttpStatusCode } from "axios"
-import IService from "../types/service"
-import ServiceResponse from "../types/serviceResponse"
-import IHttpClient from "../types/httpClient"
-import HttpClient from "./httpClient"
-import { Id } from "../types/user"
+import { AxiosResponse, HttpStatusCode } from 'axios'
+import IService from '../types/service'
+import ServiceResponse from '../types/serviceResponse'
+import IHttpClient from '../types/httpClient'
+import HttpClient from './httpClient'
+import { Id } from '../types/user'
 
 class Service<T> implements IService<T> {
     baseUrl: string

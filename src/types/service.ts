@@ -1,7 +1,7 @@
-import { AxiosResponse } from "axios"
-import ServiceResponse from "./serviceResponse"
-import { Id } from "./user"
-import IHttpClient from "./httpClient"
+import { AxiosResponse } from 'axios'
+import ServiceResponse from './serviceResponse'
+import { Id } from './user'
+import IHttpClient from './httpClient'
 
 interface IService<T> {
     buildRes(res: AxiosResponse<T>, error: boolean): ServiceResponse<T>
