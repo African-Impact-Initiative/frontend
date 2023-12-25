@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosInstance, Method } from 'axios'
 import IHttpClient from '../types/httpClient'
-import { Id } from "../types/propertyTypes"
+import { Id } from '../types/propertyTypes'
 
 class HttpClient<T> implements IHttpClient<T> {
     client: AxiosInstance
@@ -32,7 +32,7 @@ class HttpClient<T> implements IHttpClient<T> {
         return await this.client.delete<T>(`${endpoint}${id}/`)
     }
 
-    async request<K>(method: Method, data?: K, endpoint?: string | undefined): Promise<AxiosResponse<K, any>> {
+    async request<K>(method: Method, data?: K, endpoint?: string | undefined): Promise<AxiosResponse<K>> {
         return this.requestWith<K, K>(method, data, endpoint)
     }
 

@@ -1,4 +1,4 @@
-import { ForeignRelation, Id } from "./propertyTypes"
+import { ForeignRelation, Id } from './propertyTypes'
 
 type User = {
     // personal data

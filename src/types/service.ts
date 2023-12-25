@@ -1,6 +1,6 @@
 import { AxiosResponse, Method } from 'axios'
 import ServiceResponse from './serviceResponse'
-import { Id } from "./propertyTypes"
+import { Id } from './propertyTypes'
 
 interface IService<T> {
     buildRes<V>(res: AxiosResponse<V>, error: boolean): ServiceResponse<V>

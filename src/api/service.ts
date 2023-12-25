@@ -3,7 +3,7 @@ import IService from '../types/service'
 import ServiceResponse from '../types/serviceResponse'
 import IHttpClient from '../types/httpClient'
 import HttpClient from './httpClient'
-import { Id } from "../types/propertyTypes"
+import { Id } from '../types/propertyTypes'
 
 class Service<T> implements IService<T> {
     baseUrl: string

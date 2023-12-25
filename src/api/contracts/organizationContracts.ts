@@ -1,4 +1,4 @@
-import { CompanyChallenges, CompanyFunding, CompanyStage } from "../../types/organization"
+import { CompanyChallenges, CompanyFunding, CompanyStage } from '../../types/organization'
 
 export type UpdateChallenges = {
     challenge1?: CompanyChallenges,

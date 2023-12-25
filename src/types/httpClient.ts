@@ -1,5 +1,5 @@
 import { AxiosResponse, Method } from 'axios'
-import { Id } from "./propertyTypes"
+import { Id } from './propertyTypes'
 
 interface IHttpClient<T> {
     get(query?: string, endpoint?: string):  Promise<AxiosResponse<T>>

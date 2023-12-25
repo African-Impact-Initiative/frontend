@@ -1,10 +1,10 @@
-import Organization, { CompanyChallenges, CompanyFunding, CompanyStage } from "../types/organization";
-import { Id } from "../types/propertyTypes";
-import ServiceResponse from "../types/serviceResponse";
-import apiRoutes from "./apiRoutes";
-import { UpdateChallenges, UpdateFunding, UpdateStage } from "./contracts/organizationContracts";
-import Service from "./service";
-import { METHODS } from "./utils";
+import Organization, { CompanyChallenges, CompanyFunding, CompanyStage } from '../types/organization'
+import { Id } from '../types/propertyTypes'
+import ServiceResponse from '../types/serviceResponse'
+import apiRoutes from './apiRoutes'
+import { UpdateChallenges, UpdateFunding, UpdateStage } from './contracts/organizationContracts'
+import Service from './service'
+import { METHODS } from './utils'
 
 const organizationService = new Service<Organization>(apiRoutes.organizationOperations.baseUrl)
 

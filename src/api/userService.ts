@@ -1,6 +1,6 @@
 import ServiceResponse from '../types/serviceResponse'
 import User from '../types/user'
-import { Id } from "../types/propertyTypes"
+import { Id } from '../types/propertyTypes'
 import apiRoutes from './apiRoutes'
 import Service from './service'
 import { METHODS } from './utils'

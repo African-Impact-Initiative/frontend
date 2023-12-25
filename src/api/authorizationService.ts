@@ -1,10 +1,10 @@
-import ServiceResponse from "../types/serviceResponse";
-import User from "../types/user";
-import apiRoutes from "./apiRoutes";
-import { AuthorizationHeader, RefreshToken, UserCredentials, GoogleCredentials, LoginResponse, RevokeAuthorization } from "./contracts/authorizationContracts";
-import Service from "./service";
-import { METHODS, getCookie } from "./utils";
-import { EmptyResponse } from "./contracts/generalContracts";
+import ServiceResponse from '../types/serviceResponse'
+import User from '../types/user'
+import apiRoutes from './apiRoutes'
+import { AuthorizationHeader, RefreshToken, UserCredentials, GoogleCredentials, LoginResponse, RevokeAuthorization } from './contracts/authorizationContracts'
+import Service from './service'
+import { METHODS, getCookie } from './utils'
+import { EmptyResponse } from './contracts/generalContracts'
 
 const authorizationService = new Service<User>(apiRoutes.authorizationOperations.baseUrl)
 const googleId = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_ID
@@ -12,9 +12,9 @@ const googleSecret = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_SECRET
 const passwordId = import.meta.env.VITE_REGULAR_LOGIN_CLIENT_ID
 const passwordSecret = import.meta.env.VITE_REGULAR_LOGIN_CLIENT_SECRET
 
-var token: string | null = null
-var refreshToken: string | null = null
-var tokensValidUntil: Date | null = null
+let token: string | null = null
+let refreshToken: string | null = null
+let tokensValidUntil: Date | null = null
 
 const setTokensValidUntil = (time: number) => {
     tokensValidUntil = new Date(new Date().getTime() + time * 1000)

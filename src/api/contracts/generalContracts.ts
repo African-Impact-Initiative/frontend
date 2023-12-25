@@ -1,3 +1,1 @@
-export type EmptyResponse = {
-
-}
+export type EmptyResponse = Record<string, never>

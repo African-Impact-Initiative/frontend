@@ -1,4 +1,4 @@
-import { Method } from "axios";
+import { Method } from 'axios'
 
 export const METHODS: { [key: string]: Method } = {
     get: 'GET',

@@ -1,5 +1,5 @@
-import { Id } from "./propertyTypes"
-import User from "./user"
+import { Id } from './propertyTypes'
+import User from './user'
 
 export type CompanyFunding = 'EF' | 'PS' | 'SR' | 'SA' | 'SB' | 'NF'
 
