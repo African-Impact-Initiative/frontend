@@ -5,75 +5,58 @@ import { AuthorizationHeader, RefreshToken, UserCredentials, GoogleCredentials, 
 import Service from './service'
 import { METHODS, getCookie } from './utils'
 import { EmptyResponse } from './contracts/generalContracts'
+import ITokenStateManager from '../types/tokenStateManager'
+import TokenStateManager from './tokenStateManager'
 
 const authorizationService = new Service<User>(apiRoutes.authorizationOperations.baseUrl)
+const stateManager: ITokenStateManager = TokenStateManager.getStateManager()
+
 const googleId = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_ID
 const googleSecret = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_SECRET
 const passwordId = import.meta.env.VITE_REGULAR_LOGIN_CLIENT_ID
 const passwordSecret = import.meta.env.VITE_REGULAR_LOGIN_CLIENT_SECRET
 
-let token: string | null = null
-let refreshToken: string | null = null
-let tokensValidUntil: Date | null = null
-
-const setTokensValidUntil = (time: number) => {
-    tokensValidUntil = new Date(new Date().getTime() + time * 1000)
+const updateStateManager = (tokenData: LoginResponse) => {
+    stateManager.setTokensValidUntil(tokenData.expiresIn)
+    stateManager.setToken(tokenData.accessToken)
+    stateManager.setRefreshToken(tokenData.refreshToken)
 }
 
-const setToken = (newToken: string) => {
-    token = newToken
-}
-
-const setRefreshToken = (newRefreshToken: string) => {
-    refreshToken = newRefreshToken
-}
-
-const getToken = (): string | null => (token !== null)? `Bearer ${token}` : null
-
-const getAuthorizationHeader = (): AuthorizationHeader => {
-    const token = getToken()
-
-    const header: AuthorizationHeader = {
-        header: {
-            'X-CSRFToken': getCookie('csrftoken'),
-        }
-    }
-    if(token) header.header.Authorization = token
-
-    return header
-}
-
-const refresh = async (): Promise<ServiceResponse<User>> => {
+const refresh = async (): Promise<ServiceResponse<LoginResponse>> => {
     const data: RefreshToken = {
         grantType: 'refresh_token',
         clientId: passwordId,
         clientSecret: passwordSecret,
-        refreshToken: refreshToken!
+        refreshToken: stateManager.getRefreshToken()!
     }
 
-    return await authorizationService.requestWith<User, RefreshToken>(METHODS.post, data, apiRoutes.authorizationOperations.password)
+    const res = await authorizationService.requestWith<LoginResponse, RefreshToken>(METHODS.post, data, apiRoutes.authorizationOperations.password)
+    updateStateManager(res.data as LoginResponse)
+    return res
 }
 
-const refreshGoogle = async (): Promise<ServiceResponse<User>> => {
+const refreshGoogle = async (): Promise<ServiceResponse<LoginResponse>> => {
     const data: RefreshToken = {
         grantType: 'refresh_token',
         clientId: googleId,
         clientSecret: googleSecret,
-        refreshToken: refreshToken!
+        refreshToken: stateManager.getRefreshToken()!
     }
 
-    return await authorizationService.requestWith<User, RefreshToken>(METHODS.post, data, apiRoutes.authorizationOperations.password)
+    const res = await authorizationService.requestWith<LoginResponse, RefreshToken>(METHODS.post, data, apiRoutes.authorizationOperations.password)
+    updateStateManager(res.data as LoginResponse)
+    return res
 }
-
-const isTokenValid = (): boolean => tokensValidUntil === null? false : (new Date().getTime() < tokensValidUntil.getTime())
 
 const revokeTokens = async (): Promise<boolean> => {
     const res = await authorizationService.requestWith<EmptyResponse, RevokeAuthorization>(METHODS.post, { clientId: passwordId }, apiRoutes.authorizationOperations.kill)
+    stateManager.revokeTokens()
     return res.success
 }
 
 const revokeGoogleTokens = async (): Promise<boolean> => {
     const res = await authorizationService.requestWith<EmptyResponse, RevokeAuthorization>(METHODS.post, { clientId: googleId }, apiRoutes.authorizationOperations.kill)
+    stateManager.revokeTokens()
     return res.success
 }
 
@@ -87,7 +70,7 @@ const regularLogin = async (username: string, password: string): Promise<Service
     }
 
     const res = await authorizationService.requestWith<LoginResponse, UserCredentials>(METHODS.post, credentials, apiRoutes.authorizationOperations.password)
-    setTokensValidUntil((res.data as LoginResponse).expiresIn)
+    updateStateManager(res.data as LoginResponse)
     return res
 }
 
@@ -101,19 +84,14 @@ const googleLogin = async (token: string): Promise<ServiceResponse<LoginResponse
     }
 
     const res = await authorizationService.requestWith<LoginResponse, GoogleCredentials>(METHODS.post, credentials, apiRoutes.authorizationOperations.google)
-    setTokensValidUntil((res.data as LoginResponse).expiresIn)
+    updateStateManager(res.data as LoginResponse)
     return res
 }
 
 export default {
     regularLogin,
     googleLogin,
-    setToken,
-    setRefreshToken,
-    getToken,
-    getAuthorizationHeader,
     refresh,
-    isTokenValid,
     revokeTokens,
     revokeGoogleTokens,
     refreshGoogle,
