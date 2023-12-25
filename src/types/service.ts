@@ -12,6 +12,7 @@ interface IService<T> {
     destroy(id: Id):  Promise<ServiceResponse<T>>
 
     request<K>(method: Method, data?: K, endpoint?: string): Promise<ServiceResponse<K>>
+    requestWith<K, V>(method: Method, data?: V, endpoint?: string | undefined): Promise<ServiceResponse<K>>
 }
 
 export default IService

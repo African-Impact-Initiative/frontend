@@ -58,7 +58,11 @@ class Service<T> implements IService<T> {
     }
 
     async request<K>(method: Method, data?: K, endpoint?: string): Promise<ServiceResponse<K>> {
-        const res = await this.client.request<K>(method, data, endpoint)
+        return this.requestWith<K, K>(method, data, endpoint)
+    }
+
+    async requestWith<K, V>(method: Method, data?: V, endpoint?: string | undefined): Promise<ServiceResponse<K>> {
+        const res = await this.client.requestWith<K, V>(method, data, endpoint)
         return this.buildRes<K>(res, true)
     }
 }

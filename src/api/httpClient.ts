@@ -33,6 +33,10 @@ class HttpClient<T> implements IHttpClient<T> {
     }
 
     async request<K>(method: Method, data?: K, endpoint?: string | undefined): Promise<AxiosResponse<K, any>> {
+        return this.requestWith<K, K>(method, data, endpoint)
+    }
+
+    async requestWith<K, V>(method: Method, data?: V, endpoint?: string | undefined): Promise<AxiosResponse<K>> {
         return await this.client.request<K>({
             method,
             url: endpoint,

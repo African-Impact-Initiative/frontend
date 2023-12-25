@@ -9,6 +9,7 @@ interface IHttpClient<T> {
     delete(id: Id, endpoint?: string):  Promise<AxiosResponse<T>>
 
     request<K>(method: Method, data?: K, endpoint?: string): Promise<AxiosResponse<K>>
+    requestWith<K, V>(method: Method, data?: V, endpoint?: string | undefined): Promise<AxiosResponse<K>>
 }
 
 export default IHttpClient

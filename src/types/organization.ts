@@ -9,7 +9,7 @@ export type CompanyChallenges = 'SF' | 'PD' | 'BC' | 'BS' | 'MB' | 'SO' | 'MF' |
 
 type Organization = {
     id: Id,
-    user_set: [User],
+    user_set: Array<User>,
     updated: string,
     created: string,
     name: string,

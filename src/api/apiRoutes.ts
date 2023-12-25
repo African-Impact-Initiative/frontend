@@ -11,6 +11,13 @@ const apiRoutes = {
         terms: 'accounts/onboarding/terms/',
         personalInfo: 'accounts/onboarding/personal-info/',
         addOrganization: 'accounts/onboarding/add-organization/',
+    },
+    organizationOperations: {
+        baseUrl: 'organizations/',
+        stageUrl: 'organizations/stages/',
+        challengeUrl: 'organizations/challenges/',
+        fundingUrl: 'organizations/funding/',
+        findById: 'organizations/identifier/',
     }
 }
 
