@@ -28,11 +28,11 @@ const destroy = async (id: Id): Promise<ServiceResponse<Organization>> => {
     return await organizationService.destroy(id)
 }
 
-const addStage = async (id: Id, stage: CompanyStage): Promise<ServiceResponse<Organization>> => {
-    return await organizationService.requestWith<Organization, UpdateStage>(METHODS.put, { stage }, `${apiRoutes.organizationOperations.stageUrl}${id}/`)
+const addStage = async (id: Id, stage: CompanyStage): Promise<ServiceResponse<UpdateStage>> => {
+    return await organizationService.request<UpdateStage>(METHODS.put, { stage }, `${apiRoutes.organizationOperations.stageUrl}${id}/`)
 }
 
-const addChallenges = async (id: Id, challenges: Array<CompanyChallenges>): Promise<ServiceResponse<Organization>> => {
+const addChallenges = async (id: Id, challenges: Array<CompanyChallenges>): Promise<ServiceResponse<UpdateChallenges>> => {
     const data: UpdateChallenges = {}
 
     if (challenges.length > 0) {
@@ -43,11 +43,11 @@ const addChallenges = async (id: Id, challenges: Array<CompanyChallenges>): Prom
         }
     }
 
-    return await organizationService.requestWith<Organization, UpdateChallenges>(METHODS.put, data, `${apiRoutes.organizationOperations.challengeUrl}${id}/`)
+    return await organizationService.request<UpdateChallenges>(METHODS.put, data, `${apiRoutes.organizationOperations.challengeUrl}${id}/`)
 }
 
-const addFunding = async (id: Id, funding: CompanyFunding): Promise<ServiceResponse<Organization>> => {
-    return await organizationService.requestWith<Organization, UpdateFunding>(METHODS.put, { funding }, `${apiRoutes.organizationOperations.fundingUrl}${id}/`)
+const addFunding = async (id: Id, funding: CompanyFunding): Promise<ServiceResponse<UpdateFunding>> => {
+    return await organizationService.request<UpdateFunding>(METHODS.put, { funding }, `${apiRoutes.organizationOperations.fundingUrl}${id}/`)
 }
 
 const findByIdentifier = async (id: Id): Promise<ServiceResponse<Organization>> => {
