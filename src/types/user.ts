@@ -1,6 +1,8 @@
+export type Id = string | number
+
 type User = {
     // personal data
-    id: number
+    id: Id
     email: string
     firstName: string
     lastName: string
