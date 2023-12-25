@@ -1,16 +1,16 @@
 const apiRoutes = {
     userOperations: {
-        baseUrl: '/api/accounts/',
-        userUrl: '/api/accounts/me/',
-        adminUrl: '/api/accounts/admins/',
-        passwordResetUrl: '/api/password_reset/',
-        passwordResetConfirmUrl: '/api/password_reset/confirm/',
-        passwordChangeUrl: '/api/accounts/change_password/',
-        emailChangeUrl: '/api/accounts/change_email/',
-        activateUrl: '/api/accounts/activate/',
-        terms: '/api/accounts/onboarding/terms/',
-        personalInfo: '/api/accounts/onboarding/personal-info/',
-        addOrganization: '/api/accounts/onboarding/add-organization/',
+        baseUrl: 'accounts/',
+        userUrl: 'accounts/me/',
+        adminUrl: 'accounts/admins/',
+        passwordResetUrl: 'password_reset/',
+        passwordResetConfirmUrl: 'password_reset/confirm/',
+        passwordChangeUrl: 'accounts/change_password/',
+        emailChangeUrl: 'accounts/change_email/',
+        activateUrl: 'accounts/activate/',
+        terms: 'accounts/onboarding/terms/',
+        personalInfo: 'accounts/onboarding/personal-info/',
+        addOrganization: 'accounts/onboarding/add-organization/',
     }
 }
 
