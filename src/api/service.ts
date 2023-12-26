@@ -1,9 +1,10 @@
 import { AxiosResponse, HttpStatusCode, Method } from 'axios'
-import IService from '../types/service'
+import IService from './types/service'
 import ServiceResponse from '../types/serviceResponse'
-import IHttpClient from '../types/httpClient'
+import IHttpClient from './types/httpClient'
 import HttpClient from './httpClient'
 import { Id } from '../types/propertyTypes'
+import { Empty } from './contracts/generalContracts'
 
 class Service<T> implements IService<T> {
     baseUrl: string
@@ -52,9 +53,9 @@ class Service<T> implements IService<T> {
         return this.buildRes<T>(res, true)
     }
 
-    async destroy(id: Id): Promise<ServiceResponse<T>> {
+    async destroy(id: Id): Promise<ServiceResponse<Empty>> {
         const res = await this.client.delete(id)
-        return this.buildRes<T>(res, true)
+        return this.buildRes<Empty>(res, true)
     }
 
     async request<K>(method: Method, data?: K, endpoint?: string): Promise<ServiceResponse<K>> {

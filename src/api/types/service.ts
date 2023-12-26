@@ -1,6 +1,7 @@
 import { AxiosResponse, Method } from 'axios'
-import ServiceResponse from './serviceResponse'
-import { Id } from './propertyTypes'
+import ServiceResponse from '../../types/serviceResponse'
+import { Id } from '../../types/propertyTypes'
+import { Empty } from '../contracts/generalContracts'
 
 interface IService<T> {
     buildRes<V>(res: AxiosResponse<V>, error: boolean): ServiceResponse<V>
@@ -9,7 +10,7 @@ interface IService<T> {
     create(data: T):  Promise<ServiceResponse<T>>
     update(id: Id, data: T):  Promise<ServiceResponse<T>>
     modify(id: Id, data: T):  Promise<ServiceResponse<T>>
-    destroy(id: Id):  Promise<ServiceResponse<T>>
+    destroy(id: Id):  Promise<ServiceResponse<Empty>>
 
     request<K>(method: Method, data?: K, endpoint?: string): Promise<ServiceResponse<K>>
     requestWith<K, V>(method: Method, data?: V, endpoint?: string | undefined): Promise<ServiceResponse<K>>

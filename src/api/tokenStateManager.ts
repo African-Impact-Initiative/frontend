@@ -1,4 +1,4 @@
-import ITokenStateManager from '../types/tokenStateManager'
+import ITokenStateManager from './types/tokenStateManager'
 
 class TokenStateManager implements ITokenStateManager {
     private static token: string | null

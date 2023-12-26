@@ -1,9 +1,10 @@
 import axios, { AxiosResponse, AxiosInstance, Method, AxiosHeaders } from 'axios'
-import IHttpClient from '../types/httpClient'
+import IHttpClient from './types/httpClient'
 import { Id } from '../types/propertyTypes'
-import ITokenStateManager from '../types/tokenStateManager'
+import ITokenStateManager from './types/tokenStateManager'
 import TokenStateManager from './tokenStateManager'
 import { getCookie } from './utils'
+import { Empty } from './contracts/generalContracts'
 
 class HttpClient<T> implements IHttpClient<T> {
     client: AxiosInstance
@@ -48,8 +49,8 @@ class HttpClient<T> implements IHttpClient<T> {
         return await this.client.post<T>(`${endpoint}`, obj, { headers: this.getAuthorizationHeader() })
     }
 
-    async delete(id: Id, endpoint: string = ''): Promise<AxiosResponse<T>> {
-        return await this.client.delete<T>(`${endpoint}${id}/`, { headers: this.getAuthorizationHeader() })
+    async delete(id: Id, endpoint: string = ''): Promise<AxiosResponse<Empty>> {
+        return await this.client.delete<Empty>(`${endpoint}${id}/`, { headers: this.getAuthorizationHeader() })
     }
 
     async request<K>(method: Method, data?: K, endpoint?: string | undefined): Promise<AxiosResponse<K>> {

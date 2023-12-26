@@ -5,7 +5,7 @@ import { RefreshToken, UserCredentials, GoogleCredentials, LoginResponse, Revoke
 import Service from './service'
 import { METHODS } from './utils'
 import { Empty } from './contracts/generalContracts'
-import ITokenStateManager from '../types/tokenStateManager'
+import ITokenStateManager from './types/tokenStateManager'
 import TokenStateManager from './tokenStateManager'
 
 const authorizationService = new Service<User>(apiRoutes.authorizationOperations.baseUrl)
