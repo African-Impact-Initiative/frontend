@@ -11,6 +11,7 @@ import { Id } from '../types/propertyTypes'
 import TokenStateManager from '../api/tokenStateManager'
 import ITokenStateManager from '../api/types/tokenStateManager'
 import ServiceResponse from '../types/serviceResponse'
+import { UpdatePersonalInfo } from '../api/contracts/userContracts'
 
 const stateManager: ITokenStateManager = new TokenStateManager()
 
@@ -150,26 +151,21 @@ export const setUserOnRefresh = () => {
     }
 }
 
-export const createUser = (email, password, firstName, lastName) => {
+export const createUser = (user: User) => {
     return async (dispatch: Dispatch<Action>) => {
-        const res = await userService.create(email, password, firstName, lastName)
+        const res = await userService.create(user)
         if(!res.success) {
-            if (res.data.password) {
-                res.data.password.password.forEach(message => {
-                    dispatch(setErrorNotification(message))
-                })
-            } else
-                throw Error(res.data)
+            dispatch(setErrorNotification('Error creating account please try again later'))
         } else
             dispatch(setSuccessNotification('Account created successfully'))
     }
 }
 
-export const updateUser = (data) => {
+export const updateUser = (data: User) => {
     return async (dispatch: Dispatch<Action>) => {
         try {
             const user = await userService.update(data.id, data)
-            dispatch(setUser(user.data))
+            dispatch(setUser(user.data as User))
             dispatch(setSuccessNotification('Profile updated'))
         } catch {
             dispatch(setErrorNotification('Error updating profile'))
@@ -193,9 +189,9 @@ export const userAddToOrg = (id: Id) => {
     }
 }
 
-export const updatePersonalInfo = (firstName, lastName, role, country, linkedin, bio, file) => {
+export const updatePersonalInfo = (personalInfo: UpdatePersonalInfo) => {
     return async (dispatch: Dispatch<Action>) => {
-        await userService.updatePersonalInformation(firstName, lastName, role, country, linkedin, bio, file)
+        await userService.updatePersonalInformation(personalInfo)
         dispatch(updateUserState(decamelizeKeys({firstName, lastName, role, country, linkedin, bio, file})))
         dispatch(setSuccessNotification('Personal information updated'))
     }

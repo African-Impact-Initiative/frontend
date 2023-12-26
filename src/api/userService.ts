@@ -5,7 +5,7 @@ import apiRoutes from './apiRoutes'
 import Service from './service'
 import { METHODS } from './utils'
 import { Empty } from './contracts/generalContracts'
-import { UpdatePersonalInfo, UpdateTerms } from './contracts/userContracts'
+import { AddUserToOrganization, UpdatePersonalInfo, UpdateTerms } from './contracts/userContracts'
 
 const userService = new Service<User>(apiRoutes.userOperations.baseUrl)
 
@@ -45,6 +45,10 @@ const updatePersonalInformation = async (personalInfo: UpdatePersonalInfo): Prom
     return await userService.request<UpdatePersonalInfo>(METHODS.put, personalInfo, apiRoutes.userOperations.personalInfo)
 }
 
+const addOrganizationToUser = async (id: Id): Promise<ServiceResponse<Empty>> => {
+    return await userService.requestWith<Empty, AddUserToOrganization>(METHODS.put, { org: id }, apiRoutes.userOperations.addOrganization)
+}
+
 export default {
     retrieve,
     retrieveSingle,
@@ -55,4 +59,5 @@ export default {
     destroy,
     agreeToTerms,
     updatePersonalInformation,
+    addOrganizationToUser
 }
