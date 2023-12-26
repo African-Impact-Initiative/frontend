@@ -2,6 +2,7 @@ import Organization, { CompanyChallenges, CompanyFunding, CompanyStage } from '.
 import { Id } from '../types/propertyTypes'
 import ServiceResponse from '../types/serviceResponse'
 import apiRoutes from './apiRoutes'
+import { Empty } from './contracts/generalContracts'
 import { UpdateChallenges, UpdateFunding, UpdateStage } from './contracts/organizationContracts'
 import Service from './service'
 import { METHODS } from './utils'
@@ -24,7 +25,7 @@ const update = async (id: Id, organization: Organization): Promise<ServiceRespon
     return await organizationService.update(id, organization)
 }
 
-const destroy = async (id: Id): Promise<ServiceResponse<Organization>> => {
+const destroy = async (id: Id): Promise<ServiceResponse<Empty>> => {
     return await organizationService.destroy(id)
 }
 

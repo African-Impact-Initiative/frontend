@@ -33,7 +33,7 @@ const update = async (id: Id, user: User): Promise<ServiceResponse<User>> => {
     return await userService.update(id, user)
 }
 
-const destroy = async (id: Id): Promise<ServiceResponse<User>> => {
+const destroy = async (id: Id): Promise<ServiceResponse<Empty>> => {
     return await userService.destroy(id)
 }
 
