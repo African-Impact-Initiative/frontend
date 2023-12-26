@@ -9,8 +9,8 @@ import { METHODS } from './utils'
 
 const organizationService = new Service<Organization>(apiRoutes.organizationOperations.baseUrl)
 
-const retrieve = async (): Promise<ServiceResponse<Array<Organization>>> => {
-    return await organizationService.retrieve()
+const retrieve = async (query?: string): Promise<ServiceResponse<Array<Organization>>> => {
+    return await organizationService.retrieve(query)
 }
 
 const retrieveSingle = async (id: Id): Promise<ServiceResponse<Organization>> => {

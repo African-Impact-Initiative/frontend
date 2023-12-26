@@ -1,4 +1,4 @@
-const apiRoutes = {
+const apiRoutes: { [key: string]: { [key:string]: string } } = {
     userOperations: {
         baseUrl: 'accounts/',
         userUrl: 'me/',
