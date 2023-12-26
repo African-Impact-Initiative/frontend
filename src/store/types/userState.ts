@@ -1,4 +1,4 @@
-import User from "../../types/user"
+import User from '../../types/user'
 export type AppUsers = Array<User>
 
 export type AppSetUsersAction = {

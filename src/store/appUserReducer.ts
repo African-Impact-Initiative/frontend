@@ -145,18 +145,18 @@ export const setUserOnRefresh = () => {
                 const user = await userService.getCurrent()
                 dispatch(setUser(user.data as User))
             }
-        } else {
+        } else 
             dispatch(setAppUser({ anon: true, data: null }))
-        }
+        
     }
 }
 
 export const createUser = (user: User) => {
     return async (dispatch: Dispatch<Action>) => {
         const res = await userService.create(user)
-        if(!res.success) {
+        if(!res.success) 
             dispatch(setErrorNotification('Error creating account please try again later'))
-        } else
+        else
             dispatch(setSuccessNotification('Account created successfully'))
     }
 }

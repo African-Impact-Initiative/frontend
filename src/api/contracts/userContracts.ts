@@ -1,4 +1,4 @@
-import { Id } from "../../types/propertyTypes"
+import { Id } from '../../types/propertyTypes'
 
 export type UpdateTerms = {
     terms: boolean

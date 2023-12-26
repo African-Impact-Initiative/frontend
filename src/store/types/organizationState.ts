@@ -1,5 +1,5 @@
-import Organization from "../../types/organization"
-import { Id } from "../../types/propertyTypes"
+import Organization from '../../types/organization'
+import { Id } from '../../types/propertyTypes'
 
 export type AppOrganizations = Array<Organization>
 

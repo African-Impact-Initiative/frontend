@@ -1,5 +1,5 @@
-import AppUser from "../../types/appUser"
-import User from "../../types/user"
+import AppUser from '../../types/appUser'
+import User from '../../types/user'
 
 export type UpdateUserState = {
     type: string,
