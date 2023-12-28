@@ -4,14 +4,14 @@ import { Action, Dispatch, createSlice } from '@reduxjs/toolkit'
 
 import { setSuccessNotification, setErrorNotification } from './notificationReducer'
 import AppUser, { LocalStorageUser, VBLocalStorage } from '../types/appUser'
-import { UpdateUserState, UpdateAppUserState } from './types/appUserState'
+import { UpdateUserState, UpdateAppUserState, AnyUpdateUserState } from './types/appUserState'
 import { LoginResponse } from '../api/contracts/authorizationContracts'
 import User from '../types/user'
 import { Id } from '../types/propertyTypes'
 import TokenStateManager from '../api/tokenStateManager'
 import ITokenStateManager from '../api/types/tokenStateManager'
 import ServiceResponse from '../types/serviceResponse'
-import { UpdatePersonalInfo } from '../api/contracts/userContracts'
+import { UpdatePersonalInfo, UpdateTerms } from '../api/contracts/userContracts'
 
 const stateManager: ITokenStateManager = new TokenStateManager()
 
@@ -34,7 +34,7 @@ const userSlice = createSlice({
                 data: action.payload
             }
         },
-        updateUserState(state: AppUser, action: UpdateUserState) {
+        updateUserState(state: AppUser, action: AnyUpdateUserState) {
             return {
                 ...state,
                 data: {
@@ -145,16 +145,16 @@ export const setUserOnRefresh = () => {
                 const user = await userService.getCurrent()
                 dispatch(setUser(user.data as User))
             }
-        } else 
+        } else
             dispatch(setAppUser({ anon: true, data: null }))
-        
+
     }
 }
 
 export const createUser = (user: User) => {
     return async (dispatch: Dispatch<Action>) => {
         const res = await userService.create(user)
-        if(!res.success) 
+        if(!res.success)
             dispatch(setErrorNotification('Error creating account please try again later'))
         else
             dispatch(setSuccessNotification('Account created successfully'))
@@ -175,8 +175,8 @@ export const updateUser = (data: User) => {
 
 export const userAgreeToTerms = () => {
     return async (dispatch: Dispatch<Action>) => {
-        await userService.agreeToTerms()
-        dispatch(updateUserState({terms: true}))
+        const terms = await userService.agreeToTerms()
+        dispatch(updateUserState(terms.data as UpdateTerms))
         dispatch(setSuccessNotification('Terms agreed'))
     }
 }
@@ -192,7 +192,7 @@ export const userAddToOrg = (id: Id) => {
 export const updatePersonalInfo = (personalInfo: UpdatePersonalInfo) => {
     return async (dispatch: Dispatch<Action>) => {
         await userService.updatePersonalInformation(personalInfo)
-        dispatch(updateUserState(decamelizeKeys({firstName, lastName, role, country, linkedin, bio, file})))
+        dispatch(updateUserState(personalInfo))
         dispatch(setSuccessNotification('Personal information updated'))
     }
 }
