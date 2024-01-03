@@ -10,7 +10,7 @@ import ErrorNotification from './utils/notifications/ErrorNotification'
 import { setUserOnRefresh } from './store/appUserReducer'
 import { useEffect, useState } from 'react'
 import VBLoading from './components/VBLoading'
-import Router from './routes/Router'
+import Router from './navigation/Router'
 import { useAppDispatch, useAppSelector } from './hooks/redux'
 
 const App = () => {

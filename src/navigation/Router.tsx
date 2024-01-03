@@ -3,15 +3,8 @@ import ScrollToTop from './ScrollToTop'
 import PageNotFound from '../views/PageNotFound'
 
 const Router = () => {
-    // routes without layouts
-    const authRoutes = routes.authRoutes.map(
-        ({ path, component: Component, exact }) => (
-            <Route key={path} exact={exact} path={path} element={<Component />} />
-        )
-    )
-
-    // routes with layout of top Nav and footer
-    const layer2Routes = routes.Layer2Routes.map(
+    // routes with layout of top Nav and footer and no auth
+    const anonRoutes = routes.Layer2Routes.map(
         ({ path, component: Component, exact }) => (
             <Route
                 key={path}
@@ -27,7 +20,7 @@ const Router = () => {
     )
 
     // routes with layouts having a side bar and authenticated
-    const privateRoutes = routes.privateRoutes.map(
+    const authRoutes = routes.privateRoutes.map(
         ({ path, component: Component, exact }) => (
             <Route
                 key={path}
@@ -42,7 +35,7 @@ const Router = () => {
         )
     )
 
-    // routes with layouts having a side bar and authenticated
+    // routes with layouts having a side bar and authenticated + admin
     const adminRoutes = routes.adminRoutes.map(
         ({ path, component: Component, exact }) => (
             <Route
@@ -61,9 +54,8 @@ const Router = () => {
     return (
         <ScrollToTop>
             <Routes>
-                {privateRoutes}
+                {anonRoutes}
                 {authRoutes}
-                {layer2Routes}
                 {adminRoutes}
                 {/* 404 page route */}
                 <Route path="*" element={<PageNotFound />} />
