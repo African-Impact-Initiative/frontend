@@ -1,6 +1,6 @@
-import { Box, Icon, Typography } from "@mui/material"
-import { Link } from "react-router-dom"
-import PathConstants from "../routes/pathConstants"
+import { Box, Icon, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
+import PathConstants from '../routes/pathConstants'
 import logo from '../assets/logo.svg'
 
 const VBLogo = () => {

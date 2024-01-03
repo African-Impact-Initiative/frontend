@@ -14,10 +14,10 @@ const store = configureStore({
     }
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+// infer the `RootState` and `AppDispatch` types from the store itself
 export type IVBState = ReturnType<typeof store.getState>
 
-// Inferred type
+// inferred type
 export type AppDispatch = typeof store.dispatch
 
 export default store

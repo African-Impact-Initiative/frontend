@@ -1,5 +1,5 @@
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
-import { Container, Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material"
+import { Container, Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
 
 export type AccordionItems = {
     title: string,

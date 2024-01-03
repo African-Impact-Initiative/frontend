@@ -1,8 +1,9 @@
-import { Button, IconButton, SvgIconTypeMap } from "@mui/material"
-import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { Button, IconButton, SvgIconTypeMap } from '@mui/material'
+import { OverridableComponent } from '@mui/material/OverridableComponent'
 
 interface IButtonProps {
-    size?: "small" | "large" | "medium"
+    size?: 'small' | 'large' | 'medium'
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onClick?: (event: any) => void
 }
 
@@ -11,43 +12,46 @@ interface ITextButtonProps extends IButtonProps {
 }
 
 interface IIconButtonProps extends IButtonProps {
-    Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+    Icon: OverridableComponent<SvgIconTypeMap<NonNullable<unknown>, 'svg'>> & {
         muiName: string
     },
     aria: {
         label: string,
         controls: string,
-        popup?: boolean | "dialog" | "menu" | "grid" | "false" | "true" | "listbox" | "tree"
+        popup?: boolean | 'dialog' | 'menu' | 'grid' | 'false' | 'true' | 'listbox' | 'tree'
     }
 }
 
 export const VBContainedButton = ({ size, text, onClick }: ITextButtonProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleClick = (e: any) => {
         if (onClick !== undefined)
             onClick(e)
     }
 
     return (
-        <Button size={size === undefined? "medium" : size} variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}} onClick={handleClick}>
+        <Button size={size === undefined? 'medium' : size} variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}} onClick={handleClick}>
             { text }
         </Button>
     )
 }
 
 export const VBOutlinedButton = ({ size, text, onClick }: ITextButtonProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleClick = (e: any) => {
         if (onClick !== undefined)
             onClick(e)
     }
 
     return (
-        <Button size={size === undefined? "medium" : size} variant='outlined' sx={{color: '#000'}} onClick={handleClick}>
+        <Button size={size === undefined? 'medium' : size} variant='outlined' sx={{color: '#000'}} onClick={handleClick}>
             { text }
         </Button>
     )
 }
 
 export const VBIconButton = ({ size, onClick, Icon, aria }: IIconButtonProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleClick = (e: any) => {
         if (onClick !== undefined)
             onClick(e)
@@ -55,7 +59,7 @@ export const VBIconButton = ({ size, onClick, Icon, aria }: IIconButtonProps) =>
 
     return (
         <IconButton
-            size={size === undefined? "medium" : size}
+            size={size === undefined? 'medium' : size}
             aria-label={aria.label}
             aria-controls={aria.controls}
             aria-haspopup={aria.popup}
