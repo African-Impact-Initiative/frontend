@@ -1,9 +1,10 @@
 import userService from '../api/userService'
-import { Action, Dispatch, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import { setSuccessNotification, setErrorNotification } from './notificationReducer'
 import User from '../types/user'
 import { AppUsers, AppSetUsersAction, AppUpdateUserAction } from './types/userState'
+import { AppDispatch } from './store'
 
 const initialState: AppUsers = []
 
@@ -26,7 +27,7 @@ const userSlice = createSlice({
 export const { setUsers, changeUsers } = userSlice.actions
 
 export const initializeUsers = () => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const users = await userService.retrieve()
             dispatch(setUsers(users.data as Array<User>))
@@ -37,7 +38,7 @@ export const initializeUsers = () => {
 }
 
 export const updateUser = (data: User) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const user = await userService.update(data.id, data)
             dispatch(changeUsers(user.data as User))

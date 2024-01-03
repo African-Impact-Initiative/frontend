@@ -1,11 +1,12 @@
 import organizationService from '../api/organizationService'
-import { Action, Dispatch, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import { setSuccessNotification, setErrorNotification } from './notificationReducer'
 import { userAddToOrg } from './appUserReducer'
 import { AppOrganizations, AppSetOrganizationsAction, AppDestroyOrganizationAction, AppUpdateOrAddOrganizationAction } from './types/organizationState'
 import Organization, { CompanyChallenges, CompanyFunding, CompanyStage } from '../types/organization'
 import { Id } from '../types/propertyTypes'
+import { AppDispatch } from './store'
 
 const initialState: AppOrganizations = []
 
@@ -33,7 +34,7 @@ const organizationSlice = createSlice({
 export const { setOrganizations, appendOrganization, destroyOrganization, changeOrganization } = organizationSlice.actions
 
 export const createOrganization = (org: Organization) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         const organization = await organizationService.create(org)
         dispatch(appendOrganization(organization.data as Organization))
         dispatch(userAddToOrg((organization.data as Organization).id))
@@ -42,7 +43,7 @@ export const createOrganization = (org: Organization) => {
 }
 
 export const initializeOrganizations = () => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const organizations = await organizationService.retrieve()
             dispatch(setOrganizations(organizations.data as Array<Organization>))
@@ -53,7 +54,7 @@ export const initializeOrganizations = () => {
 }
 
 export const deleteOrganization = (id: Id) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             await organizationService.destroy(id)
             dispatch(destroyOrganization(id))
@@ -65,7 +66,7 @@ export const deleteOrganization = (id: Id) => {
 }
 
 export const updateOrganization = (id: Id, org: Organization) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const organization = await organizationService.update(id, org)
             dispatch(changeOrganization(organization.data as Organization))
@@ -77,7 +78,7 @@ export const updateOrganization = (id: Id, org: Organization) => {
 }
 
 export const searchOrganizations = (query: string) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const organizations = await organizationService.retrieve(query)
             dispatch(setOrganizations(organizations.data as Array<Organization>))
@@ -88,7 +89,7 @@ export const searchOrganizations = (query: string) => {
 }
 
 export const refreshOrganization = (id: Id) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const organization = await organizationService.retrieveSingle(id)
             dispatch(changeOrganization(organization.data as Organization))
@@ -99,7 +100,7 @@ export const refreshOrganization = (id: Id) => {
 }
 
 export const updateOrgStage = (id: Id, stage: CompanyStage) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         await organizationService.addStage(id, stage)
         const organization = await organizationService.findByIdentifier(id)
         dispatch(changeOrganization(organization.data as Organization))
@@ -107,7 +108,7 @@ export const updateOrgStage = (id: Id, stage: CompanyStage) => {
 }
 
 export const updateOrgFunding = (id: Id, funding: CompanyFunding) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         await organizationService.addFunding(id, funding)
         const organization = await organizationService.findByIdentifier(id)
         dispatch(changeOrganization(organization.data as Organization))
@@ -115,7 +116,7 @@ export const updateOrgFunding = (id: Id, funding: CompanyFunding) => {
 }
 
 export const updateOrgChallenges = (id: Id, challenges: Array<CompanyChallenges>) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         await organizationService.addChallenges(id, challenges)
         const organization = await organizationService.findByIdentifier(id)
         dispatch(changeOrganization(organization.data as Organization))

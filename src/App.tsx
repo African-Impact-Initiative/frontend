@@ -11,7 +11,6 @@ import { setUserOnRefresh } from './store/appUserReducer'
 import { useEffect, useState } from 'react'
 import VBLoading from './components/VBLoading'
 import Router from './routes/Router'
-import { IVBState } from './store/store'
 import { useAppDispatch, useAppSelector } from './hooks/redux'
 
 const App = () => {
@@ -19,7 +18,7 @@ const App = () => {
 
     const dispatch = useAppDispatch()
     const [loading, setLoading] = useState(true)
-    const user = useAppSelector((state: IVBState) => state.user)
+    const user = useAppSelector(state => state.user)
 
     useEffect(() => {
         dispatch(setUserOnRefresh())

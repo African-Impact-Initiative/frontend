@@ -1,6 +1,6 @@
 import authorizationService from '../api/authorizationService'
 import userService from '../api/userService'
-import { Action, Dispatch, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import { setSuccessNotification, setErrorNotification } from './notificationReducer'
 import AppUser, { LocalStorageUser, VBLocalStorage } from '../types/appUser'
@@ -12,6 +12,7 @@ import TokenStateManager from '../api/tokenStateManager'
 import ITokenStateManager from '../api/types/tokenStateManager'
 import ServiceResponse from '../types/serviceResponse'
 import { UpdatePersonalInfo, UpdateTerms } from '../api/contracts/userContracts'
+import { AppDispatch } from './store'
 
 const stateManager: ITokenStateManager = new TokenStateManager()
 
@@ -49,7 +50,7 @@ const userSlice = createSlice({
 export const { setUser, updateUserState, setAppUser } = userSlice.actions
 
 export const login = (username: string, password: string) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const res = await authorizationService.regularLogin(username, password)
             const tokens = res.data as LoginResponse
@@ -71,7 +72,7 @@ export const login = (username: string, password: string) => {
 }
 
 export const googleLogin = (token: string) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const res = await authorizationService.googleLogin(token)
             const tokens = res.data as LoginResponse
@@ -93,7 +94,7 @@ export const googleLogin = (token: string) => {
 }
 
 export const logout = (expired: boolean = false) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const user = window.localStorage.getItem(VBLocalStorage)
             if (user) {
@@ -117,7 +118,7 @@ export const logout = (expired: boolean = false) => {
 }
 
 export const setUserOnRefresh = () => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         const tokens = window.localStorage.getItem(VBLocalStorage)
 
         if(tokens) {
@@ -152,7 +153,7 @@ export const setUserOnRefresh = () => {
 }
 
 export const createUser = (user: User) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         const res = await userService.create(user)
         if(!res.success)
             dispatch(setErrorNotification('Error creating account please try again later'))
@@ -162,7 +163,7 @@ export const createUser = (user: User) => {
 }
 
 export const updateUser = (data: User) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             const user = await userService.update(data.id, data)
             dispatch(setUser(user.data as User))
@@ -174,7 +175,7 @@ export const updateUser = (data: User) => {
 }
 
 export const userAgreeToTerms = () => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         const terms = await userService.agreeToTerms()
         dispatch(updateUserState(terms.data as UpdateTerms))
         dispatch(setSuccessNotification('Terms agreed'))
@@ -182,7 +183,7 @@ export const userAgreeToTerms = () => {
 }
 
 export const userAddToOrg = (id: Id) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         await userService.addOrganizationToUser(id)
         const user = await userService.getCurrent()
         dispatch(setUser(user.data as User))
@@ -190,7 +191,7 @@ export const userAddToOrg = (id: Id) => {
 }
 
 export const updatePersonalInfo = (personalInfo: UpdatePersonalInfo) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         await userService.updatePersonalInformation(personalInfo)
         dispatch(updateUserState(personalInfo))
         dispatch(setSuccessNotification('Personal information updated'))
@@ -198,7 +199,7 @@ export const updatePersonalInfo = (personalInfo: UpdatePersonalInfo) => {
 }
 
 export const deleteUser = (id: Id) => {
-    return async (dispatch: Dispatch<Action>) => {
+    return async (dispatch: AppDispatch) => {
         try {
             await userService.destroy(id)
             dispatch(setSuccessNotification('Your account was deleted!'))
