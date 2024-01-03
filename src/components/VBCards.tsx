@@ -3,14 +3,14 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 
-export interface AboutCardProps {
+export interface IAboutCardProps {
     title: string,
     description: string,
     image: string,
 }
 
 
-export const AboutCard = ({ title, description, image }: AboutCardProps) => {
+export const AboutCard = ({ title, description, image }: IAboutCardProps) => {
     // renders 2 cards one for sm screens and other for larger screens
     return (
         <>

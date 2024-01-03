@@ -1,7 +1,7 @@
 import { Container, Box } from "@mui/material"
 import Carousel from "react-material-ui-carousel"
 
-interface CarouselProps {
+export interface CarouselProps {
     list: Array<Array<string>>,
     key: string
 }

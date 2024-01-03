@@ -1,6 +1,6 @@
 import { Box, Grid, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material'
 
-export interface JumboPanelProps {
+export interface IJumboPanelProps {
     right: boolean,
     image: string,
     title: string,
@@ -9,7 +9,7 @@ export interface JumboPanelProps {
     prompt: string
 }
 
-const JumboPanel = ({ icon, title, prompt, points, image, right }: JumboPanelProps) => {
+const JumboPanel = ({ icon, title, prompt, points, image, right }: IJumboPanelProps) => {
     return (
         <Box key={`info-section-${title}`} sx={{display: { xs: 'none', lg: 'flex' }, height: '70vh', overflowX: 'hidden', marginTop: '40px', marginBottom: '40px'}}>
             <Grid sx={{width: '100%', height: '100%'}} container spacing={0}>
@@ -19,7 +19,7 @@ const JumboPanel = ({ icon, title, prompt, points, image, right }: JumboPanelPro
                         <img src={icon} alt={'manage team icon'} style={{borderRadius: '50%', padding: '10px', width: '80px', height: '80px'}} />
                     </Box>
 
-                    <Typography sx={{display: {lg: 'inline', xl: 'none'}}} fontWeight='bold' variant='h4' component='div' gutterBottom>
+                    <Typography fontWeight='bold' variant='h4' component='div' gutterBottom>
                         {title}
                     </Typography>
 

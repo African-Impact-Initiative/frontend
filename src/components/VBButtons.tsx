@@ -1,16 +1,16 @@
 import { Button, IconButton, SvgIconTypeMap } from "@mui/material"
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 
-interface ButtonProps {
+interface IButtonProps {
     size?: "small" | "large" | "medium"
     onClick?: (event: any) => void
 }
 
-interface TextButtonProps extends ButtonProps {
+interface ITextButtonProps extends IButtonProps {
     text: string,
 }
 
-interface IconButtonProps extends ButtonProps {
+interface IIconButtonProps extends IButtonProps {
     Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
         muiName: string
     },
@@ -21,7 +21,7 @@ interface IconButtonProps extends ButtonProps {
     }
 }
 
-export const VBContainedButton = ({ size, text, onClick }: TextButtonProps) => {
+export const VBContainedButton = ({ size, text, onClick }: ITextButtonProps) => {
     const handleClick = (e: any) => {
         if (onClick !== undefined)
             onClick(e)
@@ -34,7 +34,7 @@ export const VBContainedButton = ({ size, text, onClick }: TextButtonProps) => {
     )
 }
 
-export const VBOutlinedButton = ({ size, text, onClick }: TextButtonProps) => {
+export const VBOutlinedButton = ({ size, text, onClick }: ITextButtonProps) => {
     const handleClick = (e: any) => {
         if (onClick !== undefined)
             onClick(e)
@@ -47,7 +47,7 @@ export const VBOutlinedButton = ({ size, text, onClick }: TextButtonProps) => {
     )
 }
 
-export const VBIconButton = ({ size, onClick, Icon, aria }: IconButtonProps) => {
+export const VBIconButton = ({ size, onClick, Icon, aria }: IIconButtonProps) => {
     const handleClick = (e: any) => {
         if (onClick !== undefined)
             onClick(e)

@@ -1,106 +1,93 @@
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
-import Accordion from '@mui/material/Accordion'
-import AccordionDetails from '@mui/material/AccordionDetails'
-import AccordionSummary from '@mui/material/AccordionSummary'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import Carousel from 'react-material-ui-carousel'
 import { Link } from 'react-router-dom'
-import { AboutCard, AboutCardProps } from '../components/VBCards'
+import { AboutCard, IAboutCardProps } from '../components/VBCards'
 import PathConstants from '../routes/pathConstants'
 import JumboPanel from '../components/VBJumboPanel'
+import VBAccordion, { AccordionItems } from '../components/VBAccordion'
+import VBCarousel from '../components/VBCarousel'
+
+import person from '../assets/person.svg'
+import home from '../assets/home.svg'
+import guide from '../assets/guide.svg'
+import community from '../assets/community.svg'
+import work from '../assets/work.svg'
+import book from '../assets/book.svg'
+import fund from '../assets/fund.svg'
+import logo from '../assets/logo.svg'
 
 const Home = () => {
-    const items = [
-        [
-            'static/site-imgs/person.svg',
-            'static/site-imgs/person.svg',
-            'static/site-imgs/person.svg',
-        ],
-        [
-            'static/site-imgs/person.svg',
-            'static/site-imgs/person.svg',
-            'static/site-imgs/person.svg',
-        ],
-        [
-            'static/site-imgs/person.svg',
-            'static/site-imgs/person.svg',
-            'static/site-imgs/person.svg',
-        ],
+    const items: Array<Array<string>> = [
+        [person, person, person,],
+        [person, person, person,],
+        [person, person, person,],
     ]
 
-    const growthItems: Array<AboutCardProps> = [
+    const growthItems: Array<IAboutCardProps> = [
         {
             title: 'Nurturing Platform',
             description: 'A comprehensive startup incubation platform for young African innovators to nurture and support your entrepreneurial journey.',
-            image: '/static/svgs/home.svg'
+            image: home
         },
         {
             title: 'Expert Guidance',
             description: 'A diverse network of mentors, industry experts, and investors to guide you at every step throughout the venture building process.',
-            image: '/static/svgs/guide.svg'
+            image: guide
         },
         {
             title: 'Supportive Community',
             description: 'A supportive community of fellow startups and entrepreneurs to share experiences and overcome challenges together.',
-            image: '/static/svgs/community.svg'
+            image: community
         },
         {
             title: 'Dynamic Co-working Spaces',
             description: 'Collaborative co-working spaces to foster innovation and exchange ideas with like-minded entrepreneurs.',
-            image: '/static/svgs/work.svg'
+            image: work
         },
         {
             title: 'Rich Resource Library',
             description: 'A wealth of educational materials, case studies, and resources that empower you with knowledge and actionable strategies.',
-            image: '/static/svgs/book.svg'
+            image: book
         },
         {
             title: 'Funding Connections',
             description: 'Our extensive network of financial backers and funding partners opens doors to the capital you need to take your startup to new heights.',
-            image: '/static/svgs/fund.svg'
+            image: fund
         }
     ]
 
-    const companyLogos = [
-        '/static/company-logo/logo.svg',
-        '/static/company-logo/logo.svg',
-        '/static/company-logo/logo.svg',
-        '/static/company-logo/logo.svg',
-        '/static/company-logo/logo.svg',
-        '/static/company-logo/logo.svg',
-    ]
+    const companyLogos = [logo, logo, logo, logo, logo, logo]
 
-    const accordianItems = [
+    const accordionItems: Array<AccordionItems> = [
         {
             title: 'What is a venture building platform?',
-            desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
         },
         {
             title: 'Is this platform suitable for early-stage startups?',
-            desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
         },
         {
             title: 'What type of startups do you support?',
-            desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
         },
         {
             title: 'Can I join without having a fully developed business idea yet?',
-            desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
         },
         {
             title: 'What support does the platform provide for funding opportunities?',
-            desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.'
         },
     ]
 
     return (
         <>
-            <Box className='dotted' sx={{display: { xs: 'none', lg: 'flex' }, height: '90vh', overflowX: 'hidden'}}>
+            <Box sx={{display: { xs: 'none', lg: 'flex' }, height: '90vh', overflowX: 'hidden'}}>
                 <Grid sx={{width: '100%', height: '100%'}} container spacing={0}>
                     <Grid item lg={5} sx={{height: '100%', width: '100%', padding: '80px', display: 'flex !important', alignItems: 'center !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
                         <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
@@ -249,18 +236,7 @@ const Home = () => {
                     </Button>
                 </Box>
 
-                <Container maxWidth='xl' sx={{paddingTop: '40px', paddingBottom: '40px', display: 'flex', justifyContent: 'center'}}>
-                    <Carousel sx={{width: '100%'}} autoPlay={false} animation='slide' navButtonsAlwaysVisible duration={1000} fullHeightHover>
-                        {
-                            items.map((set, j) =>
-                                <Box key={`carousel-set-${j}`} sx={{display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
-                                    {
-                                        set.map((image, i) => <img src={image} key={`${image}${i}`} style={{height: '450px', width: '400px'}} alt="slider" />)
-                                    }
-                                </Box>)
-                        }
-                    </Carousel>
-                </Container>
+                <VBCarousel list={items} key='home-page-carousel' />
             </Box>
 
             <Box sx={{display: { xs: 'none', lg: 'flex' }, overflowX: 'hidden', height: '60vh'}}>
@@ -290,10 +266,7 @@ const Home = () => {
             <Divider sx={{width: '80%', marginLeft: '10%'}} />
 
             <Box sx={{height: '100%', width: '100%', margin: '40px 0 40px 0', display: 'flex !important', alignItems: 'center !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
-                <Typography sx={{display: {xs: 'inline', xl: 'none'}}} variant='h3' gutterBottom>
-                    Frequently asked questions
-                </Typography>
-                <Typography sx={{display: {xs: 'none', xl: 'inline'}}} variant='h3' gutterBottom>
+                <Typography variant='h3' gutterBottom>
                     Frequently asked questions
                 </Typography>
 
@@ -301,26 +274,7 @@ const Home = () => {
                     Everything you need to know about venture build.
                 </Typography>
 
-                <Container maxWidth='md' sx={{marginTop: '20px'}}>
-                    {
-                        accordianItems.map((value, i) =>
-                            <Accordion key={`accordian-value-${i}`} sx={{boxShadow: 'none', marginBottom: '10px'}}>
-                                <AccordionSummary
-                                    expandIcon={<AddCircleOutlineOutlinedIcon />}
-                                    aria-controls={`panel${i}a-content`}
-                                    id={`panel${i}a-header`}
-                                >
-                                    <Typography>{value.title}</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {value.desc}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                        )
-                    }
-                </Container>
+                <VBAccordion list={accordionItems} key='home-page-faq' />
             </Box>
 
             <Box sx={{width: '80%', margin: '5% 10% 5% 10%',  display: 'flex !important', alignItems: 'center !important', justifyContent: 'center !important', flexDirection: 'column !important', backgroundColor: '#FAFAFA'}}>
