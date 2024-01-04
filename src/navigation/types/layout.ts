@@ -7,8 +7,13 @@ export type BasicLayout = {
 }
 
 export type LayoutWithChildren = {
-    Component: FC,
     title?: string,
     [key: string]: any,
-    children?: any,
+    children: any,
+}
+
+export type PassThroughProps = {
+    title?: string,
+    [key: string]: any,
+    children: any,
 }

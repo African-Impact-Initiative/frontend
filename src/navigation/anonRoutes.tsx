@@ -7,8 +7,7 @@ export const anonRoutes: Array<Route> = [
     {
         title: 'Venture Build',
         path: PathConstants.home,
-        component: ComposeAnonLayout(<Home />),
-        exact: true,
+        component: ComposeAnonLayout(<Home />)(),
     },
 ]
 

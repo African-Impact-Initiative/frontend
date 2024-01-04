@@ -1,12 +1,11 @@
 import { Box } from '@mui/material'
 import VBNavBar from '../../components/VBNavBar'
 import VBFooter from '../../components/VBFooter'
-import { BasicLayout } from '../types/layout'
+import { LayoutWithChildren } from '../types/layout'
 
-const AnonLayout = ({ Component, children, title, ...otherProps }: BasicLayout) => (
+const AnonLayout = ({ children }: LayoutWithChildren) => (
     <Box
         sx={{
-            display: 'flex',
             height: '100vh',
             columnGap: '2px',
             width: '100vw',

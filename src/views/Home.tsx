@@ -236,7 +236,7 @@ const Home = () => {
                     </Button>
                 </Box>
 
-                <VBCarousel list={items} key='home-page-carousel' />
+                <VBCarousel list={items} carouselKey='home-page-carousel' />
             </Box>
 
             <Box sx={{display: { xs: 'none', lg: 'flex' }, overflowX: 'hidden', height: '60vh'}}>
@@ -274,7 +274,7 @@ const Home = () => {
                     Everything you need to know about venture build.
                 </Typography>
 
-                <VBAccordion list={accordionItems} key='home-page-faq' />
+                <VBAccordion list={accordionItems} accordionKey='home-page-faq' />
             </Box>
 
             <Box sx={{width: '80%', margin: '5% 10% 5% 10%',  display: 'flex !important', alignItems: 'center !important', justifyContent: 'center !important', flexDirection: 'column !important', backgroundColor: '#FAFAFA'}}>

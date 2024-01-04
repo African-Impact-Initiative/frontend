@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid'
 import Icon from '@mui/material/Icon'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import ventureicon from '../../assets/ventureLogo.png'
+import logo from '../assets/logo.svg'
 
 import { useEffect, useState } from 'react'
 import { useAppSelector } from '../hooks/redux'
@@ -30,7 +30,7 @@ const Footer = () => {
                 <Box sx={{columnGap: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: {xs:'20px'}}}>
                     <Link href={PathConstants.home} rel='noreferrer' underline='none' >
                         <Icon sx={{width: '100%', height: '100%'}}>
-                            <img src={ventureicon} alt="logo" />
+                            <img src={logo} alt="logo" />
                         </Icon>
                     </Link>
                     <Link href={PathConstants.home} rel='noreferrer' underline='none' >

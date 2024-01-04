@@ -6,21 +6,21 @@ export type AccordionItems = {
     description: string
 }
 
-export interface IAccordianProps {
+export interface IAccordionProps {
     list: Array<AccordionItems>,
-    key: string
+    accordionKey: string
 }
 
-const VBAccordion = ({ list, key }: IAccordianProps) => {
+const VBAccordion = ({ list, accordionKey }: IAccordionProps) => {
     return (
         <Container maxWidth='md' sx={{marginTop: '20px'}}>
             {
                 list.map((value, i) =>
-                    <Accordion key={`accordion-${key}-value-${i}`} sx={{boxShadow: 'none', marginBottom: '10px'}}>
+                    <Accordion key={`accordion-${accordionKey}-value-${i}`} sx={{boxShadow: 'none', marginBottom: '10px'}}>
                         <AccordionSummary
                             expandIcon={<AddCircleOutlineOutlinedIcon />}
-                            aria-controls={`panel${key}${i}-content`}
-                            id={`panel${key}${i}-header`}
+                            aria-controls={`panel${accordionKey}${i}-content`}
+                            id={`panel${accordionKey}${i}-header`}
                         >
                             <Typography>{value.title}</Typography>
                         </AccordionSummary>
