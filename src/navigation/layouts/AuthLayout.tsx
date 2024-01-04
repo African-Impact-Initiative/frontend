@@ -2,9 +2,15 @@ import VBSidebar from '../../components/VBSideBar'
 import { sideBarLinks } from '../authRoutes'
 import { Box } from '@mui/material'
 import { BasicLayout } from '../types/layout'
+import { useAuthPermission } from '../../hooks/permissions'
+import { useState } from 'react'
+import VBLoading from '../../components/VBLoading'
 
-const AuthLayout = ({ Component, title, ...otherProps }: BasicLayout) => (
-    <>
+const AuthLayout = ({ Component, title, ...otherProps }: BasicLayout) => {
+    const [loading, setLoading] = useState(true)
+    useAuthPermission(setLoading)
+
+    return (
         <Box
             sx={{
                 display: 'flex',
@@ -27,12 +33,12 @@ const AuthLayout = ({ Component, title, ...otherProps }: BasicLayout) => (
                     textColor="rgba(16, 24, 40, 1)"
                     searchClass={'app-search-placeholder'} />
                 <main style={{ background: '#FFFFFF', width: '100%', overflowY: 'auto' }}>
-                    <Component {...otherProps} />
+                    {loading? <VBLoading /> : <Component {...otherProps} />}
                 </main>
             </Box>
         </Box>
-    </>
-)
+    )
+}
 
 
 export default AuthLayout

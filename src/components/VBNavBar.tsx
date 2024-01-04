@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
-import Icon from '@mui/material/Icon'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -94,9 +93,7 @@ const VBNavBar = () => {
                             ))}
                         </Menu>
                     </Box>
-                    <Icon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, width: '110px' }}>
-                        <img src='/static/logos/logo.svg' alt='logo' />
-                    </Icon>
+                    <VBLogo dark={true} />
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none', justifyContent: 'end' } }}>
                         <Button
                             onClick={handleCloseNavMenu}
