@@ -19,7 +19,7 @@ class HttpClient<T> implements IHttpClient<T> {
         this.client.interceptors.response.use((response: AxiosResponse): AxiosResponse => {
             if (response.data &&
                     (response.headers[HEADERS.contentType.toLowerCase()] === HEADERS.json || response.headers[HEADERS.contentType] === HEADERS.json)
-                )
+            )
                 response.data = camelizeKeys(response.data)
 
             return response

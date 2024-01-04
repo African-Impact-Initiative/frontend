@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom"
-import { useAppDispatch, useAppSelector } from "./redux"
-import PathConstants from "../navigation/pathConstants"
-import { setErrorNotification } from "../store/notificationReducer"
-import { useEffect } from "react"
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from './redux'
+import PathConstants from '../navigation/pathConstants'
+import { setErrorNotification } from '../store/notificationReducer'
+import { useEffect } from 'react'
 
 export const useAuthPermission = (setLoading: (val: boolean) => void) => {
     const user = useAppSelector(state => state.user)
@@ -17,7 +17,7 @@ export const useAuthPermission = (setLoading: (val: boolean) => void) => {
 
         if (user.data)
             setLoading(false)
-    }, [user])
+    }, [user, navigate, dispatch, setLoading])
 }
 
 export const useAdminPermission = (setLoading: (val: boolean) => void) => {
@@ -33,5 +33,5 @@ export const useAdminPermission = (setLoading: (val: boolean) => void) => {
 
         if (user.data && user.data.admin)
             setLoading(false)
-    }, [user])
+    }, [user, navigate, dispatch, setLoading])
 }

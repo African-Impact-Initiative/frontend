@@ -6,6 +6,7 @@ import { useAdminPermission } from '../../hooks/permissions'
 import { useState } from 'react'
 import VBLoading from '../../components/VBLoading'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AdminLayout = ({ Component, title, ...otherProps }: BasicLayout) => {
     const [loading, setLoading] = useState(true)
     useAdminPermission(setLoading)
@@ -33,7 +34,7 @@ const AdminLayout = ({ Component, title, ...otherProps }: BasicLayout) => {
                     textColor="rgba(254, 240, 199, 1)"
                     searchClass={'app-search-placeholder'} />
                 <main style={{ background: '#FFFFFF', width: '100%', overflowY: 'auto', padding:'25px' }}>
-                {loading ? <VBLoading /> : <Component {...otherProps} />}
+                    {loading ? <VBLoading /> : <Component {...otherProps} />}
                 </main>
             </Box>
         </Box>

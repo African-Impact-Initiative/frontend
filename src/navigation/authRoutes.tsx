@@ -1,5 +1,5 @@
-import PathConstants from "./pathConstants"
-import { BasicRoute } from "./types/route"
+import PathConstants from './pathConstants'
+import { BasicRoute } from './types/route'
 
 // renders Component without any wrapper
 export const authRoutes = [

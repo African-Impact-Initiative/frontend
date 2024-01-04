@@ -1,4 +1,5 @@
-import { FC } from "react"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { FC } from 'react'
 
 export type BasicLayout = {
     Component: FC,

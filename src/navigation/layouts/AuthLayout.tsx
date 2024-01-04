@@ -6,6 +6,7 @@ import { useAuthPermission } from '../../hooks/permissions'
 import { useState } from 'react'
 import VBLoading from '../../components/VBLoading'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AuthLayout = ({ Component, title, ...otherProps }: BasicLayout) => {
     const [loading, setLoading] = useState(true)
     useAuthPermission(setLoading)

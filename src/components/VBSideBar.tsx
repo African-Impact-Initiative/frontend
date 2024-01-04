@@ -12,7 +12,7 @@ import { Link } from '../navigation/types/sideBar'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-export const data = {
+const data = {
     labels: ['Red', 'Blue'],
     datasets: [
         {
@@ -30,7 +30,7 @@ const textCenter = {
     id: 'Id Chart',
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     beforeDraw: (chart: any) => {
-        let ctx = chart.ctx
+        const ctx = chart.ctx
         ctx.save()
         ctx.font = '15px Roboto'
         ctx.fillStyle = 'black'
