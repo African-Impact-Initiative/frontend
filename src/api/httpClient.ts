@@ -1,10 +1,11 @@
-import axios, { AxiosResponse, AxiosInstance, Method, AxiosHeaders } from 'axios'
+import axios, { AxiosResponse, AxiosInstance, Method, AxiosHeaders, InternalAxiosRequestConfig } from 'axios'
 import IHttpClient from './types/httpClient'
 import { Id } from '../types/propertyTypes'
 import ITokenStateManager from './types/tokenStateManager'
 import TokenStateManager from './tokenStateManager'
-import { getCookie } from './utils'
+import { HEADERS, getCookie } from './utils'
 import { Empty } from './contracts/generalContracts'
+import { camelizeKeys, decamelizeKeys } from 'humps'
 
 class HttpClient<T> implements IHttpClient<T> {
     client: AxiosInstance
@@ -14,6 +15,25 @@ class HttpClient<T> implements IHttpClient<T> {
         this.client = axios.create({
             baseURL: `${import.meta.env.VITE_APP_HOST_BACKEND}/${root}`,
         })
+
+        this.client.interceptors.response.use((response: AxiosResponse): AxiosResponse => {
+            if (response.data &&
+                    (response.headers[HEADERS.contentType.toLowerCase()] === HEADERS.json || response.headers[HEADERS.contentType] === HEADERS.json)
+                )
+                response.data = camelizeKeys(response.data)
+
+            return response
+        })
+
+        this.client.interceptors.request.use((config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+            const newConfig = { ...config }
+
+            if (config.data)
+                newConfig.data = decamelizeKeys(config.data)
+
+            return config
+        })
+
         this.stateManager = new TokenStateManager()
     }
 
@@ -22,9 +42,9 @@ class HttpClient<T> implements IHttpClient<T> {
         const cookie = getCookie('csrftoken')
 
         const header: AxiosHeaders = new AxiosHeaders()
-        if(cookie) header.set('X-CSRFToken', cookie)
+        if(cookie) header.set(HEADERS.csrf, cookie)
         if(token) header.setAuthorization(token)
-
+        console.log(header)
         return header
     }
 

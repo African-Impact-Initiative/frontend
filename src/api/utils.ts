@@ -13,6 +13,12 @@ export const METHODS: { [key: string]: Method } = {
     unlink: 'UNLINK',
 }
 
+export const HEADERS: { [key: string]: string } = {
+    csrf: 'X-CSRFToken',
+    contentType: 'Content-Type',
+    json: 'application/json'
+}
+
 export const getCookie = (name: string): string | null => {
     let cookieValue = null
 

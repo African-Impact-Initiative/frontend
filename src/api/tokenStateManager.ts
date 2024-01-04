@@ -1,9 +1,9 @@
 import ITokenStateManager from './types/tokenStateManager'
 
 class TokenStateManager implements ITokenStateManager {
-    private static token: string | null
-    private static refreshToken: string | null
-    private static tokensValidUntil: Date | null
+    private static token: string | null = null
+    private static refreshToken: string | null = null
+    private static tokensValidUntil: Date | null = null
 
     setTokensValidUntil = (time: number): void => {
         TokenStateManager.tokensValidUntil = new Date(new Date().getTime() + time * 1000)
