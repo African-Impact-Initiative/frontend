@@ -1,4 +1,5 @@
 import { Box, Grid, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material'
+import bullet from '../assets/bullet.svg'
 
 export interface IJumboPanelProps {
     right: boolean,
@@ -32,7 +33,7 @@ const JumboPanel = ({ icon, title, prompt, points, image, right }: IJumboPanelPr
                             points.map((point, i) =>
                                 <ListItem key={`${title}-point-${i}`}>
                                     <ListItemIcon>
-                                        <img src={'static/svgs/bullet.svg'} alt={'-'}/>
+                                        <img src={bullet} alt={'-'}/>
                                     </ListItemIcon>
                                     <ListItemText
                                         primary={point}

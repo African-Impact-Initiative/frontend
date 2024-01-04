@@ -5,13 +5,12 @@ import Grid from '@mui/material/Grid'
 import Icon from '@mui/material/Icon'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
-import logo from '../assets/logo.svg'
 
 import { useEffect, useState } from 'react'
 import { useAppSelector } from '../hooks/redux'
 import { noUserFooterPages, permissions } from '../navigation/anonRoutes'
 import { footerPages } from '../navigation/authRoutes'
-import PathConstants from '../navigation/pathConstants'
+import VBLogo from './VBLogo'
 
 const Footer = () => {
     const [pages, setPages] = useState(noUserFooterPages)
@@ -28,14 +27,9 @@ const Footer = () => {
         <Box sx={{width: '100%', backgroundColor: '#0C111D', padding: {md:'50px', xs: '0px'}}}>
             <Container maxWidth='xl' sx={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'start', justifyContent: 'center', }}>
                 <Box sx={{columnGap: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: {xs:'20px'}}}>
-                    <Link href={PathConstants.home} rel='noreferrer' underline='none' >
-                        <Icon sx={{width: '100%', height: '100%'}}>
-                            <img src={logo} alt="logo" />
-                        </Icon>
-                    </Link>
-                    <Link href={PathConstants.home} rel='noreferrer' underline='none' >
-                        <Typography variant='body1' sx={{fontWeight: '600', fontSize: '18px', lineHeight: '28px', color: '#FFFFFF'}}>Venture Build</Typography>
-                    </Link>
+                    <Icon sx={{width: '100%', height: '100%'}}>
+                        <VBLogo dark={false} />
+                    </Icon>
                 </Box>
                 <Box sx={{marginTop: '10px'}}>
                     <Grid container spacing={3}>

@@ -17,8 +17,16 @@ import guide from '../assets/guide.svg'
 import community from '../assets/community.svg'
 import work from '../assets/work.svg'
 import book from '../assets/book.svg'
+import grow from '../assets/grow.svg'
+import faq from '../assets/faq.svg'
 import fund from '../assets/fund.svg'
+import fundraising from '../assets/fundraising.svg'
+import team from '../assets/team.svg'
+import resources from '../assets/resources.svg'
 import logo from '../assets/logo.svg'
+import laptop from '../assets/laptop.svg'
+import video from '../assets/video.svg'
+import mosaic from '../assets/mosaic.svg'
 
 const Home = () => {
     const items: Array<Array<string>> = [
@@ -108,7 +116,7 @@ const Home = () => {
                             </Link>
                         </Box>
                     </Grid>
-                    <Grid item lg={7} sx={{background: `url(${'/static/site-imgs/laptop.svg'}) no-repeat center right`, marginTop: '10vh', height: '80vh', width: '100%', backgroundSize: 'contain'}}>
+                    <Grid item lg={7} sx={{background: `url(${laptop}) no-repeat center right`, marginTop: '10vh', height: '80vh', width: '100%', backgroundSize: 'contain'}}>
                     </Grid>
                 </Grid>
             </Box>
@@ -159,9 +167,9 @@ const Home = () => {
                     </Typography>
                 </Box>
 
-                <JumboPanel title={'Manage teams with ease'} icon={'static/svgs/home.svg'} image={'/static/site-imgs/team.svg'} right={true} points={['Simplify team communication and project coordination', 'Assign roles and responsibilities effortlessly', 'Track progress in real-time for increased productivity']} prompt={'Empower your team with a user-friendly dashboard to streamline collaboration and task management.'}/>
-                <JumboPanel title={'Track fundraising progress'} icon={'static/svgs/grow.svg'} image={'/static/site-imgs/fund.svg'} right={false} points={['Monitor and analyze donation trends', 'Engage with investors effectively', 'Prioritize follow-ups for successful fundraising']} prompt={'Stay on top of your fundraising journey with our dedicated dashboard, managing interactions and CRM in one place.'}/>
-                <JumboPanel title={'Access comprehensive resources'} icon={'static/svgs/book.svg'} image={'/static/site-imgs/resources.svg'} right={true} points={['Learn from industry experts and successful entrepreneurs', 'Gain valuable insights for business success', 'Access an extensive collection of expert-led courses']} prompt={'Harness our extensive library of courses and tools designed to accelerate your startup\'s growth.'}/>
+                <JumboPanel title={'Manage teams with ease'} icon={home} image={team} right={true} points={['Simplify team communication and project coordination', 'Assign roles and responsibilities effortlessly', 'Track progress in real-time for increased productivity']} prompt={'Empower your team with a user-friendly dashboard to streamline collaboration and task management.'}/>
+                <JumboPanel title={'Track fundraising progress'} icon={grow} image={fundraising} right={false} points={['Monitor and analyze donation trends', 'Engage with investors effectively', 'Prioritize follow-ups for successful fundraising']} prompt={'Stay on top of your fundraising journey with our dedicated dashboard, managing interactions and CRM in one place.'}/>
+                <JumboPanel title={'Access comprehensive resources'} icon={book} image={resources} right={true} points={['Learn from industry experts and successful entrepreneurs', 'Gain valuable insights for business success', 'Access an extensive collection of expert-led courses']} prompt={'Harness our extensive library of courses and tools designed to accelerate your startup\'s growth.'}/>
             </Box>
 
             <Box sx={{paddingTop: '40px', paddingBottom: '40px', backgroundImage: 'linear-gradient(to bottom, #F2F2F2 60%, #FFFFFF 40%, rgba(203, 65, 100, 0))'}}>
@@ -202,7 +210,7 @@ const Home = () => {
                 </Grid>
 
                 <Container maxWidth='xl' sx={{paddingTop: '40px', paddingBottom: '40px', display: 'flex', justifyContent: 'center'}}>
-                    <img src={'/static/site-imgs/video.svg'} alt={'video'} style={{padding: '10px'}} />
+                    <img src={video} alt={'video'} style={{padding: '10px'}} />
                 </Container>
             </Box>
 
@@ -258,7 +266,7 @@ const Home = () => {
                             <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Apply now</Button>
                         </Box>
                     </Grid>
-                    <Grid item lg={7} sx={{background: `url(${'/static/site-imgs/mosaic.svg'}) no-repeat center center`}}>
+                    <Grid item lg={7} sx={{background: `url(${mosaic}) no-repeat center center`}}>
                     </Grid>
                 </Grid>
             </Box>
@@ -278,7 +286,7 @@ const Home = () => {
             </Box>
 
             <Box sx={{width: '80%', margin: '5% 10% 5% 10%',  display: 'flex !important', alignItems: 'center !important', justifyContent: 'center !important', flexDirection: 'column !important', backgroundColor: '#FAFAFA'}}>
-                <img src='static/svgs/faq.svg' style={{marginTop: '20px', marginBottom: '10px'}} alt='faq-icon' />
+                <img src={faq} style={{marginTop: '20px', marginBottom: '10px'}} alt='faq-icon' />
                 <Typography variant='h6' gutterBottom>
                     Still have questions?
                 </Typography>

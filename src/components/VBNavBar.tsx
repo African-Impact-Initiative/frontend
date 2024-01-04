@@ -12,13 +12,13 @@ import Typography from '@mui/material/Typography'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../store/appUserReducer'
-import logo from '../assets/logo.svg'
 
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { noUserPages } from '../navigation/anonRoutes'
 import { navPages } from '../navigation/authRoutes'
 import PathConstants from '../navigation/pathConstants'
+import VBLogo from './VBLogo'
 
 const VBNavBar = () => {
     const dispatch = useAppDispatch()
@@ -52,17 +52,9 @@ const VBNavBar = () => {
         <AppBar position="fixed" sx={{boxShadow: 2, backgroundColor: '#FFF', zIndex: '100000000', marginBottom: '20px'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Link to={PathConstants.home} style={{textDecoration: 'none'}}>
-                        <Box sx={{  display: 'flex', alignItems: 'center', marginRight: '20px'}}>
-                            <Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1}}>
-                                <img src={logo} alt="logo" />
-                            </Icon>
-                            <Box>
-                                <Typography variant='body1' sx={{ color: '#101828', fontWeight: '600', fontSize: '18px', lineHeight: '28px',  }}>Venture Build</Typography>
-                            </Box>
-                        </Box>
-                    </Link>
-
+                    <Box sx={{  display: 'flex', alignItems: 'center' }}>
+                        <VBLogo dark={true} />
+                    </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
