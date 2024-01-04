@@ -11,29 +11,32 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 
 import { Link, useNavigate } from 'react-router-dom'
-import { logout } from '../../reducers/userReducer'
-import ventureIcon from '../../assets/ventureLogo.png'
+import { logout } from '../store/appUserReducer'
+import logo from '../assets/logo.svg'
 
 import { useEffect, useState } from 'react'
-import { NAV_PAGES, NO_USER_PAGES, PAGES } from './routes'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { noUserPages } from '../navigation/anonRoutes'
+import { navPages } from '../navigation/authRoutes'
+import PathConstants from '../navigation/pathConstants'
 
 const VBNavBar = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const [anchorElNav, setAnchorElNav] = useState(null)
-    const [pages, setPages] = useState(NO_USER_PAGES)
+    const [pages, setPages] = useState(noUserPages)
     const user = useAppSelector(state => state.user)
 
-    const handleOpenNavMenu = (event) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleOpenNavMenu = (event: any) => {
         setAnchorElNav(event.currentTarget)
     }
 
     useEffect(() => {
         if (user && !user.anon)
-            setPages(NAV_PAGES)
+            setPages(navPages)
         else
-            setPages(NO_USER_PAGES)
+            setPages(noUserPages)
     }, [user])
 
     const handleCloseNavMenu = () => {
@@ -42,20 +45,20 @@ const VBNavBar = () => {
 
     const logoutHandler = () => {
         dispatch(logout())
-        navigate(PAGES.home.path)
+        navigate(PathConstants.home)
     }
 
     return (
-        <AppBar position="fixed" sx={{boxShadow: 2, backgroundColor: '#FFF', zIndex: '100000000'}}>
+        <AppBar position="fixed" sx={{boxShadow: 2, backgroundColor: '#FFF', zIndex: '100000000', marginBottom: '20px'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Link to={PAGES.home.path} style={{textDecoration: 'none'}}>
+                    <Link to={PathConstants.home} style={{textDecoration: 'none'}}>
                         <Box sx={{  display: 'flex', alignItems: 'center', marginRight: '20px'}}>
                             <Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1}}>
-                                <img src={ventureIcon} alt="logo" />
+                                <img src={logo} alt="logo" />
                             </Icon>
                             <Box>
-                                <Typography variant='p' sx={{ color: '#101828', fontWeight: '600', fontSize: '18px', lineHeight: '28px',  }}>Venture Build</Typography>
+                                <Typography variant='body1' sx={{ color: '#101828', fontWeight: '600', fontSize: '18px', lineHeight: '28px',  }}>Venture Build</Typography>
                             </Box>
                         </Box>
                     </Link>
@@ -135,7 +138,7 @@ const VBNavBar = () => {
                             </Button>
                             :
                             <>
-                                <Link to={PAGES.login.path} style={{textDecoration: 'none'}}>
+                                <Link to={PathConstants.login} style={{textDecoration: 'none'}}>
                                     <Button
                                         onClick={handleCloseNavMenu}
                                         sx={{ my: 2, display: 'block', mr: 1 , textTransform: 'none', color: '#475467', fontWeight: '600', fontSize: '16px', lineHeight: '24px'}}
@@ -143,7 +146,7 @@ const VBNavBar = () => {
                                         Login
                                     </Button>
                                 </Link>
-                                <Link to={PAGES.signUp.path} style={{textDecoration: 'none'}}>
+                                <Link to={PathConstants.signUp} style={{textDecoration: 'none'}}>
                                     <Button
                                         onClick={handleCloseNavMenu}
                                         sx={{ my: 2, display: 'block', color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}, borderRadius: '8px', fontSize: '16px', height: '40px', width: '100px', fontWeight: '600', textTransform: 'none' }}

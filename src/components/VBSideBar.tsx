@@ -1,5 +1,3 @@
-/* eslint-disable no-magic-numbers */
-import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../assets/logo.svg'
 import { Box, Divider, Typography } from '@mui/material'
@@ -10,15 +8,9 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import { SearchOutlined } from '@mui/icons-material'
 import whiteLogo from '../../assets/ventureWhiteLogo.png'
+import { Link } from '../navigation/types/sideBar'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
-
-/**
- * sideBar is a component used to manage menu page navigation.
- * @function
- * @param {object}  props - keeps the links values.
- * @return {HTMLElement}
- */
 
 export const data = {
     labels: ['Red', 'Blue'],
@@ -36,7 +28,8 @@ export const data = {
 
 const textCenter = {
     id: 'Id Chart',
-    beforeDraw: function (chart) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    beforeDraw: (chart: any) => {
         let ctx = chart.ctx
         ctx.save()
         ctx.font = '15px Roboto'
@@ -64,19 +57,19 @@ const options = {
     },
 }
 
-const Sidebar = ({
-    SideBarLinks,
-    backgroundColor,
-    className,
-    color1,
-    color2,
-    iconColor,
-    textColor,
-    searchClass,
-    searchBoarder,
-    isAdmin
-}) => {
-    const [activeClass, setactiveClass] = useState(className)
+export interface ISideBarProps {
+    links: Array<Link>,
+    backgroundColor: string,
+    className: string,
+    color1: string,
+    color2: string,
+    textColor: string,
+    searchClass: string,
+    searchBoarder: string,
+    isAdmin: boolean,
+}
+
+const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor, searchClass, searchBoarder, isAdmin }: ISideBarProps) => {
     return (
         <>
             <Box
@@ -177,8 +170,8 @@ const Sidebar = ({
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                        {SideBarLinks &&
-                            SideBarLinks.map((sideBar) => (
+                        {links &&
+                            links.map((sideBar) => (
                                 <NavLink
                                     key={sideBar.id}
                                     to={sideBar.to}
@@ -186,7 +179,7 @@ const Sidebar = ({
                                         isPending
                                             ? 'pending'
                                             : isActive
-                                                ? activeClass
+                                                ? className
                                                 : 'inactive-nav'
                                     }
                                     style={{

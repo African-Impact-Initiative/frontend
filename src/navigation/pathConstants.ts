@@ -13,6 +13,10 @@ const PathConstants: { [key: string]: string } = {
     developmentStage: '/development/stage',
     developmentChallenges: '/development/challenges',
     developmentFundraising: '/development/fundraising',
+    dashboard: '/dashboard/',
+    resources: '/resources/',
+    community: '/community/',
+    help: '/help/'
 }
 
 export default PathConstants

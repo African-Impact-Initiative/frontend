@@ -9,7 +9,6 @@ export interface IAboutCardProps {
     image: string,
 }
 
-
 export const AboutCard = ({ title, description, image }: IAboutCardProps) => {
     // renders 2 cards one for sm screens and other for larger screens
     return (
