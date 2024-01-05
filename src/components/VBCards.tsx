@@ -7,9 +7,10 @@ export interface IAboutCardProps {
     title: string,
     description: string,
     image: string,
+    address?: string
 }
 
-export const AboutCard = ({ title, description, image }: IAboutCardProps) => {
+export const AboutCard = ({ title, description, image, address }: IAboutCardProps) => {
     // renders 2 cards one for sm screens and other for larger screens
     return (
         <>
@@ -27,6 +28,9 @@ export const AboutCard = ({ title, description, image }: IAboutCardProps) => {
                         <Typography variant='subtitle1' color='text.secondary' component='div'>
                             {description}
                         </Typography>
+                        {address && <Typography variant='subtitle1' color='text.secondary' component='div'>
+                            {address}
+                        </Typography>}
                     </CardContent>
                 </Box>
             </Card>
@@ -43,6 +47,9 @@ export const AboutCard = ({ title, description, image }: IAboutCardProps) => {
                     <Typography variant='subtitle1' color='text.secondary' component='div' sx={{height: '36px'}}>
                         {description}
                     </Typography>
+                    {address && <Typography variant='subtitle1' color='text.secondary' component='div'>
+                            {address}
+                    </Typography>}
                 </CardContent>
             </Card>
         </>

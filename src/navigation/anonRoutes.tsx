@@ -1,4 +1,9 @@
-import Home from '../views/Home'
+import AboutUs from '../views/anon/AboutUs'
+import ContactUs from '../views/anon/ContactUs'
+import Home from '../views/anon/Home'
+import Login from '../views/anon/Login'
+import Signup from '../views/anon/Signup'
+import VerificationSent from '../views/anon/VerificationSent'
 import ComposeAnonLayout from './hoc/ComposeAnonLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute, Route } from './types/route'
@@ -8,6 +13,31 @@ export const anonRoutes: Array<Route> = [
         title: 'Venture Build',
         path: PathConstants.home,
         component: ComposeAnonLayout(<Home />)(),
+    },
+    {
+        title: 'About Us',
+        path: PathConstants.about,
+        component: ComposeAnonLayout(<AboutUs />)(),
+    },
+    {
+        title: 'Contact Us',
+        path: PathConstants.contactUs,
+        component: ComposeAnonLayout(<ContactUs />)(),
+    },
+    {
+        title: 'Login',
+        path: PathConstants.login,
+        component: ComposeAnonLayout(<Login />)(),
+    },
+    {
+        title: 'Sign Up',
+        path: PathConstants.signUp,
+        component: ComposeAnonLayout(<Signup />)(),
+    },
+    {
+        title: 'Verification Sent',
+        path: PathConstants.signUpVerification,
+        component: ComposeAnonLayout(<VerificationSent />)(),
     },
 ]
 

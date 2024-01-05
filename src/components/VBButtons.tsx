@@ -3,8 +3,7 @@ import { OverridableComponent } from '@mui/material/OverridableComponent'
 
 interface IButtonProps {
     size?: 'small' | 'large' | 'medium'
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onClick?: (event: any) => void
+    onClick?: (event: React.MouseEvent<HTMLElement>) => void
 }
 
 interface ITextButtonProps extends IButtonProps {
@@ -23,8 +22,7 @@ interface IIconButtonProps extends IButtonProps {
 }
 
 export const VBContainedButton = ({ size, text, onClick }: ITextButtonProps) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleClick = (e: any) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         if (onClick !== undefined)
             onClick(e)
     }
@@ -37,8 +35,7 @@ export const VBContainedButton = ({ size, text, onClick }: ITextButtonProps) => 
 }
 
 export const VBOutlinedButton = ({ size, text, onClick }: ITextButtonProps) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleClick = (e: any) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         if (onClick !== undefined)
             onClick(e)
     }
@@ -51,8 +48,7 @@ export const VBOutlinedButton = ({ size, text, onClick }: ITextButtonProps) => {
 }
 
 export const VBIconButton = ({ size, onClick, Icon, aria }: IIconButtonProps) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleClick = (e: any) => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         if (onClick !== undefined)
             onClick(e)
     }

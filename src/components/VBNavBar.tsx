@@ -22,12 +22,11 @@ import VBLogo from './VBLogo'
 const VBNavBar = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const [anchorElNav, setAnchorElNav] = useState(null)
+    const [anchorElNav, setAnchorElNav] = useState<null | Element>(null)
     const [pages, setPages] = useState(noUserPages)
     const user = useAppSelector(state => state.user)
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleOpenNavMenu = (event: any) => {
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget)
     }
 
