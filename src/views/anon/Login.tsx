@@ -17,7 +17,7 @@ import Typography from '@mui/material/Typography'
 import { ForgotStyle } from '../../utils/styles'
 
 import { setErrorNotification } from '../../store/notificationReducer'
-import { login } from '../../store/appUserReducer'
+import { login, googleLogin } from '../../store/appUserReducer'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import PathConstants from '../../navigation/pathConstants'
 
@@ -25,7 +25,7 @@ const Login = () => {
     const user = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
 
-    const [client, setClient] = useState([])
+    const [client, setClient] = useState<google.accounts.oauth2.TokenClient | null>(null)
     const [email, setEmail] = useState('')
     const [emailHelper, setEmailHelper] = useState('')
     const [password, setPassword] = useState('')
@@ -35,7 +35,7 @@ const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false)
 
     const getToken = () => {
-        client.requestAccessToken()
+        client!.requestAccessToken()
     }
 
     // set up google client (until set user sees loading page)
@@ -43,16 +43,14 @@ const Login = () => {
     // var google which is used to coneect to the google apis
     useEffect(() => {
         /* global google */
-        // let c = google.accounts.oauth2.initTokenClient({
-        //     client_id: import.meta.env.VITE_GOOGLE_ID,
-        //     scope: 'profile email',
-        //     callback: (tokenResponse) => {
-        //         dispatch(googleLogin(
-        //              tokenResponse.access_token
-        //          ))
-        //     },
-        // })
-        // setClient(c)
+        let c = google.accounts.oauth2.initTokenClient({
+            client_id: import.meta.env.VITE_GOOGLE_ID,
+            scope: 'profile email',
+            callback: (tokenResponse) => {
+                dispatch(googleLogin(tokenResponse.access_token))
+            },
+        })
+        setClient(c)
     }, [])
 
     const validateEmail = () => {
@@ -115,10 +113,10 @@ const Login = () => {
                         Login
                     </Typography>
                     <Box style={ForgotStyle.googleContainer}>
-                        <Button sx={ForgotStyle.google.style} {...ForgotStyle.google.props} {/* onClick={()=>getToken()}*/...{}}>
+                        <Button sx={ForgotStyle.google.style} {...ForgotStyle.google.props} onClick={()=>getToken()}>
                             <GoogleIcon />&nbsp;Sign Up with Google
                         </Button>
-                        <Button sx={ForgotStyle.google.style} {...ForgotStyle.google.props} {/* onClick={()=>getToken()}*/...{}}>
+                        <Button sx={ForgotStyle.google.style} {...ForgotStyle.google.props} onClick={()=>getToken()}>
                             <LinkedInIcon />&nbsp;Sign Up with LinkedIn
                         </Button>
                     </Box>
