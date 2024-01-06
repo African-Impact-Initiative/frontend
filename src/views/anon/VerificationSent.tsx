@@ -5,8 +5,8 @@ import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import { PAGES } from '../navigation/routes'
-import { ForgotStyle } from '../styles'
+import { ForgotStyle } from '../../utils/styles'
+import PathConstants from '../../navigation/pathConstants'
 
 const VerificationSent = () => {
     const {state} = useLocation()
@@ -15,19 +15,19 @@ const VerificationSent = () => {
         <Grid container spacing={2} sx={ForgotStyle.container}>
             <Grid item xs={12} md={5} lg={6}>
                 <Container maxWidth='sm' sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                    <Typography sx={ForgotStyle.title.style} {...ForgotStyle.title.props} gutterBottom>
+                    <Typography variant='h3' component='div' sx={ForgotStyle.title.style} gutterBottom>
                         Verification email sent
                     </Typography>
                     <Typography variant='subtitle1' gutterBottom>
                         An email has been sent to {state.email}. Click the link in your email to verify your account. If you can&apos;t find the email, please check your spam folder.
                     </Typography>
-                    <Divider sx={{...ForgotStyle.divider, width:'100%'}} gutterBottom>
+                    <Divider sx={{...ForgotStyle.divider, width:'100%'}}>
                         OR
                     </Divider>
-                    <Button sx={ForgotStyle.button.style} {...ForgotStyle.button.props} type='submit'>Resend the email</Button>
+                    <Button sx={ForgotStyle.button.style} variant='contained' type='submit'>Resend the email</Button>
                     <Typography variant='subtitle1' gutterBottom>
-                        Already have an account?  <Link to={PAGES.login.path} style={ForgotStyle.registerLink}>
-                            <Typography {...ForgotStyle.createAccount.props} sx={ForgotStyle.createAccount.style}>
+                        Already have an account?  <Link to={PathConstants.login} style={ForgotStyle.registerLink}>
+                            <Typography component='span' fontWeight='bold' sx={ForgotStyle.createAccount.style}>
                                 Log in
                             </Typography>
                         </Link>

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import GoogleIcon from '@mui/icons-material/Google'
@@ -15,27 +14,26 @@ import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { PAGES } from '../navigation/routes'
-import { ForgotStyle } from '../styles'
+import { ForgotStyle } from '../../utils/styles'
 
-import { setErrorNotification } from '../../reducers/notificationReducer'
-import { createUser } from '../../reducers/userReducer'
+import { setErrorNotification } from '../../store/notificationReducer'
+import { createUser } from '../../store/appUserReducer'
+import { useAppDispatch } from '../../hooks/redux'
+import PathConstants from '../../navigation/pathConstants'
+import { AppDispatch } from '../../store/store'
+import { VBTextField } from '../../components/VBForms'
+import User, { emptyUser } from '../../types/user'
 
 const Signup = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const minLength = 0
     const minPwdLength = 8
 
     const [firstName, setFirstName] = useState('')
-    const [firstNameHelper, setFirstNameHelper] = useState('')
-    const [firstNameError, setFirstNameError] = useState(false)
     const [lastName, setLastName] = useState('')
-    const [lastNameHelper, setLastNameHelper] = useState('')
-    const [lastNameError, setLastNameError] = useState(false)
     const [email, setEmail] = useState('')
     const [emailHelper, setEmailHelper] = useState('')
-    const [emailError, setEmailError] = useState(false)
     const [password, setPassword] = useState('')
     const [passwordError, setPasswordError] = useState(false)
     const [passwordHelper, setPasswordHelper] = useState('')
@@ -74,48 +72,36 @@ const Signup = () => {
         }
     }
 
-    const validateName = (val, helper, error) => {
-        if(val === '') {
-            helper('Required Field!')
-            error(true)
-            return false
-        } else {
-            helper('')
-            error(false)
-            return true
-        }
-    }
-
     const validateEmail = () => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if(email === '') {
             setEmailHelper('Required Field!')
-            setEmailError(true)
             return false
         } else if(!email.match(re)) {
             setEmailHelper('Invalid Email Address')
-            setEmailError(true)
             return false
         } else {
             setEmailHelper('')
-            setEmailError(false)
             return true
         }
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLElement>) => {
         event.preventDefault()
         actualSubmit(dispatch)
     }
 
-    const actualSubmit = async(dispatch) => {
-        if(validateConfirmPassword()
-            && validateName(firstName, setFirstNameHelper, setFirstNameError)
-            && validateName(lastName, setLastNameHelper, setLastNameError)
-            && validateEmail() && validatePassword()) {
+    const actualSubmit = async(dispatch: AppDispatch) => {
+        if(validateConfirmPassword() && validateEmail() && validatePassword()) {
             try {
-                await dispatch(createUser(email, password, firstName, lastName))
-                navigate(PAGES.signUpVerification.path, {state: {email: email}})
+                const user: User = {...emptyUser}
+                user.email = email
+                user.firstName = firstName
+                user.lastName = lastName
+                user.password = password
+
+                await dispatch(createUser(user))
+                navigate(PathConstants.signUpVerification, {state: {email: email}})
             } catch {
                 dispatch(setErrorNotification('Error creating account, please try again later!'))
             }
@@ -126,59 +112,49 @@ const Signup = () => {
     return (
         <Grid container spacing={2} sx={ForgotStyle.container}>
             <Grid item xs={12} md={5} lg={6}>
-                <Container {...ForgotStyle.margins}>
-                    <Typography sx={ForgotStyle.title.style} {...ForgotStyle.title.props}>
+                <Container maxWidth='xl'>
+                    <Typography variant='h3' component='div' sx={ForgotStyle.title.style}>
                         Sign up
                     </Typography>
                     <Box style={ForgotStyle.googleContainer}>
-                        <Button sx={ForgotStyle.google.style} {...ForgotStyle.google.props} {/* onClick={()=>getToken()}*/...{}}>
+                        <Button variant='outlined' sx={ForgotStyle.google.style} {/* onClick={()=>getToken()}*/...{}}>
                             <GoogleIcon />&nbsp;Sign Up with Google
                         </Button>
-                        <Button sx={ForgotStyle.google.style} {...ForgotStyle.google.props} {/* onClick={()=>getToken()}*/...{}}>
+                        <Button variant='outlined' sx={ForgotStyle.google.style} {/* onClick={()=>getToken()}*/...{}}>
                             <LinkedInIcon />&nbsp;Sign Up with LinkedIn
                         </Button>
                     </Box>
                     <Divider sx={ForgotStyle.divider}>
                         Or Sign Up With Email
                     </Divider>
-                    <form onSubmit={handleSubmit} style={ForgotStyle.form}>
+                    <form onSubmit={handleSubmit} style={{width: '100%', marginTop: '10px', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
-                                <TextField
+                                <VBTextField
                                     label='First Name'
                                     value={firstName}
-                                    onBlur={() => validateName(firstName, setFirstNameHelper, setFirstNameError)}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                    helperText={firstNameHelper}
-                                    error={firstNameError}
-                                    required
-                                    sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                                    setter={setFirstName}
+                                    required={true}
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <TextField
+                                <VBTextField
                                     label='Last Name'
                                     value={lastName}
-                                    onBlur={() => validateName(lastName, setLastNameHelper, setLastNameError)}
-                                    onChange={(e) => setLastName(e.target.value)}
-                                    helperText={lastNameHelper}
-                                    error={lastNameError}
-                                    required
-                                    sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                                    setter={setLastName}
+                                    required={true}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
+                                <VBTextField
                                     label='Email'
                                     placeholder='email@example.com'
                                     value={email}
-                                    onBlur={() => validateEmail()}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    helperText={emailHelper}
-                                    error={emailError}
-                                    required
+                                    helper={emailHelper}
+                                    setter={setEmail}
+                                    validator={validateEmail}
+                                    required={true}
                                     type='email'
-                                    sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -232,7 +208,7 @@ const Signup = () => {
                                 />
                             </Grid>
                         </Grid>
-                        <Button sx={ForgotStyle.button.style} {...ForgotStyle.button.props} type='submit'>Get Started</Button>
+                        <Button sx={ForgotStyle.button.style} variant='contained' type='submit'>Get Started</Button>
                     </form>
                 </Container>
             </Grid>

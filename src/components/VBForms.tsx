@@ -16,10 +16,18 @@ export const VBTextField = ({value, setter, type, label, placeholder, validator,
     const [formError, setFormError] = useState(false)
 
     const validate = () => {
+        let valid = true
+
         if (validator !== undefined)
-            setFormError(validator())
-        else if (required)
-            setFormError(!(value && value.length > 0))
+            valid = validator()
+        else if (required) {
+            valid = !(value && value.length > 0)
+        }
+
+        setFormError(valid)
+
+        if(!valid && helper === undefined)
+            helper = 'Required Field!'
     }
 
     return (
@@ -29,7 +37,7 @@ export const VBTextField = ({value, setter, type, label, placeholder, validator,
             value={value}
             onBlur={() => validate()}
             onChange={(e) => setter(e.target.value)}
-            helperText={helper}
+            helperText={formError? helper : ''}
             error={formError}
             required
             type={type}

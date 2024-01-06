@@ -17,55 +17,52 @@ import Typography from '@mui/material/Typography'
 import { ForgotStyle } from '../../utils/styles'
 
 import { setErrorNotification } from '../../store/notificationReducer'
-import { login, googleLogin } from '../../store/appUserReducer'
+import { login } from '../../store/appUserReducer'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import PathConstants from '../../navigation/pathConstants'
+import { VBTextField } from '../../components/VBForms'
 
 const Login = () => {
     const user = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
 
-    const [client, setClient] = useState<google.accounts.oauth2.TokenClient | null>(null)
+    // const [client, setClient] = useState<google.accounts.oauth2.TokenClient | null>(null)
     const [email, setEmail] = useState('')
     const [emailHelper, setEmailHelper] = useState('')
     const [password, setPassword] = useState('')
-    const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
     const [passwordHelper, setPasswordHelper] = useState('')
     const [passwordVisible, setPasswordVisible] = useState(false)
 
-    const getToken = () => {
-        client!.requestAccessToken()
-    }
+    // const getToken = () => {
+    //     client!.requestAccessToken()
+    // }
 
     // set up google client (until set user sees loading page)
     // very important!!!! do not remove the global google, it defines the
     // var google which is used to coneect to the google apis
     useEffect(() => {
         /* global google */
-        let c = google.accounts.oauth2.initTokenClient({
-            client_id: import.meta.env.VITE_GOOGLE_ID,
-            scope: 'profile email',
-            callback: (tokenResponse) => {
-                dispatch(googleLogin(tokenResponse.access_token))
-            },
-        })
-        setClient(c)
+        // let c = google.accounts.oauth2.initTokenClient({
+        //     client_id: import.meta.env.VITE_GOOGLE_ID,
+        //     scope: 'profile email',
+        //     callback: (tokenResponse) => {
+        //         dispatch(googleLogin(tokenResponse.access_token))
+        //     },
+        // })
+        // setClient(c)
     }, [])
 
     const validateEmail = () => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if(email === '') {
             setEmailHelper('Required Field!')
-            setEmailError(true)
             return false
         } else if(!email.match(re)) {
             setEmailHelper('Invalid Email Address')
-            setEmailError(true)
             return false
         } else {
             setEmailHelper('')
-            setEmailError(false)
             return true
         }
     }
@@ -88,7 +85,6 @@ const Login = () => {
             dispatch(login(email, password))
         else
             dispatch(setErrorNotification('Please fix the form errors before submission'))
-
     }
 
     if(user && !user.anon) {
@@ -97,45 +93,42 @@ const Login = () => {
         )
     }
 
-    if(client === null) {
-        return (
-            <Container sx={ForgotStyle.loading}>
-                {/* <Loading /> */}
-            </Container>
-        )
-    }
+    // if(client === null) {
+    //     return (
+    //         <Container sx={ForgotStyle.loading}>
+    //             <Loading />
+    //         </Container>
+    //     )
+    // }
 
     return (
         <Grid container spacing={2} sx={ForgotStyle.container}>
             <Grid item xs={12} md={5} lg={6}>
-                <Container {...ForgotStyle.margins}>
-                    <Typography sx={ForgotStyle.title.style} {...ForgotStyle.title.props}>
+                <Container maxWidth='xl'>
+                    <Typography variant='h3' component='div' sx={ForgotStyle.title.style}>
                         Login
                     </Typography>
                     <Box style={ForgotStyle.googleContainer}>
-                        <Button sx={ForgotStyle.google.style} {...ForgotStyle.google.props} onClick={()=>getToken()}>
+                        <Button variant='outlined' sx={ForgotStyle.google.style} {/*onClick={()=>getToken()}*/...{}}>
                             <GoogleIcon />&nbsp;Sign Up with Google
                         </Button>
-                        <Button sx={ForgotStyle.google.style} {...ForgotStyle.google.props} onClick={()=>getToken()}>
+                        <Button variant='outlined' sx={ForgotStyle.google.style} {/*onClick={()=>getToken()}*/...{}}>
                             <LinkedInIcon />&nbsp;Sign Up with LinkedIn
                         </Button>
                     </Box>
                     <Divider sx={ForgotStyle.divider}>
                         Or Sign In With Email
                     </Divider>
-                    <form onSubmit={handleSubmit} style={ForgotStyle.form}>
-                        <TextField
+                    <form onSubmit={handleSubmit} style={{width: '100%', marginTop: '10px', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                        <VBTextField
                             label='Email'
                             placeholder='email@example.com'
                             value={email}
-                            onBlur={() => validateEmail()}
-                            onChange={(e) => setEmail(e.target.value)}
-                            helperText={emailHelper}
-                            error={emailError}
-                            required
+                            helper={emailHelper}
+                            setter={setEmail}
+                            validator={validateEmail}
+                            required={true}
                             type='email'
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
-                            InputLabelProps={{ required: false }}
                         />
                         <TextField
                             label='Password'
@@ -161,19 +154,19 @@ const Login = () => {
                                     </InputAdornment>
                             }}
                         />
-                        <Typography {...ForgotStyle.forgotPasswordText.props} sx={ForgotStyle.forgotPasswordText.style}>
+                        <Typography component='div' fontWeight='bold' sx={ForgotStyle.forgotPasswordText.style}>
                             <Link to={PathConstants.forgotPassword} style={ForgotStyle.forgotLink}>
-                                {PathConstants.forgotPassword.title}?
+                                Forgot Password?
                             </Link>
                         </Typography>
-                        <Button sx={ForgotStyle.button.style} {...ForgotStyle.button.props} type='submit' onClick={handleSubmit}>Login</Button>
+                        <Button sx={ForgotStyle.button.style} variant='contained' type='submit' onClick={handleSubmit}>Login</Button>
                     </form>
                     <Box sx={ForgotStyle.register}>
-                        <Typography {...ForgotStyle.registerText.props} sx={ForgotStyle.registerText.style}>
+                        <Typography  component='span' fontWeight='bold' sx={ForgotStyle.registerText.style}>
                             Not Registered Yet?&nbsp;
                         </Typography>
                         <Link to={PathConstants.signUp} style={ForgotStyle.registerLink}>
-                            <Typography {...ForgotStyle.createAccount.props} sx={ForgotStyle.createAccount.style}>
+                            <Typography component='span' fontWeight='bold' sx={ForgotStyle.createAccount.style}>
                                 Create an Account
                             </Typography>
                         </Link>
