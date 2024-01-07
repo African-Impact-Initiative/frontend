@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { setErrorNotification } from '../store/notificationReducer'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
-const ErrorNotification = () => {
+const VBErrorNotification = () => {
     const theme = useTheme()
     const smallScreen = theme.breakpoints.values.sm
     const notification = useAppSelector(state => state.notifications.errorNotification)
@@ -42,4 +42,4 @@ const ErrorNotification = () => {
     )
 }
 
-export default ErrorNotification
+export default VBErrorNotification

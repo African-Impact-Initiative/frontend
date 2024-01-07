@@ -11,9 +11,16 @@ class HttpClient<T> implements IHttpClient<T> {
     client: AxiosInstance
     stateManager: ITokenStateManager
 
-    constructor(root: string) {
+    constructor(root: string, base?: string) {
+        let baseURL = ''
+
+        if (base)
+            baseURL = `${base}/${root}`
+        else
+            baseURL = `${import.meta.env.VITE_APP_HOST_BACKEND}/${root}`
+
         this.client = axios.create({
-            baseURL: `${import.meta.env.VITE_APP_HOST_BACKEND}/${root}`,
+            baseURL: baseURL,
         })
 
         this.client.interceptors.response.use((response: AxiosResponse): AxiosResponse => {
@@ -31,7 +38,7 @@ class HttpClient<T> implements IHttpClient<T> {
             if (config.data)
                 newConfig.data = decamelizeKeys(config.data)
 
-            return config
+            return newConfig
         })
 
         this.stateManager = new TokenStateManager()
@@ -44,7 +51,6 @@ class HttpClient<T> implements IHttpClient<T> {
         const header: AxiosHeaders = new AxiosHeaders()
         if(cookie) header.set(HEADERS.csrf, cookie)
         if(token) header.setAuthorization(token)
-        console.log(header)
         return header
     }
 

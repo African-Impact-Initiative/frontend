@@ -8,7 +8,7 @@ import { Empty } from './contracts/generalContracts'
 import ITokenStateManager from './types/tokenStateManager'
 import TokenStateManager from './tokenStateManager'
 
-const authorizationService = new Service<User>(apiRoutes.authorizationOperations.baseUrl)
+const authorizationService = new Service<User>(apiRoutes.authorizationOperations.baseUrl, import.meta.env.VITE_APP_AUTH_HOST_BACKEND)
 const stateManager: ITokenStateManager = new TokenStateManager()
 
 const googleId = import.meta.env.VITE_GOOGLE_LOGIN_CLIENT_ID

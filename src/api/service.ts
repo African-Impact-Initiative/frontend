@@ -10,9 +10,9 @@ class Service<T> implements IService<T> {
     baseUrl: string
     client: IHttpClient<T>
 
-    constructor(endpoint: string) {
+    constructor(endpoint: string, base?: string) {
         this.baseUrl = endpoint
-        this.client = new HttpClient<T>(endpoint)
+        this.client = base? new HttpClient<T>(endpoint, base) : new HttpClient<T>(endpoint)
     }
 
     buildRes<V>(res: AxiosResponse<V>, error: boolean): ServiceResponse<V> {

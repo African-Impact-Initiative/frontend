@@ -21,10 +21,11 @@ export const VBTextField = ({value, setter, type, label, placeholder, validator,
         if (validator !== undefined)
             valid = validator()
         else if (required) {
+            console.log(1)
             valid = !(value && value.length > 0)
         }
 
-        setFormError(valid)
+        setFormError(!valid)
 
         if(!valid && helper === undefined)
             helper = 'Required Field!'

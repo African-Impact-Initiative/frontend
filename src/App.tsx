@@ -4,8 +4,8 @@ import { ThemeProvider } from '@mui/material/styles'
 import { getTheme } from './utils/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
-import SuccessNotification from './components/SuccessNotification'
-import ErrorNotification from './components/ErrorNotification'
+import SuccessNotification from './components/VBSuccessNotification'
+import ErrorNotification from './components/VBErrorNotification'
 
 import { setUserOnRefresh } from './store/appUserReducer'
 import { useEffect, useState } from 'react'

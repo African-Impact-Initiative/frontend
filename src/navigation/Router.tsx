@@ -42,9 +42,9 @@ const Router = () => {
     return (
         <ScrollToTop>
             <Routes>
-                {anonRouter}
-                {authRouter}
-                {adminRouter}
+                {...anonRouter}
+                {...authRouter}
+                {...adminRouter}
                 {/* 404 page route */}
                 <Route path="*" element={<PageNotFound />} />
             </Routes>

@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { setSuccessNotification } from '../store/notificationReducer'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
-const SuccessNotification = () => {
+const VBSuccessNotification = () => {
     const theme = useTheme()
     const smallScreen = theme.breakpoints.values.sm
     const notification = useAppSelector(state => state.notifications.successNotification)
@@ -42,4 +42,4 @@ const SuccessNotification = () => {
     )
 }
 
-export default SuccessNotification
+export default VBSuccessNotification

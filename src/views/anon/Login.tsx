@@ -9,7 +9,6 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
-import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
@@ -24,6 +23,7 @@ import { VBTextField } from '../../components/VBForms'
 
 import person from '../../assets/person.svg'
 import { useFormWithErrorAndHelper, useFormWithHelper } from '../../hooks/form'
+import VBContentSectionWithImage from '../../components/VBContentSectionWithImage'
 
 const Login = () => {
     const user = useAppSelector(state => state.user)
@@ -101,84 +101,78 @@ const Login = () => {
     //     )
     // }
 
-    return (
-        <Grid container spacing={2} sx={ForgotStyle.container}>
-            <Grid item xs={12} md={5} lg={6}>
-                <Container maxWidth='xl'>
-                    <Typography variant='h3' component='div' sx={ForgotStyle.title.style}>
-                        Login
+    const Component = (
+        <Container maxWidth='xl'>
+            <Typography variant='h3' component='div' sx={ForgotStyle.title.style}>
+                Login
+            </Typography>
+            <Box style={ForgotStyle.googleContainer}>
+                <Button variant='outlined' sx={ForgotStyle.google.style} {/*onClick={()=>getToken()}*/...{}}>
+                    <GoogleIcon />&nbsp;Sign Up with Google
+                </Button>
+                <Button variant='outlined' sx={ForgotStyle.google.style} {/*onClick={()=>getToken()}*/...{}}>
+                    <LinkedInIcon />&nbsp;Sign Up with LinkedIn
+                </Button>
+            </Box>
+            <Divider sx={ForgotStyle.divider}>
+                Or Sign In With Email
+            </Divider>
+            <form onSubmit={handleSubmit} style={{width: '100%', marginTop: '10px', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                <VBTextField
+                    label='Email'
+                    placeholder='email@example.com'
+                    value={email}
+                    helper={emailHelper}
+                    setter={setEmail}
+                    validator={validateEmail}
+                    required={true}
+                    type='email'
+                />
+                <TextField
+                    label='Password'
+                    value={password}
+                    onBlur={() => validatePassword()}
+                    onChange={(e) => setPassword(e.target.value)}
+                    helperText={passwordHelper}
+                    error={passwordError}
+                    required
+                    type={passwordVisible? 'text' : 'password'}
+                    sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                    InputLabelProps={{ required: false }}
+                    InputProps={{
+                        endAdornment:
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={() => setPasswordVisible(!passwordVisible)}
+                                    edge="end"
+                                >
+                                    {passwordVisible ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                    }}
+                />
+                <Typography component='div' fontWeight='bold' sx={ForgotStyle.forgotPasswordText.style}>
+                    <Link to={PathConstants.forgotPassword} style={ForgotStyle.forgotLink}>
+                        Forgot Password?
+                    </Link>
+                </Typography>
+                <Button sx={ForgotStyle.button.style} variant='contained' type='submit' onClick={handleSubmit}>Login</Button>
+            </form>
+            <Box sx={ForgotStyle.register}>
+                <Typography  component='span' fontWeight='bold' sx={ForgotStyle.registerText.style}>
+                    Not Registered Yet?&nbsp;
+                </Typography>
+                <Link to={PathConstants.signUp} style={ForgotStyle.registerLink}>
+                    <Typography component='span' fontWeight='bold' sx={ForgotStyle.createAccount.style}>
+                        Create an Account
                     </Typography>
-                    <Box style={ForgotStyle.googleContainer}>
-                        <Button variant='outlined' sx={ForgotStyle.google.style} {/*onClick={()=>getToken()}*/...{}}>
-                            <GoogleIcon />&nbsp;Sign Up with Google
-                        </Button>
-                        <Button variant='outlined' sx={ForgotStyle.google.style} {/*onClick={()=>getToken()}*/...{}}>
-                            <LinkedInIcon />&nbsp;Sign Up with LinkedIn
-                        </Button>
-                    </Box>
-                    <Divider sx={ForgotStyle.divider}>
-                        Or Sign In With Email
-                    </Divider>
-                    <form onSubmit={handleSubmit} style={{width: '100%', marginTop: '10px', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-                        <VBTextField
-                            label='Email'
-                            placeholder='email@example.com'
-                            value={email}
-                            helper={emailHelper}
-                            setter={setEmail}
-                            validator={validateEmail}
-                            required={true}
-                            type='email'
-                        />
-                        <TextField
-                            label='Password'
-                            value={password}
-                            onBlur={() => validatePassword()}
-                            onChange={(e) => setPassword(e.target.value)}
-                            helperText={passwordHelper}
-                            error={passwordError}
-                            required
-                            type={passwordVisible? 'text' : 'password'}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
-                            InputLabelProps={{ required: false }}
-                            InputProps={{
-                                endAdornment:
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={() => setPasswordVisible(!passwordVisible)}
-                                            edge="end"
-                                        >
-                                            {passwordVisible ? <VisibilityOff /> : <Visibility />}
-                                        </IconButton>
-                                    </InputAdornment>
-                            }}
-                        />
-                        <Typography component='div' fontWeight='bold' sx={ForgotStyle.forgotPasswordText.style}>
-                            <Link to={PathConstants.forgotPassword} style={ForgotStyle.forgotLink}>
-                                Forgot Password?
-                            </Link>
-                        </Typography>
-                        <Button sx={ForgotStyle.button.style} variant='contained' type='submit' onClick={handleSubmit}>Login</Button>
-                    </form>
-                    <Box sx={ForgotStyle.register}>
-                        <Typography  component='span' fontWeight='bold' sx={ForgotStyle.registerText.style}>
-                            Not Registered Yet?&nbsp;
-                        </Typography>
-                        <Link to={PathConstants.signUp} style={ForgotStyle.registerLink}>
-                            <Typography component='span' fontWeight='bold' sx={ForgotStyle.createAccount.style}>
-                                Create an Account
-                            </Typography>
-                        </Link>
-                    </Box>
-                </Container>
-            </Grid>
-            <Grid item md={7} lg={6} sx={ForgotStyle.imageSection}>
-                <Container sx={{...ForgotStyle.imageSectionContainer.style, background: `url(${person}) no-repeat center right`, backgroundSize: 'contain'}}>
-                </Container>
-            </Grid>
-        </Grid>
+                </Link>
+            </Box>
+        </Container>
     )
+
+    return <VBContentSectionWithImage Component={Component} image={person} />
 }
 
 export default Login
