@@ -24,23 +24,21 @@ import { AppDispatch } from '../../store/store'
 import { VBTextField } from '../../components/VBForms'
 import User, { emptyUser } from '../../types/user'
 
+import person from '../../assets/person.svg'
+import { useForm, useFormWithErrorAndHelper, useFormWithHelper } from '../../hooks/form'
+
 const Signup = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const minLength = 0
     const minPwdLength = 8
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [emailHelper, setEmailHelper] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordError, setPasswordError] = useState(false)
-    const [passwordHelper, setPasswordHelper] = useState('')
+    const [firstName, setFirstName] = useForm('')
+    const [lastName, setLastName] = useForm('')
+    const [email, setEmail, emailHelper, setEmailHelper] = useFormWithHelper('')
+    const [password, setPassword, passwordError, setPasswordError, passwordHelper, setPasswordHelper] = useFormWithErrorAndHelper('')
     const [passwordVisible, setPasswordVisible] = useState(false)
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [confirmPasswordError, setConfirmPasswordError] = useState(false)
-    const [confirmPasswordHelper, setConfirmPasswordHelper] = useState('')
+    const [confirmPassword, setConfirmPassword, confirmPasswordError, setConfirmPasswordError, confirmPasswordHelper, setConfirmPasswordHelper] = useFormWithErrorAndHelper('')
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
 
     const validateConfirmPassword = () => {
@@ -213,7 +211,7 @@ const Signup = () => {
                 </Container>
             </Grid>
             <Grid item md={7} lg={6} sx={ForgotStyle.imageSection}>
-                <Container sx={{...ForgotStyle.imageSectionContainer.style, background: `url(${'/static/site-imgs/person.svg'}) no-repeat center right`, backgroundSize: 'contain'}}>
+                <Container sx={{...ForgotStyle.imageSectionContainer.style, background: `url(${person}) no-repeat center right`, backgroundSize: 'contain'}}>
                 </Container>
             </Grid>
         </Grid>

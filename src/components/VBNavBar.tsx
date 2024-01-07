@@ -92,7 +92,9 @@ const VBNavBar = () => {
                             ))}
                         </Menu>
                     </Box>
-                    <VBLogo dark={true} />
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                        <VBLogo dark={true} />
+                    </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none', justifyContent: 'end' } }}>
                         <Button
                             onClick={handleCloseNavMenu}

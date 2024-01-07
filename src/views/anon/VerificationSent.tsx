@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography'
 import { ForgotStyle } from '../../utils/styles'
 import PathConstants from '../../navigation/pathConstants'
 
+import person from '../../assets/person.svg'
+
 const VerificationSent = () => {
     const {state} = useLocation()
 
@@ -35,7 +37,7 @@ const VerificationSent = () => {
                 </Container>
             </Grid>
             <Grid item md={7} lg={6} sx={ForgotStyle.imageSection}>
-                <Container sx={{...ForgotStyle.imageSectionContainer.style, background: `url(${'/static/site-imgs/person.svg'}) no-repeat center right`, backgroundSize: 'contain'}}>
+                <Container sx={{...ForgotStyle.imageSectionContainer.style, background: `url(${person}) no-repeat center right`, backgroundSize: 'contain'}}>
                 </Container>
             </Grid>
         </Grid>

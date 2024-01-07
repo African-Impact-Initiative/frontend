@@ -22,16 +22,16 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import PathConstants from '../../navigation/pathConstants'
 import { VBTextField } from '../../components/VBForms'
 
+import person from '../../assets/person.svg'
+import { useFormWithErrorAndHelper, useFormWithHelper } from '../../hooks/form'
+
 const Login = () => {
     const user = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
 
     // const [client, setClient] = useState<google.accounts.oauth2.TokenClient | null>(null)
-    const [email, setEmail] = useState('')
-    const [emailHelper, setEmailHelper] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordError, setPasswordError] = useState(false)
-    const [passwordHelper, setPasswordHelper] = useState('')
+    const [email, setEmail, emailHelper, setEmailHelper] = useFormWithHelper('')
+    const [password, setPassword, passwordError, setPasswordError, passwordHelper, setPasswordHelper] = useFormWithErrorAndHelper('')
     const [passwordVisible, setPasswordVisible] = useState(false)
 
     // const getToken = () => {
@@ -174,7 +174,7 @@ const Login = () => {
                 </Container>
             </Grid>
             <Grid item md={7} lg={6} sx={ForgotStyle.imageSection}>
-                <Container sx={{...ForgotStyle.imageSectionContainer.style, background: `url(${'/static/site-imgs/person.svg'}) no-repeat center right`, backgroundSize: 'contain'}}>
+                <Container sx={{...ForgotStyle.imageSectionContainer.style, background: `url(${person}) no-repeat center right`, backgroundSize: 'contain'}}>
                 </Container>
             </Grid>
         </Grid>
