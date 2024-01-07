@@ -48,7 +48,7 @@ export const AboutCard = ({ title, description, image, address }: IAboutCardProp
                         {description}
                     </Typography>
                     {address && <Typography variant='subtitle1' color='text.secondary' component='div'>
-                            {address}
+                        {address}
                     </Typography>}
                 </CardContent>
             </Card>

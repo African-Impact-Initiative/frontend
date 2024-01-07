@@ -8,16 +8,15 @@ import Stepper from '@mui/material/Stepper'
 import Typography from '@mui/material/Typography'
 
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setErrorNotification } from '../../../reducers/notificationReducer'
 import { PAGES } from '../../navigation/routes'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 
 const Development = ({component, step}) => {
-    const Component = component
-    const dispatch = useDispatch()
+    const user = useAppSelector(state => state.user)
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const user = useSelector(state => state.user)
 
     useEffect(() => {
         if (user) {

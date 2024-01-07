@@ -53,7 +53,7 @@ const CompanyProfile = ({user}) => {
     const actualSubmit = async (dispatch) => {
         try {
             if(validateField(companyName, setCompanyNameHelper, setCompanyNameError)) {
-                var identifier = url
+                let identifier = url
                 if (!url)
                     identifier = companyName.toLowerCase().replace(' ', '-')
 

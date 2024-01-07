@@ -107,10 +107,10 @@ const Login = () => {
                 Login
             </Typography>
             <Box style={ForgotStyle.googleContainer}>
-                <Button variant='outlined' sx={ForgotStyle.google.style} {/*onClick={()=>getToken()}*/...{}}>
+                <Button variant='outlined' sx={ForgotStyle.google.style} {/* onClick={()=>getToken()}*/...{}}>
                     <GoogleIcon />&nbsp;Sign Up with Google
                 </Button>
-                <Button variant='outlined' sx={ForgotStyle.google.style} {/*onClick={()=>getToken()}*/...{}}>
+                <Button variant='outlined' sx={ForgotStyle.google.style} {/* onClick={()=>getToken()}*/...{}}>
                     <LinkedInIcon />&nbsp;Sign Up with LinkedIn
                 </Button>
             </Box>

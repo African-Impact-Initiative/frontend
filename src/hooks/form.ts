@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 export const useForm = <T>(initalValue: T): [T, React.Dispatch<React.SetStateAction<T>>] => {
     const [field, setField] = useState<T>(initalValue)
