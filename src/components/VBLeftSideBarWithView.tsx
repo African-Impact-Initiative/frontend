@@ -13,7 +13,7 @@ import { SvgIconTypeMap } from '@mui/material'
 export type SideBarListItem = {
     title: string,
     secondary: string
-    Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string },
+    Icon: OverridableComponent<SvgIconTypeMap<object, 'svg'>> & { muiName: string },
 }
 
 interface ILeftSidebarWithViewProps {

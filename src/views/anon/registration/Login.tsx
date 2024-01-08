@@ -42,7 +42,7 @@ const Login = () => {
     // very important!!!! do not remove the global google, it defines the
     // var google which is used to coneect to the google apis
     useEffect(() => {
-        /* global google */
+        // /* global google */
         // let c = google.accounts.oauth2.initTokenClient({
         //     client_id: import.meta.env.VITE_GOOGLE_ID,
         //     scope: 'profile email',

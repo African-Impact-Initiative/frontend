@@ -16,17 +16,16 @@ import VBLeftSidebarWithView from '../../../components/VBLeftSideBarWithView'
 import PathConstants from '../../../navigation/pathConstants'
 import { terms, userOnboardingOutline } from './utils'
 
-const Accordion = styled(MuiAccordion)
-    (({ }) => ({
-        border: 'none',
-        '&:not(:last-child)': {
-            borderBottom: 0,
-        },
-        '&:before': {
-            display: 'none',
-        },
-        }
-    ))
+const Accordion = styled(MuiAccordion)(() => ({
+    border: 'none',
+    '&:not(:last-child)': {
+        borderBottom: 0,
+    },
+    '&:before': {
+        display: 'none',
+    },
+}
+))
 
 const TermsOfUse = () => {
     const navigate = useNavigate()
