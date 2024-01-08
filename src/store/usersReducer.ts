@@ -40,7 +40,7 @@ export const initializeUsers = () => {
 export const updateUser = (data: User) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const user = await userService.update(data.id, data)
+            const user = await userService.update(data.id!, data)
             dispatch(changeUsers(user.data as User))
             dispatch(setSuccessNotification('User updated'))
         } catch {

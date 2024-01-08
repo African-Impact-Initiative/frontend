@@ -29,7 +29,7 @@ type User = {
     lastLogin: string,
 }
 
-export const emptyUser = {
+export const emptyUser: User = {
     email: '',
     firstName: '',
     lastName: '',

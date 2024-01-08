@@ -165,7 +165,7 @@ export const createUser = (user: User) => {
 export const updateUser = (data: User) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const user = await userService.update(data.id, data)
+            const user = await userService.update(data.id!, data)
             dispatch(setUser(user.data as User))
             dispatch(setSuccessNotification('Profile updated'))
         } catch {

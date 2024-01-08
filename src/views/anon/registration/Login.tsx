@@ -13,17 +13,17 @@ import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { ForgotStyle } from '../../utils/styles'
+import { ForgotStyle } from '../../../utils/styles'
 
-import { setErrorNotification } from '../../store/notificationReducer'
-import { login } from '../../store/appUserReducer'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import PathConstants from '../../navigation/pathConstants'
-import { VBTextField } from '../../components/VBForms'
+import { setErrorNotification } from '../../../store/notificationReducer'
+import { login } from '../../../store/appUserReducer'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
+import PathConstants from '../../../navigation/pathConstants'
+import { VBTextField } from '../../../components/VBForms'
 
 import person from '../../assets/person.svg'
-import { useFormWithErrorAndHelper, useFormWithHelper } from '../../hooks/form'
-import VBContentSectionWithImage from '../../components/VBContentSectionWithImage'
+import { useFormWithErrorAndHelper, useFormWithHelper } from '../../../hooks/form'
+import VBContentSectionWithImage from '../../../components/VBContentSectionWithImage'
 
 const Login = () => {
     const user = useAppSelector(state => state.user)

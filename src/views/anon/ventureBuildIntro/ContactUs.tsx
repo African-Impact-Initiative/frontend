@@ -2,7 +2,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import { Button, Checkbox, Container, FormControlLabel, Grid, InputBase, Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { AboutCard, IAboutCardProps } from '../../components/VBCards'
+import { AboutCard, IAboutCardProps } from '../../../components/VBCards'
 
 const ContactUs = () => {
     const handleSendMessage = (e: React.MouseEvent<HTMLElement>) => {

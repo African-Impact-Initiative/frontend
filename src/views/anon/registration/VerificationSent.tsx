@@ -4,11 +4,11 @@ import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
-import { ForgotStyle } from '../../utils/styles'
-import PathConstants from '../../navigation/pathConstants'
+import { ForgotStyle } from '../../../utils/styles'
+import PathConstants from '../../../navigation/pathConstants'
 
 import person from '../../assets/person.svg'
-import VBContentSectionWithImage from '../../components/VBContentSectionWithImage'
+import VBContentSectionWithImage from '../../../components/VBContentSectionWithImage'
 
 const VerificationSent = () => {
     const {state} = useLocation()

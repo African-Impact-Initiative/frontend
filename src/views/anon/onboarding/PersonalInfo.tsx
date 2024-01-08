@@ -1,84 +1,70 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
-import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
 import { MuiFileInput } from 'mui-file-input'
 
-import { useDispatch } from 'react-redux'
-import { setErrorNotification } from '../../../reducers/notificationReducer'
-import { updatePersonalInfo } from '../../../reducers/userReducer'
-import { PAGES } from '../../navigation/routes'
-import { countryList } from '../../utils/countries'
+import { setErrorNotification } from '../../../store/notificationReducer'
+import { updatePersonalInfo } from '../../../store/appUserReducer'
+import { countryList } from '../../../utils/countries'
+import { AppDispatch } from '../../../store/store'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
+import { useForm, useFormWithHelper } from '../../../hooks/form'
+import PathConstants from '../../../navigation/pathConstants'
+import VBLeftSidebarWithView from '../../../components/VBLeftSideBarWithView'
+import { personalInfo, userOnboardingOutline } from './utils'
+import { VBSelect, VBTextField } from '../../../components/VBForms'
 
-const PersonalInfo = ({user}) => {
+const PersonalInfo = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const email = user.email
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(state => state.user)
 
-    const [firstName, setFirstName] = useState(user.first_name)
-    const [firstNameHelper, setFirstNameHelper] = useState('')
-    const [firstNameError, setFirstNameError] = useState(false)
-    const [lastName, setLastName] = useState(user.last_name)
-    const [lastNameHelper, setLastNameHelper] = useState('')
-    const [lastNameError, setLastNameError] = useState(false)
-    const [linkedin, setLinkedin] = useState('')
-    const [linkedinError, setLinkedinError] = useState(false)
-    const [linkedinHelper, setLinkedinHelper] = useState('')
-    const [role, setRole] = useState('')
-    const [roleError, setRoleError] = useState(false)
-    const [roleHelper, setRoleHelper] = useState('')
-    const [country, setCountry] = useState('')
-    const [bio, setBio] = useState('')
-    const [file, setFile] = useState(null)
+    const [firstName, setFirstName] = useForm(user.data!.firstName)
+    const [lastName, setLastName] = useForm(user.data!.lastName)
+    const [linkedin, setLinkedin, linkedinHelper, setLinkedinHelper] = useFormWithHelper('')
+    const [role, setRole] = useForm('')
+    const [country, setCountry] = useForm('')
+    const [bio, setBio] = useForm('')
+    const [file, setFile] = useForm<File | null>(null)
 
-    const updateFile = (newFile) => {
+    const updateFile = (newFile: File | null) => {
         setFile(newFile)
-    }
-
-    const validateField = (val, helper, error) => {
-        if(val === '') {
-            helper('Required Field!')
-            error(true)
-            return false
-        } else {
-            helper('')
-            error(false)
-            return true
-        }
     }
 
     const validateLinkedIn = () => {
         const re = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/in\/.*$/
         if (linkedin === '') {
             setLinkedinHelper('')
-            setLinkedinError(false)
             return true
         } else if (!linkedin.match(re)) {
             setLinkedinHelper('Invalid LinkedIn URL')
-            setLinkedinError(true)
             return false
         } else {
             setLinkedinHelper('')
-            setLinkedinError(false)
             return true
         }
     }
 
-    const actualSubmit = async (dispatch) => {
+    const actualSubmit = async (dispatch: AppDispatch) => {
         try {
-            if(validateLinkedIn()
-                && validateField(firstName, setFirstNameHelper, setFirstNameError)
-                && validateField(lastName, setLastNameHelper, setLastNameError)
-                && validateField(role, setRoleHelper, setRoleError)) {
-                await dispatch(updatePersonalInfo(firstName, lastName, role, country, linkedin, bio, file))
-                navigate(PAGES.onboarding.path)
+            const data = {
+                firstName: firstName,
+                lastName: lastName,
+                role: role,
+                linkedin: linkedin,
+                bio: bio,
+                country: country,
+            }
+
+            if(validateLinkedIn()) {
+                await dispatch(updatePersonalInfo(data))
+                navigate(PathConstants.onboarding)
             } else
                 dispatch(setErrorNotification('Please fix all form errors before submission'))
 
@@ -87,22 +73,22 @@ const PersonalInfo = ({user}) => {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault()
         actualSubmit(dispatch)
     }
 
     const handleCancel = () => {
         dispatch(setErrorNotification('You will not be able to create or join organizations without filling the required information'))
-        navigate(PAGES.home.path)
+        navigate(PathConstants.home)
     }
 
-    return (
+    const UserPersonalInfo = (
         <Box>
             <Typography variant='h4' sx={{marginBottom: '10px'}}>
                 Personal Information
             </Typography>
-            <Typography variant='p'>
+            <Typography>
                 Provide your personal details here.
             </Typography>
             <Divider light sx={{marginBottom: '20px', marginTop: '10px'}}/>
@@ -110,30 +96,22 @@ const PersonalInfo = ({user}) => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
                         <Typography variant='h6' gutterBottom>First Name</Typography>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='First Name'
                             value={firstName}
-                            onBlur={() => validateField(firstName, setFirstNameHelper, setFirstNameError)}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            helperText={firstNameHelper}
-                            error={firstNameError}
-                            required
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                            required={true}
+                            setter={setFirstName}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <Typography variant='h6' gutterBottom>Last Name</Typography>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='Last Name'
                             value={lastName}
-                            onBlur={() => validateField(lastName, setLastNameHelper, setLastNameError)}
-                            onChange={(e) => setLastName(e.target.value)}
-                            helperText={lastNameHelper}
-                            error={lastNameError}
-                            required
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                            required={true}
+                            setter={setLastName}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -143,7 +121,7 @@ const PersonalInfo = ({user}) => {
                             size='small'
                             label='Email'
                             placeholder='email@example.com'
-                            value={email}
+                            value={user.data!.email}
                             disabled
                             type='email'
                             sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
@@ -152,16 +130,15 @@ const PersonalInfo = ({user}) => {
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
                         <Typography variant='h6' gutterBottom>LinkedIn</Typography>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='LinkedIn'
                             value={linkedin}
-                            onBlur={() => validateLinkedIn()}
-                            onChange={(e) => setLinkedin(e.target.value)}
-                            helperText={linkedinHelper}
-                            error={linkedinError}
+                            validator={validateLinkedIn}
+                            helper={linkedinHelper}
                             type='url'
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                            setter={setLinkedin}
+                            required={false}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -184,50 +161,40 @@ const PersonalInfo = ({user}) => {
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
                         <Typography variant='h6' gutterBottom>Your Role</Typography>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='Role'
                             value={role}
-                            onBlur={() => validateField(role, setRoleHelper, setRoleError)}
-                            onChange={(e) => setRole(e.target.value)}
-                            helperText={roleHelper}
-                            error={roleError}
-                            required
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                            required={true}
+                            setter={setRole}
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
                         <Typography variant='h6' gutterBottom>Country</Typography>
-                        <TextField
+                        <VBSelect
                             value={country}
-                            select
                             label="Country"
-                            fullWidth
                             size='small'
-                            onChange={(e)=>setCountry(e.target.value)}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            {countryList.map(country => <MenuItem key={country.value} value={country.value}>{country.label}</MenuItem>)}
-                        </TextField>
+                            required={true}
+                            setter={setCountry}
+                            list={countryList}
+                        />
                     </Grid>
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
                         <Typography variant='h6' gutterBottom>Your Introduction</Typography>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='Bio'
                             placeholder='Enter your bio here...'
-                            inputProps={{maxLength: 300}}
+                            inputProps={{ maxLength: 300 }}
                             value={bio}
-                            onChange={(e) => setBio(e.target.value)}
-                            helperText={`${bio.length}/300 characters`}
-                            multiline
+                            helper={`${bio.length}/300 characters`}
+                            multiline={true}
                             rows={3}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                            setter={setBio}
+                            required={false}
                         />
                     </Grid>
                 </Grid>
@@ -239,6 +206,8 @@ const PersonalInfo = ({user}) => {
             </form>
         </Box>
     )
+
+    return <VBLeftSidebarWithView Component={UserPersonalInfo} componentTitle={personalInfo.title} title={userOnboardingOutline.title(user.data!.firstName)} tagline={userOnboardingOutline.tagline} list={userOnboardingOutline.list} />
 }
 
 export default PersonalInfo

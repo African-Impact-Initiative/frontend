@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography'
 import { OverridableComponent } from '@mui/material/OverridableComponent'
 import { SvgIconTypeMap } from '@mui/material'
 
-type SideBarListItems = {
+export type SideBarListItem = {
     title: string,
     secondary: string
     Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & { muiName: string },
@@ -18,12 +18,13 @@ type SideBarListItems = {
 
 interface ILeftSidebarWithViewProps {
     Component: JSX.Element,
+    componentTitle: string,
     title: string,
     tagline: string,
-    list: Array<SideBarListItems>
+    list: Array<SideBarListItem>
 }
 
-const VBLeftSidebarWithView = ({Component, title, tagline, list}: ILeftSidebarWithViewProps) => {
+const VBLeftSidebarWithView = ({Component, componentTitle, title, tagline, list}: ILeftSidebarWithViewProps) => {
     return (
         <Container maxWidth='xl'>
             <Typography variant='h2' sx={{marginBottom: '10px', marginTop: '30px'}}>
@@ -38,7 +39,7 @@ const VBLeftSidebarWithView = ({Component, title, tagline, list}: ILeftSidebarWi
                     <List component="nav" aria-label="main mailbox folders" sx={{width: '100%'}}>
                         {
                             list.map(item =>
-                                <ListItemButton key={item.title} disabled={title === item.title}>
+                                <ListItemButton key={item.title} disabled={componentTitle === item.title}>
                                     <ListItemIcon>
                                         <item.Icon />
                                     </ListItemIcon>

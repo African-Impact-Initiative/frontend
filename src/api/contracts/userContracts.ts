@@ -5,8 +5,8 @@ export type UpdateTerms = {
 }
 
 export type UpdatePersonalInfo = {
-    first_name:	string
-    last_name: string
+    firstName:	string
+    lastName: string
     role: string
     linkedin?: string
     country?:	string

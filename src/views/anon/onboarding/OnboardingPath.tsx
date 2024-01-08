@@ -12,12 +12,16 @@ import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 
 import { useNavigate } from 'react-router-dom'
-import { PAGES } from '../../navigation/routes'
+import PathConstants from '../../../navigation/pathConstants'
+import { useAppSelector } from '../../../hooks/redux'
+import VBLeftSidebarWithView from '../../../components/VBLeftSideBarWithView'
+import { onboardingPath, userOnboardingOutline } from './utils'
 
 const OnboardingPath = () => {
+    const user = useAppSelector(state => state.user)
     const navigate = useNavigate()
-    const nextPage = () => navigate(PAGES.companyProfile.path)
-    const cancel = () => navigate(PAGES.home.path)
+    const nextPage = () => navigate(PathConstants.companyProfile)
+    const cancel = () => navigate(PathConstants.home)
     const tempAction = () => console.log('Clicked button')
 
     const items = [
@@ -47,12 +51,12 @@ const OnboardingPath = () => {
         },
     ]
 
-    return (
+    const UserOnboardingPath = (
         <Box>
             <Typography variant='h4' sx={{marginBottom: '10px'}}>
                 Onboarding Path
             </Typography>
-            <Typography variant='p'>
+            <Typography>
                 We&apos;re delighted to have you join Venture Build. Please select one of the following options below to proceed.
             </Typography>
             <Divider light sx={{marginBottom: '20px', marginTop: '10px'}}/>
@@ -75,6 +79,8 @@ const OnboardingPath = () => {
             </Box>
         </Box>
     )
+
+    return <VBLeftSidebarWithView Component={UserOnboardingPath} componentTitle={onboardingPath.title} title={userOnboardingOutline.title(user.data!.firstName)} tagline={userOnboardingOutline.tagline} list={userOnboardingOutline.list} />
 }
 
 export default OnboardingPath

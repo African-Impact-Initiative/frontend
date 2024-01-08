@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
@@ -7,74 +5,71 @@ import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import InputAdornment from '@mui/material/InputAdornment'
-import MenuItem from '@mui/material/MenuItem'
-import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
 import { MuiFileInput } from 'mui-file-input'
 
-import { setErrorNotification, setSuccessNotification } from '../../../reducers/notificationReducer'
-import { createOrganization } from '../../../reducers/organizationReducer'
-import { PAGES } from '../../navigation/routes'
-import { industriesList } from '../../utils/industries'
+import { setErrorNotification, setSuccessNotification } from '../../../store/notificationReducer'
+import { createOrganization } from '../../../store/organizationReducer'
+import { industriesList } from '../../../utils/industries'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
+import { useForm } from '../../../hooks/form'
+import { AppDispatch } from '../../../store/store'
+import PathConstants from '../../../navigation/pathConstants'
+import { emptyOrganization } from '../../../types/organization'
+import { VBSelect, VBTextField } from '../../../components/VBForms'
 
-const CompanyProfile = ({user}) => {
+const CompanyProfile = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(state => state.user)
 
-    const [companyName, setCompanyName] = useState('')
-    const [companyNameHelper, setCompanyNameHelper] = useState('')
-    const [companyNameError, setCompanyNameError] = useState(false)
-    const [companyWebsite, setCompanyWebsite] = useState('')
-    const [url, setUrl] = useState('')
-    const [linkedin, setLinkedin] = useState('')
-    const [twitter, setTwitter] = useState('')
-    const [facebook, setFacebook] = useState('')
-    const [industry, setIndustry] = useState('')
-    const [tagline, setTagline] = useState('')
-    const [file, setFile] = useState(null)
+    const [companyName, setCompanyName] = useForm('')
+    const [companyWebsite, setCompanyWebsite] = useForm('')
+    const [url, setUrl] = useForm('')
+    const [linkedin, setLinkedin] = useForm('')
+    const [twitter, setTwitter] = useForm('')
+    const [facebook, setFacebook] = useForm('')
+    const [industry, setIndustry] = useForm('')
+    const [tagline, setTagline] = useForm('')
+    const [file, setFile] = useForm<File | null>(null)
 
-    const updateFile = (newFile) => {
+    const updateFile = (newFile: File | null) => {
         setFile(newFile)
     }
 
-    const validateField = (val, helper, error) => {
-        if(val === '') {
-            helper('Required Field!')
-            error(true)
-            return false
-        } else {
-            helper('')
-            error(false)
-            return true
-        }
-    }
-
-    const actualSubmit = async (dispatch) => {
+    const actualSubmit = async (dispatch: AppDispatch) => {
         try {
-            if(validateField(companyName, setCompanyNameHelper, setCompanyNameError)) {
-                let identifier = url
-                if (!url)
-                    identifier = companyName.toLowerCase().replace(' ', '-')
+            let identifier = url
+            if (!url)
+                identifier = companyName.toLowerCase().replace(' ', '-')
 
-                await dispatch(createOrganization(companyName, identifier, user.id, companyWebsite, linkedin, twitter, facebook, industry, tagline, file))
-                navigate(`${PAGES.developmentStage.path}?org=${identifier}`)
-            } else
-                dispatch(setErrorNotification('Please fix all form errors before submission'))
+            const org = {...emptyOrganization}
+            org.identifier = identifier
+            org.name = companyName
+            org.owner = user.data!.id!
+            org.website = companyWebsite
+            org.linkedin = linkedin
+            org.twitter = twitter
+            org.facebook = facebook
+            org.industry = industry
+            org.tagline = tagline
 
+            await dispatch(createOrganization(org))
+            navigate(`${PathConstants.developmentStage}?org=${identifier}`)
         } catch {
             dispatch(setErrorNotification('Error updating company information'))
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault()
         actualSubmit(dispatch)
     }
 
     const handleCancel = () => {
         dispatch(setSuccessNotification('Creation aborted'))
-        navigate(PAGES.home.path)
+        navigate(PathConstants.home)
     }
 
     return (
@@ -82,7 +77,7 @@ const CompanyProfile = ({user}) => {
             <Typography variant='h4' sx={{marginBottom: '10px'}}>
                 Company Profile
             </Typography>
-            <Typography variant='p'>
+            <Typography>
                 Update your company photo and details here.
             </Typography>
             <Divider light sx={{marginBottom: '20px', marginTop: '10px'}}/>
@@ -90,75 +85,65 @@ const CompanyProfile = ({user}) => {
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography variant='h6' gutterBottom>Company Information</Typography>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='Company Name'
                             value={companyName}
                             placeholder='Enter your company name here'
-                            onBlur={() => validateField(companyName, setCompanyNameHelper, setCompanyNameError)}
-                            onChange={(e) => setCompanyName(e.target.value)}
-                            helperText={companyNameHelper}
-                            error={companyNameError}
-                            required
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                            required={true}
+                            setter={setCompanyName}
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='Company Website'
                             placeholder='Enter your company site here'
                             value={companyWebsite}
-                            onChange={(e) => setCompanyWebsite(e.target.value)}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
                             type='url'
+                            setter={setCompanyWebsite}
+                            required={false}
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='URL Identifier'
                             value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            helperText='This will be the URL others see when viewing your company page, by default company name is used'
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                            helper='This will be the URL others see when viewing your company page, by default company name is used'
                             InputProps={{
                                 startAdornment: <InputAdornment position='start'>venturebuild.com/profile/</InputAdornment>,
                             }}
+                            setter={setUrl}
+                            required={false}
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
                         <Typography variant='h6' gutterBottom>Industry</Typography>
-                        <TextField
+                        <VBSelect
                             value={industry}
-                            select
                             label="Industry"
-                            fullWidth
                             size='small'
-                            onChange={(e)=>setIndustry(e.target.value)}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            {industriesList.map(industry => <MenuItem key={industry.value} value={industry.value}>{industry.label}</MenuItem>)}
-                        </TextField>
+                            required={false}
+                            list={industriesList}
+                            setter={setIndustry}
+                        />
                     </Grid>
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
                         <Typography variant='h6' gutterBottom>Company Introduction</Typography>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='Company Tagline'
                             placeholder='Enter your company tagline here...'
                             inputProps={{maxLength: 150}}
                             value={tagline}
-                            onChange={(e) => setTagline(e.target.value)}
-                            helperText={`${tagline.length}/150 characters`}
+                            helper={`${tagline.length}/150 characters`}
                             multiline
                             rows={3}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+                            setter={setTagline}
+                            required={false}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -181,39 +166,39 @@ const CompanyProfile = ({user}) => {
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
                         <Typography variant='h6' gutterBottom>Socials</Typography>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='Twitter'
                             value={twitter}
-                            onChange={(e) => setTwitter(e.target.value)}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
                             InputProps={{
                                 startAdornment: <InputAdornment position='start'>twitter.com/</InputAdornment>,
                             }}
+                            setter={setTwitter}
+                            required={false}
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='FaceBook'
                             value={facebook}
-                            onChange={(e) => setFacebook(e.target.value)}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
                             InputProps={{
                                 startAdornment: <InputAdornment position='start'>facebook.com/</InputAdornment>,
                             }}
+                            setter={setFacebook}
+                            required={false}
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField
+                        <VBTextField
                             size='small'
                             label='LinkedIn'
                             value={linkedin}
-                            onChange={(e) => setLinkedin(e.target.value)}
-                            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
                             InputProps={{
                                 startAdornment: <InputAdornment position='start'>linkedin.com/company/</InputAdornment>,
                             }}
+                            setter={setLinkedin}
+                            required={false}
                         />
                     </Grid>
                 </Grid>

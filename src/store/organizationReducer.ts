@@ -37,7 +37,7 @@ export const createOrganization = (org: Organization) => {
     return async (dispatch: AppDispatch) => {
         const organization = await organizationService.create(org)
         dispatch(appendOrganization(organization.data as Organization))
-        dispatch(userAddToOrg((organization.data as Organization).id))
+        dispatch(userAddToOrg((organization.data as Organization).id!))
         dispatch(setSuccessNotification('Organization created successfully'))
     }
 }

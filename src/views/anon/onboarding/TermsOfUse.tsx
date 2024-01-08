@@ -7,32 +7,36 @@ import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { setErrorNotification } from '../../../reducers/notificationReducer'
-import { logout, userAgreeToTerms } from '../../../reducers/userReducer'
-import { PAGES } from '../../navigation/routes'
+import { setErrorNotification } from '../../../store/notificationReducer'
+import { logout, userAgreeToTerms } from '../../../store/appUserReducer'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
+import { AppDispatch } from '../../../store/store'
+import VBLeftSidebarWithView from '../../../components/VBLeftSideBarWithView'
+import PathConstants from '../../../navigation/pathConstants'
+import { terms, userOnboardingOutline } from './utils'
 
-const Accordion = styled((props) => (
-    <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-    border: 'none',
-    '&:not(:last-child)': {
-        borderBottom: 0,
-    },
-    '&:before': {
-        display: 'none',
-    },
-}))
+const Accordion = styled(MuiAccordion)
+    (({ }) => ({
+        border: 'none',
+        '&:not(:last-child)': {
+            borderBottom: 0,
+        },
+        '&:before': {
+            display: 'none',
+        },
+        }
+    ))
 
-const TermsOfUse = ({user}) => {
+const TermsOfUse = () => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(state => state.user)
 
-    const handleSubmit = async (dispatch) => {
+    const handleSubmit = async (dispatch: AppDispatch) => {
         try {
             await dispatch(userAgreeToTerms())
-            navigate(PAGES.personal.path)
+            navigate(PathConstants.personal)
         } catch {
             dispatch(setErrorNotification('Error agreeing to terms, please try again later'))
         }
@@ -41,7 +45,7 @@ const TermsOfUse = ({user}) => {
     const handleCancel = () => {
         dispatch(setErrorNotification('You will not be able to continue without agreeing to the terms of use'))
         dispatch(logout())
-        navigate(PAGES.home.path)
+        navigate(PathConstants.home)
     }
 
     const termsOfUseItems = [
@@ -71,18 +75,18 @@ const TermsOfUse = ({user}) => {
         },
     ]
 
-    return (
+    const Terms = (
         <Box>
             <Typography variant='h4' sx={{marginBottom: '10px'}}>
                 Terms of Use
             </Typography>
-            <Typography variant='p'>
+            <Typography>
                 Please read the following terms before proceeding. Note that by clicking continue you agree to all the terms below.
             </Typography>
             <Divider light sx={{marginBottom: '20px', marginTop: '10px'}}/>
             {
                 termsOfUseItems.map((terms, i) =>
-                    <Accordion key={terms.title} sx={{border: 'none', boxShadow: 'none', backgroundColor: '#FAFAFA', marginBottom: '10px'}}>
+                    <Accordion key={terms.title} disableGutters elevation={0} square sx={{border: 'none', boxShadow: 'none', backgroundColor: '#FAFAFA', marginBottom: '10px'}}>
                         <AccordionSummary
                             expandIcon={<AddCircleOutlineOutlinedIcon />}
                             aria-controls={`panel${i}a-content`}
@@ -105,6 +109,8 @@ const TermsOfUse = ({user}) => {
             </Box>
         </Box>
     )
+
+    return <VBLeftSidebarWithView Component={Terms} componentTitle={terms.title} title={userOnboardingOutline.title(user.data!.firstName)} tagline={userOnboardingOutline.tagline} list={userOnboardingOutline.list} />
 }
 
 export default TermsOfUse
