@@ -24,7 +24,7 @@ import { AppDispatch } from '../../../store/store'
 import { VBTextField } from '../../../components/VBForms'
 import User, { emptyUser } from '../../../types/user'
 
-import person from '../../assets/person.svg'
+import person from '../../../assets/person.svg'
 import { useForm, useFormWithErrorAndHelper, useFormWithHelper } from '../../../hooks/form'
 import VBContentSectionWithImage from '../../../components/VBContentSectionWithImage'
 

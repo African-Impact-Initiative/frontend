@@ -21,7 +21,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import PathConstants from '../../../navigation/pathConstants'
 import { VBTextField } from '../../../components/VBForms'
 
-import person from '../../assets/person.svg'
+import person from '../../../assets/person.svg'
 import { useFormWithErrorAndHelper, useFormWithHelper } from '../../../hooks/form'
 import VBContentSectionWithImage from '../../../components/VBContentSectionWithImage'
 

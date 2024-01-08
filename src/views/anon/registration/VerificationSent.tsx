@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography'
 import { ForgotStyle } from '../../../utils/styles'
 import PathConstants from '../../../navigation/pathConstants'
 
-import person from '../../assets/person.svg'
+import person from '../../../assets/person.svg'
 import VBContentSectionWithImage from '../../../components/VBContentSectionWithImage'
 
 const VerificationSent = () => {
