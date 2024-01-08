@@ -33,3 +33,11 @@ export const userOnboardingOutline = {
     tagline: 'Your venture building journey starts here.',
     list: [terms, personalInfo, onboardingPath, companyProfile]
 }
+
+export const developmentStepperProps = {
+    title: (name: string) => `Hi ${name}, almost there!`,
+    tagline: 'Just a few questions to help tailor your experience and resource recommendations',
+    stepCount: 3
+}
+
+export const orgSearchParam = 'org'

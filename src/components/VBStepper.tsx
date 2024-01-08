@@ -7,7 +7,7 @@ import StepLabel from '@mui/material/StepLabel'
 import Stepper from '@mui/material/Stepper'
 import Typography from '@mui/material/Typography'
 
-interface StepperProps {
+interface IStepperProps {
     Component: JSX.Element,
     stepCount: number,
     currentStep: number,
@@ -15,7 +15,7 @@ interface StepperProps {
     tagline: string,
 }
 
-const VBStepper = ({ Component, stepCount, currentStep, title, tagline }: StepperProps) => {
+const VBStepper = ({ Component, stepCount, currentStep, title, tagline }: IStepperProps) => {
     return (
         <Container maxWidth='xl' sx={{minHeight: '80vh'}}>
             <Box sx={{display: 'flex', alignItems: 'center', marginBottom: '10px', marginTop: '30px'}}>

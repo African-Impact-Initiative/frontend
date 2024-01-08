@@ -9,7 +9,7 @@ export type CompanyChallenges = 'SF' | 'PD' | 'BC' | 'BS' | 'MB' | 'SO' | 'MF' |
 
 type Organization = {
     id: Id | null,
-    user_set: Array<User>,
+    userSet: Array<User>,
     updated: string,
     created: string,
     name: string,
@@ -40,7 +40,7 @@ export const emptyOrganization: Organization = {
     industry: '',
     tagline: '',
     id: null,
-    user_set: [],
+    userSet: [],
     updated: '',
     created: '',
     logo: null,

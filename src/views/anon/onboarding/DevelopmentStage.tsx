@@ -10,16 +10,22 @@ import CardHeader from '@mui/material/CardHeader'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { setErrorNotification, setSuccessNotification } from '../../../reducers/notificationReducer'
-import { updateOrgStage } from '../../../reducers/organizationReducer'
-import { PAGES } from '../../navigation/routes'
+import { setErrorNotification, setSuccessNotification } from '../../../store/notificationReducer'
+import { updateOrgStage } from '../../../store/organizationReducer'
+import PathConstants from '../../../navigation/pathConstants'
+import { AppDispatch } from '../../../store/store'
+import { CompanyStage } from '../../../types/organization'
+import { developmentStepperProps, orgSearchParam } from './utils'
+import { Id } from 'react-toastify'
+import VBStepper from '../../../components/VBStepper'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 
 const DevelopmentStage = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(state => state.user)
     const navigate = useNavigate()
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
 
     const stageItems = [
         {
@@ -50,32 +56,32 @@ const DevelopmentStage = () => {
 
     useEffect(() => {
         if (!searchParams.get('org')) {
-            navigate(PAGES.home.path)
+            navigate(PathConstants.home)
             dispatch(setErrorNotification('Organization id not specified'))
         }
     }, [dispatch, navigate, searchParams])
 
-    const handleStage = async (dispatch, val) => {
+    const handleStage = async (dispatch: AppDispatch, val: CompanyStage) => {
         try {
-            await dispatch(updateOrgStage(searchParams.get('org'), val))
-            navigate(`${PAGES.developmentChallenges.path}?org=${searchParams.get('org')}`)
+            await dispatch(updateOrgStage(searchParams.get(orgSearchParam) as Id, val))
+            navigate(`${PathConstants.developmentChallenges}?${orgSearchParam}=${searchParams.get(orgSearchParam)}`)
             dispatch(setSuccessNotification('Organization stage set'))
         } catch {
             dispatch(setErrorNotification('Error updating company information'))
         }
     }
 
-    return (
+    const DevelopmentStageSelection = (
         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
             <Typography variant='h4' gutterBottom>What stage would you say your startup is currently at?</Typography>
-            <Typography variant='p'>Choose one from below</Typography>
+            <Typography>Choose one from below</Typography>
 
             <Grid container spacing={2} sx={{marginTop: '30px', marginBlock: '30px'}}>
                 {
                     stageItems.map((stage, i) =>
                         <Grid key={`stage-value-${i}`} item xs={12} md={6} lg={3}>
                             <Card sx={{ width: 250, backgroundColor: '#FAFAFA', borderRadius: '25px' }}>
-                                <CardActionArea onClick={() => handleStage(dispatch, stage.value)}>
+                                <CardActionArea onClick={() => handleStage(dispatch, stage.value as CompanyStage)}>
                                     <CardHeader
                                         avatar={
                                             <stage.Icon sx={{width: '50px', height: '50px', backgroundColor: '#FFF', padding: '10px', borderRadius: '10px', border: '1px solid #C4C4C4'}} />
@@ -97,6 +103,8 @@ const DevelopmentStage = () => {
             </Grid>
         </Box>
     )
+
+    return <VBStepper Component={DevelopmentStageSelection} currentStep={0} stepCount={developmentStepperProps.stepCount} title={developmentStepperProps.title(user.data!.firstName)} tagline={developmentStepperProps.tagline} />
 }
 
 export default DevelopmentStage

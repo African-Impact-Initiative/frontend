@@ -19,7 +19,7 @@ import PathConstants from '../../../navigation/pathConstants'
 import { emptyOrganization } from '../../../types/organization'
 import { VBSelect, VBTextField } from '../../../components/VBForms'
 import VBLeftSidebarWithView from '../../../components/VBLeftSideBarWithView'
-import { companyProfile, userOnboardingOutline } from './utils'
+import { companyProfile, orgSearchParam, userOnboardingOutline } from './utils'
 
 const CompanyProfile = () => {
     const navigate = useNavigate()
@@ -58,7 +58,7 @@ const CompanyProfile = () => {
             org.tagline = tagline
 
             await dispatch(createOrganization(org))
-            navigate(`${PathConstants.developmentStage}?org=${identifier}`)
+            navigate(`${PathConstants.developmentStage}?${orgSearchParam}=${identifier}`)
         } catch {
             dispatch(setErrorNotification('Error updating company information'))
         }
