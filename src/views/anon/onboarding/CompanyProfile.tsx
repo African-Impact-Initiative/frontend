@@ -18,6 +18,8 @@ import { AppDispatch } from '../../../store/store'
 import PathConstants from '../../../navigation/pathConstants'
 import { emptyOrganization } from '../../../types/organization'
 import { VBSelect, VBTextField } from '../../../components/VBForms'
+import VBLeftSidebarWithView from '../../../components/VBLeftSideBarWithView'
+import { companyProfile, userOnboardingOutline } from './utils'
 
 const CompanyProfile = () => {
     const navigate = useNavigate()
@@ -72,7 +74,7 @@ const CompanyProfile = () => {
         navigate(PathConstants.home)
     }
 
-    return (
+    const CreateCompany = (
         <Box>
             <Typography variant='h4' sx={{marginBottom: '10px'}}>
                 Company Profile
@@ -210,6 +212,8 @@ const CompanyProfile = () => {
             </form>
         </Box>
     )
+
+    return <VBLeftSidebarWithView Component={CreateCompany} componentTitle={companyProfile.title} title={userOnboardingOutline.title(user.data!.firstName)} tagline={userOnboardingOutline.tagline} list={userOnboardingOutline.list} />
 }
 
 export default CompanyProfile
