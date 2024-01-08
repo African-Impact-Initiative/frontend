@@ -7,6 +7,13 @@ import VerificationSent from '../views/anon/registration/VerificationSent'
 import ComposeAnonLayout from './hoc/ComposeAnonLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute, Route } from './types/route'
+import TermsOfUse from '../views/anon/onboarding/TermsOfUse'
+import PersonalInfo from '../views/anon/onboarding/PersonalInfo'
+import OnboardingPath from '../views/anon/onboarding/OnboardingPath'
+import CompanyProfile from '../views/anon/onboarding/CompanyProfile'
+import DevelopmentStage from '../views/anon/onboarding/DevelopmentStage'
+import DevelopmentChallenges from '../views/anon/onboarding/DevelopmentChallenges'
+import DevelopmentFundraising from '../views/anon/onboarding/DevelopmentFundraising'
 
 export const anonRoutes: Array<Route> = [
     {
@@ -38,6 +45,41 @@ export const anonRoutes: Array<Route> = [
         title: 'Verification Sent',
         path: PathConstants.signUpVerification,
         component: ComposeAnonLayout(<VerificationSent />)(),
+    },
+    {
+        title: 'Terms of Use',
+        path: PathConstants.terms,
+        component: ComposeAnonLayout(<TermsOfUse />)(),
+    },
+    {
+        title: 'Personal Information',
+        path: PathConstants.personal,
+        component: ComposeAnonLayout(<PersonalInfo />)(),
+    },
+    {
+        title: 'Onboarding Path',
+        path: PathConstants.onboarding,
+        component: ComposeAnonLayout(<OnboardingPath />)(),
+    },
+    {
+        title: 'Company Profile',
+        path: PathConstants.companyProfile,
+        component: ComposeAnonLayout(<CompanyProfile />)(),
+    },
+    {
+        title: 'Development Stage',
+        path: PathConstants.developmentStage,
+        component: ComposeAnonLayout(<DevelopmentStage />)(),
+    },
+    {
+        title: 'Company Challenges',
+        path: PathConstants.developmentChallenges,
+        component: ComposeAnonLayout(<DevelopmentChallenges />)(),
+    },
+    {
+        title: 'Fundraising Stage',
+        path: PathConstants.developmentFundraising,
+        component: ComposeAnonLayout(<DevelopmentFundraising />)(),
     },
 ]
 
