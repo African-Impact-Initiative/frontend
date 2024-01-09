@@ -2,6 +2,15 @@ import { Button, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { AccessTimeOutlined, ArrowOutwardOutlined, LocationOnOutlined } from '@mui/icons-material'
 
+import home from '../../../assets/home.svg'
+import guide from '../../../assets/guide.svg'
+import community from '../../../assets/community.svg'
+import aboutsusbg from '../../../assets/aboutusbg.jpg'
+import feature from '../../../assets/feature.png'
+import macbook from '../../../assets/laptop.svg'
+import home_screen from '../../../assets/homescreen.png'
+import down_arrow from '../../../assets/downward_arrow.png'
+
 const AboutUs = () => {
     const handleSendMessage = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
@@ -12,22 +21,22 @@ const AboutUs = () => {
         {
             title: 'An information center',
             desc: 'A place that allows you to monitor your startup growth trajectory and make informed decisions through data-based insights.',
-            image: '/static/svgs/home.svg'
+            image: home
         },
         {
             title: 'A resources hub',
             desc: 'A wealth of resources that empower you with knowledge and actionable strategies necessary to build and scale you startup.',
-            image: '/static/svgs/guide.svg'
+            image: guide
         },
         {
             title: 'A strong pitch deck',
             desc: 'A place to showcase your startup, cultivating a strong first impression and fostering a deeper resonance with potential investors.',
-            image: '/static/svgs/community.svg'
+            image: community
         },
         {
             title: 'A supportive community',
             desc: 'A diverse network of mentors, industry experts, and investors to guide you at every step throughout the venture building process.',
-            image: '/static/svgs/community.svg'
+            image: community
         },
     ]
 
@@ -35,7 +44,7 @@ const AboutUs = () => {
         <Box sx={{width: '100%'}}>
             <Box sx={{ position: 'relative', width: '100%' }}
             >
-                <img src='/src/assets/aboutusbg.jpg' alt='bg' style={{
+                <img src={aboutsusbg} alt='bg' style={{
                     height: '552px',
                     width: '100vw'
                 }} />
@@ -119,7 +128,7 @@ const AboutUs = () => {
                 </Box>
             </Box>
             <Box>
-                <img src='/src/assets/Featuresection.png' alt='featurebackground' style={{
+                <img src={feature} alt='featurebackground' style={{
                     width: '100vw'
                 }} />
             </Box>
@@ -240,7 +249,7 @@ const AboutUs = () => {
                     </Box>
                 </Box>
                 <Box sx={{ width: '50%', position: 'relative', left: '130px', top: '110px', zIndex: 100000,display: {xs: 'none', md: 'inherit'} }}>
-                    <img src='/src/assets/Downarrow.png' alt='dowmaeeow' />
+                    <img src={down_arrow} alt='dowmaeeow' />
                 </Box>
             </Box>
             <Box sx={{ width: '100%', display: 'flex', flexDirection: {md: 'row', xs: 'column'},}}>
@@ -277,8 +286,8 @@ const AboutUs = () => {
                 </Box>
 
                 <Box sx={{ width: {md: '50%', xs: '100%'}, backgroundColor: '#F9FAFB', borderRadius: '16px', height: '680px', border: '2px solid black', display: {xs: 'none', md: 'inherit'}}}>
-                    <img src='/src/assets/MacBookpro.png' alt='macbook' style={{ width:'630px', height:'595px', position: 'absolute', marginTop: '50px' }} />
-                    <img src='/src/assets/homescreen.png' alt='homescreen' style={{ width: '560px', height: '530px', position: 'relative', left: '70px', top: '30px', marginTop: '40px' }} />
+                    <img src={macbook} alt='macbook' style={{ width:'630px', height:'595px', position: 'absolute', marginTop: '50px' }} />
+                    <img src={home_screen} alt='homescreen' style={{ width: '560px', height: '530px', position: 'relative', left: '70px', top: '30px', marginTop: '40px' }} />
                 </Box>
 
             </Box>
@@ -452,7 +461,7 @@ const AboutUs = () => {
             </Box>
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 100000, bottom: '70px', }}>
                 <Box sx={{height: '420px', width: '1000px', border: '5px solid black', borderRadius: '16px', borderBottom: '0px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px', display: {xs: 'none', md: 'inherit'}}}>
-                    <img src='/src/assets/homescreen.png' alt='homescreen' style={{ width: '980px', height: '410px', }} />
+                    <img src={home_screen} alt='homescreen' style={{ width: '980px', height: '410px', }} />
                 </Box>
             </Box>
         </Box>

@@ -11,7 +11,7 @@ import { Id } from '../types/propertyTypes'
 import TokenStateManager from '../api/tokenStateManager'
 import ITokenStateManager from '../api/types/tokenStateManager'
 import ServiceResponse from '../types/serviceResponse'
-import { UpdatePersonalInfo, UpdateTerms } from '../api/contracts/userContracts'
+import { CreateUser, UpdatePersonalInfo, UpdateTerms } from '../api/contracts/userContracts'
 import { AppDispatch } from './store'
 
 const stateManager: ITokenStateManager = new TokenStateManager()
@@ -162,7 +162,7 @@ export const setUserOnRefresh = () => {
     }
 }
 
-export const createUser = (user: User) => {
+export const createUser = (user: CreateUser) => {
     return async (dispatch: AppDispatch) => {
         const res = await userService.create(user)
         if(!res.success)
@@ -175,7 +175,7 @@ export const createUser = (user: User) => {
 export const updateUser = (data: User) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const user = await userService.update(data.id!, data)
+            const user = await userService.update(data.id, data)
             dispatch(setUser(user.data as User))
             dispatch(setSuccessNotification('Profile updated'))
         } catch {

@@ -16,7 +16,8 @@ const PathConstants: { [key: string]: string } = {
     dashboard: '/dashboard/',
     resources: '/resources/',
     community: '/community/',
-    help: '/help/'
+    help: '/help/',
+    contactUs: '/contact/'
 }
 
 export default PathConstants

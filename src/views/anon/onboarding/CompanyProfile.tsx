@@ -49,11 +49,11 @@ const CompanyProfile = () => {
             const org = {...emptyOrganization}
             org.identifier = identifier
             org.name = companyName
-            org.owner = user.data!.id!
+            org.owner = user.data!.id
             org.website = companyWebsite
-            org.linkedin = linkedin
-            org.twitter = twitter
-            org.facebook = facebook
+            org.linkedin = `https://www.linkedin.com/company/${linkedin}`
+            org.twitter = `https://www.twitter.com/${twitter}`
+            org.facebook = `https://www.facebook.com/${facebook}`
             org.industry = industry
             org.tagline = tagline
 

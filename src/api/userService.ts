@@ -5,7 +5,7 @@ import apiRoutes from './apiRoutes'
 import Service from './service'
 import { METHODS } from './utils'
 import { Empty } from './contracts/generalContracts'
-import { AddUserToOrganization, UpdatePersonalInfo, UpdateTerms } from './contracts/userContracts'
+import { AddUserToOrganization, CreateUser, UpdatePersonalInfo, UpdateTerms } from './contracts/userContracts'
 
 const userService = new Service<User>(apiRoutes.userOperations.baseUrl)
 
@@ -25,8 +25,8 @@ const getAdmins = async (): Promise<ServiceResponse<User>> => {
     return await userService.requestWith<User, Empty>(METHODS.get, {}, apiRoutes.userOperations.adminUrl)
 }
 
-const create = async (user: User): Promise<ServiceResponse<User>> => {
-    return await userService.create(user)
+const create = async (user: CreateUser): Promise<ServiceResponse<User>> => {
+    return await userService.requestWith<User, CreateUser>(METHODS.post, user)
 }
 
 const update = async (id: Id, user: User): Promise<ServiceResponse<User>> => {

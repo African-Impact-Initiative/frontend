@@ -22,11 +22,11 @@ import { useAppDispatch } from '../../../hooks/redux'
 import PathConstants from '../../../navigation/pathConstants'
 import { AppDispatch } from '../../../store/store'
 import { VBTextField } from '../../../components/VBForms'
-import User, { emptyUser } from '../../../types/user'
 
 import person from '../../../assets/person.svg'
 import { useForm, useFormWithErrorAndHelper, useFormWithHelper } from '../../../hooks/form'
 import VBContentSectionWithImage from '../../../components/VBContentSectionWithImage'
+import { CreateUser } from '../../../api/contracts/userContracts'
 
 const Signup = () => {
     const navigate = useNavigate()
@@ -93,11 +93,12 @@ const Signup = () => {
     const actualSubmit = async(dispatch: AppDispatch) => {
         if(validateConfirmPassword() && validateEmail() && validatePassword()) {
             try {
-                const user: User = {...emptyUser}
-                user.email = email
-                user.firstName = firstName
-                user.lastName = lastName
-                user.password = password
+                const user: CreateUser = {
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    password: password,
+                }
 
                 await dispatch(createUser(user))
                 navigate(PathConstants.signUpVerification, {state: {email: email}})

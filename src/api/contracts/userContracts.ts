@@ -5,14 +5,21 @@ export type UpdateTerms = {
 }
 
 export type UpdatePersonalInfo = {
-    firstName:	string
-    lastName: string
-    role: string
-    linkedin?: string
-    country?:	string
-    bio?:	string
+    firstName:	string,
+    lastName: string,
+    role: string,
+    linkedin?: string,
+    country?:	string,
+    bio?:	string,
 }
 
 export type AddUserToOrganization = {
     org: Id
+}
+
+export type CreateUser = {
+    firstName:	string,
+    lastName: string,
+    email: string,
+    password: string,
 }

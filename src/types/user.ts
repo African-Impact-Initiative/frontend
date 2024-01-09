@@ -2,7 +2,7 @@ import { ForeignRelation, Id } from './propertyTypes'
 
 type User = {
     // personal data
-    id: null | Id,
+    id: Id,
     email: string,
     firstName: string,
     lastName: string,
@@ -34,7 +34,7 @@ export const emptyUser: User = {
     firstName: '',
     lastName: '',
     password: '',
-    id: null,
+    id: '',
     role: null,
     linkedin: null,
     photo: null,

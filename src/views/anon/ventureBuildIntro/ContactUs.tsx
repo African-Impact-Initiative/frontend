@@ -4,6 +4,11 @@ import { Button, Checkbox, Container, FormControlLabel, Grid, InputBase, Paper, 
 import { Box } from '@mui/system'
 import { AboutCard, IAboutCardProps } from '../../../components/VBCards'
 
+import home from '../../../assets/home.svg'
+import guide from '../../../assets/guide.svg'
+import community from '../../../assets/community.svg'
+import person from '../../../assets/aboutus_person.png'
+
 const ContactUs = () => {
     const handleSendMessage = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
@@ -25,19 +30,19 @@ const ContactUs = () => {
             title: 'Email',
             description: 'Our friendly team is here to help.',
             address: 'hi@venturebuild.com',
-            image: '/static/svgs/home.svg'
+            image: home
         },
         {
             title: 'Office',
             description: 'Come say hello at our office.',
             address: '100 Placeholder Street, City, Province, Country, Post Code',
-            image: '/static/svgs/guide.svg'
+            image: guide
         },
         {
             title: 'Phone',
             description: 'Mon-Fri from 9am to 5pm.',
             address: '+1 (100) 000-0000',
-            image: '/static/svgs/community.svg'
+            image: community
         },
 
     ]
@@ -51,7 +56,7 @@ const ContactUs = () => {
                 flexDirection: {md: 'row', xs: 'column'}
             }}>
                 <Box sx={{ width: '100%' }}>
-                    <img src='/src/assets/Aboutusbg.png' alt='female bf' style={{width: '100%'}}/>
+                    <img src={person} alt='female bf' style={{width: '100%'}}/>
                 </Box>
                 <Box sx={{ width: '100%', height: 'fit', display: 'flex', flexDirection: {md:'column', xs: 'column'}, alignItems: 'start', padding:{md: '40px' , xs: '0px'}}}>
                     <Box sx={{textAlign: {md: 'start', xs: 'center'}, width: '100%'}}>
