@@ -26,7 +26,6 @@ export const VBTextField = ({value, setter, type, label, placeholder, validator,
         if (validator !== undefined)
             valid = validator()
         else if (required) {
-            console.log(1)
             valid = !(value && value.length > 0)
         }
 

@@ -8,9 +8,11 @@ export type LocalStorageUser = {
     token: string,
     refreshToken: string,
     type: VBUser | VBGoogle,
+    expiry: number
 }
 
 type AppUser = {
+    loading: boolean,
     anon: boolean,
     data: User | null,
 }

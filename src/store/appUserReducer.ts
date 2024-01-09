@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { setSuccessNotification, setErrorNotification } from './notificationReducer'
 import AppUser, { LocalStorageUser, VBLocalStorage } from '../types/appUser'
-import { UpdateUserState, UpdateAppUserState, AnyUpdateUserState } from './types/appUserState'
+import { UpdateUserState, UpdateAppUserState, AnyUpdateUserState, SetLoadingState } from './types/appUserState'
 import { LoginResponse } from '../api/contracts/authorizationContracts'
 import User from '../types/user'
 import { Id } from '../types/propertyTypes'
@@ -17,6 +17,7 @@ import { AppDispatch } from './store'
 const stateManager: ITokenStateManager = new TokenStateManager()
 
 const initialState: AppUser = {
+    loading: true,
     anon: true,
     data: null
 }
@@ -32,6 +33,7 @@ const userSlice = createSlice({
         setUser(_state: AppUser, action: UpdateUserState) {
             return {
                 anon: action.payload === null,
+                loading: false,
                 data: action.payload
             }
         },
@@ -43,11 +45,17 @@ const userSlice = createSlice({
                     ...action.payload
                 }
             }
+        },
+        setLoading(state: AppUser, action: SetLoadingState) {
+            return {
+                ...state,
+                loading: action.payload
+            }
         }
     }
 })
 
-export const { setUser, updateUserState, setAppUser } = userSlice.actions
+export const { setUser, updateUserState, setAppUser, setLoading } = userSlice.actions
 
 export const login = (username: string, password: string) => {
     return async (dispatch: AppDispatch) => {
@@ -58,6 +66,7 @@ export const login = (username: string, password: string) => {
                 token: tokens.accessToken,
                 refreshToken: tokens.refreshToken,
                 type: 'VBUser',
+                expiry: new Date(new Date().getTime() + tokens.expiresIn * 1000).getTime()
             }
 
             window.localStorage.setItem(VBLocalStorage, JSON.stringify(localStorageUser))
@@ -80,6 +89,7 @@ export const googleLogin = (token: string) => {
                 token: tokens.accessToken,
                 refreshToken: tokens.refreshToken,
                 type: 'VBGoogle',
+                expiry: new Date(new Date().getTime() + tokens.expiresIn * 1000).getTime()
             }
 
             window.localStorage.setItem(VBLocalStorage, JSON.stringify(localStorageUser))
@@ -112,7 +122,7 @@ export const logout = (expired: boolean = false) => {
             if(!expired)
                 dispatch(setSuccessNotification('Logged out successfully'))
 
-            dispatch(setAppUser({ anon: true, data: null }))
+            dispatch(setAppUser({ anon: true, data: null, loading: false }))
         }
     }
 }
@@ -126,7 +136,7 @@ export const setUserOnRefresh = () => {
             stateManager.setToken(data.token)
             stateManager.setRefreshToken(data.refreshToken)
 
-            if(!stateManager.isTokenValid()) {
+            if(!(new Date().getTime() < data.expiry)) {
                 try {
                     let tokens: ServiceResponse<LoginResponse> | null = null
 
@@ -147,7 +157,7 @@ export const setUserOnRefresh = () => {
                 dispatch(setUser(user.data as User))
             }
         } else
-            dispatch(setAppUser({ anon: true, data: null }))
+            dispatch(setAppUser({ anon: true, data: null, loading: false }))
 
     }
 }

@@ -16,3 +16,8 @@ export type AnyUpdateUserState = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     payload: any
 }
+
+export type SetLoadingState = {
+    type: string,
+    payload: boolean
+}

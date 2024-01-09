@@ -3,11 +3,6 @@ import ITokenStateManager from './types/tokenStateManager'
 class TokenStateManager implements ITokenStateManager {
     private static token: string | null = null
     private static refreshToken: string | null = null
-    private static tokensValidUntil: Date | null = null
-
-    setTokensValidUntil = (time: number): void => {
-        TokenStateManager.tokensValidUntil = new Date(new Date().getTime() + time * 1000)
-    }
 
     setToken = (newToken: string): void => {
         TokenStateManager.token = newToken
@@ -20,8 +15,6 @@ class TokenStateManager implements ITokenStateManager {
     getToken = (): string | null => (TokenStateManager.token !== null)? `Bearer ${TokenStateManager.token}` : null
 
     getRefreshToken = (): string | null => TokenStateManager.refreshToken
-
-    isTokenValid = (): boolean => TokenStateManager.tokensValidUntil === null? false : (new Date().getTime() < TokenStateManager.tokensValidUntil.getTime())
 
     revokeTokens(): void {
         TokenStateManager.refreshToken = null

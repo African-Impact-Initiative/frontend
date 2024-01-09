@@ -17,7 +17,6 @@ const passwordId = import.meta.env.VITE_REGULAR_LOGIN_CLIENT_ID
 const passwordSecret = import.meta.env.VITE_REGULAR_LOGIN_CLIENT_SECRET
 
 const updateStateManager = (tokenData: LoginResponse) => {
-    stateManager.setTokensValidUntil(tokenData.expiresIn)
     stateManager.setToken(tokenData.accessToken)
     stateManager.setRefreshToken(tokenData.refreshToken)
 }

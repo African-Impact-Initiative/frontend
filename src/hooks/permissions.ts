@@ -10,13 +10,15 @@ export const useAuthPermission = (setLoading: (val: boolean) => void) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (user.anon) {
-            dispatch(setErrorNotification('You must be logged in to view this page'))
-            navigate(PathConstants.home)
-        }
+        if (user && !user.loading) {
+            if (user.anon) {
+                dispatch(setErrorNotification('You must be logged in to view this page'))
+                navigate(PathConstants.home)
+            }
 
-        if (user.data)
-            setLoading(false)
+            if (user.data)
+                setLoading(false)
+        }
     }, [user, navigate, dispatch, setLoading])
 }
 
@@ -26,12 +28,14 @@ export const useAdminPermission = (setLoading: (val: boolean) => void) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (user.anon || (user.data && !user.data.admin)) {
-            dispatch(setErrorNotification('You are not authorized to view this page'))
-            navigate(PathConstants.home)
-        }
+        if (user && !user.loading) {
+            if (user.anon || (user.data && !user.data.admin)) {
+                dispatch(setErrorNotification('You are not authorized to view this page'))
+                navigate(PathConstants.home)
+            }
 
-        if (user.data && user.data.admin)
-            setLoading(false)
+            if (user.data && user.data.admin)
+                setLoading(false)
+        }
     }, [user, navigate, dispatch, setLoading])
 }

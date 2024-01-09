@@ -1,8 +1,54 @@
+import CompanyProfile from '../views/anon/onboarding/CompanyProfile'
+import DevelopmentChallenges from '../views/anon/onboarding/DevelopmentChallenges'
+import DevelopmentFundraising from '../views/anon/onboarding/DevelopmentFundraising'
+import DevelopmentStage from '../views/anon/onboarding/DevelopmentStage'
+import OnboardingPath from '../views/anon/onboarding/OnboardingPath'
+import PersonalInfo from '../views/anon/onboarding/PersonalInfo'
+import TermsOfUse from '../views/anon/onboarding/TermsOfUse'
+import ComposeAuthWithNavBarLayout from './hoc/ComposeAuthWithNavBarLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute } from './types/route'
 
 // renders Component without any wrapper
 export const authRoutes = [
+]
+
+export const authNavBarRoutes = [
+    {
+        title: 'Terms of Use',
+        path: PathConstants.terms,
+        component: ComposeAuthWithNavBarLayout(<TermsOfUse />)(),
+    },
+    {
+        title: 'Personal Information',
+        path: PathConstants.personal,
+        component: ComposeAuthWithNavBarLayout(<PersonalInfo />)(),
+    },
+    {
+        title: 'Onboarding Path',
+        path: PathConstants.onboarding,
+        component: ComposeAuthWithNavBarLayout(<OnboardingPath />)(),
+    },
+    {
+        title: 'Company Profile',
+        path: PathConstants.companyProfile,
+        component: ComposeAuthWithNavBarLayout(<CompanyProfile />)(),
+    },
+    {
+        title: 'Development Stage',
+        path: PathConstants.developmentStage,
+        component: ComposeAuthWithNavBarLayout(<DevelopmentStage />)(),
+    },
+    {
+        title: 'Company Challenges',
+        path: PathConstants.developmentChallenges,
+        component: ComposeAuthWithNavBarLayout(<DevelopmentChallenges />)(),
+    },
+    {
+        title: 'Fundraising Stage',
+        path: PathConstants.developmentFundraising,
+        component: ComposeAuthWithNavBarLayout(<DevelopmentFundraising />)(),
+    },
 ]
 
 export const sideBarLinks = [
