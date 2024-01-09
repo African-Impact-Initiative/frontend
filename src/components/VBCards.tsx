@@ -1,7 +1,5 @@
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
+import { Box, Button, Divider, Typography, Card, CardContent } from '@mui/material'
+import React from 'react'
 
 export interface IAboutCardProps {
     title: string,
@@ -53,5 +51,120 @@ export const AboutCard = ({ title, description, image, address }: IAboutCardProp
                 </CardContent>
             </Card>
         </>
+    )
+}
+
+export interface IVentureCardProps {
+    name: string,
+    caption: string,
+    category: string,
+    logo: string,
+    details: string,
+    action: (e: React.MouseEvent<HTMLElement>) => void
+}
+
+export const VentureCard = ({ name, caption, logo, details, category, action }: IVentureCardProps) => {
+    return (
+        <Box
+            sx={{
+                width: {md:'344px', xs: '100%'},
+                border: '1px solid rgba(234, 236, 240, 1)',
+                borderRadius: '12px',
+                cursor: 'pointer',
+            }}
+        >
+            <Box sx={{ padding: '20px' }}>
+                <Box sx={{ display: 'flex', columnGap: '15px' }}>
+                    <Box>
+                        <img src={logo} alt="logo" style={{ width: '40px', height: '40px' }} />
+                    </Box>
+                    <Box>
+                        <Box sx={{ textAlign: 'start' }}>
+                            <Box>
+                                <Typography
+                                    sx={{
+                                        fontSize: '16px',
+                                        fontWeight: 600,
+                                        lineHeight: '24px',
+                                        color: 'rgba(16, 24, 40, 1)',
+                                    }}
+                                >
+                                    {name}
+                                </Typography>
+                            </Box>
+                            <Box
+                                sx={{
+                                    fontSize: '14px',
+                                    fontWeight: 400,
+                                    lineHeight: '20px',
+                                    color: 'rgba(71, 84, 103, 1)',
+                                }}
+                            >
+                                {caption}
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box sx={{ margin: '18px 0', textAlign: 'start' }}>
+                    <Typography
+                        sx={{
+                            fontSize: '14px',
+                            fontWeight: 400,
+                            lineHeight: '20px',
+                            color: '#475467',
+                        }}
+                    >
+                        {details}
+                    </Typography>
+                </Box>
+            </Box>
+            <Divider />
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '20px',
+                    alignItems: 'center'
+                }}
+            >
+                <Box
+                    sx={{
+                        borderRadius: '20px',
+                        background: 'rgba(249, 250, 251, 1)',
+                        fontSize: '12px',
+                        fontWeight: 500,
+                        lineHeight: '20px',
+                        color: 'rgba(52, 64, 84, 1)',
+                        width: '93px',
+                        height: '24px'
+                    }}
+                >
+                    <Typography>{category}</Typography>
+                </Box>
+                <Box>
+                    <Button
+                        sx={{
+                            textTransform: 'none',
+                            border: '1px solid rgba(208, 213, 221, 1)',
+                            height: '36px',
+                            width: '105px',
+                            borderRadius: '8px'
+                        }}
+                        onClick={action}
+                    >
+                        <Typography
+                            sx={{
+                                fontSize: '14px',
+                                fontWeight: 600,
+                                lineHeight: '20px',
+                                color: 'rgba(71, 84, 103, 1)',
+                            }}
+                        >
+                            Learn More
+                        </Typography>
+                    </Button>
+                </Box>
+            </Box>
+        </Box>
     )
 }
