@@ -1,26 +1,22 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-magic-numbers */
 import { Box, Button, Typography } from '@mui/material'
-import React from 'react'
-import TopBanner from '../../../Admin/TopBanner/TopBanner'
-import SelectionRow from '../../../Admin/SelectionRow/SelectionRow'
 import { CloseOutlined, ModeEditOutlineOutlined, PlayArrowOutlined } from '@mui/icons-material'
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridEventListener } from '@mui/x-data-grid'
 
-import UploadContainer from '../../../upload/UploadContainer'
-import ResourcesUploadSuccess from '../../../Admin/ResourcesUploadSuccess/ResourcesUploadSuccess'
-import { resourceVideoData, templateData } from '../../../../data'
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined'
-import DescriptionIcon from '@mui/icons-material/Description'
-import EditIcon from '@mui/icons-material/Edit'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useNavigate } from 'react-router-dom'
-import ResourceTempBg1 from '../../../../assets/resources_bg1.png'
-import VideoUpload from '../../../Admin/ResourcesUpload/VideoUpload'
-import AppModal from '../../../AppModal'
+import ResourceTempBg1 from '../../assets/resources_bg1.png'
+import { resourceVideoData } from '../../utils/devUtils'
+import { useState } from 'react'
+import VBTopBanner from '../../components/VBTopBanner'
+import VBAppModal from '../../components/VBAppModal'
+import VBVideoUpload from '../../components/VBVideoUpload'
+import VBResourcesUploadSuccess from '../../components/VBResourcesUploadSuccess'
+import VBUploadContainer from '../../components/VBUploadContainer'
+import VBSelectionRow from '../../components/VBSelectionRow'
 
-const columns = [
+const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
         headerName: 'Vidoes',
@@ -34,7 +30,7 @@ const columns = [
                     <img
                         src={params.row.thumbnail}
                         alt="thumbnail"
-                        style={{ width: '100%', heigh: '100%' }}
+                        style={{ width: '100%', height: '100%' }}
                     />
                 </div>
                 <div>
@@ -101,7 +97,7 @@ const columns = [
         ),
     },
     { field: 'likes',
-        headerName: 'Likes', 
+        headerName: 'Likes',
         width: 80,
         flex: 1,
         renderCell: (params) => (
@@ -115,7 +111,7 @@ const columns = [
         headerName: '',
         width: 130,
         flex: 1,
-        renderCell: (params) => (
+        renderCell: (_params) => (
             <div
                 style={{
                     display: 'flex',
@@ -146,15 +142,15 @@ const columns = [
 const rows = resourceVideoData
 
 export default function Videos() {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
-    const [openUpload, setOpenUpload] = React.useState(false)
+    const [openUpload, setOpenUpload] = useState(false)
     const handleOpenUpload = () => setOpenUpload(true)
     const handleCloseUpload = () => setOpenUpload(false)
 
-    const [openUploadSuccess, setOpenUploadSuccess] = React.useState(false)
+    const [openUploadSuccess, setOpenUploadSuccess] = useState(false)
     const handleCloseUploadSuccess = () => setOpenUploadSuccess(false)
 
     const navigate = useNavigate()
@@ -172,32 +168,33 @@ export default function Videos() {
         setOpenUploadSuccess(true)
     }
 
-    const handleRowClick = (params) => {
+    const handleRowClick: GridEventListener<"rowClick"> = (params) => {
         console.log('Row clicked:', params)
         navigate(`/admin/videos/${params.id}`)
     }
 
     return (
         <Box>
-            <TopBanner
+            <VBTopBanner
                 title={'Videos'}
                 description="Upload and manage videos here."
                 action={uploadAction}
                 actionText="Upload"
             />
 
-            <AppModal open={openUpload} handleClose={handleCloseUpload}>
-                <VideoUpload handleClose={handleCloseUpload} action={uploadResources} />
-            </AppModal>
+            <VBAppModal open={openUpload} handleClose={handleCloseUpload}>
+                <VBVideoUpload handleClose={handleCloseUpload} action={uploadResources} />
+            </VBAppModal>
 
-            <ResourcesUploadSuccess
+            <VBResourcesUploadSuccess
                 open={openUploadSuccess}
                 handleClose={handleCloseUploadSuccess}
                 type="video"
                 thumbnail={ResourceTempBg1}
             />
-            <div>
-                <AppModal open={open} onClose={handleClose} width={480} height={400}>
+
+            <Box>
+                <VBAppModal open={open} handleClose={handleClose} width={480} height={400}>
                     <Box>
                         <Box>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -235,7 +232,7 @@ export default function Videos() {
                             </Typography>
                         </Box>
 
-                        <UploadContainer />
+                        <VBUploadContainer handleOnChange={() => console.log('temp action')} />
 
                         <Box
                             sx={{
@@ -289,22 +286,23 @@ export default function Videos() {
                             </Button>
                         </Box>
                     </Box>
-                </AppModal>
-            </div>
+                </VBAppModal>
+            </Box>
 
             <Box>
-                <SelectionRow 
+                <VBSelectionRow
                     search={true}
                     firstBox={true}
-                    secondBox={true}                 
+                    secondBox={true}
                     type="Search videos"
                     header1="Categories"
                     header2="Sort by"
                     label1="Select"
                     label2="Select"
-                    
+
                 />
-                <div style={{ height: 400, width: '100%'}}>
+
+                <Box sx={{ height: 400, width: '100%'}}>
                     <DataGrid
                         className="pointer-cursor-datagrid"
                         rows={rows}
@@ -313,15 +311,6 @@ export default function Videos() {
                         rowHeight={120}
                         // adjust its height to accommodate all rows.
                         autoHeight
-                        // getRowStyle={(params) => ({
-                        //   cursor: "pointer", // Set the cursor style to "pointer" for all rows
-                        //   sx: {
-                        //     padding: "8px", // Adjust the padding as needed
-                        //     border: "3px solid red"
-                        //   },
-                        //   // Add other row styles if needed
-                        // })}
-
                         initialState={{
                             pagination: {
                                 paginationModel: { page: 0, pageSize: 7 },
@@ -330,7 +319,7 @@ export default function Videos() {
                         pageSizeOptions={[5, 10]}
                         checkboxSelection
                     />
-                </div>
+                </Box>
             </Box>
         </Box>
     )

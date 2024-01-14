@@ -1,15 +1,11 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
-import TopBanner from '../../../Admin/TopBanner/TopBanner'
-import SelectionRow from '../../../Admin/SelectionRow/SelectionRow'
-import VentureCard from '../../../Admin/VentureCard/VentureCard'
-import VentureLogo1 from '../../../../assets/ventureLogo1.png'
-import VentureLogo2 from '../../../../assets/VentureLogo2.png'
-import VentureLogo3 from '../../../../assets/VentureLogo3.png'
+import VentureLogo from '../../assets/venture_logo_temp.png'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
+import { VentureCard } from '../../components/VBCards'
+import VBSelectionRow from '../../components/VBSelectionRow'
+import VBTopBanner from '../../components/VBTopBanner'
 
-
-export default function Venture() {
+const Venture = () => {
     const ventures = [
         {
             id: 1,
@@ -18,7 +14,7 @@ export default function Venture() {
             details:
                 'VirtuWardrobe revolutionizes shopping with virtual try-ons and AI-driven fashion suggestions for style enthusiasts.',
             category: 'Fashion',
-            logo: VentureLogo1,
+            logo: VentureLogo,
         },
         {
             id: 2,
@@ -27,7 +23,7 @@ export default function Venture() {
             details:
                 'VirtuWardrobe revolutionizes shopping with virtual try-ons and AI-driven fashion suggestions for style enthusiasts.',
             category: 'Fashion',
-            logo: VentureLogo2,
+            logo: VentureLogo,
         },
         {
             id: 3,
@@ -36,7 +32,7 @@ export default function Venture() {
             details:
                 'VirtuWardrobe revolutionizes shopping with virtual try-ons and AI-driven fashion suggestions for style enthusiasts.',
             category: 'Fashion',
-            logo: VentureLogo3,
+            logo: VentureLogo,
         },
         {
             id: 4,
@@ -45,7 +41,7 @@ export default function Venture() {
             details:
                 'VirtuWardrobe revolutionizes shopping with virtual try-ons and AI-driven fashion suggestions for style enthusiasts.',
             category: 'Fashion',
-            logo: VentureLogo3,
+            logo: VentureLogo,
         },
         {
             id: 5,
@@ -54,7 +50,7 @@ export default function Venture() {
             details:
                 'VirtuWardrobe revolutionizes shopping with virtual try-ons and AI-driven fashion suggestions for style enthusiasts.',
             category: 'Fashion',
-            logo: VentureLogo1,
+            logo: VentureLogo,
         },
         {
             id: 6,
@@ -63,7 +59,7 @@ export default function Venture() {
             details:
                 'VirtuWardrobe revolutionizes shopping with virtual try-ons and AI-driven fashion suggestions for style enthusiasts.',
             category: 'Fashion',
-            logo: VentureLogo3,
+            logo: VentureLogo,
         },
         {
             id: 7,
@@ -72,22 +68,23 @@ export default function Venture() {
             details:
                 'VirtuWardrobe revolutionizes shopping with virtual try-ons and AI-driven fashion suggestions for style enthusiasts.',
             category: 'Fashion',
-            logo: VentureLogo1,
+            logo: VentureLogo,
         },
     ]
 
     const action = () => {
         console.log('action__clicked')
     }
+
     return (
         <Box>
-            <TopBanner
+            <VBTopBanner
                 title={'Ventures'}
                 description="Explore and manage ventures here."
-                icon={SettingsOutlinedIcon}
-            // action={uploadAction}
+                Icon={SettingsOutlinedIcon}
+                action={action}
             />
-            <SelectionRow
+            <VBSelectionRow
                 search={true}
                 firstBox={true}
                 secondBox={true}
@@ -130,3 +127,5 @@ export default function Venture() {
         </Box>
     )
 }
+
+export default Venture

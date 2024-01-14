@@ -1,5 +1,3 @@
-/* eslint-disable no-empty-pattern */
-import * as React from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
@@ -9,9 +7,11 @@ import { Divider, MenuItem, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import ResourcesUploadSuccess from '../../../Admin/ResourcesUploadSuccess/ResourcesUploadSuccess'
 
 import CheckCircleOutlined from '../../../../assets/Featured_icon.svg'
+import { useEffect, useState } from 'react'
+import VBResourcesUploadSuccess from '../../components/VBResourcesUploadSuccess'
+import { EventInfo } from '@ckeditor/ckeditor5-utils'
 
 const categories = [
     { label: 'science', value: 'science' },
@@ -25,29 +25,27 @@ const visibility = [
 ]
 
 export default function CreateArticle({ }) {
-    const [status, setStatus] = React.useState(false)
+    const [_status, setStatus] = useState('')
 
-    const [openUploadSuccess, setOpenUploadSuccess] = React.useState(false)
+    const [openUploadSuccess, setOpenUploadSuccess] = useState(false)
     const handleCloseUploadSuccess = () => setOpenUploadSuccess(false)
 
-    const [wordCount, setWordCount] = React.useState(0)
-    const [editorContent, setEditorContent] = React.useState(
-        '<p>Hello from CKEditor 5! This is an example.</p>'
-    )
+    const [wordCount, setWordCount] = useState(0)
+    const [editorContent, setEditorContent] = useState('<p>Hello from CKEditor 5! This is an example.</p>')
 
-    const updateWordCount = (content) => {
+    const updateWordCount = (content: string) => {
         const text = content.replace(/<[^>]*>/g, ' ')
         const words = text.trim().split(/\s+/).length
         setWordCount(words)
     }
 
-    const handleEditorChange = (event, editor) => {
+    const handleEditorChange = (_event: EventInfo<string, unknown>, editor: ClassicEditor) => {
         const content = editor.getData()
         setEditorContent(content)
         updateWordCount(content)
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         // calculate the initial word count and set the editor content here if needed.
         updateWordCount(editorContent)
     }, [editorContent])
@@ -56,7 +54,7 @@ export default function CreateArticle({ }) {
 
     return (
         <>
-            <ResourcesUploadSuccess
+            <VBResourcesUploadSuccess
                 open={openUploadSuccess}
                 handleClose={handleCloseUploadSuccess}
                 type={'Article'}
@@ -222,10 +220,10 @@ export default function CreateArticle({ }) {
                                     console.log({ event, editor, data })
                                     handleEditorChange(event, editor)
                                 }}
-                                onBlur={(event, editor) => {
+                                onBlur={(_event, editor) => {
                                     console.log('Blur.', editor)
                                 }}
-                                onFocus={(event, editor) => {
+                                onFocus={(_event, editor) => {
                                     console.log('Focus.', editor)
                                 }}
                             />

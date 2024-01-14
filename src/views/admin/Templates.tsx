@@ -1,23 +1,22 @@
 import { Box, Button, Typography } from '@mui/material'
-import React from 'react'
-import TopBanner from '../../../Admin/TopBanner/TopBanner'
-import SelectionRow from '../../../Admin/SelectionRow/SelectionRow'
-import { AutoStoriesOutlined, CloseOutlined, DescriptionOutlined, ModeEditOutlineOutlined } from '@mui/icons-material'
-import { DataGrid } from '@mui/x-data-grid'
+import { useState } from 'react'
+import { CloseOutlined, DescriptionOutlined, ModeEditOutlineOutlined } from '@mui/icons-material'
+import { DataGrid, GridColDef, GridEventListener } from '@mui/x-data-grid'
 
-import ResourceUpload from '../../../Admin/ResourcesUpload/ResourceUpload'
-import UploadContainer from '../../../upload/UploadContainer'
-import ResourcesUploadSuccess from '../../../Admin/ResourcesUploadSuccess/ResourcesUploadSuccess'
-import { resourceVideoData, templateData } from '../../../../data'
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useNavigate } from 'react-router-dom'
 import ResourceTempBg1 from '../../../../assets/resource_temp_01.png'
-import AppModal from '../../../AppModal'
+import { templateData } from '../../utils/devUtils'
+import VBSelectionRow from '../../components/VBSelectionRow'
+import VBUploadContainer from '../../components/VBUploadContainer'
+import VBAppModal from '../../components/VBAppModal'
+import VBResourcesUploadSuccess from '../../components/VBResourcesUploadSuccess'
+import VBTopBanner from '../../components/VBTopBanner'
+import VBResourceUpload from '../../components/VBResourceUpload'
 
-
-const columns = [
+const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
         headerName: 'Article',
@@ -97,7 +96,7 @@ const columns = [
         headerName: '',
         width: 130,
         flex: 1,
-        renderCell: (params) => (
+        renderCell: (_params) => (
             <div
                 style={{
                     display: 'flex',
@@ -127,16 +126,16 @@ const columns = [
 
 const rows = templateData
 
-export default function Templates() {
-    const [open, setOpen] = React.useState(false)
+const Templates = () => {
+    const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
-    const [openUpload, setOpenUpload] = React.useState(false)
+    const [openUpload, setOpenUpload] = useState(false)
     const handleOpenUpload = () => setOpenUpload(true)
     const handleCloseUpload = () => setOpenUpload(false)
 
-    const [openUploadSuccess, setOpenUploadSuccess] = React.useState(false)
+    const [openUploadSuccess, setOpenUploadSuccess] = useState(false)
     const handleCloseUploadSuccess = () => setOpenUploadSuccess(false)
 
     const navigate = useNavigate()
@@ -154,36 +153,34 @@ export default function Templates() {
         setOpenUploadSuccess(true)
     }
 
-    const handleRowClick = (params) => {
+    const handleRowClick: GridEventListener<"rowClick"> = (params) => {
         console.log('Row clicked:', params)
         navigate(`/admin/templates/${params.id}`)
     }
 
-
     return (
         <Box>
-            <TopBanner
+            <VBTopBanner
                 title={'Templates'}
                 description="Upload and manage templates here."
                 action={uploadAction}
                 actionText="Upload"
 
             />
-            <ResourceUpload
+            <VBResourceUpload
                 open={openUpload}
                 handleClose={handleCloseUpload}
                 action={uploadResources}
-
             />
 
-            <ResourcesUploadSuccess
+            <VBResourcesUploadSuccess
                 open={openUploadSuccess}
                 handleClose={handleCloseUploadSuccess}
                 type={'Template'}
                 thumbnail={ResourceTempBg1}
             />
 
-            <AppModal width={480} height={400} open={open} onClose={handleClose}>
+            <VBAppModal width={480} height={400} open={open} handleClose={handleClose}>
                 <Box>
                     <Box>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -197,7 +194,7 @@ export default function Templates() {
                                     fontSize: '18px',
                                 }}
                             >
-                Upload templates
+                                Upload templates
                             </Typography>
                             <Box>
                                 <CloseOutlined
@@ -217,11 +214,11 @@ export default function Templates() {
                                 fontSize: '14px',
                             }}
                         >
-              Add templates to the resources pool.
+                            Add templates to the resources pool.
                         </Typography>
                     </Box>
 
-                    <UploadContainer />
+                    <VBUploadContainer handleOnChange={() => console.log('temp action')} />
 
                     <Box
                         sx={{
@@ -275,10 +272,10 @@ export default function Templates() {
                         </Button>
                     </Box>
                 </Box>
-            </AppModal>
+            </VBAppModal>
 
             <Box>
-                <SelectionRow 
+                <VBSelectionRow
                     search={true}
                     firstBox={true}
                     secondBox={true}
@@ -297,13 +294,6 @@ export default function Templates() {
                         rowHeight={120}
                         // adjust its height to accommodate all rows.
                         autoHeight
-                        getRowStyle={(params) => ({
-                            cursor: 'pointer', // set the cursor style to "pointer" for all rows
-                            sx: {
-                                padding: '8px', // adjust the padding as needed
-                            },
-                            // add other row styles if needed
-                        })}
                         initialState={{
                             pagination: {
                                 paginationModel: { page: 0, pageSize: 7 },
@@ -317,3 +307,5 @@ export default function Templates() {
         </Box>
     )
 }
+
+export default Templates

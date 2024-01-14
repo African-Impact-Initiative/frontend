@@ -1,15 +1,15 @@
-import { ModeEditOutlineOutlined, OpenInNewOutlined, RemoveRedEye } from '@mui/icons-material'
+import { ModeEditOutlineOutlined, OpenInNewOutlined } from '@mui/icons-material'
 import { Modal, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { DataGrid } from '@mui/x-data-grid'
-import React, { useState } from 'react'
-import SelectionRow from '../../../Admin/SelectionRow/SelectionRow'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { useState } from 'react'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import TopBanner from '../../../Admin/TopBanner/TopBanner'
-import { fundersData } from '../../../../data'
 import AddFundingModal from './AddFundingModal'
+import { fundersData } from '../../utils/devUtils'
+import VBTopBanner from '../../components/VBTopBanner'
+import VBSelectionRow from '../../components/VBSelectionRow'
 
-const columns = [
+const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
         headerName: 'Opportunities',
@@ -81,7 +81,7 @@ const columns = [
         headerName: '',
         width: 160,
         flex: 1,
-        renderCell: (params) => (
+        renderCell: (_params) => (
             <div
                 style={{
                     display: 'flex',
@@ -111,9 +111,6 @@ const columns = [
 
 const rows = fundersData
 
-
-
-
 const FundingOpportunuties = () => {
     const [fundingModal, setFundingModal] = useState(false)
 
@@ -131,20 +128,21 @@ const FundingOpportunuties = () => {
                     setFundingModal(false)
                 }}
             >
-                <AddFundingModal 
+                <AddFundingModal
                     setFundingModal={setFundingModal}
+                    handleClose={() => setFundingModal(false)}
+                    action={() => console.log('temp action')}
                 />
             </Modal>
-            <TopBanner
+            <VBTopBanner
                 title={'Funding opportunities'}
                 description="Add and manage funding opportunities here.."
                 actionText="Add new"
                 action={openModal}
-               
             />
 
             <Box>
-                <SelectionRow
+                <VBSelectionRow
                     type={'Search opportunities'}
                     header1={'Industries'}
                     header2={'Sort by'}
@@ -154,7 +152,7 @@ const FundingOpportunuties = () => {
                     firstBox={true}
                     secondBox={true}
                 />
-                
+
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
                         className="pointer-cursor-datagrid"
@@ -164,14 +162,6 @@ const FundingOpportunuties = () => {
                         rowHeight={104}
                         // adjust its height to accommodate all rows.
                         autoHeight
-                        getRowStyle={(params) => ({
-                            cursor: 'pointer', // set the cursor style to "pointer" for all rows
-                            sx: {
-                                padding: '8px',
-                                // adjust the padding as needed
-                            },
-                            // add other row styles if needed
-                        })}
                         initialState={{
                             pagination: {
                                 paginationModel: { page: 0, pageSize: 7 },

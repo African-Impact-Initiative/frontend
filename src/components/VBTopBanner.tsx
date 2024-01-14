@@ -6,7 +6,7 @@ import { VBIconButton } from './VBButtons'
 export interface ITopBannerProps {
     title: string,
     description: string,
-    actionText: string,
+    actionText?: string,
     action: (e: React.MouseEvent<HTMLElement>) => void,
     Icon?: OverridableComponent<SvgIconTypeMap<NonNullable<unknown>, 'svg'>> & {
         muiName: string

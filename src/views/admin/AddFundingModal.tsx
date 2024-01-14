@@ -1,31 +1,22 @@
-import { ClearOutlined, Search, WorkOutlineOutlined } from '@mui/icons-material'
-import {
-    Button,
-    IconButton,
-    InputBase,
-    MenuItem,
-    Paper,
-    Switch,
-    TextField,
-    Typography
-} from '@mui/material'
+import { ClearOutlined } from '@mui/icons-material'
+import { Button, InputBase, MenuItem, Paper, Switch, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-
-
 
 import React, { useState } from 'react'
 
-const AddFundingModal = ({handleClose, action, setFundingModal }) => {
-    
+export interface IAddFundingModalProps {
+    handleClose: (e: React.MouseEvent<HTMLElement>) => void,
+    action: (e: React.MouseEvent<HTMLElement>) => void,
+    setFundingModal: (val: boolean) => void,
+}
 
-    const [team, setTeam] = useState(false)
-    const [value, setValue] = React.useState(dayjs('2023-04-17'))
-
-
+const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingModalProps) => {
+    const [_team, setTeam] = useState('')
+    const [value, setValue] = React.useState<Dayjs | null>(dayjs('2023-04-17'))
 
     const teams = [
         { label: 'Jona', value: 'Joan' },
@@ -64,8 +55,8 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                     >
                         New funding opportunity
                     </Typography>
-                    
-                    <ClearOutlined 
+
+                    <ClearOutlined
                         sx={{ width: '30px', height: '30px' , color: 'rgba(102, 112, 133, 1)', cursor: 'pointer' }}
                         onClick={() => {
                             setFundingModal(false)
@@ -76,7 +67,6 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                     <Box>
                         <Box sx={{ marginTop: '16px', display: 'flex', columnGap: '6px' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     color: '#344054',
                                     fontSize: '14px',
@@ -84,9 +74,9 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                                     lineHeight: '20px'
                                 }}
                             >
-                                Opportunity 
+                                Opportunity
                             </Typography>
-                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                            <Typography sx={{ color: '#F04438' }}>
                                 *
                             </Typography>
                         </Box>
@@ -114,7 +104,6 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                     <Box >
                         <Box sx={{ marginTop: '16px', display: 'flex', columnGap: '6px' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     color: '#344054',
                                     fontSize: '14px',
@@ -124,7 +113,7 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                             >
                                 Organization
                             </Typography>
-                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                            <Typography sx={{ color: '#F04438' }}>
                                 *
                             </Typography>
                         </Box>
@@ -148,13 +137,12 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                                 />
                             </Paper>
                         </Box>
-                        
+
                     </Box>
-                </Box>               
+                </Box>
                 <Box >
                     <Box sx={{ marginTop: '16px', display: 'flex', columnGap: '6px' }}>
                         <Typography
-                            variant="p"
                             sx={{
                                 color: '#344054',
                                 fontSize: '14px',
@@ -164,7 +152,7 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                         >
                             Tags
                         </Typography>
-                        <Typography variant="p" sx={{ color: '#F04438' }}>
+                        <Typography sx={{ color: '#F04438' }}>
                             *
                         </Typography>
                     </Box>
@@ -193,7 +181,6 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                 <Box >
                     <Box sx={{ marginTop: '16px', display: 'flex', columnGap: '6px' }}>
                         <Typography
-                            variant="p"
                             sx={{
                                 color: '#344054',
                                 fontSize: '14px',
@@ -203,7 +190,7 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                         >
                             Link
                         </Typography>
-                        <Typography variant="p" sx={{ color: '#F04438' }}>
+                        <Typography sx={{ color: '#F04438' }}>
                             *
                         </Typography>
                     </Box>
@@ -227,12 +214,11 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                             />
                         </Paper>
                     </Box>
-                </Box>             
+                </Box>
                 <Box sx={{  display: 'flex', columnGap: '26px', flexDirection: {md: 'row', xs: 'column'} }}>
                     <Box >
                         <Box sx={{ marginTop: '16px', display: 'flex', columnGap: '6px' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     color: '#344054',
                                     fontSize: '14px',
@@ -240,9 +226,9 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                                     lineHeight: '20px'
                                 }}
                             >
-                                Grant amount 
+                                Grant amount
                             </Typography>
-                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                            <Typography sx={{ color: '#F04438' }}>
                                 *
                             </Typography>
                         </Box>
@@ -259,7 +245,7 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                                     border: '1px solid #D0D5DD'
                                 }}
                             >
-                              
+
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16, ml: 2 }}
                                     placeholder="Enter the exact amount or a range"
@@ -268,7 +254,6 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                             </Paper>
                             <Box sx={{display: 'flex', columnGap: '8px', alignItems: 'center'}}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontSize: '16px',
@@ -285,7 +270,6 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                                 />
 
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontSize: '16px',
@@ -296,16 +280,15 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                                 The amount is variable
                                 </Typography>
                             </Box>
-                        
+
                         </Box>
                     </Box>
-                   
+
                 </Box>
                 <Box sx={{display: 'flex', columnGap: '26px', flexDirection: {md: 'row', xs: 'column'} }}>
                     <Box >
                         <Box sx={{ marginTop: '16px', display: 'flex', columnGap: '6px' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     color: '#344054',
                                     fontSize: '14px',
@@ -315,24 +298,22 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                             >
                                 From
                             </Typography>
-                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                            <Typography sx={{ color: '#F04438' }}>
                                 *
                             </Typography>
                         </Box>
-                        <Box sx={{width: '100%' , display: 'flex', columnGap: '16px'}}>                        
+                        <Box sx={{width: '100%' , display: 'flex', columnGap: '16px'}}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DemoContainer components={['DatePicker', 'DatePicker']}>
                                     <DatePicker
                                         label=""
                                         value={value}
-                                        size="small"
                                         onChange={(newValue) => setValue(newValue)}
                                     />
                                 </DemoContainer>
                             </LocalizationProvider>
                             <Box sx={{display: 'flex', columnGap: '4px', alignItems: 'center'}}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontSize: '16px',
@@ -349,7 +330,6 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                                 />
 
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontSize: '16px',
@@ -366,7 +346,6 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                 <Box>
                     <Box sx={{ marginTop: '16px', display: 'flex', columnGap: '6px' }}>
                         <Typography
-                            variant="p"
                             sx={{
                                 color: '#344054',
                                 fontSize: '14px',
@@ -376,7 +355,7 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                         >
                             Description
                         </Typography>
-                        <Typography variant="p" sx={{ color: '#F04438' }}>
+                        <Typography sx={{ color: '#F04438' }}>
                             *
                         </Typography>
                     </Box>
@@ -391,7 +370,6 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
                                 lineHeight: '24px',
                                 fontWeight: '400',
                                 fontFamily: ' inter',
-                                height: {xs: '100%', md: '0px'},
                                 color: '#667085'
                             }}
                             placeholder="Briefly describe the opportunity"
@@ -460,4 +438,4 @@ const AddFundingModal = ({handleClose, action, setFundingModal }) => {
     )
 }
 
-export default AddFundingModal
+export default VBAddFundingModal

@@ -1,5 +1,4 @@
 import { Box, Button, MenuItem, TextField, Typography } from '@mui/material'
-import React from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -7,22 +6,29 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { CloseOutlined } from '@mui/icons-material'
 import { TimePicker } from '@mui/x-date-pickers'
+import { useState } from 'react'
+import { EventInfo } from '@ckeditor/ckeditor5-utils'
+import { VBIconButton } from '../../components/VBButtons'
 
-export default function CreateMeeting({ handleClose, action }) {
-    const [status, setStatus] = React.useState(false)
-    const [value, setValue] = React.useState(null)
-    const [wordCount, setWordCount] = React.useState(0)
-    const [editorContent, setEditorContent] = React.useState(
-        '<p>Hello from CKEditor 5! This is an example.</p>'
-    )
+export interface ICreateMeetingProps {
+    handleClose: (e: React.MouseEvent<HTMLElement>) => void,
+    action: (e: React.MouseEvent<HTMLElement>) => void,
+    open: boolean
+}
 
-    const updateWordCount = (content) => {
+const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
+    const [_status, setStatus] = useState('')
+    const [value, setValue] = useState(null)
+    const [_wordCount, setWordCount] = useState(0)
+    const [_editorContent, setEditorContent] = useState('<p>Hello from CKEditor 5! This is an example.</p>')
+
+    const updateWordCount = (content: string) => {
         const text = content.replace(/<[^>]*>/g, ' ')
         const words = text.trim().split(/\s+/).length
         setWordCount(words)
     }
 
-    const handleEditorChange = (event, editor) => {
+    const handleEditorChange = (_event: EventInfo<string, unknown>, editor: ClassicEditor) => {
         const content = editor.getData()
         setEditorContent(content)
         updateWordCount(content)
@@ -59,11 +65,16 @@ export default function CreateMeeting({ handleClose, action }) {
                         fontSize: '18px',
                     }}
                 >
-                                New Event
+                    New Event
                 </Typography>
                 <Box>
-                    <CloseOutlined
-                        sx={{ color: 'rgba(102, 112, 133, 1)', cursor: 'pointer' }}
+                    <VBIconButton
+                        Icon={CloseOutlined}
+                        aria={{
+                            label: 'close',
+                            controls: 'close',
+                            popup: false
+                        }}
                         onClick={handleClose}
                     />
                 </Box>
@@ -151,7 +162,7 @@ export default function CreateMeeting({ handleClose, action }) {
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <TimePicker />
                         </LocalizationProvider>
-                       
+
                     </Box>
                     <Box sx={{ width: '100%' }}>
                         <Typography
@@ -307,10 +318,10 @@ export default function CreateMeeting({ handleClose, action }) {
                         console.log({ event, editor, data })
                         handleEditorChange(event, editor)
                     }}
-                    onBlur={(event, editor) => {
+                    onBlur={(_event, editor) => {
                         console.log('Blur.', editor)
                     }}
-                    onFocus={(event, editor) => {
+                    onFocus={(_event, editor) => {
                         console.log('Focus.', editor)
                     }}
                 />
@@ -368,3 +379,5 @@ export default function CreateMeeting({ handleClose, action }) {
         </Box>
     )
 }
+
+export default CreateMeeting

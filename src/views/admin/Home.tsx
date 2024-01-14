@@ -1,35 +1,14 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-magic-numbers */
-import {
-    Add,
-    ArrowForwardOutlined,
-    CloudUploadOutlined,
-    MoreHorizOutlined,
-    MoreVert,
-    OpenInNewOutlined,
-    Search,
-} from '@mui/icons-material'
-import {
-    Button,
-    Divider,
-    MenuItem,
-    TextField,
-    Typography,
-} from '@mui/material'
+import { Add, ArrowForwardOutlined, CloudUploadOutlined, MoreHorizOutlined, MoreVert } from '@mui/icons-material'
+import { Button, Divider, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
-import TeamsTableData from '../../../table/TeamsTableData'
-import avater1 from '../../../../assets/VirtuWardrobe.png'
-import avater2 from '../../../../assets/EcoShift.png'
-import avater3 from '../../../../assets/HealthVisor.png'
-import avater5 from '../../../../assets/FlavorLab.png'
-import SelectionRow from '../../../Admin/SelectionRow/SelectionRow'
-import { DataGrid } from '@mui/x-data-grid'
-import { fundersData, homeData } from '../../../../data'
-import TopBanner from '../../../Admin/TopBanner/TopBanner'
+import avatar from '../../assets/avatar.png'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
+import { homeData } from '../../utils/devUtils'
+import VBSelectionRow from '../../components/VBSelectionRow'
+import VBTopBanner from '../../components/VBTopBanner'
 
-const columns = [
+const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
         headerName: 'Company',
@@ -50,7 +29,7 @@ const columns = [
                     <img
                         src={params.row.logo}
                         alt="thumbnail"
-                        style={{ width: '40px', heigh: '40px' }}
+                        style={{ width: '40px', height: '40px' }}
                     />
                     <Typography
                         sx={{
@@ -99,11 +78,11 @@ const columns = [
         flex: 1,
         renderCell: (params) => (
             <div style={{}}>
-                {params.row.funders.map((funder, index) => (
+                {params.row.funders.map((funder: { image: string }, index: number) => (
                     <img
-                        key={index}
+                        key={`funder-${index + 1}`}
                         src={funder.image}
-                        alt={`funder${index + 1}`}
+                        alt={`funder ${index + 1}`}
                         style={{
                             width: '24px',
                             height: '24px',
@@ -130,7 +109,7 @@ const columns = [
         headerName: '',
         width: 106,
         flex: 1,
-        renderCell: (params) => (
+        renderCell: (_params) => (
             <div
                 style={{
                     display: 'flex',
@@ -154,13 +133,13 @@ const columns = [
 
 const rows = homeData
 
-export const renderCardtypeBorder = (type) => {
+export const renderCardtypeBorder = (type: string) => {
     if (type === 'new') return '1px solid #ABEFC6'
     else if (type === 'request') return '1px solid #FEDF89'
     else if (type === 'tograde') return '1px solid  #FEDF89'
     else return '1px solid rgba(185, 230, 254, 1)'
 }
-export const renderCardtypeBackgroundColor = (type) => {
+export const renderCardtypeBackgroundColor = (type: string) => {
     if (type === 'new') return '#ECFDF3'
     else if (type === 'request') return '#FFFAEB'
     else if (type === 'tograde') return '#FFFAEB'
@@ -170,70 +149,55 @@ export const renderCardtypeBackgroundColor = (type) => {
 const requests = [
     {
         id: 1,
-        logo: avater1,
+        logo: avatar,
         title: 'Catalog',
         sibtitle: 'Requested Lorem ipsum dolor sit amet, consectetur',
     },
     {
         id: 2,
-        logo: avater2,
+        logo: avatar,
         title: 'Catalog',
         sibtitle: 'Requested Lorem ipsum dolor sit amet, consectetur',
     },
     {
         id: 3,
-        logo: avater3,
+        logo: avatar,
         title: 'Catalog',
         sibtitle: 'Requested Lorem ipsum dolor sit amet, consectetur',
     },
     {
         id: 4,
-        logo: avater1,
+        logo: avatar,
         title: 'Catalog',
         sibtitle: 'Requested Lorem ipsum dolor sit amet, consectetur',
     },
     {
         id: 5,
-        logo: avater5,
+        logo: avatar,
         title: 'Catalog',
         sibtitle: 'Requested Lorem ipsum dolor sit amet, consectetur',
     },
     {
         id: 6,
-        logo: avater1,
+        logo: avatar,
         title: 'Catalog',
         sibtitle: 'Requested Lorem ipsum dolor sit amet, consectetur',
     },
     {
         id: 7,
-        logo: avater1,
+        logo: avatar,
         title: 'Catalog',
         sibtitle: 'Requested Lorem ipsum dolor sit amet, consectetur',
     },
     {
         id: 8,
-        logo: avater1,
+        logo: avatar,
         title: 'Catalog',
         sibtitle: 'Requested Lorem ipsum dolor sit amet, consectetur',
     },
 ]
 
-export default function Home() {
-    const [status, setStatus] = useState(false)
-
-    const categories = [
-        { label: 'science', value: 'science' },
-        { label: 'commercial', value: 'commercial' },
-        { label: 'Art', value: 'Art' },
-    ]
-
-    const filters = [
-        { label: 'English', value: 'English' },
-        { label: 'Maths', value: 'Maths' },
-        { label: 'Science', value: 'Science' },
-        { label: 'History', value: 'History' },
-        { label: 'Art', value: 'Art' },
-    ]
+const Home = () => {
     const homeCards = [
         {
             id: 1,
@@ -257,13 +221,14 @@ export default function Home() {
             type: 'request',
         },
     ]
+
     return (
         <Box sx={{ paddingLeft: '20px', width: '100%', paddingRight: '0px' }}>
-            <TopBanner
+            <VBTopBanner
                 title={'Home'}
                 description="Explore and manage ventures here."
-                icon={SettingsOutlinedIcon}
-                // action={uploadAction}
+                Icon={SettingsOutlinedIcon}
+                action={() => console.log('temp action')}
             />
             <Box sx={{ width: '100%', height: '100%', display: 'flex', columnGap: '30px', marginTop: '32px', flexDirection: { md: 'row', xs: 'column' }}}>
                 <Box sx={{ flex: 3.5, overflowX: 'auto', columnGap: '24px', flexDirection: 'column', height: 'screen', }}>
@@ -284,7 +249,6 @@ export default function Home() {
                                         sx={{ display: 'flex', justifyContent: 'space-between' }}
                                     >
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 fontSize: '14px',
                                                 color: '#475467',
@@ -296,7 +260,7 @@ export default function Home() {
                                             {card.name}
                                         </Typography>
                                         <MoreVert
-                                            style={{
+                                            sx={{
                                                 height: '20px',
                                                 weight: '20px',
                                                 color: '#98A2B3',
@@ -313,7 +277,6 @@ export default function Home() {
                                     >
                                         <Box>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     fontSize: '30px',
                                                     color: '#101828',
@@ -341,11 +304,10 @@ export default function Home() {
                                             }}
                                         >
                                             <Box sx={{width: '8px', height: '8px', borderRadius:'100px', backgroundColor: `${card.type == 'new'? '#067647': card.type == 'request'? '#B54708': '#B54708'}`,}}>
-                                                    
+
                                             </Box>
-                                        
+
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     fontSize: '14px',
                                                     fontWeight: '500',
@@ -383,7 +345,6 @@ export default function Home() {
                             }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', columnGap: '14px' }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         fontSize: '18px',
                                         fontWeight: '600',
@@ -391,11 +352,10 @@ export default function Home() {
                                         color: '#101828',
                                     }}
                                 >
-                  All ventures
+                                    All ventures
                                 </Typography>
                                 <Box sx={{ border: '2px solid #D0D5DD', height: {md:'22px', xs: '100%'},  width: {md:'81px', xs: '100%'}, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '-1px' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontSize: '12px',
                                             fontWeight: '500',
@@ -403,7 +363,7 @@ export default function Home() {
                                             color: '#344054',
                                         }}
                                     >
-                    48 ventures
+                                        48 ventures
                                     </Typography>
                                 </Box>
                             </Box>
@@ -424,7 +384,6 @@ export default function Home() {
                                     }}>
                                     <CloudUploadOutlined sx={{ width: '20px', height: '20px', color: '#344054' }} />
                                     <Box
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontWeight: '600',
@@ -433,7 +392,7 @@ export default function Home() {
                                             textTransform: 'none',
                                         }}
                                     >
-                    Export
+                                        Export
                                     </Box>
                                 </Button>
                                 <Button
@@ -455,7 +414,6 @@ export default function Home() {
                                         sx={{ width: '20px', height: '20px', color: '#FFFFFF' }}
                                     />
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#FFFFFF',
                                             fontWeight: '600',
@@ -464,7 +422,7 @@ export default function Home() {
                                             textTransform: 'none',
                                         }}
                                     >
-                    Add venture
+                                        Add venture
                                     </Typography>
                                 </Button>
                             </Box>
@@ -477,7 +435,7 @@ export default function Home() {
                         />
                         <Box>
                             <Box>
-                                <SelectionRow
+                                <VBSelectionRow
                                     search={true}
                                     firstBox={true}
                                     type={'Search opportunities'}
@@ -494,16 +452,8 @@ export default function Home() {
                                     columns={columns}
                                     // onRowClick={handleRowClick}
                                     rowHeight={104}
-                                    row
                                     autoHeight
-                                    style={{ justifyContent: { xl: 'space-between' } }}
-                                    getRowStyle={(params) => ({
-                                        cursor: 'pointer',
-                                        sx: {
-                                            padding: '8px',
-                                            border: '2px solid blue',
-                                        },
-                                    })}
+                                    sx={{ justifyContent: { xl: 'space-between' } }}
                                     initialState={{
                                         pagination: {
                                             paginationModel: { page: 0, pageSize: 7 },
@@ -519,7 +469,6 @@ export default function Home() {
                 <Box sx={{ flex: 1, paddingBottom: '20px' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Typography
-                            variant="p"
                             sx={{
                                 color: '#101828',
                                 fontWeight: '600',
@@ -528,10 +477,9 @@ export default function Home() {
                             }}
                         >
                             {' '}
-              Recent requests
+                            Recent requests
                         </Typography>
                         <Typography
-                            variant="p"
                             sx={{
                                 color: '#475467',
                                 fontWeight: '600',
@@ -539,7 +487,7 @@ export default function Home() {
                                 fontSize: '14px',
                             }}
                         >
-              View all
+                            View all
                         </Typography>
                     </Box>
                     <Box sx={{ marginTop: '24px' }}>
@@ -565,7 +513,6 @@ export default function Home() {
                                     }}
                                 >
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#475467',
                                             fontWeight: '500',
@@ -576,7 +523,6 @@ export default function Home() {
                                         {each.title}
                                     </Typography>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#475467',
                                             fontWeight: '500',
@@ -595,3 +541,5 @@ export default function Home() {
         </Box>
     )
 }
+
+export default Home

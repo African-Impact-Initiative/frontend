@@ -1,11 +1,11 @@
 import { Box, Button, Typography } from '@mui/material'
-import React from 'react'
-import VideoUpload from '../../../Admin/ResourcesUpload/VideoUpload'
 import { useNavigate } from 'react-router-dom'
 import { ArrowBackIos, DeleteOutline } from '@mui/icons-material'
+import VBVideoUpload from '../../components/VBVideoUpload'
+import { useState } from 'react'
 
 export default function VideoDetails() {
-    const [open, setOpen] = React.useState(true)
+    const [_open, setOpen] = useState(true)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
@@ -95,7 +95,7 @@ export default function VideoDetails() {
                 </Box>
             </Box>
 
-            <VideoUpload />
+            <VBVideoUpload handleClose={handleClose} action={handleOpen} />
         </Box>
     )
 }

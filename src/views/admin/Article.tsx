@@ -1,22 +1,18 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-magic-numbers */
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-import TopBanner from '../../../Admin/TopBanner/TopBanner'
-import SelectionRow from '../../../Admin/SelectionRow/SelectionRow'
-import { AutoStoriesOutlined, DescriptionOutlined, ModeEditOutlineOutlined, RemoveRedEye } from '@mui/icons-material'
-import { DataGrid } from '@mui/x-data-grid'
+import { AutoStoriesOutlined, ModeEditOutlineOutlined } from '@mui/icons-material'
+import { DataGrid, GridColDef, GridEventListener } from '@mui/x-data-grid'
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined'
 
-import ResourceUpload from '../../../Admin/ResourcesUpload/ResourceUpload'
-import { resourceVideoData, templateData } from '../../../../data'
-import DescriptionIcon from '@mui/icons-material/Description'
-import EditIcon from '@mui/icons-material/Edit'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useNavigate } from 'react-router-dom'
+import VBTopBanner from '../../components/VBTopBanner'
+import VBResourceUpload from '../../components/VBResourceUpload'
+import VBSelectionRow from '../../components/VBSelectionRow'
+import { templateData } from '../../utils/devUtils'
 
-const columns = [
+const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
         headerName: 'Article',
@@ -96,7 +92,7 @@ const columns = [
         headerName: '',
         width: 130,
         flex: 1,
-        renderCell: (params) => (
+        renderCell: (_params) => (
             <div
                 style={{
                     display: 'flex',
@@ -131,8 +127,6 @@ export default function Article() {
     const [openUpload, setOpenUpload] = React.useState(false)
     const handleCloseUpload = () => setOpenUpload(false)
 
-
-
     const uploadAction = () => {
         navigate('/admin/articles/create')
     }
@@ -141,29 +135,27 @@ export default function Article() {
         handleCloseUpload()
     }
 
-    const handleRowClick = (params) => {
+    const handleRowClick: GridEventListener<"rowClick"> = (params) => {
         console.log('Row clicked:', params)
         navigate('/admin/articles/create')
     }
 
     return (
         <Box>
-            <TopBanner
+            <VBTopBanner
                 title={'Articles'}
                 description="Write and manage articles here."
                 action={uploadAction}
                 actionText="Post"
             />
-            <ResourceUpload
+            <VBResourceUpload
                 open={openUpload}
                 handleClose={handleCloseUpload}
                 action={uploadResources}
             />
 
-
-
             <Box>
-                <SelectionRow
+                <VBSelectionRow
                     search={true}
                     firstBox={true}
                     secondBox={true}
@@ -182,13 +174,6 @@ export default function Article() {
                         rowHeight={120}
                         // adjust its height to accommodate all rows.
                         autoHeight
-                        getRowStyle={(params) => ({
-                            cursor: 'pointer', // set the cursor style to "pointer" for all rows
-                            sx: {
-                                padding: '8px', // adjust the padding as needed
-                            },
-                            // add other row styles if needed
-                        })}
                         initialState={{
                             pagination: {
                                 paginationModel: { page: 0, pageSize: 7 },

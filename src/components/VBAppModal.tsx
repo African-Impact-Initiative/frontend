@@ -5,8 +5,8 @@ import Modal from '@mui/material/Modal'
 export interface IAppModalProps {
     open: boolean,
     handleClose: (e: React.MouseEvent<HTMLElement>) => void,
-    height?: string,
-    width?: string,
+    height?: string | number,
+    width?: string | number,
     children: JSX.Element,
 }
 

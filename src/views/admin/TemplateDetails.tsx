@@ -1,24 +1,11 @@
-import {
-    Box,
-    Button,
-    Divider,
-    MenuItem,
-    TextField,
-    Typography,
-} from '@mui/material'
-import React, { useState } from 'react'
-import {
-    ArrowBack,
-    ArrowBackIos,
-    ArrowForward,
-    ContentCopy,
-    DeleteOutline,
-} from '@mui/icons-material'
+import { Box, Button, Divider, MenuItem, TextField, Typography } from '@mui/material'
+import { useState } from 'react'
+import { ArrowBack, ArrowBackIos, ArrowForward, ContentCopy, DeleteOutline } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
-import UploadImage from '../../../../assets/Image_upload.png'
-import UploadContainer from '../../../upload/UploadContainer'
-import thumbanil1 from '../../../../assets/resources_temp_03.png'
-import { BlogToBase64 } from '../../../utils/BlogToBase64'
+import UploadImage from '../../assets/image_upload.png'
+import thumbanil1 from '../../assets/resource_temp_01.png'
+import { BlogToBase64 } from '../../utils/blogToBase64'
+import VBUploadContainer from '../../components/VBUploadContainer'
 
 const categories = [
     { label: 'science', value: 'science' },
@@ -32,26 +19,27 @@ const visibility = [
 ]
 
 export default function TemplateDetails() {
-    const [status, setStatus] = React.useState(false)
+    const [_status, setStatus] = useState('')
     const [imagePreview, setImagePreview] = useState(thumbanil1)
 
     const navigate = useNavigate()
 
-    const handleFileUploadChange = (e, type) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleFileUploadChange = (e: any) => {
         try {
             const files = e.target.files || []
 
             console.log(files, 'files__')
 
-            if (files.length == 0) 
+            if (files.length == 0)
                 return
-      
+
 
             console.log(files[0])
 
-            BlogToBase64(files[0], (err, res) => {
+            BlogToBase64(files[0], (_err, res) => {
                 console.log(res, 'image') // base64 `data:image/...` String result.
-                setImagePreview(res)
+                setImagePreview(res as string)
             })
         } catch (err) {
             console.log(err, 'eoror')
@@ -389,7 +377,7 @@ export default function TemplateDetails() {
                                 )}
                             </Box>
                             <Box sx={{ flex: 1 }}>
-                                <UploadContainer handleOnChange={handleFileUploadChange} />
+                                <VBUploadContainer handleOnChange={handleFileUploadChange} />
                             </Box>
                         </Box>
                     </Box>

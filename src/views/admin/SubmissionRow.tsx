@@ -1,15 +1,15 @@
 import { Box } from '@mui/system'
-import React from 'react'
 import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import AssignmentSubmissions from './AssignmentSubmission'
+import { SyntheticEvent, useState } from 'react'
 
 const SubmissionsRow = () => {
-    const [value, setValue] = React.useState('1')
+    const [value, setValue] = useState('1')
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (_event: SyntheticEvent<Element, Event>, newValue: string) => {
         setValue(newValue)
     }
 
@@ -19,7 +19,6 @@ const SubmissionsRow = () => {
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList
-                        
                             onChange={handleChange}
                             aria-label="API resources tabs"
                             textColor="secondary"
@@ -30,7 +29,7 @@ const SubmissionsRow = () => {
                                     flexWrap: 'wrap',
                                 },
                             }}
-                            style={{ minWidth: 50 }} 
+                            style={{ minWidth: 50 }}
                         >
                             <Tab
                                 label="Assignments"
@@ -63,7 +62,7 @@ const SubmissionsRow = () => {
                                 }}
                             />
 
-                           
+
                         </TabList>
                     </Box>
                     <TabPanel value="1" sx={{ padding: '35px 0' }}>
@@ -76,9 +75,9 @@ const SubmissionsRow = () => {
                         Requests
                     </TabPanel>
                     <TabPanel value="4" sx={{ padding: '35px 0' }}>
-                      uuuuu
+                        Panel 4
                     </TabPanel>
-                   
+
                 </TabContext>
             </Box>
         </Box>
