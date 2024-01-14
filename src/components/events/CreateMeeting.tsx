@@ -8,7 +8,7 @@ import { CloseOutlined } from '@mui/icons-material'
 import { TimePicker } from '@mui/x-date-pickers'
 import { useState } from 'react'
 import { EventInfo } from '@ckeditor/ckeditor5-utils'
-import { VBIconButton } from '../../components/VBButtons'
+import { VBIconButton } from '../VBButtons'
 
 export interface ICreateMeetingProps {
     handleClose: (e: React.MouseEvent<HTMLElement>) => void,

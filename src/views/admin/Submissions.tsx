@@ -1,7 +1,7 @@
 import { Box } from '@mui/system'
 import VBTopBanner from '../../components/VBTopBanner'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import SubmissionsRow from './SubmissionRow'
+import SubmissionsRow from '../../components/submissions/SubmissionRow'
 
 
 const Submissions = () => {

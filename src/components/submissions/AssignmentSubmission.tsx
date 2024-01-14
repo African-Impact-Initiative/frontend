@@ -3,7 +3,7 @@ import { Button, Divider, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { assignmentData } from '../../utils/devUtils'
-import VBSelectionRow from '../../components/VBSelectionRow'
+import VBSelectionRow from '../VBSelectionRow'
 
 const columns: Array<GridColDef<any, any, any>> = [
     {

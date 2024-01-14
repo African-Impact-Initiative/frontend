@@ -6,7 +6,7 @@ import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 
 import { SearchOutlined } from '@mui/icons-material'
-import CreateMeeting from './CreateMeeting'
+import CreateMeeting from '../../components/events/CreateMeeting'
 import VBTopBanner from '../../components/VBTopBanner'
 import VBCohortBox from '../../components/VBCohortBox'
 import VBWeeklyView from '../../components/VBWeeklyView'
