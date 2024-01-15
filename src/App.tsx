@@ -25,7 +25,7 @@ const App = () => {
     }, [dispatch])
 
     useEffect(() => {
-        if (user) setLoading(false)
+        if (user && !user.loading) setLoading(false)
     }, [user])
 
     return (

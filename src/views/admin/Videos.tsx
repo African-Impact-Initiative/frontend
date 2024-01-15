@@ -168,7 +168,7 @@ export default function Videos() {
         setOpenUploadSuccess(true)
     }
 
-    const handleRowClick: GridEventListener<"rowClick"> = (params) => {
+    const handleRowClick: GridEventListener<'rowClick'> = (params) => {
         console.log('Row clicked:', params)
         navigate(`/admin/videos/${params.id}`)
     }

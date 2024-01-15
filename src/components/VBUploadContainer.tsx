@@ -14,7 +14,7 @@ const VBUploadContainer = ({ handleOnChange }: IUploadContainerProps) => {
             onClick={() => {
                 if (fileRef.current)
                     console.log('clicked')
-                    //fileRef.current.click()
+                    // fileRef.current.click()
             }}
             sx={{
                 border: '2px solid rgba(220, 104, 3, 1)',

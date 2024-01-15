@@ -8,8 +8,8 @@ import community from '../../../assets/community.svg'
 import aboutsusbg from '../../../assets/aboutusbg.jpg'
 import feature from '../../../assets/feature.png'
 import macbook from '../../../assets/laptop.svg'
-import home_screen from '../../../assets/homescreen.png'
-import down_arrow from '../../../assets/downward_arrow.png'
+import homeScreen from '../../../assets/homescreen.png'
+import downArrow from '../../../assets/downward_arrow.png'
 
 const AboutUs = () => {
     const handleSendMessage = (e: React.MouseEvent<HTMLElement>) => {
@@ -249,7 +249,7 @@ const AboutUs = () => {
                     </Box>
                 </Box>
                 <Box sx={{ width: '50%', position: 'relative', left: '130px', top: '110px', zIndex: 100000,display: {xs: 'none', md: 'inherit'} }}>
-                    <img src={down_arrow} alt='dowmaeeow' />
+                    <img src={downArrow} alt='dowmaeeow' />
                 </Box>
             </Box>
             <Box sx={{ width: '100%', display: 'flex', flexDirection: {md: 'row', xs: 'column'},}}>
@@ -287,7 +287,7 @@ const AboutUs = () => {
 
                 <Box sx={{ width: {md: '50%', xs: '100%'}, backgroundColor: '#F9FAFB', borderRadius: '16px', height: '680px', border: '2px solid black', display: {xs: 'none', md: 'inherit'}}}>
                     <img src={macbook} alt='macbook' style={{ width:'630px', height:'595px', position: 'absolute', marginTop: '50px' }} />
-                    <img src={home_screen} alt='homescreen' style={{ width: '560px', height: '530px', position: 'relative', left: '70px', top: '30px', marginTop: '40px' }} />
+                    <img src={homeScreen} alt='homescreen' style={{ width: '560px', height: '530px', position: 'relative', left: '70px', top: '30px', marginTop: '40px' }} />
                 </Box>
 
             </Box>
@@ -461,7 +461,7 @@ const AboutUs = () => {
             </Box>
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 100000, bottom: '70px', }}>
                 <Box sx={{height: '420px', width: '1000px', border: '5px solid black', borderRadius: '16px', borderBottom: '0px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px', display: {xs: 'none', md: 'inherit'}}}>
-                    <img src={home_screen} alt='homescreen' style={{ width: '980px', height: '410px', }} />
+                    <img src={homeScreen} alt='homescreen' style={{ width: '980px', height: '410px', }} />
                 </Box>
             </Box>
         </Box>

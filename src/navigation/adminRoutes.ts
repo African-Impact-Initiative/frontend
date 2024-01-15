@@ -1,17 +1,17 @@
-import { ArticleOutlined, CalendarTodayOutlined, DescriptionOutlined, DomainOutlined, HelpCenterOutlined, HomeOutlined, MoneyOutlined, PlayCircleOutline, PublishOutlined, SettingsOutlined } from "@mui/icons-material"
-import Article from "../views/admin/Article"
-import CreateArticle from "../views/admin/CreateArticle"
-import Events from "../views/admin/Events"
-import FundingOpportunuties from "../views/admin/FundingOpportunuties"
-import Home from "../views/admin/Home"
-import Submissions from "../views/admin/Submissions"
-import TemplateDetails from "../views/admin/TemplateDetails"
-import Templates from "../views/admin/Templates"
-import Venture from "../views/admin/Venture"
-import VideoDetails from "../views/admin/VideoDetails"
-import Videos from "../views/admin/Videos"
-import ComposeAdminLayout from "./hoc/ComposeAdminLayout"
-import PathConstants from "./pathConstants"
+import { ArticleOutlined, CalendarTodayOutlined, DescriptionOutlined, DomainOutlined, HelpCenterOutlined, HomeOutlined, MoneyOutlined, PlayCircleOutline, PublishOutlined, SettingsOutlined } from '@mui/icons-material'
+import Article from '../views/admin/Article'
+import CreateArticle from '../views/admin/CreateArticle'
+import Events from '../views/admin/Events'
+import FundingOpportunuties from '../views/admin/FundingOpportunuties'
+import Home from '../views/admin/Home'
+import Submissions from '../views/admin/Submissions'
+import TemplateDetails from '../views/admin/TemplateDetails'
+import Templates from '../views/admin/Templates'
+import Venture from '../views/admin/Venture'
+import VideoDetails from '../views/admin/VideoDetails'
+import Videos from '../views/admin/Videos'
+import ComposeAdminLayout from './hoc/ComposeAdminLayout'
+import PathConstants from './pathConstants'
 
 export const adminRoutes = [
     {

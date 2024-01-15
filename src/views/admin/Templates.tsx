@@ -153,7 +153,7 @@ const Templates = () => {
         setOpenUploadSuccess(true)
     }
 
-    const handleRowClick: GridEventListener<"rowClick"> = (params) => {
+    const handleRowClick: GridEventListener<'rowClick'> = (params) => {
         console.log('Row clicked:', params)
         navigate(`/admin/templates/${params.id}`)
     }

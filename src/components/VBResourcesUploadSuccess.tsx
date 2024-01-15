@@ -25,7 +25,7 @@ export interface IResourceUploadSuccessProps {
     handleClose: (e: React.MouseEvent<HTMLElement>) => void,
     type: string,
     thumbnail?: string,
-    Icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+    Icon?: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
         muiName: string;
     }
 }

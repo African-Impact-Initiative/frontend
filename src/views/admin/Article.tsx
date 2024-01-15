@@ -135,7 +135,7 @@ export default function Article() {
         handleCloseUpload()
     }
 
-    const handleRowClick: GridEventListener<"rowClick"> = (params) => {
+    const handleRowClick: GridEventListener<'rowClick'> = (params) => {
         console.log('Row clicked:', params)
         navigate('/admin/articles/create')
     }

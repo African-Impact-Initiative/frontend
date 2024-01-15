@@ -93,7 +93,7 @@ const VBSelectionRow = ({ search, type, header1, header2, label1, label2, firstB
                         {header1}
                     </Typography>
                     <Box sx={{ width: '100%' }}>
-                    <VBSelect
+                        <VBSelect
                             label={label1!}
                             size="small"
                             setter={setStatus}
