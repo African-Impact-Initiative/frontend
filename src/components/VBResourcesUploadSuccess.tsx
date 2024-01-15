@@ -2,9 +2,10 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
-import { Button } from '@mui/material'
+import { Button, SvgIconTypeMap } from '@mui/material'
 import { CloseOutlined, ContentCopy } from '@mui/icons-material'
 import { VBIconButton } from './VBButtons'
+import { OverridableComponent } from '@mui/material/OverridableComponent'
 
 const style = {
     position: 'absolute',
@@ -23,10 +24,13 @@ export interface IResourceUploadSuccessProps {
     open: boolean,
     handleClose: (e: React.MouseEvent<HTMLElement>) => void,
     type: string,
-    thumbnail: string
+    thumbnail?: string,
+    Icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+        muiName: string;
+    }
 }
 
-const VBResourcesUploadSuccess = ({ open, handleClose, type, thumbnail }: IResourceUploadSuccessProps) => {
+const VBResourcesUploadSuccess = ({ open, handleClose, type, thumbnail, Icon }: IResourceUploadSuccessProps) => {
     return (
         <Box>
             <Modal
@@ -38,11 +42,12 @@ const VBResourcesUploadSuccess = ({ open, handleClose, type, thumbnail }: IResou
             >
                 <Box sx={style}>
                     <Box>
-                        {thumbnail && (
+                        {(thumbnail || Icon) && (
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Box>
+                                {thumbnail && <Box>
                                     <img src={thumbnail} alt="upload" />
-                                </Box>
+                                </Box>}
+                                {Icon && <Icon />}
                                 <Box>
                                     <VBIconButton
                                         Icon={CloseOutlined}

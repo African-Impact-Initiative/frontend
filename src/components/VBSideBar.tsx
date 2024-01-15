@@ -1,14 +1,15 @@
 import { NavLink } from 'react-router-dom'
-import Logo from '../../assets/logo.svg'
+import Logo from '../assets/logo.svg'
 import { Box, Divider, Typography } from '@mui/material'
-import LogoutIcon from '../../assets/logOutIcon.svg'
-import userAvatar from '../../assets/User-Avatar.svg'
-import closeIcon from '../../assets/x-close.svg'
+import userAvatar from '../assets/avatar.png'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import { SearchOutlined } from '@mui/icons-material'
-import whiteLogo from '../../assets/ventureWhiteLogo.png'
 import { Link } from '../navigation/types/sideBar'
+
+import LogoutIcon from '@mui/icons-material/Logout'
+import CloseIcon from '@mui/icons-material/Close'
+import VBLogo from './VBLogo'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -89,9 +90,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                         <img src={Logo} alt="logo" />
                     </Box>
                         :
-                        <Box>
-                            <img src={whiteLogo} alt="logo" style={{}}/>
-                        </Box>}
+                        <VBLogo dark={false} />}
                     {!isAdmin ? <Box
                         sx={{
                             display: 'flex',
@@ -203,7 +202,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                                                 style={{ color: '#667085' }}
                                             />
                                         ) : (
-                                            <sideBar.icon style={{ color: '#667085' }} /> // assuming it's a React component
+                                            <sideBar.icon sx={{ color: '#667085' }} /> // assuming it's a React component
                                         )}
                                     </Box>
                                     <span
@@ -238,7 +237,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                                 />
                             </Box>
                             <Box sx={{ cursor: 'pointer' }}>
-                                <img src={closeIcon} alt="close" />
+                                <CloseIcon />
                             </Box>
                         </Box>
                         <Box>
@@ -346,7 +345,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                             </Box>
                         </Box>
                         <Box sx={{ width: '20px', height: '20px', cursor: 'pointer' }}>
-                            <img src={LogoutIcon} alt="log-out" />
+                            <LogoutIcon />
                         </Box>
                     </Box>
                 </Box>

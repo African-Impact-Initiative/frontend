@@ -16,5 +16,5 @@ export type LayoutWithChildren = {
 export type PassThroughProps = {
     title?: string,
     [key: string]: any,
-    children: any,
+    children?: any,
 }

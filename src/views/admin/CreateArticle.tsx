@@ -8,10 +8,11 @@ import { useNavigate } from 'react-router-dom'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
-import CheckCircleOutlined from '../../../../assets/Featured_icon.svg'
 import { useEffect, useState } from 'react'
 import VBResourcesUploadSuccess from '../../components/VBResourcesUploadSuccess'
 import { EventInfo } from '@ckeditor/ckeditor5-utils'
+
+import CheckCircleOutlineSharpIcon from '@mui/icons-material/CheckCircleOutlineSharp'
 
 const categories = [
     { label: 'science', value: 'science' },
@@ -58,7 +59,7 @@ export default function CreateArticle({ }) {
                 open={openUploadSuccess}
                 handleClose={handleCloseUploadSuccess}
                 type={'Article'}
-                thumbnail={CheckCircleOutlined}
+                Icon={CheckCircleOutlineSharpIcon}
             />
             <Box>
                 <Box

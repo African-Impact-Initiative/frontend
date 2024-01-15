@@ -1,3 +1,5 @@
+const adminPrefix = '/admin/'
+
 const PathConstants: { [key: string]: string } = {
     home: '/',
     about: '/about/',
@@ -17,7 +19,18 @@ const PathConstants: { [key: string]: string } = {
     resources: '/resources/',
     community: '/community/',
     help: '/help/',
-    contactUs: '/contact/'
+    contactUs: '/contact/',
+    adminHome: `${adminPrefix}home`,
+    adminVideos: `${adminPrefix}videos`,
+    adminVideo: `${adminPrefix}videos/:id`,
+    adminVentures: `${adminPrefix}ventures`,
+    adminTemplates: `${adminPrefix}templates`,
+    adminTemplate: `${adminPrefix}templates/:id`,
+    adminArticles: `${adminPrefix}articles`,
+    adminCreateArticles: `${adminPrefix}articles/create`,
+    adminEvents: `${adminPrefix}events`,
+    adminFunding: `${adminPrefix}fundingOpportunuties`,
+    adminSubmissions: `${adminPrefix}submissions`,
 }
 
 export default PathConstants

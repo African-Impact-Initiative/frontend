@@ -7,7 +7,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useNavigate } from 'react-router-dom'
-import ResourceTempBg1 from '../../../../assets/resource_temp_01.png'
+import ResourceTempBg from '../../assets/resources_bg1.png'
 import { templateData } from '../../utils/devUtils'
 import VBSelectionRow from '../../components/VBSelectionRow'
 import VBUploadContainer from '../../components/VBUploadContainer'
@@ -177,7 +177,7 @@ const Templates = () => {
                 open={openUploadSuccess}
                 handleClose={handleCloseUploadSuccess}
                 type={'Template'}
-                thumbnail={ResourceTempBg1}
+                thumbnail={ResourceTempBg}
             />
 
             <VBAppModal width={480} height={400} open={open} handleClose={handleClose}>

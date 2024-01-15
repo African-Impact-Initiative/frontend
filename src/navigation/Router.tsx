@@ -41,11 +41,11 @@ const Router = () => {
 
     // routes with layouts having a side bar and authenticated + admin
     const adminRouter = adminRoutes.map(
-        ({ path, component }) => (
+        ({ path, Component }) => (
             <Route
                 key={path}
                 path={path}
-                element={component}
+                element={<Component />}
             />
         )
     )
