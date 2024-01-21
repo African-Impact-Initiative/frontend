@@ -460,6 +460,8 @@ export const resourceArticleData = [
     },
 ]
 
+export type ResourceArticleType = typeof resourceArticleData[0]
+
 export const eventsData = [
     {
         date: '2023-10-22',
