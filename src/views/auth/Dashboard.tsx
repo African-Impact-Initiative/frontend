@@ -3,80 +3,75 @@ import { Box } from '@mui/system'
 import avatar2 from '../../../assets/Avatar2.png'
 import avatar3 from '../../../assets/Avatar3.png'
 import avatar4 from '../../../assets/Avatar4.png'
-import TableData from '../../table/DashBoardTableData'
 import avatar1 from '../../../assets/Avatar1.png'
 import Typography from '@mui/material/Typography'
 import { Add, MoreVert, MoreVertOutlined, Search } from '@mui/icons-material'
 import Button from '@mui/material/Button'
 import { Divider, MenuItem, TextField } from '@mui/material'
-import Calendar from '../calender/Calender'
-import EventTime from '../calender/EventTime'
-import PageHeader from '../../pageHeader/PageHeader'
 import yellowlogo from '../../../assets/yellowlogo.png'
 import { useNavigate } from 'react-router'
-
-
+import VBCalendar from '../../components/VBCalender'
+import VBPageHeader from '../../components/VBPageHeader'
+import VBEventTime from '../../components/VBEventTime'
+import DashboardTable from '../../components/dashboard/DashboardTable'
 
 const headers = ['TaskName', 'Team', 'Progress', 'DueDate']
-const dataKeyAccessors = ['TaskName', 'team', 'Progress', 'DueDate']
+const dataKeyAccessors = ['taskName', 'team', 'progress', 'dueDate']
 const data = [
     {
         id: 1,
-        TaskName: 'Define MVP scope',
+        taskName: 'Define MVP scope',
         team: 'Product',
-        Progress: '2/5',
-        DueDate: 'Wed, Jun 12',
+        progress: '2/5',
+        dueDate: 'Wed, Jun 12',
         teamType: 'product',
     },
     {
         id: 2,
-        TaskName: 'Implement SEO strategies',
+        taskName: 'Implement SEO strategies',
         team: 'Marketing',
-        Progress: '1/3',
-        DueDate: 'Wed, Jun 12',
+        progress: '1/3',
+        dueDate: 'Wed, Jun 12',
         teamType: 'marketing',
     },
     {
         id: 3,
-        TaskName: 'Create non-disclosure agreements',
+        taskName: 'Create non-disclosure agreements',
         team: 'Legal',
-        Progress: '4/6',
-        DueDate: 'Thur, Jun 13',
+        progress: '4/6',
+        dueDate: 'Thur, Jun 13',
         teamType: 'legal',
     },
     {
         id: 4,
-        TaskName: 'Set up social media profiles',
+        taskName: 'Set up social media profiles',
         team: 'Finance',
-        Progress: '1/2',
-        DueDate: 'Thur, Jun 13',
+        progress: '1/2',
+        dueDate: 'Thur, Jun 13',
         teamType: 'finance',
     },
     {
         id: 5,
-        TaskName: 'Establish contingency plans',
+        taskName: 'Establish contingency plans',
         team: 'Management',
-        Progress: '3/5',
-        DueDate: 'Fri, Jun 13',
+        progress: '3/5',
+        dueDate: 'Fri, Jun 13',
         teamType: 'management',
     },
     {
         id: 6,
-        TaskName: 'Develop an employee handbook',
+        taskName: 'Develop an employee handbook',
         team: 'Operations',
-        Progress: '2/7',
-        DueDate: 'Mon, Jun 17',
-        TeamType: 'operations',
+        progress: '2/7',
+        dueDate: 'Mon, Jun 17',
+        teamType: 'operations',
     },
 ]
 
 const Dashboard = () => {
-    const [selectItem, setSelectItem] = useState('')
-    const [status, setStatus] = useState(false)
+    const [_, setStatus] = useState('')
 
     const navigate = useNavigate()
-
-
 
     const filters = [
         { label: 'English', value: 'English' },
@@ -86,7 +81,6 @@ const Dashboard = () => {
         { label: 'Art', value: 'Art' },
     ]
 
-
     const members = [
         {
             id: 1,
@@ -94,7 +88,7 @@ const Dashboard = () => {
             name: 'Mary Black',
             activity: 'Mentioned You',
             activityDetail:
-                'I don’t really know if we should proceed with this idea, what do you think?',
+                'I don\'t really know if we should proceed with this idea, what do you think?',
             activityType: 'text',
         },
         {
@@ -109,7 +103,7 @@ const Dashboard = () => {
             url: avatar3,
             name: 'Mary Black',
             activity:
-                'I don’t really know if we should proceed with this idea, what do you think?',
+                'I don\'t really know if we should proceed with this idea, what do you think?',
             activityType: 'pdf',
         },
         {
@@ -124,7 +118,7 @@ const Dashboard = () => {
             url: avatar1,
             name: 'Mary Black',
             activity:
-                'I don’t really know if we should proceed with this idea, what do you think?',
+                'I don\'t really know if we should proceed with this idea, what do you think?',
             activityType: 'pdf',
         },
         {
@@ -139,7 +133,7 @@ const Dashboard = () => {
             url: avatar3,
             name: 'Mary Black',
             activity:
-                'I don’t really know if we should proceed with this idea, what do you think?',
+                'I don\'t really know if we should proceed with this idea, what do you think?',
             activityType: 'pdf',
         },
         {
@@ -150,50 +144,13 @@ const Dashboard = () => {
             activityType: 'pdf',
         },
     ]
-    
-
-    const items = [
-        {
-            id: 1,
-            name: 'Product',
-        },
-        {
-            id: 2,
-            name: 'Marketing',
-        },
-        {
-            id: 3,
-            name: 'Legal',
-        },
-        {
-            id: 4,
-            name: 'Management',
-        },
-        {
-            id: 5,
-            name: 'Finance',
-        },
-        {
-            id: 6,
-            name: 'Operation',
-        },
-    ]
-
-    const handleOnChange = (e, inputeName) => {
-        switch (inputeName) {
-        case 'select':
-            setSelectItem(e.target.value)
-            break
-        default:
-            setSelectItem(e.target.value)
-        }
-    }
 
     return (
         <Box sx={{ padding: '20px', width: '100%' }}>
-            <PageHeader
+            <VBPageHeader
                 title="Home"
                 subTitle="Monitor recent activities and key metrics of your company here."
+                noHr={false}
             />
             <Box
                 sx={{
@@ -234,7 +191,6 @@ const Dashboard = () => {
                                     }}
                                 >
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '600',
                                             fontSize: '16px',
@@ -256,7 +212,6 @@ const Dashboard = () => {
                                     }}
                                 >
                                     <Box
-                                        variant="h6"
                                         sx={{
                                             borderRadius: '30px',
                                             border: '1px solid #EAECF0',
@@ -271,7 +226,6 @@ const Dashboard = () => {
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 fontWeight: '600',
                                                 fontSize: '14px',
@@ -282,7 +236,6 @@ const Dashboard = () => {
                                             DataPrime Solutions
                                         </Typography>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 fontWeight: '400',
                                                 color: '#475467',
@@ -351,7 +304,6 @@ const Dashboard = () => {
                                     }}
                                 >
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '600',
                                             fontSize: '16px',
@@ -471,7 +423,6 @@ const Dashboard = () => {
                             }}
                         >
                             <Typography
-                                variant="p"
                                 sx={{
                                     fontSize: '18px',
                                     fontWeight: '600',
@@ -498,7 +449,6 @@ const Dashboard = () => {
                             >
                                 <Add style={{width: '20px', height: '20px', color: '#344054'}}/>
                                 <Box
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontWeight: '600',
@@ -638,7 +588,7 @@ const Dashboard = () => {
                             </Box>
                         </Box>
                         <Box>
-                            <TableData
+                            <DashboardTable
                                 data={data}
                                 headers={headers}
                                 dataKeyAccessors={dataKeyAccessors}
@@ -665,7 +615,7 @@ const Dashboard = () => {
                             borderRadius: '8px',
                         }}
                     >
-                        <Calendar />
+                        <VBCalendar />
                     </Box>
                     <Box
                         sx={{
@@ -676,7 +626,7 @@ const Dashboard = () => {
                         }}
                     >
                         <Box>
-                            <Typography variant='p' sx={{ lineHeight: '28px', fontSize: '18px', fontWeight: '600' }}> Events</Typography>
+                            <Typography sx={{ lineHeight: '28px', fontSize: '18px', fontWeight: '600' }}> Events</Typography>
                         </Box>
                         <Box
                             sx={{
@@ -687,12 +637,12 @@ const Dashboard = () => {
                             }}
                         >
                             <Add style={{ width: '20px', height: '20px', color: '#475467' }} />
-                            <Typography variant='p' sx={{ lineHeight: '20px', fontSize: '14px', fontWeight: '600', color: '#475467' }}> Add event</Typography>
+                            <Typography sx={{ lineHeight: '20px', fontSize: '14px', fontWeight: '600', color: '#475467' }}> Add event</Typography>
                             <MoreVertOutlined style={{ width: '20px', height: '20px', color: '#475467' }} />
                         </Box>
                     </Box>
                     <Box>
-                        <EventTime />
+                        <VBEventTime />
                     </Box>
                 </Box>
             </Box>
