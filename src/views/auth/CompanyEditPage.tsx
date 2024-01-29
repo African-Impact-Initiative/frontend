@@ -535,7 +535,6 @@ const CompanyEditPage = () => {
                                             placeholder="Search of label"
                                             inputProps={{ 'aria-label': 'label search' }}
                                         />
-
                                     </Paper>
                                 </Box>
                             </Box>

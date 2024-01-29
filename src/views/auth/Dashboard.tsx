@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import { Box } from '@mui/system'
-import avatar2 from '../../../assets/Avatar2.png'
-import avatar3 from '../../../assets/Avatar3.png'
-import avatar4 from '../../../assets/Avatar4.png'
-import avatar1 from '../../../assets/Avatar1.png'
+import avatar from '../../assets/avatar.png'
+import dataprime from '../../assets/dataprime.png'
 import Typography from '@mui/material/Typography'
 import { Add, MoreVert, MoreVertOutlined, Search } from '@mui/icons-material'
 import Button from '@mui/material/Button'
 import { Divider, MenuItem, TextField } from '@mui/material'
-import yellowlogo from '../../../assets/yellowlogo.png'
 import { useNavigate } from 'react-router'
 import VBCalendar from '../../components/VBCalender'
 import VBPageHeader from '../../components/VBPageHeader'
@@ -84,7 +81,7 @@ const Dashboard = () => {
     const members = [
         {
             id: 1,
-            url: avatar1,
+            url: avatar,
             name: 'Mary Black',
             activity: 'Mentioned You',
             activityDetail:
@@ -93,14 +90,14 @@ const Dashboard = () => {
         },
         {
             id: 2,
-            url: avatar2,
+            url: avatar,
             name: 'Uche',
             activity: 'Purchased SEO Masterclass',
             activityType: 'pdf',
         },
         {
             id: 3,
-            url: avatar3,
+            url: avatar,
             name: 'Mary Black',
             activity:
                 'I don\'t really know if we should proceed with this idea, what do you think?',
@@ -108,14 +105,14 @@ const Dashboard = () => {
         },
         {
             id: 4,
-            url: avatar4,
+            url: avatar,
             name: 'Uche',
             activity: 'Purchased SEO Masterclass',
             activityType: 'pdf',
         },
         {
             id: 5,
-            url: avatar1,
+            url: avatar,
             name: 'Mary Black',
             activity:
                 'I don\'t really know if we should proceed with this idea, what do you think?',
@@ -123,14 +120,14 @@ const Dashboard = () => {
         },
         {
             id: 6,
-            url: avatar2,
+            url: avatar,
             name: 'Uche',
             activity: 'Purchased SEO Masterclass',
             activityType: 'pdf',
         },
         {
             id: 7,
-            url: avatar3,
+            url: avatar,
             name: 'Mary Black',
             activity:
                 'I don\'t really know if we should proceed with this idea, what do you think?',
@@ -138,7 +135,7 @@ const Dashboard = () => {
         },
         {
             id: 8,
-            url: avatar4,
+            url: avatar,
             name: 'Uche',
             activity: 'Purchased SEO Masterclass',
             activityType: 'pdf',
@@ -222,7 +219,7 @@ const Dashboard = () => {
                                             display: 'flex',
                                         }}
                                     >
-                                        <img src={yellowlogo} alt="humanimage" style={{height: '30px', width: '30px'}} />
+                                        <img src={dataprime} alt="dataprime" style={{height: '30px', width: '30px'}} />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography

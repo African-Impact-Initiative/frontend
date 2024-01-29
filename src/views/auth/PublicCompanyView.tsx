@@ -1,36 +1,22 @@
-import React, { useState } from 'react'
 import {
     AccessTimeOutlined,
-    AddCircleOutlineOutlined,
-    AddOutlined,
     ArrowOutwardOutlined,
     ContentCopyOutlined,
     MonetizationOnOutlined,
+    Twitter,
+    YouTube,
+    Instagram,
+    LinkedIn
 } from '@mui/icons-material'
-import appBg from '../../../assets/application_bg.png'
-import { Button, Divider, Modal, Switch, TextField, Typography } from '@mui/material'
+import { Divider, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import avatar2 from '../../../assets/Avatar2.png'
-import twitter from '../../../assets/Twitter.png'
-import linkedin from '../../../assets/Iinkedin.png'
-import instagram from '../../../assets/instagram.png'
-import youtube from '../../../assets/Youtube.png'
-import raviga from '../../../assets/raviga.png'
-import comma from '../../../assets/comma.png'
-import toronto from '../../../assets/toronto.png'
-import articleBg from '../../../assets/ArticleBg.png'
-import articleBg2 from '../../../assets/Article2Bg.png'
-import canadalogo from '../../../assets/canadalogo.png'
-
-
+import avatar from '../../assets/avatar.png'
+import dataprime from '../../assets/dataprime.png'
+import articleBg from '../../assets/ArticleBg.png'
+import articleBg2 from '../../assets/Article2Bg.png'
+import canadalogo from '../../assets/canadalogo.png'
 
 const PublicCompanyView = () => {
-    const [isToggled, setIsToggled] = useState(false)
-
-    const handleChange = () => {
-        setIsToggled(true)
-    }
-
     const articleData = [
         {
             logo: articleBg,
@@ -46,14 +32,12 @@ const PublicCompanyView = () => {
         },
     ]
 
-
     return (
         <Box>
             <Box sx={{ padding: '32px', display: 'flex', columnGap: '30px', flexDirection: { md: 'row', xs: 'column' } }}>
                 <Box sx={{ width: { md: '68%', xs: '100%' } }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                         <Typography
-                            variant="p"
                             sx={{
                                 fontSize: '18px',
                                 fontWeight: '600',
@@ -64,7 +48,6 @@ const PublicCompanyView = () => {
                             Overview
                         </Typography>
                         <Typography
-                            variant="p"
                             sx={{
                                 fontSize: '14px',
                                 fontWeight: '400',
@@ -79,7 +62,6 @@ const PublicCompanyView = () => {
                     <Box sx={{ textAlign: 'start' }}>
                         <Box sx={{ marginTop: '32px', display: 'flex', columnGap: '6px' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     color: '#344054',
                                     fontSize: '16px',
@@ -89,13 +71,12 @@ const PublicCompanyView = () => {
                             >
                                 Tagline
                             </Typography>
-                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                            <Typography sx={{ color: '#F04438' }}>
                                 *
                             </Typography>
                         </Box>
                         <Box sx={{ marginTop: '8px' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     color: '#475467',
                                     fontWeight: '400',
@@ -111,7 +92,6 @@ const PublicCompanyView = () => {
                     <Box sx={{ textAlign: 'start' }}>
                         <Box sx={{ marginTop: '32px', display: 'flex', columnGap: '6px' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     color: '#344054',
                                     fontSize: '16px',
@@ -121,13 +101,12 @@ const PublicCompanyView = () => {
                             >
                                 About
                             </Typography>
-                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                            <Typography sx={{ color: '#F04438' }}>
                                 *
                             </Typography>
                         </Box>
                         <Box sx={{ marginTop: '8px' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     color: '#475467',
                                     fontWeight: '400',
@@ -154,7 +133,6 @@ const PublicCompanyView = () => {
                     >
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     fontSize: '18px',
                                     fontWeight: '600',
@@ -166,7 +144,6 @@ const PublicCompanyView = () => {
                             </Typography>
                         </Box>
                         <Typography
-                            variant="p"
                             sx={{
                                 fontSize: '14px',
                                 fontWeight: '400',
@@ -183,11 +160,10 @@ const PublicCompanyView = () => {
                     >
                         <Box sx={{ display: 'flex', columnGap: '12px' }}>
                             <Box>
-                                <img src={avatar2} alt="leaderimge" />
+                                <img src={avatar} alt="leaderimge" />
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontWeight: '600',
@@ -198,7 +174,6 @@ const PublicCompanyView = () => {
                                     Sienna Hewitt
                                 </Typography>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         fontWeight: '400',
@@ -212,11 +187,10 @@ const PublicCompanyView = () => {
                         </Box>
                         <Box sx={{ display: 'flex', columnGap: '12px', textAlign: 'start' }}>
                             <Box>
-                                <img src={avatar2} alt="leaderimge" />
+                                <img src={avatar} alt="leaderimge" />
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontWeight: '600',
@@ -227,7 +201,6 @@ const PublicCompanyView = () => {
                                     Koray Okumus
                                 </Typography>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         fontWeight: '400',
@@ -241,11 +214,10 @@ const PublicCompanyView = () => {
                         </Box>
                         <Box sx={{ display: 'flex', columnGap: '12px', textAlign: 'start' }}>
                             <Box>
-                                <img src={avatar2} alt="leaderimge" />
+                                <img src={avatar} alt="leaderimge" />
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontWeight: '600',
@@ -256,7 +228,6 @@ const PublicCompanyView = () => {
                                     Koray Okumus
                                 </Typography>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         fontWeight: '400',
@@ -279,7 +250,6 @@ const PublicCompanyView = () => {
                     >
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     fontSize: '18px',
                                     fontWeight: '600',
@@ -291,7 +261,6 @@ const PublicCompanyView = () => {
                             </Typography>
                         </Box>
                         <Typography
-                            variant="p"
                             sx={{
                                 fontSize: '14px',
                                 fontWeight: '400',
@@ -316,7 +285,6 @@ const PublicCompanyView = () => {
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: { md: 'row', xs: 'column' }, width: '100%', marginBottom: { md: '0px', xs: '10px' } }}>
                             <Box sx={{ display: 'flex', columnGap: '10px', flexDirection: { md: 'row', xs: 'column' }, marginBottom: { md: '0px', xs: '10px' } }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         fontWeight: '600',
                                         fontSize: '20px',
@@ -351,7 +319,6 @@ const PublicCompanyView = () => {
                                         }}
                                     ></Box>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontWeight: '500',
@@ -377,7 +344,6 @@ const PublicCompanyView = () => {
                                 }}
                             >
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontWeight: '500',
@@ -391,7 +357,6 @@ const PublicCompanyView = () => {
                         </Box>
                         <Box sx={{ textAlign: 'start' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     fontWeight: '300',
                                     fontSize: '16px',
@@ -415,7 +380,6 @@ const PublicCompanyView = () => {
                             >
                                 <AccessTimeOutlined sx={{ color: '#98A2B3' }} />
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         lineHeight: '24px',
@@ -436,7 +400,6 @@ const PublicCompanyView = () => {
                             >
                                 <MonetizationOnOutlined sx={{ color: '#98A2B3', width: '20px', height: '20px' }} />
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         lineHeight: '24px',
@@ -461,7 +424,6 @@ const PublicCompanyView = () => {
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: { md: 'row', xs: 'column' }, width: '100%', marginBottom: { md: '0px', xs: '10px' } }}>
                             <Box sx={{ display: 'flex', columnGap: '10px', flexDirection: { md: 'row', xs: 'column' }, marginBottom: { md: '0px', xs: '10px' } }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         fontWeight: '600',
                                         fontSize: '20px',
@@ -496,7 +458,6 @@ const PublicCompanyView = () => {
                                         }}
                                     ></Box>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontWeight: '500',
@@ -522,7 +483,6 @@ const PublicCompanyView = () => {
                                 }}
                             >
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontWeight: '500',
@@ -536,7 +496,6 @@ const PublicCompanyView = () => {
                         </Box>
                         <Box sx={{ textAlign: 'start' }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     fontWeight: '300',
                                     fontSize: '16px',
@@ -559,7 +518,6 @@ const PublicCompanyView = () => {
                             >
                                 <AccessTimeOutlined sx={{ color: '#98A2B3' }} />
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         lineHeight: '24px',
@@ -580,7 +538,6 @@ const PublicCompanyView = () => {
                             >
                                 <MonetizationOnOutlined sx={{ color: '#98A2B3', width: '20px', height: '20px' }} />
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         lineHeight: '24px',
@@ -603,7 +560,6 @@ const PublicCompanyView = () => {
                     >
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                             <Typography
-                                variant="p"
                                 sx={{
                                     fontSize: '18px',
                                     fontWeight: '600',
@@ -615,7 +571,6 @@ const PublicCompanyView = () => {
                             </Typography>
                         </Box>
                         <Typography
-                            variant="p"
                             sx={{
                                 fontSize: '14px',
                                 fontWeight: '400',
@@ -634,7 +589,7 @@ const PublicCompanyView = () => {
                                 <Box key={index}>
                                     <img src={article.logo} alt={`Logo ${index}`} />
                                     <Box sx={{ marginBottom: '8px', marginTop: '24px' }}>
-                                        <Typography variant='p'
+                                        <Typography
                                             sx={{
                                                 fontSize: '14px',
                                                 fontWeight: '600',
@@ -645,7 +600,6 @@ const PublicCompanyView = () => {
                                     </Box>
                                     <Box sx={{ marginBottom: '8px', }}>
                                         <Typography
-                                            variant='p'
                                             sx={{
                                                 fontSize: '18px',
                                                 fontWeight: '600',
@@ -656,7 +610,6 @@ const PublicCompanyView = () => {
                                     </Box>
                                     <Box sx={{ marginBottom: '96px', }}>
                                         <Typography
-                                            variant='p'
                                             sx={{
                                                 fontSize: '16px',
                                                 fontWeight: '400',
@@ -687,7 +640,6 @@ const PublicCompanyView = () => {
                         <Box sx={{ textAlign: 'start' }}>
                             <Box >
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontSize: '14px',
@@ -708,7 +660,6 @@ const PublicCompanyView = () => {
                             >
                                 <img src={canadalogo} alt='canadalogo' />
                                 <Typography
-                                    variant="p"
                                     sx={{ color: '#344054', fontWeight: '500', fontSize: '16px', fontHeight: '24px' }}
                                 >
                                     Toronto, Canada
@@ -717,7 +668,6 @@ const PublicCompanyView = () => {
                             <Box>
                                 <Box sx={{ marginTop: '24px' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontSize: '14px',
@@ -745,7 +695,6 @@ const PublicCompanyView = () => {
                                         }}
                                     >
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#6941C6',
                                                 fontWeight: '500',
@@ -770,7 +719,6 @@ const PublicCompanyView = () => {
                                         }}
                                     >
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#3538CD',
                                                 fontWeight: '500',
@@ -796,7 +744,6 @@ const PublicCompanyView = () => {
                                         }}
                                     >
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#C11574',
                                                 fontWeight: '500',
@@ -812,7 +759,6 @@ const PublicCompanyView = () => {
                             <Box>
                                 <Box sx={{ marginTop: '24px' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontSize: '14px',
@@ -825,7 +771,6 @@ const PublicCompanyView = () => {
                                 </Box>
                                 <Box>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontWeight: '500',
@@ -840,7 +785,6 @@ const PublicCompanyView = () => {
                             <Box>
                                 <Box sx={{ marginTop: '24px' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontSize: '14px',
@@ -860,7 +804,6 @@ const PublicCompanyView = () => {
                                     }}
                                 >
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '500',
                                             fontSize: '16px',
@@ -875,7 +818,6 @@ const PublicCompanyView = () => {
                             <Box>
                                 <Box sx={{ marginTop: '24px' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontSize: '14px',
@@ -895,7 +837,6 @@ const PublicCompanyView = () => {
                                     }}
                                 >
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#B54708',
                                             fontWeight: '500',
@@ -911,7 +852,6 @@ const PublicCompanyView = () => {
                             <Box>
                                 <Box sx={{ marginTop: '24px' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontSize: '14px',
@@ -925,8 +865,8 @@ const PublicCompanyView = () => {
                                 <Box
                                     sx={{ display: 'flex', columnGap: '14px', marginTop: '8px' }}
                                 >
-                                    <img src={twitter} alt="twitterlogo" />
-                                    <img src={linkedin} alt="linkdinlogo" />
+                                    <Twitter />
+                                    <LinkedIn />
                                     <Box
                                         sx={{
                                             height: '20px',
@@ -938,9 +878,9 @@ const PublicCompanyView = () => {
                                             justifyContent: 'center'
                                         }}
                                     >
-                                        <img src={instagram} alt="instagramlogo" />
+                                        <Instagram />
                                     </Box>
-                                    <img src={youtube} alt="youtubelogo" />
+                                    <YouTube />
                                 </Box>
                             </Box>
                             <Box sx={{ display: 'flex' }}>
@@ -959,7 +899,6 @@ const PublicCompanyView = () => {
                                     }}
                                 >
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '400',
                                             fontSize: '16px',
@@ -997,7 +936,6 @@ const PublicCompanyView = () => {
                                             />
                                         </Box>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 fontWeight: '400',
                                                 fontSize: '16px',
@@ -1024,7 +962,6 @@ const PublicCompanyView = () => {
                             textAlign: 'start'
                         }}
                     >
-                        <Typography variant="p">Fundraising status</Typography>
                     </Box>
                     <Box
                         sx={{
@@ -1038,7 +975,6 @@ const PublicCompanyView = () => {
                         <Box sx={{ textAlign: 'start' }}>
                             <Box >
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#344054',
                                         fontSize: '14px',
@@ -1051,7 +987,6 @@ const PublicCompanyView = () => {
                             </Box>
                             <Box sx={{ marginTop: '8px' }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         fontWeight: '600',
@@ -1066,7 +1001,6 @@ const PublicCompanyView = () => {
                         <Box>
                             <Box sx={{ marginTop: '24px', textAlign: 'start' }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         color: '#475467',
                                         fontWeight: '500',
@@ -1086,9 +1020,8 @@ const PublicCompanyView = () => {
                                         columnGap: '16px'
                                     }}
                                 >
-                                    <img src={comma} alt="ravigainvestor" />
+                                    <img src={dataprime} alt="dataprimeinvestor" />
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '500',
                                             fontSize: '14px',
@@ -1106,9 +1039,8 @@ const PublicCompanyView = () => {
                                         columnGap: '16px'
                                     }}
                                 >
-                                    <img src={toronto} alt="ravigainvestor" />
+                                    <img src={dataprime} alt="dataprimeinvestor" />
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '500',
                                             fontSize: '14px',
@@ -1126,9 +1058,8 @@ const PublicCompanyView = () => {
                                         columnGap: '16px'
                                     }}
                                 >
-                                    <img src={raviga} alt="ravigainvestor" />
+                                    <img src={dataprime} alt="dataprimeinvestor" />
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '500',
                                             fontSize: '14px',

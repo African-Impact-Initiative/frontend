@@ -11,7 +11,7 @@ import {
     Twitter,
     YouTube
 } from '@mui/icons-material'
-import appBg from '../../../assets/application_bg.png'
+import appBg from '../../assets/application_bg.png'
 import {
     Button,
     Divider,
@@ -24,24 +24,20 @@ import {
     Typography
 } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
-import AddLeadershipModal from './AddLeadershipModal'
-import avatar2 from '../../../assets/Avatar2.png'
-import avatar1 from '../../../assets/Avatar1.png'
-import avatar3 from '../../../assets/Avatar3.png'
-import raviga from '../../../assets/raviga.png'
-import comma from '../../../assets/comma.png'
-import toronto from '../../../assets/toronto.png'
+import { useState } from 'react'
+import avatar from '../../assets/avatar.png'
+import dataprime from '../../assets/dataprime.png'
+import raviga from '../../assets/raviga.png'
 import PublicCompanyView from './PublicCompanyView'
 import { useNavigate } from 'react-router-dom'
-import logo from '../../../assets/dataprime.png'
-import articleBg from '../../../assets/ArticleBg.png'
-import articleBg2 from '../../../assets/Article2Bg.png'
+import logo from '../../assets/dataprime.png'
+import articleBg from '../../assets/article-bg.png'
+import articleBg2 from '../../assets/article-2bg.png'
+import AddLeadershipModal from '../../components/companyEdit/AddLeadershipModal'
 
 
 const PrivateViewUpdate = () => {
     const [editModalOpen, setEditModalOpen] = useState(false)
-    const [industry, setIndustry] = useState('')
     const [isToggled, setIsToggled] = useState(false)
 
     const navigate = useNavigate()
@@ -110,7 +106,6 @@ const PrivateViewUpdate = () => {
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                         <Typography
-                            variant="p"
                             sx={{
                                 fontSize: '30px',
                                 fontWeight: '600',
@@ -121,7 +116,6 @@ const PrivateViewUpdate = () => {
                             DataPrime
                         </Typography>
                         <Typography
-                            variant="p"
                             sx={{
                                 color: '#475467',
                                 fontWeight: '400',
@@ -161,7 +155,6 @@ const PrivateViewUpdate = () => {
                         />
 
                         <Typography
-                            variant="p"
                             sx={{
                                 color: '#344054',
                                 fontWeight: '500',
@@ -202,7 +195,6 @@ const PrivateViewUpdate = () => {
                         <Box sx={{ width: { md: '68%', xs: '100%' } }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         fontSize: '18px',
                                         fontWeight: '600',
@@ -213,7 +205,6 @@ const PrivateViewUpdate = () => {
                                     Overview
                                 </Typography>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         fontSize: '14px',
                                         fontWeight: '400',
@@ -231,7 +222,6 @@ const PrivateViewUpdate = () => {
                                     sx={{ marginTop: '32px', display: 'flex', columnGap: '6px' }}
                                 >
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontSize: '14px',
@@ -241,7 +231,7 @@ const PrivateViewUpdate = () => {
                                     >
                                         Tagline
                                     </Typography>
-                                    <Typography variant="p" sx={{ color: '#F04438' }}>
+                                    <Typography sx={{ color: '#F04438' }}>
                                         *
                                     </Typography>
                                 </Box>
@@ -270,7 +260,6 @@ const PrivateViewUpdate = () => {
                                     sx={{ marginTop: '32px', display: 'flex', columnGap: '6px' }}
                                 >
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             color: '#344054',
                                             fontSize: '14px',
@@ -280,7 +269,7 @@ const PrivateViewUpdate = () => {
                                     >
                                         About
                                     </Typography>
-                                    <Typography variant="p" sx={{ color: '#F04438' }}>
+                                    <Typography sx={{ color: '#F04438' }}>
                                         *
                                     </Typography>
                                 </Box>
@@ -298,8 +287,8 @@ const PrivateViewUpdate = () => {
                                             fontFamily: ' inter'
                                         }}
                                         // aria-label="textarea"
-                                        placeholder="At DataPrime, we are dedicated to revolutionizing the financial landscape through cutting-edge AI-driven solutions. Our mission is to empower businesses with invaluable insights for informed decision-making, unlocking new avenues for growth and success in the dynamic world of finance. 
-                                        
+                                        placeholder="At DataPrime, we are dedicated to revolutionizing the financial landscape through cutting-edge AI-driven solutions. Our mission is to empower businesses with invaluable insights for informed decision-making, unlocking new avenues for growth and success in the dynamic world of finance.
+
 With a focus on FinTech innovation, we combine advanced data analytics and artificial intelligence to provide actionable intelligence that drives strategic planning, risk assessment, and market analysis. Backed by a team of experts and a commitment to excellence, DataPrime is your partner in navigating the complexities of the financial realm and achieving sustainable, data-driven success."
                                         rows={8}
                                         onChange={(e) => {
@@ -318,7 +307,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                             >
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontSize: '18px',
                                             fontWeight: '600',
@@ -342,14 +330,13 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             aria-labelledby="modal-title"
                                             aria-describedby="modal-description"
                                         >
-                                            <AddLeadershipModal onClose={handleEditCloseModal} />
+                                            <AddLeadershipModal />
                                         </Modal>
 
                                         <EditOutlined />
                                     </Box>
                                 </Box>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         fontSize: '14px',
                                         fontWeight: '400',
@@ -366,11 +353,10 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                             >
                                 <Box sx={{ display: 'flex', columnGap: '12px' }}>
                                     <Box>
-                                        <img src={avatar2} alt="leaderimge" />
+                                        <img src={avatar} alt="leaderimge" />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#344054',
                                                 fontWeight: '600',
@@ -381,7 +367,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             Sienna Hewitt
                                         </Typography>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#475467',
                                                 fontWeight: '400',
@@ -395,11 +380,10 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 </Box>
                                 <Box sx={{ display: 'flex', columnGap: '12px', textAlign: 'start' }}>
                                     <Box>
-                                        <img src={avatar1} alt="leaderimge" />
+                                        <img src={avatar} alt="leaderimge" />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#344054',
                                                 fontWeight: '600',
@@ -410,7 +394,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             Koray Okumus
                                         </Typography>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#475467',
                                                 fontWeight: '400',
@@ -424,11 +407,10 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 </Box>
                                 <Box sx={{ display: 'flex', columnGap: '12px' }}>
                                     <Box>
-                                        <img src={avatar3} alt="leaderimge" />
+                                        <img src={avatar} alt="leaderimge" />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#344054',
                                                 fontWeight: '600',
@@ -439,7 +421,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             Noah Pierre
                                         </Typography>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#475467',
                                                 fontWeight: '400',
@@ -462,7 +443,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                             >
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontSize: '18px',
                                             fontWeight: '600',
@@ -486,14 +466,13 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             aria-labelledby="modal-title"
                                             aria-describedby="modal-description"
                                         >
-                                            <AddLeadershipModal onClose={handleEditCloseModal} />
+                                            <AddLeadershipModal />
                                         </Modal>
 
                                         <EditOutlined />
                                     </Box>
                                 </Box>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         fontSize: '14px',
                                         fontWeight: '400',
@@ -518,7 +497,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: { md: 'row', xs: 'column' }, width: '100%', marginBottom: { md: '0px', xs: '10px' } }}>
                                     <Box sx={{ display: 'flex', columnGap: '10px', flexDirection: { md: 'row', xs: 'column' }, marginBottom: { md: '0px', xs: '10px' } }}>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 fontWeight: '600',
                                                 fontSize: '20px',
@@ -553,7 +531,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             ></Box>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontWeight: '500',
@@ -579,7 +556,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         }}
                                     >
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#344054',
                                                 fontWeight: '500',
@@ -593,7 +569,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 </Box>
                                 <Box sx={{ textAlign: 'start' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '300',
                                             fontSize: '16px',
@@ -602,7 +577,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
 
                                         }}
                                     >
-                                        We’re looking for a mid-level product designer to join our
+                                        We're looking for a mid-level product designer to join our
                                         team.
                                     </Typography>
                                 </Box>
@@ -617,7 +592,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     >
                                         <AccessTimeOutlined sx={{ color: '#98A2B3' }} />
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#475467',
                                                 lineHeight: '24px',
@@ -638,7 +612,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     >
                                         <MonetizationOnOutlined sx={{ color: '#98A2B3', width: '20px', height: '20px' }} />
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#475467',
                                                 lineHeight: '24px',
@@ -663,7 +636,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: { md: 'row', xs: 'column' }, width: '100%', marginBottom: { md: '0px', xs: '10px' } }}>
                                     <Box sx={{ display: 'flex', columnGap: '10px', flexDirection: { md: 'row', xs: 'column' }, marginBottom: { md: '0px', xs: '10px' } }}>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 fontWeight: '600',
                                                 fontSize: '20px',
@@ -698,7 +670,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             ></Box>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontWeight: '500',
@@ -724,7 +695,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         }}
                                     >
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#344054',
                                                 fontWeight: '500',
@@ -738,7 +708,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 </Box>
                                 <Box sx={{ textAlign: 'start' }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontWeight: '300',
                                             fontSize: '16px',
@@ -747,7 +716,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
 
                                         }}
                                     >
-                                        We’re looking for a mid-level UX designer to join our team.
+                                        We're looking for a mid-level UX designer to join our team.
                                     </Typography>
                                 </Box>
                                 <Box sx={{ display: 'flex', columnGap: '30px', width: '100%', flexDirection: { md: 'row', xs: 'column' }, }}>
@@ -761,7 +730,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     >
                                         <AccessTimeOutlined sx={{ color: '#98A2B3' }} />
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#475467',
                                                 lineHeight: '24px',
@@ -782,7 +750,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     >
                                         <MonetizationOnOutlined sx={{ color: '#98A2B3', width: '20px', height: '20px' }} />
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#475467',
                                                 lineHeight: '24px',
@@ -805,7 +772,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                             >
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                                     <Typography
-                                        variant="p"
                                         sx={{
                                             fontSize: '18px',
                                             fontWeight: '600',
@@ -829,14 +795,13 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             aria-labelledby="modal-title"
                                             aria-describedby="modal-description"
                                         >
-                                            <AddLeadershipModal onClose={handleEditCloseModal} />
+                                            <AddLeadershipModal />
                                         </Modal>
 
                                         <EditOutlined />
                                     </Box>
                                 </Box>
                                 <Typography
-                                    variant="p"
                                     sx={{
                                         fontSize: '14px',
                                         fontWeight: '400',
@@ -855,7 +820,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         <Box key={index}>
                                             <img src={article.logo} alt={`Logo ${index}`} />
                                             <Box sx={{ marginBottom: '8px', marginTop: '24px' }}>
-                                                <Typography variant='p'
+                                                <Typography
                                                     sx={{
                                                         fontSize: '14px',
                                                         fontWeight: '600',
@@ -866,7 +831,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             </Box>
                                             <Box sx={{ marginBottom: '8px', }}>
                                                 <Typography
-                                                    variant='p'
                                                     sx={{
                                                         fontSize: '18px',
                                                         fontWeight: '600',
@@ -877,7 +841,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             </Box>
                                             <Box sx={{ marginBottom: '96px', }}>
                                                 <Typography
-                                                    variant='p'
                                                     sx={{
                                                         fontSize: '16px',
                                                         fontWeight: '400',
@@ -913,7 +876,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         }}
                                     >
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#344054',
                                                 fontSize: '14px',
@@ -923,7 +885,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         >
                                             Headquaters
                                         </Typography>
-                                        <Typography variant="p" sx={{ color: '#F04438' }}>
+                                        <Typography sx={{ color: '#F04438' }}>
                                             *
                                         </Typography>
                                     </Box>
@@ -957,7 +919,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             }}
                                         >
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -967,7 +928,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             >
                                                 Industries
                                             </Typography>
-                                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                                            <Typography sx={{ color: '#F04438' }}>
                                                 *
                                             </Typography>
                                         </Box>
@@ -1023,7 +984,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             >
                                                 <Typography
-                                                    variant="p"
                                                     sx={{
                                                         color: '#6941C6',
                                                         fontWeight: '500',
@@ -1050,7 +1010,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             >
                                                 <Typography
-                                                    variant="p"
                                                     sx={{
                                                         color: '#3538CD',
                                                         fontWeight: '500',
@@ -1078,7 +1037,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             >
                                                 <Typography
-                                                    variant="p"
                                                     sx={{
                                                         color: '#C11574',
                                                         fontWeight: '500',
@@ -1101,7 +1059,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             }}
                                         >
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1111,7 +1068,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             >
                                                 Size
                                             </Typography>
-                                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                                            <Typography sx={{ color: '#F04438' }}>
                                                 *
                                             </Typography>
                                         </Box>
@@ -1139,7 +1096,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     <Box>
                                         <Box sx={{ marginTop: '24px', display: 'flex' }}>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1164,7 +1120,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             >
                                                 <Typography
-                                                    variant="p"
                                                     sx={{
                                                         padding: '10px',
                                                         color: '#667085',
@@ -1195,7 +1150,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             }}
                                         >
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1205,7 +1159,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             >
                                                 Email
                                             </Typography>
-                                            <Typography variant="p" sx={{ color: '#F04438' }}>
+                                            <Typography sx={{ color: '#F04438' }}>
                                                 *
                                             </Typography>
                                         </Box>
@@ -1233,7 +1187,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     <Box>
                                         <Box sx={{ marginTop: '24px', display: 'flex' }}>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1272,7 +1225,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     <Box>
                                         <Box sx={{ marginTop: '24px', display: 'flex' }}>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1315,7 +1267,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     <Box>
                                         <Box sx={{ marginTop: '24px', display: 'flex' }}>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1357,7 +1308,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     <Box>
                                         <Box sx={{ marginTop: '24px', display: 'flex' }}>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1409,7 +1359,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     <Box >
                                         <Box sx={{ marginTop: '24px', display: 'flex' }}>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1462,7 +1411,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     display: 'flex'
                                 }}
                             >
-                                <Typography variant="p">Fundraising status</Typography>
                             </Box>
                             <Box
                                 sx={{
@@ -1486,7 +1434,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     <Box >
                                         <Box sx={{ textAlign: 'start' }}>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1513,7 +1460,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     <Box sx={{ marginBottom: '24px' }}>
                                         <Box sx={{ marginTop: '24px', display: 'flex', alignItems: 'start' }}>
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     color: '#344054',
                                                     fontSize: '14px',
@@ -1544,7 +1490,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', width: '100%' }}>
                                     <Box>
                                         <Typography
-                                            variant="p"
                                             sx={{
                                                 color: '#475467',
                                                 fontWeight: '500',
@@ -1564,9 +1509,8 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 columnGap: '16px'
                                             }}
                                         >
-                                            <img src={comma} alt="ravigainvestor" />
+                                            <img src={dataprime} alt="ravigainvestor" />
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     fontWeight: '500',
                                                     fontSize: '14px',
@@ -1584,9 +1528,8 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 columnGap: '16px'
                                             }}
                                         >
-                                            <img src={toronto} alt="ravigainvestor" />
+                                            <img src={dataprime} alt="ravigainvestor" />
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     fontWeight: '500',
                                                     fontSize: '14px',
@@ -1606,7 +1549,6 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         >
                                             <img src={raviga} alt="ravigainvestor" />
                                             <Typography
-                                                variant="p"
                                                 sx={{
                                                     fontWeight: '500',
                                                     fontSize: '14px',
