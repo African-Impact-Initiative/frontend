@@ -122,7 +122,7 @@ const columns: Array<GridColDef<any, any, any>> = [
 
 const rows = templateData
 
-export default function Article() {
+const Article = () => {
     const navigate = useNavigate()
     const [openUpload, setOpenUpload] = React.useState(false)
     const handleCloseUpload = () => setOpenUpload(false)
@@ -187,3 +187,5 @@ export default function Article() {
         </Box>
     )
 }
+
+export default Article

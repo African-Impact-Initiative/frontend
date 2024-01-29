@@ -141,7 +141,7 @@ const columns: Array<GridColDef<any, any, any>> = [
 
 const rows = resourceVideoData
 
-export default function Videos() {
+const Videos = () => {
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
@@ -324,3 +324,5 @@ export default function Videos() {
         </Box>
     )
 }
+
+export default Videos

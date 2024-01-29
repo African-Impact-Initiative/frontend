@@ -18,7 +18,7 @@ const visibility = [
     { label: 'private', value: 'private' },
 ]
 
-export default function TemplateDetails() {
+const TemplateDetails = () => {
     const [_status, setStatus] = useState('')
     const [imagePreview, setImagePreview] = useState(thumbanil1)
 
@@ -440,3 +440,5 @@ export default function TemplateDetails() {
         </Box>
     )
 }
+
+export default TemplateDetails

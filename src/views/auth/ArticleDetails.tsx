@@ -13,7 +13,7 @@ import ArticleReader from '../../../assets/article_reader.png'
 import { ResourceArticleType, resourceArticleData } from '../../utils/devUtils'
 import VBBreadCrumb from '../../components/VBBreadCrumb'
 
-export default function ArticleDetails() {
+const ArticleDetails = () => {
     const [value, setValue] = useState('1')
     const { id } = useParams()
     const [resourceData, setresourceData] = useState<ResourceArticleType | null>(null)
@@ -436,3 +436,5 @@ export default function ArticleDetails() {
         </Box>
     )
 }
+
+export default ArticleDetails

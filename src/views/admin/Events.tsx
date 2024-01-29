@@ -14,7 +14,7 @@ import { eventsData } from '../../utils/devUtils'
 import VBAppModal from '../../components/VBAppModal'
 import VBCalendar from '../../components/VBCalender'
 
-export default function Events() {
+const Events = () => {
     const [value, setValue] = useState('2')
 
     const [openUpload, setOpenUpload] = useState(false)
@@ -218,3 +218,5 @@ export default function Events() {
         </Box>
     )
 }
+
+export default Events

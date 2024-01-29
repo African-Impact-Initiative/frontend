@@ -128,6 +128,8 @@ export const resourceVideoData = [
     },
 ]
 
+export type ResourceVideoType = typeof resourceVideoData[0]
+
 export const teamPageData = [
     {
         id: 1,
@@ -401,6 +403,8 @@ export const resourceTemplateData = [
         templates: [article, article, article],
     },
 ]
+
+export type ResourceTemplateType = typeof resourceTemplateData[0]
 
 export const resourceArticleData = [
     {

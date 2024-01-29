@@ -4,7 +4,7 @@ import { ArrowBackIos, DeleteOutline } from '@mui/icons-material'
 import VBVideoUpload from '../../components/VBVideoUpload'
 import { useState } from 'react'
 
-export default function VideoDetails() {
+const VideoDetails = () => {
     const [_open, setOpen] = useState(true)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
@@ -99,3 +99,5 @@ export default function VideoDetails() {
         </Box>
     )
 }
+
+export default VideoDetails

@@ -25,7 +25,7 @@ const visibility = [
     { label: 'private', value: 'private' },
 ]
 
-export default function CreateArticle({ }) {
+const CreateArticle = () => {
     const [_status, setStatus] = useState('')
 
     const [openUploadSuccess, setOpenUploadSuccess] = useState(false)
@@ -420,3 +420,5 @@ export default function CreateArticle({ }) {
         </>
     )
 }
+
+export default CreateArticle

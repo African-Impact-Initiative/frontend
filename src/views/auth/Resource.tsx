@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 
-import AllTopics from './AllTopics'
-import PageHeader from '../../pageHeader/PageHeader'
+import VBPageHeader from '../../components/VBPageHeader'
+import AllTopics from '../../components/resources/AllTopics'
 
-export default function Resources() {
+const Resources = () => {
     const [value, setValue] = useState('1')
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (_: React.SyntheticEvent<Element, Event>, newValue: string) => {
         setValue(newValue)
     }
+
     return (
         <Box sx={{ padding: '20px' }}>
-            <PageHeader
+            <VBPageHeader
                 title="Resources"
                 subTitle="Discover resources for startup growth."
                 noHr={true}
@@ -74,3 +75,5 @@ export default function Resources() {
         </Box>
     )
 }
+
+export default Resources
