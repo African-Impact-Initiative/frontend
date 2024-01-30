@@ -10,7 +10,7 @@ import VideoResources from './VideoResources'
 import TemplateResources from './TemplateResources'
 import { resourceArticleData, resourceTemplateData, resourceVideoData } from '../../utils/devUtils'
 
-export default function AllTopics() {
+const AllTopics = () => {
     const [value, setValue] = useState('1')
 
     const handleChange = (_: React.SyntheticEvent<Element, Event>, newValue: string) => {
@@ -46,3 +46,5 @@ export default function AllTopics() {
         </Box>
     )
 }
+
+export default AllTopics

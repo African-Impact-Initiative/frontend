@@ -6,7 +6,7 @@ export interface ITemplateResources {
     resourceTemplateData: Array<ResourceTemplateType>
 }
 
-export default function TemplateResources({ resourceTemplateData }: ITemplateResources) {
+const TemplateResources = ({ resourceTemplateData }: ITemplateResources) => {
     return (
         <Box
             sx={{
@@ -22,3 +22,5 @@ export default function TemplateResources({ resourceTemplateData }: ITemplateRes
         </Box>
     )
 }
+
+export default TemplateResources

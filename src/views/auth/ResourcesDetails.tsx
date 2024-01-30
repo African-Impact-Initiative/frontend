@@ -1,38 +1,39 @@
 import { Box, Button, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 
-import { resourceVideoData } from '../../../data'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined'
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined'
 import { useParams } from 'react-router-dom'
-import BreadCrumb from '../../breadcrumb/BreadCrumb'
+import { ResourceVideoType, resourceVideoData } from '../../utils/devUtils'
+import VBBreadCrumb from '../../components/VBBreadCrumb'
 
-export default function ResourcesDetails() {
-    const [value, setValue] = React.useState('1')
+const ResourcesDetails = () => {
+    const [value, setValue] = useState('1')
     const { id } = useParams()
-    const [resourceData, setresourceData] = useState({})
-
+    const [resourceData, setresourceData] = useState<ResourceVideoType>()
     const [showFull, setShowFull] = useState(false)
 
     const toggleShowMore = () => {
         setShowFull(!showFull)
     }
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (_: React.SyntheticEvent<Element, Event>, newValue: string) => {
         setValue(newValue)
     }
 
     useEffect(() => {
-        const selected = resourceVideoData.filter(
-            (resource) => JSON.parse(resource.id) === JSON.parse(id)
-        )
-        setresourceData(selected[0])
+        if (id) {
+            const selected = resourceVideoData.filter(
+                (resource) => resource.id === JSON.parse(id)
+            )
+            setresourceData(selected[0])
+        }
     }, [id, resourceData])
 
     const breadCrumbs = [
@@ -45,7 +46,6 @@ export default function ResourcesDetails() {
             link: '#',
         },
     ]
-
 
     return (
         <Box
@@ -71,7 +71,7 @@ export default function ResourcesDetails() {
                 >
                     {/* tO DO :: IMPLEMENT BREADCRUMB FUNCTIONALITY FOR BELOW */}
 
-                    <BreadCrumb breadCrumbs={breadCrumbs} />
+                    <VBBreadCrumb breadCrumbKey='resource-details' breadCrumbs={breadCrumbs} />
 
                     <Box
                         sx={{
@@ -95,13 +95,13 @@ export default function ResourcesDetails() {
                                 cursor: 'pointer',
                             }}
                         >
-                            {resourceData.name}
+                            {resourceData?.name}
                         </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Box sx={{ display: 'flex', columnGap: '10px' }}>
                             <Box sx={{ cursor: 'pointer' }}>
-                                <img src={resourceData.authorImage} alt="resource-thumbnail" />
+                                <img src={resourceData?.authorImage} alt="resource-thumbnail" />
                             </Box>
                             <Box>
                                 <Box>
@@ -116,7 +116,7 @@ export default function ResourcesDetails() {
                                         }}
                                     >
                     Bailey Richards
-                                        {resourceData.author}
+                                        {resourceData?.author}
                                     </Typography>
                                 </Box>
                                 <Box>
@@ -217,7 +217,7 @@ export default function ResourcesDetails() {
                                         color: 'rgba(71, 84, 103, 1)',
                                     }}
                                 >
-                                    <span>{resourceData.views} views</span> <span>•</span>{' '}
+                                    <span>{resourceData?.views} views</span> <span>•</span>{' '}
                                     <span>Aug 26, 2023</span>
                                 </Typography>
                             </Box>
@@ -236,7 +236,7 @@ export default function ResourcesDetails() {
                                     ? resourceData?.details
                                     : resourceData?.details?.slice(0, 400)}
 
-                                {resourceData?.details?.length > 4 && (
+                                {resourceData?.details?.length! > 4 && (
                                     <span>
                                         {showFull ? (
                                             <Button onClick={toggleShowMore}>See Less</Button>
@@ -285,7 +285,7 @@ export default function ResourcesDetails() {
                         <TabPanel value="1" sx={{ p: 0 }}>
                             <Box sx={{ marginTop: '20px', height:'100vh', paddingBottom:'40px', overflowY: 'auto' }}>
                                 {resourceVideoData
-                                    ?.filter((res) => JSON.parse(res.id) !== JSON.parse(id))
+                                    ?.filter((res) => res.id !== JSON.parse(id!))
                                     ?.map((resource) => (
                                         <Box
                                             key={resource.id}
@@ -384,3 +384,5 @@ export default function ResourcesDetails() {
         </Box>
     )
 }
+
+export default ResourcesDetails
