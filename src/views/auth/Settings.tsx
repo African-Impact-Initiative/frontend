@@ -4,15 +4,15 @@ import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
-import SettingsPersonalInfo from './SettingsPersonalInfo'
-import CompanyProfileSettings from './CompanyProfileSettings'
-import PasswordSettings from './PasswordSettings'
-import EmailNotificationSettings from './EmailNotificationSettings'
+import CompanyProfileSettings from '../../components/settings/CompanyProfileSettings'
+import EmailNotificationSettings from '../../components/settings/EmailNotificationSettings'
+import PasswordSettings from '../../components/settings/PasswordSettings'
+import SettingsPersonalInfo from '../../components/settings/SettingsPersonalInfo'
 
 const Settings = () => {
     const [value, setValue] = React.useState('1')
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (_: React.SyntheticEvent<Element, Event>, newValue: string) => {
         setValue(newValue)
     }
 
@@ -27,7 +27,6 @@ const Settings = () => {
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList
-                        
                             onChange={handleChange}
                             aria-label="API resources tabs"
                             textColor="secondary"
@@ -38,7 +37,7 @@ const Settings = () => {
                                     flexWrap: 'wrap',
                                 },
                             }}
-                            style={{ minWidth: 50 }} 
+                            style={{ minWidth: 50 }}
                         >
                             <Tab
                                 label="Personal info"
