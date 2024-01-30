@@ -474,7 +474,7 @@ const CompanyEditPage = () => {
                                         width: { md: 312, xs: '100%' },
                                         marginTop: '6px',
                                         marginBottom: '10px',
-                                        fontSize: "14px"
+                                        fontSize: '14px'
                                     }}
                                 >
                                     <MenuItem value="">
