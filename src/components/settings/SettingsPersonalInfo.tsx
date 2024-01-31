@@ -30,6 +30,7 @@ const SettingsPersonalInfo = () => {
         '<p>Yeeeeh</p>'
     )
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFileChange = (e: any) => {
         const file = e.target.files[0]
         if (file) {

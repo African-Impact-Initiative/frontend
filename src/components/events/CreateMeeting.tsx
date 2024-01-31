@@ -17,10 +17,10 @@ export interface ICreateMeetingProps {
 }
 
 const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
-    const [_status, setStatus] = useState('')
+    const [, setStatus] = useState('')
     const [value, setValue] = useState(null)
-    const [_wordCount, setWordCount] = useState(0)
-    const [_editorContent, setEditorContent] = useState('<p>Hello from CKEditor 5! This is an example.</p>')
+    const [, setWordCount] = useState(0)
+    const [, setEditorContent] = useState('<p>Hello from CKEditor 5! This is an example.</p>')
 
     const updateWordCount = (content: string) => {
         const text = content.replace(/<[^>]*>/g, ' ')

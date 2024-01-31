@@ -15,8 +15,8 @@ export interface IAddFundingModalProps {
 }
 
 const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingModalProps) => {
-    const [_team, setTeam] = useState('')
-    const [value, setValue] = React.useState<Dayjs | null>(dayjs('2023-04-17'))
+    const [, setTeam] = useState('')
+    const [value, setValue] = useState<Dayjs | null>(dayjs('2023-04-17'))
 
     const teams = [
         { label: 'Jona', value: 'Joan' },

@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { renderTeamtypeBg, renderTeamtypeBorder } from '../VBTableComponent'
 import { ResourceArticleType } from '../../utils/devUtils'
+import { renderTeamtypeBorder, renderTeamtypeBg } from '../utils/tableUtils'
 
 export interface IArticleResources {
     resourceArticleData: Array<ResourceArticleType>

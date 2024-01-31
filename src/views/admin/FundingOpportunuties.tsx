@@ -9,6 +9,7 @@ import { fundersData } from '../../utils/devUtils'
 import VBTopBanner from '../../components/VBTopBanner'
 import VBSelectionRow from '../../components/VBSelectionRow'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
@@ -81,7 +82,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         headerName: '',
         width: 160,
         flex: 1,
-        renderCell: (_params) => (
+        renderCell: () => (
             <div
                 style={{
                     display: 'flex',

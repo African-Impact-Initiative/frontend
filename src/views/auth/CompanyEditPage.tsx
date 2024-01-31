@@ -57,7 +57,7 @@ const CompanyEditPage = () => {
     const [logoModal, setLogoModal] = useState(false)
     const [leadershipModal, setLeadershipModal] = useState(false)
     const [jobModal, setJobModal] = useState(false)
-    const [_, setSelectItem] = useState('')
+    const [, setSelectItem] = useState('')
 
     const navigate = useNavigate()
 

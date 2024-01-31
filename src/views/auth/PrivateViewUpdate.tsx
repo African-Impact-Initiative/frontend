@@ -30,7 +30,6 @@ import dataprime from '../../assets/dataprime.png'
 import raviga from '../../assets/raviga.png'
 import PublicCompanyView from './PublicCompanyView'
 import { useNavigate } from 'react-router-dom'
-import logo from '../../assets/dataprime.png'
 import articleBg from '../../assets/article-bg.png'
 import articleBg2 from '../../assets/article-2bg.png'
 import AddLeadershipModal from '../../components/companyEdit/AddLeadershipModal'
@@ -101,7 +100,7 @@ const PrivateViewUpdate = () => {
                         }}
                     >
                         <Box>
-                            <img src={logo} alt='logo' style={{ height: '160px', width: '160px' }} />
+                            <img src={dataprime} alt='logo' style={{ height: '160px', width: '160px' }} />
                         </Box>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>

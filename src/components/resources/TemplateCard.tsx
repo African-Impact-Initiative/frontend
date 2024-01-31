@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { renderTeamtypeBg, renderTeamtypeBorder } from '../VBTableComponent'
 import { ResourceTemplateType } from '../../utils/devUtils'
+import { renderTeamtypeBorder, renderTeamtypeBg } from '../utils/tableUtils'
 
 export interface ITemplateCard {
     template: ResourceTemplateType
@@ -57,7 +57,7 @@ const TemplateCard = ({ template }: ITemplateCard) => {
                 >
                     <Typography
                         sx={{
-                            color:renderTeamtypeBg(template?.type),
+                            color: renderTeamtypeBg(template?.type),
                             fontWeight: '500',
                             fontSize: '14px',
                         }}

@@ -26,7 +26,7 @@ const visibility = [
 ]
 
 const CreateArticle = () => {
-    const [_status, setStatus] = useState('')
+    const [, setStatus] = useState('')
 
     const [openUploadSuccess, setOpenUploadSuccess] = useState(false)
     const handleCloseUploadSuccess = () => setOpenUploadSuccess(false)

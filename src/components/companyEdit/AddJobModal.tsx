@@ -4,7 +4,7 @@ import { Box } from '@mui/system'
 import { useState } from 'react'
 
 const AddJobModal = () => {
-    const [_, setTeam] = useState('')
+    const [, setTeam] = useState('')
 
     const teams = [
         { label: 'Jona', value: 'Joan' },

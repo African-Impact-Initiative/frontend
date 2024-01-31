@@ -66,7 +66,7 @@ const data = [
 ]
 
 const Dashboard = () => {
-    const [_, setStatus] = useState('')
+    const [, setStatus] = useState('')
 
     const navigate = useNavigate()
 

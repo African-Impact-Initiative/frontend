@@ -22,9 +22,10 @@ const AddLeadershipModal = () => {
         },
     ]
 
-    const handleRemoveLeader = (_: number) => {
+    const handleRemoveLeader = (num: number) => {
     // implement your logic to remove the leader at the specified index
     // for example: setLeaders([...leaders.slice(0, index), ...leaders.slice(index + 1)]);
+        console.log(num)
     }
 
     return (

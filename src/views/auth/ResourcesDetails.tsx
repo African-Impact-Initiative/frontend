@@ -236,7 +236,7 @@ const ResourcesDetails = () => {
                                     ? resourceData?.details
                                     : resourceData?.details?.slice(0, 400)}
 
-                                {resourceData?.details?.length! > 4 && (
+                                {resourceData?.details && resourceData.details.length > 4 && (
                                     <span>
                                         {showFull ? (
                                             <Button onClick={toggleShowMore}>See Less</Button>

@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { useState } from 'react'
 import { AutoStoriesOutlined, ModeEditOutlineOutlined } from '@mui/icons-material'
 import { DataGrid, GridColDef, GridEventListener } from '@mui/x-data-grid'
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
@@ -12,6 +12,7 @@ import VBResourceUpload from '../../components/VBResourceUpload'
 import VBSelectionRow from '../../components/VBSelectionRow'
 import { templateData } from '../../utils/devUtils'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
@@ -92,7 +93,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         headerName: '',
         width: 130,
         flex: 1,
-        renderCell: (_params) => (
+        renderCell: () => (
             <div
                 style={{
                     display: 'flex',
@@ -124,7 +125,7 @@ const rows = templateData
 
 const Article = () => {
     const navigate = useNavigate()
-    const [openUpload, setOpenUpload] = React.useState(false)
+    const [openUpload, setOpenUpload] = useState(false)
     const handleCloseUpload = () => setOpenUpload(false)
 
     const uploadAction = () => {

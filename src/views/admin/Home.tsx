@@ -8,6 +8,7 @@ import { homeData } from '../../utils/devUtils'
 import VBSelectionRow from '../../components/VBSelectionRow'
 import VBTopBanner from '../../components/VBTopBanner'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
@@ -109,7 +110,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         headerName: '',
         width: 106,
         flex: 1,
-        renderCell: (_params) => (
+        renderCell: () => (
             <div
                 style={{
                     display: 'flex',
@@ -133,13 +134,14 @@ const columns: Array<GridColDef<any, any, any>> = [
 
 const rows = homeData
 
-export const renderCardtypeBorder = (type: string) => {
+const renderCardtypeBorder = (type: string) => {
     if (type === 'new') return '1px solid #ABEFC6'
     else if (type === 'request') return '1px solid #FEDF89'
     else if (type === 'tograde') return '1px solid  #FEDF89'
     else return '1px solid rgba(185, 230, 254, 1)'
 }
-export const renderCardtypeBackgroundColor = (type: string) => {
+
+const renderCardtypeBackgroundColor = (type: string) => {
     if (type === 'new') return '#ECFDF3'
     else if (type === 'request') return '#FFFAEB'
     else if (type === 'tograde') return '#FFFAEB'

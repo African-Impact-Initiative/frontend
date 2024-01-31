@@ -19,7 +19,7 @@ const visibility = [
 ]
 
 const TemplateDetails = () => {
-    const [_status, setStatus] = useState('')
+    const [, setStatus] = useState('')
     const [imagePreview, setImagePreview] = useState(thumbanil1)
 
     const navigate = useNavigate()

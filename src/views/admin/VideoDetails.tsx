@@ -5,7 +5,7 @@ import VBVideoUpload from '../../components/VBVideoUpload'
 import { useState } from 'react'
 
 const VideoDetails = () => {
-    const [_open, setOpen] = useState(true)
+    const [, setOpen] = useState(true)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 

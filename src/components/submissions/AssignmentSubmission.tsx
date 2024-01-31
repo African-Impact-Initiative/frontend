@@ -5,6 +5,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { assignmentData } from '../../utils/devUtils'
 import VBSelectionRow from '../VBSelectionRow'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
@@ -62,7 +63,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         headerName: '',
         width: 150,
         flex: 1,
-        renderCell: (_params) => (
+        renderCell: () => (
             <div
                 style={{
                     display: 'flex',

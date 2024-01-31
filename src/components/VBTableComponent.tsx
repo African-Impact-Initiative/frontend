@@ -8,33 +8,7 @@ import Paper from '@mui/material/Paper'
 import { Box } from '@mui/system'
 import { TablePagination, Typography } from '@mui/material'
 import { useState, Fragment } from 'react'
-
-export const renderTeamtypeBorder = (type: string) => {
-    if (type === 'Marketing')
-        return '1px solid rgba(171, 239, 198, 1)'
-    else if (type === 'Operations')
-        return '1px solid rgba(249, 219, 175, 1)'
-    else
-        return '1px solid rgba(185, 230, 254, 1)'
-}
-
-export const renderTeamtypeBackground = (type: string) => {
-    if (type === 'Marketing')
-        return '#ECFDF4'
-    else if (type === 'Operations')
-        return ' #FEF6EE'
-    else
-        return '  #EFF8FE'
-}
-
-export const renderTeamtypeBg = (type: string) => {
-    if (type === 'Marketing')
-        return 'rgba(6, 118, 71, 1)'
-    else if (type === 'Operations')
-        return 'rgba(185, 56, 21, 1)'
-    else
-        return 'rgba(2, 106, 162, 1)'
-}
+import { renderTeamtypeBorder, renderTeamtypeBackground, renderTeamtypeBg } from './utils/tableUtils'
 
 export interface ITableComponent {
     headers: Array<string>,
@@ -93,7 +67,7 @@ const VBTableComponent = ({ headers, data, dataKeyAccessors }: ITableComponent) 
                                 >
                                     <Typography
                                         sx={{
-                                            color:renderTeamtypeBg(row.team as string),
+                                            color: renderTeamtypeBg(row.team as string),
                                             fontWeight: '500',
                                             fontSize: '14px',
                                         }}

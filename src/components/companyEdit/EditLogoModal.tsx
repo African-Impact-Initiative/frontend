@@ -5,8 +5,9 @@ import React, { useState } from 'react'
 
 const EditLogoModal = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
-    const [formData, _] = useState({})
+    const [formData] = useState({})
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFileChange = (e: any) => {
         const file = e.target.files[0]
         if (file) {
