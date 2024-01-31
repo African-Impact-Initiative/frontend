@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import EditLogoModal from '../../components/companyEdit/EditLogoModal'
 import AddLeadershipModal from '../../components/companyEdit/AddLeadershipModal'
 import AddJobModal from '../../components/companyEdit/AddJobModal'
+import { VBTextField } from '../../components/VBForms'
 
 const items = [
     {
@@ -507,11 +508,6 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px'}}>
                                     <Paper
-                                        component="form"
-                                        value={industry}
-                                        select
-                                        size="large"
-                                        onChange={(e) => setIndustry(e.target.value)}
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -522,6 +518,14 @@ const CompanyEditPage = () => {
                                             border: '1px solid #D0D5DD'
                                         }}
                                     >
+                                        <VBTextField
+                                            value={industry}
+                                            setter={setIndustry}
+                                            size='medium'
+                                            label="Search"
+                                            required={false}
+                                        />
+
                                         <IconButton
                                             type="button"
                                             sx={{ p: '10px' }}
@@ -529,12 +533,6 @@ const CompanyEditPage = () => {
                                         >
                                             <Search />
                                         </IconButton>
-
-                                        <InputBase
-                                            sx={{ flex: 1, fontSize: 16 }}
-                                            placeholder="Search of label"
-                                            inputProps={{ 'aria-label': 'label search' }}
-                                        />
                                     </Paper>
                                 </Box>
                             </Box>
