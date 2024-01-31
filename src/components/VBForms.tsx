@@ -86,7 +86,7 @@ export const VBSelect = ({ label, list, value, setter, required, helper, size }:
                 helperText={helper}
                 sx={{ width: '100%', marginTop: '10px', marginBottom: '10px' }}
             >
-                <MenuItem value="">
+                <MenuItem value=''>
                     <em>None</em>
                 </MenuItem>
                 {list.map(item => <MenuItem key={item.value} value={item.value}>{item.label}</MenuItem>)}

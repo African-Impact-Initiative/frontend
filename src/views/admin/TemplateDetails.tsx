@@ -169,7 +169,7 @@ const TemplateDetails = () => {
                         <TextField
                             // value={status}
                             select
-                            label="Categories"
+                            label='Categories'
                             // size="large"
                             onChange={(e) => setStatus(e.target.value)}
                             sx={{
@@ -177,7 +177,7 @@ const TemplateDetails = () => {
                                 height: '44px',
                             }}
                         >
-                            <MenuItem value="">
+                            <MenuItem value=''>
                                 <em>English</em>
                             </MenuItem>
                             {categories.map((state) => (
@@ -201,7 +201,7 @@ const TemplateDetails = () => {
                         <TextField
                             // value={status}
                             select
-                            label="Visibility"
+                            label='Visibility'
                             // size="large"
                             // onChange={(e) => setStatus(e.target.value)}
                             sx={{
@@ -209,7 +209,7 @@ const TemplateDetails = () => {
                                 height: '44px',
                             }}
                         >
-                            <MenuItem value="">
+                            <MenuItem value=''>
                                 <em>Public</em>
                             </MenuItem>
                             {visibility.map((state) => (
@@ -368,7 +368,7 @@ const TemplateDetails = () => {
                                 {imagePreview != '' ? (
                                     <img
                                         src={imagePreview}
-                                        alt="thumbnail"
+                                        alt='thumbnail'
                                         width={'276px'}
                                         height={'176px'}
                                     />

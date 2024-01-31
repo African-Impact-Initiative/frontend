@@ -252,7 +252,7 @@ export default function TemplateDetails() {
                                             columnGap: '10px',
                                         }}
                                     >
-                                        <img src={MsIcon} alt="ms-icon" />{' '}
+                                        <img src={MsIcon} alt='ms-icon' />{' '}
                                         <ArrowDownwardOutlinedIcon /> Word
                                     </Box>
                                 </Button>
@@ -273,7 +273,7 @@ export default function TemplateDetails() {
                                             columnGap: '10px',
                                         }}
                                     >
-                                        <img src={GoogleIcon} alt="google-icon" />{' '}
+                                        <img src={GoogleIcon} alt='google-icon' />{' '}
                                         <ArrowDownwardOutlinedIcon />
                                         <span
                                             style={{
@@ -379,7 +379,7 @@ export default function TemplateDetails() {
                                 >
                                     <img
                                         src={template}
-                                        alt="resource-thumbnail"
+                                        alt='resource-thumbnail'
                                         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                     />
                                 </Box>
@@ -413,19 +413,19 @@ export default function TemplateDetails() {
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <TabList
                                 onChange={handleChange}
-                                aria-label="API resources tabs"
-                                textColor="secondary"
-                                indicatorColor="secondary"
+                                aria-label='API resources tabs'
+                                textColor='secondary'
+                                indicatorColor='secondary'
                             >
-                                <Tab label="All" value="1" />
-                                <Tab label="Product" value="2" />
-                                <Tab label="Marketing" value="3" />
-                                <Tab label="Ops" value="4" />
-                                <Tab label="Legal" value="5" />
-                                <Tab label="Mgmt" value="6" />
+                                <Tab label='All' value='1' />
+                                <Tab label='Product' value='2' />
+                                <Tab label='Marketing' value='3' />
+                                <Tab label='Ops' value='4' />
+                                <Tab label='Legal' value='5' />
+                                <Tab label='Mgmt' value='6' />
                             </TabList>
                         </Box>
-                        <TabPanel value="1" sx={{ p: 0 }}>
+                        <TabPanel value='1' sx={{ p: 0 }}>
                             <Box
                                 sx={{
                                     gap: '20px',
@@ -442,11 +442,11 @@ export default function TemplateDetails() {
                                     ))}
                             </Box>
                         </TabPanel>
-                        <TabPanel value="2">Item Two</TabPanel>
-                        <TabPanel value="3">Item Three</TabPanel>
-                        <TabPanel value="4">Item 4</TabPanel>
-                        <TabPanel value="5">Item 5</TabPanel>
-                        <TabPanel value="6">Item 6</TabPanel>
+                        <TabPanel value='2'>Item Two</TabPanel>
+                        <TabPanel value='3'>Item Three</TabPanel>
+                        <TabPanel value='4'>Item 4</TabPanel>
+                        <TabPanel value='5'>Item 5</TabPanel>
+                        <TabPanel value='6'>Item 6</TabPanel>
                     </TabContext>
                 </Box>
             </Box>

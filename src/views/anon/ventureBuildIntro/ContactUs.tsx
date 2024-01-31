@@ -84,7 +84,7 @@ const ContactUs = () => {
                             </Box>
                             <Box sx={{ marginTop: '10px', width: '100%',  }}>
                                 <Paper
-                                    component="form"
+                                    component='form'
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -97,7 +97,7 @@ const ContactUs = () => {
                                 >
                                     <InputBase
                                         sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                        placeholder="First Name"
+                                        placeholder='First Name'
                                         inputProps={{ 'aria-label': 'first Name' }}
                                     />
                                 </Paper>
@@ -121,7 +121,7 @@ const ContactUs = () => {
                             </Box>
                             <Box sx={{ marginTop: '10px', width: '100%',  }}>
                                 <Paper
-                                    component="form"
+                                    component='form'
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -134,7 +134,7 @@ const ContactUs = () => {
                                 >
                                     <InputBase
                                         sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                        placeholder="Last Name"
+                                        placeholder='Last Name'
                                         inputProps={{ 'aria-label': 'Last Name' }}
                                     />
                                 </Paper>
@@ -158,7 +158,7 @@ const ContactUs = () => {
                         </Box>
                         <Box sx={{ marginTop: '10px', }}>
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -171,7 +171,7 @@ const ContactUs = () => {
                             >
                                 <InputBase
                                     sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                    placeholder="name@domain.com"
+                                    placeholder='name@domain.com'
                                     inputProps={{ 'aria-label': 'email' }}
                                 />
                             </Paper>
@@ -195,11 +195,11 @@ const ContactUs = () => {
                         </Box>
                         <Box
                             sx={{ width: {md:'90%', xs: '100%'}, fontSize: '16px', color: '#475467', fontWeight: '400', lineHeight: '24px', marginTop: '10px' }}
-                            className="my-custom-editor-meeting"
+                            className='my-custom-editor-meeting'
                         >
                             <CKEditor
                                 editor={ClassicEditor}
-                                data="<p>Leave us a message...</p>"
+                                data='<p>Leave us a message...</p>'
                                 onReady={(editor) => {
                                     // you can store the "editor" and use when it is needed.
                                     console.log('Editor is ready to use!', editor)
@@ -258,7 +258,7 @@ const ContactUs = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '16px',
                                             fontWeight: '400',
@@ -284,7 +284,7 @@ const ContactUs = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '16px',
                                             fontWeight: '400',
@@ -308,8 +308,8 @@ const ContactUs = () => {
                             }}
                         >
                             <Button
-                                size="large"
-                                variant="outlined"
+                                size='large'
+                                variant='outlined'
                                 sx={{
                                     border: '1px solid #D0D5DD',
                                     borderRadius: '8px',
@@ -327,8 +327,8 @@ const ContactUs = () => {
                             </Button>
                             <Button
                                 onClick={handleSendMessage}
-                                type="submit"
-                                variant="contained"
+                                type='submit'
+                                variant='contained'
                                 sx={{
                                     color: '#FFFFFF',
                                     backgroundColor: '#DC6803',
@@ -370,7 +370,7 @@ const ContactUs = () => {
                             {/* flexDirection: {md: 'row', xs: 'column'}  */}
                             <Box sx={{ display: 'flex', columnGap: '16px', flexDirection: {md: 'row', xs: 'column'} , rowGap: {xs: '20px'}}}>
                                 <Paper
-                                    component="form"
+                                    component='form'
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -383,14 +383,14 @@ const ContactUs = () => {
                                 >
                                     <InputBase
                                         sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                        placeholder="Enter your email"
+                                        placeholder='Enter your email'
                                         inputProps={{ 'aria-label': ' email' }}
                                     />
                                 </Paper>
                                 <Button
                                     onClick={handleSubmit}
-                                    type="submit"
-                                    variant="contained"
+                                    type='submit'
+                                    variant='contained'
                                     sx={{
                                         color: '#FFFFFF',
                                         backgroundColor: '#DC6803',

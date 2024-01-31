@@ -125,7 +125,7 @@ const CompanyProfile = () => {
                         <Typography variant='h6' gutterBottom>Industry</Typography>
                         <VBSelect
                             value={industry}
-                            label="Industry"
+                            label='Industry'
                             size='small'
                             required={false}
                             list={industriesList}

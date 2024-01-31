@@ -20,9 +20,9 @@ const SubmissionsRow = () => {
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList
                             onChange={handleChange}
-                            aria-label="API resources tabs"
-                            textColor="secondary"
-                            indicatorColor="secondary"
+                            aria-label='API resources tabs'
+                            textColor='secondary'
+                            indicatorColor='secondary'
                             TabIndicatorProps={{ sx: { display: 'none' } }}
                             sx={{
                                 '& .MuiTabs-flexContainer': {
@@ -32,8 +32,8 @@ const SubmissionsRow = () => {
                             style={{ minWidth: 50 }}
                         >
                             <Tab
-                                label="Assignments"
-                                value="1"
+                                label='Assignments'
+                                value='1'
                                 sx={{
                                     textTransform: 'none',
                                     fontSize: '14px',
@@ -42,8 +42,8 @@ const SubmissionsRow = () => {
                                 }}
                             />
                             <Tab
-                                label="Questionnaires"
-                                value="2"
+                                label='Questionnaires'
+                                value='2'
                                 sx={{
                                     textTransform: 'none',
                                     fontSize: '14px',
@@ -52,8 +52,8 @@ const SubmissionsRow = () => {
                                 }}
                             />
                             <Tab
-                                label="Requests"
-                                value="3"
+                                label='Requests'
+                                value='3'
                                 sx={{
                                     textTransform: 'none',
                                     fontSize: '14px',
@@ -65,16 +65,16 @@ const SubmissionsRow = () => {
 
                         </TabList>
                     </Box>
-                    <TabPanel value="1" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='1' sx={{ padding: '35px 0' }}>
                         <AssignmentSubmissions />
                     </TabPanel>
-                    <TabPanel value="2" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='2' sx={{ padding: '35px 0' }}>
                         Questionnaires
                     </TabPanel>
-                    <TabPanel value="3" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='3' sx={{ padding: '35px 0' }}>
                         Requests
                     </TabPanel>
-                    <TabPanel value="4" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='4' sx={{ padding: '35px 0' }}>
                         Panel 4
                     </TabPanel>
 

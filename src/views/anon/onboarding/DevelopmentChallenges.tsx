@@ -82,7 +82,7 @@ const DevelopmentChallenges = () => {
             <Typography>Select three options from below</Typography>
 
             <StyledToggleButtonGroup
-                size="small"
+                size='small'
                 value={formats}
                 onChange={handleFormat}
                 sx={{width: '500px', flexWrap: 'wrap', display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '20px'}}

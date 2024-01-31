@@ -65,8 +65,8 @@ const CompanyEditPage = () => {
         <Box>
             <Modal
                 open={logoModal}
-                aria-labelledby="modal-title"
-                aria-describedby="modal-description"
+                aria-labelledby='modal-title'
+                aria-describedby='modal-description'
                 onClose={() => {
                     setLogoModal(false)
                 }}
@@ -76,8 +76,8 @@ const CompanyEditPage = () => {
 
             <Modal
                 open={leadershipModal}
-                aria-labelledby="modal-title"
-                aria-describedby="modal-description"
+                aria-labelledby='modal-title'
+                aria-describedby='modal-description'
                 onClose={() => {
                     setLeadershipModal(false)
                 }}
@@ -87,8 +87,8 @@ const CompanyEditPage = () => {
 
             <Modal
                 open={jobModal}
-                aria-labelledby="modal-title"
-                aria-describedby="modal-description"
+                aria-labelledby='modal-title'
+                aria-describedby='modal-description'
                 onClose={() => {
                     setJobModal(false)
                 }}
@@ -185,8 +185,8 @@ const CompanyEditPage = () => {
                         }}
                     >
                         <Button
-                            size="large"
-                            variant="outlined"
+                            size='large'
+                            variant='outlined'
                             sx={{
                                 border: '1px solid #D0D5DD',
                                 borderRadius: '8px',
@@ -202,8 +202,8 @@ const CompanyEditPage = () => {
                             Cancel
                         </Button>
                         <Button
-                            type="submit"
-                            variant="contained"
+                            type='submit'
+                            variant='contained'
                             sx={{
                                 color: '#FFFFFF',
                                 backgroundColor: '#DC6803',
@@ -278,7 +278,7 @@ const CompanyEditPage = () => {
                                     fontWeight: '400',
                                     fontFamily: ' inter'
                                 }}
-                                placeholder="DataPrime empowers financial insights with AI-driven solutions for smarter decision-making."
+                                placeholder='DataPrime empowers financial insights with AI-driven solutions for smarter decision-making.'
                                 rows={1}
                                 onChange={(e) => {
                                     console.log(e)
@@ -314,7 +314,7 @@ const CompanyEditPage = () => {
                                     fontWeight: '400',
                                     fontFamily: ' inter'
                                 }}
-                                placeholder="Talk about your company’s values, mission, and vision."
+                                placeholder='Talk about your company’s values, mission, and vision.'
                                 rows={5}
                                 onChange={(e) => {
                                     console.log(e)
@@ -468,8 +468,8 @@ const CompanyEditPage = () => {
                                 <TextField
                                     value={country}
                                     select
-                                    label="Country"
-                                    size="small"
+                                    label='Country'
+                                    size='small'
                                     onChange={(e) => setCountry(e.target.value)}
                                     sx={{
                                         width: { md: 312, xs: '100%' },
@@ -478,7 +478,7 @@ const CompanyEditPage = () => {
                                         fontSize: '14px'
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>Country</em>
                                     </MenuItem>
                                     {countryList.map((country) => (
@@ -522,14 +522,14 @@ const CompanyEditPage = () => {
                                             value={industry}
                                             setter={setIndustry}
                                             size='medium'
-                                            label="Search"
+                                            label='Search'
                                             required={false}
                                         />
 
                                         <IconButton
-                                            type="button"
+                                            type='button'
                                             sx={{ p: '10px' }}
-                                            aria-label="search"
+                                            aria-label='search'
                                         >
                                             <Search />
                                         </IconButton>
@@ -556,7 +556,7 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
                                     <Paper
-                                        component="form"
+                                        component='form'
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -569,7 +569,7 @@ const CompanyEditPage = () => {
                                     >
                                         <InputBase
                                             sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                            placeholder="e.g. 12"
+                                            placeholder='e.g. 12'
                                             inputProps={{ 'aria-label': 'company size' }}
                                         />
                                     </Paper>
@@ -590,7 +590,7 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
                                     <Paper
-                                        component="form"
+                                        component='form'
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -613,11 +613,11 @@ const CompanyEditPage = () => {
 
                                         <Divider
                                             sx={{ ml: 2, height: 50, m: 0.5 }}
-                                            orientation="vertical"
+                                            orientation='vertical'
                                         />
                                         <InputBase
                                             sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                            placeholder="www.example.com"
+                                            placeholder='www.example.com'
                                             inputProps={{ 'aria-label': 'label search' }}
                                         />
                                     </Paper>
@@ -643,7 +643,7 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
                                     <Paper
-                                        component="form"
+                                        component='form'
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -656,7 +656,7 @@ const CompanyEditPage = () => {
                                     >
                                         <InputBase
                                             sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                            placeholder="example@gmail.com"
+                                            placeholder='example@gmail.com'
                                             inputProps={{ 'aria-label': 'company size' }}
                                         />
                                     </Paper>
@@ -677,7 +677,7 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
                                     <Paper
-                                        component="form"
+                                        component='form'
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -694,7 +694,7 @@ const CompanyEditPage = () => {
                                         </Box>
                                         <InputBase
                                             sx={{ flex: 1, fontSize: 16, ml: 2 }}
-                                            placeholder="twitter.com/example"
+                                            placeholder='twitter.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
                                         />
                                     </Paper>
@@ -715,7 +715,7 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
                                     <Paper
-                                        component="form"
+                                        component='form'
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -727,16 +727,16 @@ const CompanyEditPage = () => {
                                         }}
                                     >
                                         <IconButton
-                                            type="button"
+                                            type='button'
                                             sx={{ p: '10px' }}
-                                            aria-label="facebooklogo"
+                                            aria-label='facebooklogo'
                                         >
                                             <FacebookOutlined sx={{ color: '#1DA1F2' }} />
                                         </IconButton>
 
                                         <InputBase
                                             sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                            placeholder="facebook.com/example"
+                                            placeholder='facebook.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
                                         />
                                     </Paper>
@@ -757,7 +757,7 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
                                     <Paper
-                                        component="form"
+                                        component='form'
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -777,7 +777,7 @@ const CompanyEditPage = () => {
 
                                         <InputBase
                                             sx={{ flex: 1, fontSize: 16, ml: 2 }}
-                                            placeholder="linkedin.com/example"
+                                            placeholder='linkedin.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
                                         />
                                     </Paper>
@@ -798,7 +798,7 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
                                     <Paper
-                                        component="form"
+                                        component='form'
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -828,7 +828,7 @@ const CompanyEditPage = () => {
 
                                         <InputBase
                                             sx={{ flex: 1, fontSize: 16, ml: 2 }}
-                                            placeholder="instagram.com/example"
+                                            placeholder='instagram.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
                                         />
                                     </Paper>
@@ -849,7 +849,7 @@ const CompanyEditPage = () => {
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
                                     <Paper
-                                        component="form"
+                                        component='form'
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
@@ -861,9 +861,9 @@ const CompanyEditPage = () => {
                                         }}
                                     >
                                         <IconButton
-                                            type="button"
+                                            type='button'
                                             sx={{ p: '10px' }}
-                                            aria-label="youtubebutton"
+                                            aria-label='youtubebutton'
                                         >
                                             <YouTube
                                                 sx={{ color: 'red' }} />
@@ -871,7 +871,7 @@ const CompanyEditPage = () => {
 
                                         <InputBase
                                             sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                            placeholder="youtube.com/example"
+                                            placeholder='youtube.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
                                         />
                                     </Paper>
@@ -921,7 +921,7 @@ const CompanyEditPage = () => {
                                 <TextField
                                     value={items}
                                     select
-                                    size="small"
+                                    size='small'
                                     onChange={(e) => setSelectItem(e.target.value)}
                                     sx={{
                                         width: {md: '312px', xs: '100%'},
@@ -929,7 +929,7 @@ const CompanyEditPage = () => {
                                         marginBottom: '10px',
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>Select</em>
                                     </MenuItem>
                                     {items.map((item) => (
@@ -957,8 +957,8 @@ const CompanyEditPage = () => {
                                 <TextField
                                     value={currencies}
                                     select
-                                    size="small"
-                                    defaultValue="e.g. 10k"
+                                    size='small'
+                                    defaultValue='e.g. 10k'
                                     onChange={(e) => setSelectItem(e.target.value)}
                                     sx={{
                                         width: {md: '312px', xs: '100%'},
@@ -966,7 +966,7 @@ const CompanyEditPage = () => {
                                         marginBottom: '10px',
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>Select</em>
                                     </MenuItem>
                                     {currencies.map((item) => (
@@ -993,7 +993,7 @@ const CompanyEditPage = () => {
 
                             <Box sx={{ marginTop: '12px', }}>
                                 <Paper
-                                    component="form"
+                                    component='form'
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -1005,16 +1005,16 @@ const CompanyEditPage = () => {
                                     }}
                                 >
                                     <IconButton
-                                        type="button"
+                                        type='button'
                                         sx={{ p: '10px' }}
-                                        aria-label="search"
+                                        aria-label='search'
                                     >
                                         <Search />
                                     </IconButton>
 
                                     <InputBase
                                         sx={{ flex: 1, fontSize: 16 }}
-                                        placeholder="Search for investor"
+                                        placeholder='Search for investor'
                                         inputProps={{ 'aria-label': 'label search' }}
                                     />
                                 </Paper>

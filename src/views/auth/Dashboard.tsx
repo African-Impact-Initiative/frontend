@@ -145,8 +145,8 @@ const Dashboard = () => {
     return (
         <Box sx={{ padding: '20px', width: '100%' }}>
             <VBPageHeader
-                title="Home"
-                subTitle="Monitor recent activities and key metrics of your company here."
+                title='Home'
+                subTitle='Monitor recent activities and key metrics of your company here.'
                 noHr={false}
             />
             <Box
@@ -219,7 +219,7 @@ const Dashboard = () => {
                                             display: 'flex',
                                         }}
                                     >
-                                        <img src={dataprime} alt="dataprime" style={{height: '30px', width: '30px'}} />
+                                        <img src={dataprime} alt='dataprime' style={{height: '30px', width: '30px'}} />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography
@@ -261,7 +261,7 @@ const Dashboard = () => {
                                 }}
                             >
                                 <Button
-                                    variant="text"
+                                    variant='text'
                                     sx={{
                                         display: 'flex',
                                         justifyContent: 'flex-end',
@@ -344,7 +344,7 @@ const Dashboard = () => {
 
                                                         }}
                                                     >
-                                                        <img src={member.url} alt="images" />
+                                                        <img src={member.url} alt='images' />
                                                     </Box>
                                                 </Box>
                                             ))}
@@ -385,7 +385,7 @@ const Dashboard = () => {
                                 }}
                             >
                                 <Button
-                                    variant="text"
+                                    variant='text'
                                     sx={{
                                         display: 'flex',
                                         justifyContent: 'flex-end',
@@ -499,7 +499,7 @@ const Dashboard = () => {
                                 </Button>
                                 <Divider
                                     sx={{ height: 40 }}
-                                    orientation="vertical"
+                                    orientation='vertical'
                                 />
                                 <Button
                                     sx={{
@@ -515,7 +515,7 @@ const Dashboard = () => {
                                 </Button>
                                 <Divider
                                     sx={{ height: 40 }}
-                                    orientation="vertical"
+                                    orientation='vertical'
                                 />
                                 <Button
                                     sx={{
@@ -537,8 +537,8 @@ const Dashboard = () => {
                             }}>
                                 <TextField
                                     select
-                                    label="All teams"
-                                    size="small"
+                                    label='All teams'
+                                    size='small'
                                     onChange={(e) => setStatus(e.target.value)}
                                     sx={{
                                         width: { md: '123px', xs: '100%' },
@@ -547,7 +547,7 @@ const Dashboard = () => {
                                         fontSize: '14px'
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>English</em>
                                     </MenuItem>
                                     {filters.map((state) => (
@@ -580,7 +580,7 @@ const Dashboard = () => {
                                         width: { md: '360px', xs: '100%' },
 
                                     }}
-                                    label="Search"
+                                    label='Search'
                                 />
                             </Box>
                         </Box>

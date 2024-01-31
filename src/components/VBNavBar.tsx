@@ -47,8 +47,8 @@ const VBNavBar = () => {
     }
 
     return (
-        <AppBar position="fixed" sx={{boxShadow: 2, backgroundColor: '#FFF', zIndex: '100000000', marginBottom: '20px'}}>
-            <Container maxWidth="xl">
+        <AppBar position='fixed' sx={{boxShadow: 2, backgroundColor: '#FFF', zIndex: '100000000', marginBottom: '20px'}}>
+            <Container maxWidth='xl'>
                 <Toolbar disableGutters>
                     <Box sx={{  display: 'flex', alignItems: 'center' }}>
                         <VBLogo dark={true} />
@@ -56,17 +56,17 @@ const VBNavBar = () => {
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
+                            size='large'
+                            aria-label='account of current user'
+                            aria-controls='menu-appbar'
+                            aria-haspopup='true'
                             onClick={handleOpenNavMenu}
-                            color="inherit"
+                            color='inherit'
                         >
                             <MenuIcon />
                         </IconButton>
                         <Menu
-                            id="menu-appbar"
+                            id='menu-appbar'
                             anchorEl={anchorElNav}
                             anchorOrigin={{
                                 vertical: 'bottom',
@@ -86,7 +86,7 @@ const VBNavBar = () => {
                             {pages.map((page) => (
                                 <Link key={page.title} to={page.path} style={{textDecoration: 'none'}}>
                                     <MenuItem onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center" >{page.title}</Typography>
+                                        <Typography textAlign='center' >{page.title}</Typography>
                                     </MenuItem>
                                 </Link>
                             ))}

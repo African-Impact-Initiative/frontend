@@ -101,7 +101,7 @@ const ResourcesDetails = () => {
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Box sx={{ display: 'flex', columnGap: '10px' }}>
                             <Box sx={{ cursor: 'pointer' }}>
-                                <img src={resourceData?.authorImage} alt="resource-thumbnail" />
+                                <img src={resourceData?.authorImage} alt='resource-thumbnail' />
                             </Box>
                             <Box>
                                 <Box>
@@ -269,20 +269,20 @@ const ResourcesDetails = () => {
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <TabList
                                 onChange={handleChange}
-                                aria-label="API resources tabs"
-                                textColor="secondary"
-                                indicatorColor="secondary"
+                                aria-label='API resources tabs'
+                                textColor='secondary'
+                                indicatorColor='secondary'
 
                             >
-                                <Tab label="All" value="1" sx={{textTransform: 'none'}}  />
-                                <Tab label="Product" value="2" sx={{textTransform: 'none'}}  />
-                                <Tab label="Marketing" value="3" sx={{textTransform: 'none'}}  />
-                                <Tab label="Ops" value="4" sx={{textTransform: 'none'}}  />
-                                <Tab label="Legal" value="5" sx={{textTransform: 'none'}}  />
-                                <Tab label="Mgmt" value="6" sx={{textTransform: 'none'}}  />
+                                <Tab label='All' value='1' sx={{textTransform: 'none'}}  />
+                                <Tab label='Product' value='2' sx={{textTransform: 'none'}}  />
+                                <Tab label='Marketing' value='3' sx={{textTransform: 'none'}}  />
+                                <Tab label='Ops' value='4' sx={{textTransform: 'none'}}  />
+                                <Tab label='Legal' value='5' sx={{textTransform: 'none'}}  />
+                                <Tab label='Mgmt' value='6' sx={{textTransform: 'none'}}  />
                             </TabList>
                         </Box>
-                        <TabPanel value="1" sx={{ p: 0 }}>
+                        <TabPanel value='1' sx={{ p: 0 }}>
                             <Box sx={{ marginTop: '20px', height:'100vh', paddingBottom:'40px', overflowY: 'auto' }}>
                                 {resourceVideoData
                                     ?.filter((res) => res.id !== JSON.parse(id!))
@@ -373,11 +373,11 @@ const ResourcesDetails = () => {
                                     ))}
                             </Box>
                         </TabPanel>
-                        <TabPanel value="2">Item Two</TabPanel>
-                        <TabPanel value="3">Item Three</TabPanel>
-                        <TabPanel value="4">Item 4</TabPanel>
-                        <TabPanel value="5">Item 5</TabPanel>
-                        <TabPanel value="6">Item 6</TabPanel>
+                        <TabPanel value='2'>Item Two</TabPanel>
+                        <TabPanel value='3'>Item Three</TabPanel>
+                        <TabPanel value='4'>Item 4</TabPanel>
+                        <TabPanel value='5'>Item 5</TabPanel>
+                        <TabPanel value='6'>Item 6</TabPanel>
                     </TabContext>
                 </Box>
             </Box>

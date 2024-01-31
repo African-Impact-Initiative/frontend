@@ -36,7 +36,7 @@ const columns = [
                 <div>
                     <img
                         src={params.row.logo}
-                        alt="personImage"
+                        alt='personImage'
                         style={{ width: '40px', heigh: '40px' }}
                     />
                 </div>
@@ -146,7 +146,7 @@ const TeamPage = () => {
     return (
         <Box sx={{ padding: '20px', width: '100%' }}>
             <Box>
-                <PageHeader title="Team" subTitle="Manage your team members here." />
+                <PageHeader title='Team' subTitle='Manage your team members here.' />
             </Box>
             <Box>
                 <TeamCard />
@@ -172,7 +172,7 @@ const TeamPage = () => {
                             sx={{ display: 'flex', columnGap: '10px', marginBottom: '6px' }}
                         >
                             <Typography
-                                variant="p"
+                                variant='p'
                                 sx={{
                                     fontWeight: '600',
                                     lineHeight: '28px',
@@ -199,7 +199,7 @@ const TeamPage = () => {
                                 }}
                             >
                                 <Typography
-                                    variant="P"
+                                    variant='P'
                                     sx={{
                                         color: '#B54708',
                                         fontWeight: '500',
@@ -214,7 +214,7 @@ const TeamPage = () => {
                         </Box>
                         <Box sx={{ textAlign: {xs: 'start'}}}>
                             <Typography
-                                variant="p"
+                                variant='p'
                                 sx={{
                                     color: '#475467',
                                     fontSize: '14px',
@@ -242,7 +242,7 @@ const TeamPage = () => {
                         >
                             <CloudDownloadOutlined sx={{ color: '#344054' }} />
                             <Typography
-                                variant="p"
+                                variant='p'
                                 sx={{
                                     color: '#344054',
                                     lineHeight: '20px',
@@ -269,7 +269,7 @@ const TeamPage = () => {
                             }}>
                             <AddOutlined sx={{ color: 'white', height: '20px', width: '20px' }} />
                             <Typography
-                                variant="p"
+                                variant='p'
                                 sx={{
                                     lineHeight: '20px',
                                     fontWeight: '600',
@@ -291,15 +291,15 @@ const TeamPage = () => {
                         search={true}
                         firstBox={true}
                         secondBox={true}
-                        type="Search members"
-                        header1="Status"
-                        header2="Team"
-                        label1="Select"
-                        label2="Select"
+                        type='Search members'
+                        header1='Status'
+                        header2='Team'
+                        label1='Select'
+                        label2='Select'
                     />
                     <div style={{ height: 400, width: '100%' }}>
                         <DataGrid
-                            className="pointer-cursor-datagrid"
+                            className='pointer-cursor-datagrid'
                             rows={rows}
                             columns={columns}
                             // onRowClick={handleRowClick}

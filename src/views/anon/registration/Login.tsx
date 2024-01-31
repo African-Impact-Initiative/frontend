@@ -141,11 +141,11 @@ const Login = () => {
                     InputLabelProps={{ required: false }}
                     InputProps={{
                         endAdornment:
-                            <InputAdornment position="end">
+                            <InputAdornment position='end'>
                                 <IconButton
-                                    aria-label="toggle password visibility"
+                                    aria-label='toggle password visibility'
                                     onClick={() => setPasswordVisible(!passwordVisible)}
-                                    edge="end"
+                                    edge='end'
                                 >
                                     {passwordVisible ? <VisibilityOff /> : <Visibility />}
                                 </IconButton>

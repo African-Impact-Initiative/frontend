@@ -139,18 +139,18 @@ const EditLogoModal = () => {
                                 marginTop: '16px'
                             }}
                         >
-                            <Typography variant="body1" sx={{ marginTop: '16px' }}>
+                            <Typography variant='body1' sx={{ marginTop: '16px' }}>
                                 {selectedFile ? `${selectedFile.name}` : ''}
                             </Typography>
-                            <label htmlFor="file-upload">
+                            <label htmlFor='file-upload'>
                                 <input
-                                    type="file"
-                                    id="file-upload"
+                                    type='file'
+                                    id='file-upload'
                                     style={{ display: 'none' }}
                                     onChange={handleFileChange}
                                 />
                                 <Box
-                                    component="span"
+                                    component='span'
                                     onClick={handleUpload}
                                     sx={{
                                         marginTop: '14px',
@@ -195,8 +195,8 @@ const EditLogoModal = () => {
                     }}
                 >
                     <Button
-                        size="large"
-                        variant="outlined"
+                        size='large'
+                        variant='outlined'
                         sx={{
                             border: '1px solid #D0D5DD',
                             borderRadius: '8px',
@@ -214,8 +214,8 @@ const EditLogoModal = () => {
                     </Button>
                     <Button
                         onClick={handleFormSubmit}
-                        type="submit"
-                        variant="contained"
+                        type='submit'
+                        variant='contained'
                         sx={{
                             color: '#FFFFFF',
                             backgroundColor: '#DC6803',

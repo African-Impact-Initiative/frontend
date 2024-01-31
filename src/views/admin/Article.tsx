@@ -144,9 +144,9 @@ const Article = () => {
         <Box>
             <VBTopBanner
                 title={'Articles'}
-                description="Write and manage articles here."
+                description='Write and manage articles here.'
                 action={uploadAction}
-                actionText="Post"
+                actionText='Post'
             />
             <VBResourceUpload
                 open={openUpload}
@@ -159,15 +159,15 @@ const Article = () => {
                     search={true}
                     firstBox={true}
                     secondBox={true}
-                    type="Search article"
-                    header1="Categories"
-                    header2="Sort by"
-                    label1="Select"
-                    label2="Select"
+                    type='Search article'
+                    header1='Categories'
+                    header2='Sort by'
+                    label1='Select'
+                    label2='Select'
                 />
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
-                        className="pointer-cursor-datagrid"
+                        className='pointer-cursor-datagrid'
                         rows={rows}
                         columns={columns}
                         onRowClick={handleRowClick}

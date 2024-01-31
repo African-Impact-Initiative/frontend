@@ -174,7 +174,7 @@ const PersonalInfo = () => {
                         <Typography variant='h6' gutterBottom>Country</Typography>
                         <VBSelect
                             value={country}
-                            label="Country"
+                            label='Country'
                             size='small'
                             required={true}
                             setter={setCountry}

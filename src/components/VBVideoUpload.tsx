@@ -67,9 +67,9 @@ const VBVideoUpload = ({ handleClose, action }: IVBUploadVideoProps) => {
                             }}
                         >
                             <Typography
-                                id="modal-modal-title"
-                                variant="h6"
-                                component="h2"
+                                id='modal-modal-title'
+                                variant='h6'
+                                component='h2'
                                 sx={{
                                     color: 'rgba(16, 24, 40, 1)',
                                     fontWeight: 600,
@@ -171,7 +171,7 @@ const VBVideoUpload = ({ handleClose, action }: IVBUploadVideoProps) => {
                         </Box>
                         <Box sx={{ flex: 1 }}>
                             {imagePreview && imagePreview != '' ? (
-                                <img src={imagePreview} alt="thumbnail" width={'276px'} height={'196px'} />
+                                <img src={imagePreview} alt='thumbnail' width={'276px'} height={'196px'} />
                             ) : (
                                 ''
                             )}
@@ -244,7 +244,7 @@ const VBVideoUpload = ({ handleClose, action }: IVBUploadVideoProps) => {
                                 </Typography>
                                 <VBSelect
                                     label='Categories'
-                                    size="small"
+                                    size='small'
                                     setter={setStatus}
                                     list={categories}
                                     value={status}
@@ -264,7 +264,7 @@ const VBVideoUpload = ({ handleClose, action }: IVBUploadVideoProps) => {
                                 </Typography>
                                 <VBSelect
                                     label='Visibility'
-                                    size="small"
+                                    size='small'
                                     setter={setStatus}
                                     list={visibility}
                                     value={status}

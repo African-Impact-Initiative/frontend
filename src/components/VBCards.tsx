@@ -76,7 +76,7 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
             <Box sx={{ padding: '20px' }}>
                 <Box sx={{ display: 'flex', columnGap: '15px' }}>
                     <Box>
-                        <img src={logo} alt="logo" style={{ width: '40px', height: '40px' }} />
+                        <img src={logo} alt='logo' style={{ width: '40px', height: '40px' }} />
                     </Box>
                     <Box>
                         <Box sx={{ textAlign: 'start' }}>

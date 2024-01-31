@@ -36,7 +36,7 @@ const VBLeftSidebarWithView = ({Component, componentTitle, title, tagline, list}
             <Divider light sx={{marginBottom: '20px', marginTop: '10px'}}/>
             <Grid sx={{width: '100%', height: '100%'}} container spacing={3}>
                 <Grid item lg={3} sx={{height: '100%', width: '100%', display: 'flex !important', alignItems: 'center !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
-                    <List component="nav" aria-label="main mailbox folders" sx={{width: '100%'}}>
+                    <List component='nav' aria-label='main mailbox folders' sx={{width: '100%'}}>
                         {
                             list.map(item =>
                                 <ListItemButton key={item.title} disabled={componentTitle === item.title}>

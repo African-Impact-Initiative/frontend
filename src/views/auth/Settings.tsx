@@ -28,9 +28,9 @@ const Settings = () => {
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList
                             onChange={handleChange}
-                            aria-label="API resources tabs"
-                            textColor="secondary"
-                            indicatorColor="secondary"
+                            aria-label='API resources tabs'
+                            textColor='secondary'
+                            indicatorColor='secondary'
                             TabIndicatorProps={{ sx: { display: 'none' } }}
                             sx={{
                                 '& .MuiTabs-flexContainer': {
@@ -40,8 +40,8 @@ const Settings = () => {
                             style={{ minWidth: 50 }}
                         >
                             <Tab
-                                label="Personal info"
-                                value="1"
+                                label='Personal info'
+                                value='1'
                                 sx={{
                                     textTransform: 'none',
                                     fontSize: '14px',
@@ -50,8 +50,8 @@ const Settings = () => {
                                 }}
                             />
                             <Tab
-                                label="Company profile"
-                                value="2"
+                                label='Company profile'
+                                value='2'
                                 sx={{
                                     textTransform: 'none',
                                     fontSize: '14px',
@@ -60,8 +60,8 @@ const Settings = () => {
                                 }}
                             />
                             <Tab
-                                label="Password"
-                                value="3"
+                                label='Password'
+                                value='3'
                                 sx={{
                                     textTransform: 'none',
                                     fontSize: '14px',
@@ -71,8 +71,8 @@ const Settings = () => {
                             />
 
                             <Tab
-                                label="Email Notification"
-                                value="5"
+                                label='Email Notification'
+                                value='5'
                                 sx={{
                                     textTransform: 'none',
                                     fontSize: '14px',
@@ -82,19 +82,19 @@ const Settings = () => {
                             />
                         </TabList>
                     </Box>
-                    <TabPanel value="1" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='1' sx={{ padding: '35px 0' }}>
                         <SettingsPersonalInfo />
                     </TabPanel>
-                    <TabPanel value="2" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='2' sx={{ padding: '35px 0' }}>
                         <CompanyProfileSettings />
                     </TabPanel>
-                    <TabPanel value="3" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='3' sx={{ padding: '35px 0' }}>
                         <PasswordSettings />
                     </TabPanel>
-                    <TabPanel value="4" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='4' sx={{ padding: '35px 0' }}>
                       uuuuu
                     </TabPanel>
-                    <TabPanel value="5" sx={{ padding: '35px 0' }}>
+                    <TabPanel value='5' sx={{ padding: '35px 0' }}>
                         <EmailNotificationSettings />
                     </TabPanel>
                 </TabContext>

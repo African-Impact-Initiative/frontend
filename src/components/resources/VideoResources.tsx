@@ -37,18 +37,18 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                         >
                             <img
                                 src={resource.thumbnail}
-                                alt="resource-thumbnail"
+                                alt='resource-thumbnail'
                                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                             />
                         </Box>
                         <Box sx={{ display: 'flex', columnGap: '10px' }}>
                             <Box sx={{ width: '40px', height: '40px' }}>
-                                <img src={resource?.authorImage} alt="resource-thumbnail" />
+                                <img src={resource?.authorImage} alt='resource-thumbnail' />
                             </Box>
                             <Box>
                                 <Box>
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontFamily: 'Inter',
                                             fontWeight: 600,
@@ -72,7 +72,7 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                                 >
                                     <Box>
                                         <Typography
-                                            variant="body1"
+                                            variant='body1'
                                             sx={{
                                                 fontFamily: 'Inter',
                                                 fontWeight: 600,
@@ -89,7 +89,7 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
 
                                     <Box>
                                         <Typography
-                                            variant="body1"
+                                            variant='body1'
                                             sx={{
                                                 fontFamily: 'Inter',
                                                 fontWeight: 600,

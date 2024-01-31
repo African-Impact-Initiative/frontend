@@ -26,12 +26,12 @@ const AdminLayout = ({ Component, title, ...otherProps }: BasicLayout) => {
                 <VBSidebar
                     links={adminSideBarLinks}
                     isAdmin={true}
-                    backgroundColor="#B54707"
-                    className="admin-active-nav"
-                    color1="#FBECDF"
-                    color2="#FAB743"
-                    searchBoarder="#FAB743"
-                    textColor="rgba(254, 240, 199, 1)"
+                    backgroundColor='#B54707'
+                    className='admin-active-nav'
+                    color1='#FBECDF'
+                    color2='#FAB743'
+                    searchBoarder='#FAB743'
+                    textColor='rgba(254, 240, 199, 1)'
                     searchClass={'app-search-placeholder'} />
                 <main style={{ background: '#FFFFFF', width: '100%', overflowY: 'auto', padding:'25px' }}>
                     {loading ? <VBLoading /> : <Component {...otherProps} />}

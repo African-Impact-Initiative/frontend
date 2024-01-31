@@ -97,7 +97,7 @@ const PasswordSettings = () => {
                             }}
                         >
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -110,9 +110,9 @@ const PasswordSettings = () => {
                             >
                                 <InputBase
                                     sx={{ ml: 2, flex: 1, fontSize: 20 }}
-                                    placeholder="**********"
+                                    placeholder='**********'
                                     inputProps={{ 'aria-label': 'password' }}
-                                    type="password"
+                                    type='password'
                                 // value={newconfirmPassword}
                                 // onChange={setNewConfirmPassword}
                                 />
@@ -154,7 +154,7 @@ const PasswordSettings = () => {
                             }}
                         >
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -167,9 +167,9 @@ const PasswordSettings = () => {
                             >
                                 <InputBase
                                     sx={{ ml: 2, flex: 1, fontSize: 20 }}
-                                    placeholder="**********"
+                                    placeholder='**********'
                                     inputProps={{ 'aria-label': 'password' }}
-                                    type="password"
+                                    type='password'
                                 // value={newconfirmPassword}
                                 // onChange={setNewConfirmPassword}
                                 />
@@ -225,7 +225,7 @@ const PasswordSettings = () => {
                             }}
                         >
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -238,9 +238,9 @@ const PasswordSettings = () => {
                             >
                                 <InputBase
                                     sx={{ ml: 2, flex: 1, fontSize: 20 }}
-                                    placeholder="**********"
+                                    placeholder='**********'
                                     inputProps={{ 'aria-label': 'password' }}
-                                    type="password"
+                                    type='password'
                                 // value={newconfirmPassword}
                                 // onChange={setNewConfirmPassword}
                                 />
@@ -258,8 +258,8 @@ const PasswordSettings = () => {
                         }}
                     >
                         <Button
-                            size="large"
-                            variant="outlined"
+                            size='large'
+                            variant='outlined'
                             sx={{
                                 border: '1px solid #D0D5DD',
                                 borderRadius: '10px',
@@ -276,8 +276,8 @@ const PasswordSettings = () => {
                         </Button>
                         <Button
                             onClick={handleSubmit}
-                            type="submit"
-                            variant="contained"
+                            type='submit'
+                            variant='contained'
                             sx={{
                                 color: '#FFFFFF',
                                 backgroundColor: '#DC6803',

@@ -50,7 +50,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                     }}
                 >
                     <Typography
-                        variant="h5"
+                        variant='h5'
                         sx={{ fontSize: '18px', fontWeight: '600', lineHeight: '28px' }}
                     >
                         New funding opportunity
@@ -82,7 +82,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                         </Box>
                         <Box sx={{ width: '100%' }}>
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -95,7 +95,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                             >
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16 , ml: 2}}
-                                    placeholder="Add the opportunity name"
+                                    placeholder='Add the opportunity name'
                                     inputProps={{ 'aria-label': 'label search' }}
                                 />
                             </Paper>
@@ -119,7 +119,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                         </Box>
                         <Box sx={{ width: '100%' }}>
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -132,7 +132,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                             >
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16 , ml: 2}}
-                                    placeholder="Add the organization name"
+                                    placeholder='Add the organization name'
                                     inputProps={{ 'aria-label': 'label search' }}
                                 />
                             </Paper>
@@ -159,7 +159,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                     <TextField
                         // value={status}
                         select
-                        label="Select tags for this opportunity"
+                        label='Select tags for this opportunity'
                         size='small'
                         onChange={(e) => setTeam(e.target.value)}
                         sx={{
@@ -168,7 +168,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                             fontSize: '16px',
                         }}
                     >
-                        <MenuItem value="">
+                        <MenuItem value=''>
                             <em>State</em>
                         </MenuItem>
                         {teams.map((state) => (
@@ -196,7 +196,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                     </Box>
                     <Box>
                         <Paper
-                            component="form"
+                            component='form'
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
@@ -209,7 +209,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                         >
                             <InputBase
                                 sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                placeholder="Add the link to the opportunity webpage or to the organization’s website"
+                                placeholder='Add the link to the opportunity webpage or to the organization’s website'
                                 inputProps={{ 'aria-label': 'company size' }}
                             />
                         </Paper>
@@ -234,7 +234,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                         </Box>
                         <Box sx={{ marginTop: '8px', width: '100%', display: 'flex', columnGap: '16px' }}>
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -248,7 +248,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
 
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16, ml: 2 }}
-                                    placeholder="Enter the exact amount or a range"
+                                    placeholder='Enter the exact amount or a range'
                                     inputProps={{ 'aria-label': 'label search' }}
                                 />
                             </Paper>
@@ -306,7 +306,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DemoContainer components={['DatePicker', 'DatePicker']}>
                                     <DatePicker
-                                        label=""
+                                        label=''
                                         value={value}
                                         onChange={(newValue) => setValue(newValue)}
                                     />
@@ -372,7 +372,7 @@ const VBAddFundingModal = ({handleClose, action, setFundingModal }: IAddFundingM
                                 fontFamily: ' inter',
                                 color: '#667085'
                             }}
-                            placeholder="Briefly describe the opportunity"
+                            placeholder='Briefly describe the opportunity'
                             rows={3}
                             onChange={(e) => {
                                 console.log(e)

@@ -101,7 +101,7 @@ const PrivateViewUpdate = () => {
                         }}
                     >
                         <Box>
-                            <img src={logo} alt="logo" style={{ height: '160px', width: '160px' }} />
+                            <img src={logo} alt='logo' style={{ height: '160px', width: '160px' }} />
                         </Box>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
@@ -167,8 +167,8 @@ const PrivateViewUpdate = () => {
                     </Box>
                     <Box sx={{}}>
                         <Button
-                            type="submit"
-                            variant="contained"
+                            type='submit'
+                            variant='contained'
                             sx={{
                                 color: '#FFFFFF',
                                 backgroundColor: '#DC6803',
@@ -247,7 +247,7 @@ const PrivateViewUpdate = () => {
                                             fontWeight: '400',
                                             fontFamily: ' inter'
                                         }}
-                                        placeholder="DataPrime empowers financial insights with AI-driven solutions for smarter decision-making."
+                                        placeholder='DataPrime empowers financial insights with AI-driven solutions for smarter decision-making.'
                                         rows={1}
                                         onChange={(e) => {
                                             console.log(e)
@@ -287,9 +287,9 @@ const PrivateViewUpdate = () => {
                                             fontFamily: ' inter'
                                         }}
                                         // aria-label="textarea"
-                                        placeholder="At DataPrime, we are dedicated to revolutionizing the financial landscape through cutting-edge AI-driven solutions. Our mission is to empower businesses with invaluable insights for informed decision-making, unlocking new avenues for growth and success in the dynamic world of finance.
+                                        placeholder='At DataPrime, we are dedicated to revolutionizing the financial landscape through cutting-edge AI-driven solutions. Our mission is to empower businesses with invaluable insights for informed decision-making, unlocking new avenues for growth and success in the dynamic world of finance.
 
-With a focus on FinTech innovation, we combine advanced data analytics and artificial intelligence to provide actionable intelligence that drives strategic planning, risk assessment, and market analysis. Backed by a team of experts and a commitment to excellence, DataPrime is your partner in navigating the complexities of the financial realm and achieving sustainable, data-driven success."
+With a focus on FinTech innovation, we combine advanced data analytics and artificial intelligence to provide actionable intelligence that drives strategic planning, risk assessment, and market analysis. Backed by a team of experts and a commitment to excellence, DataPrime is your partner in navigating the complexities of the financial realm and achieving sustainable, data-driven success.'
                                         rows={8}
                                         onChange={(e) => {
                                             console.log(e)
@@ -327,8 +327,8 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         <Modal
                                             open={editModalOpen}
                                             onClose={handleEditCloseModal}
-                                            aria-labelledby="modal-title"
-                                            aria-describedby="modal-description"
+                                            aria-labelledby='modal-title'
+                                            aria-describedby='modal-description'
                                         >
                                             <AddLeadershipModal />
                                         </Modal>
@@ -353,7 +353,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                             >
                                 <Box sx={{ display: 'flex', columnGap: '12px' }}>
                                     <Box>
-                                        <img src={avatar} alt="leaderimge" />
+                                        <img src={avatar} alt='leaderimge' />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography
@@ -380,7 +380,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 </Box>
                                 <Box sx={{ display: 'flex', columnGap: '12px', textAlign: 'start' }}>
                                     <Box>
-                                        <img src={avatar} alt="leaderimge" />
+                                        <img src={avatar} alt='leaderimge' />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                         <Typography
@@ -407,7 +407,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                 </Box>
                                 <Box sx={{ display: 'flex', columnGap: '12px' }}>
                                     <Box>
-                                        <img src={avatar} alt="leaderimge" />
+                                        <img src={avatar} alt='leaderimge' />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography
@@ -463,8 +463,8 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         <Modal
                                             open={editModalOpen}
                                             onClose={handleEditCloseModal}
-                                            aria-labelledby="modal-title"
-                                            aria-describedby="modal-description"
+                                            aria-labelledby='modal-title'
+                                            aria-describedby='modal-description'
                                         >
                                             <AddLeadershipModal />
                                         </Modal>
@@ -792,8 +792,8 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         <Modal
                                             open={editModalOpen}
                                             onClose={handleEditCloseModal}
-                                            aria-labelledby="modal-title"
-                                            aria-describedby="modal-description"
+                                            aria-labelledby='modal-title'
+                                            aria-describedby='modal-description'
                                         >
                                             <AddLeadershipModal />
                                         </Modal>
@@ -891,7 +891,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                     </Box>
                                     <Box sx={{ marginTop: '6px', width: '100%' }}>
                                         <Paper
-                                            component="form"
+                                            component='form'
                                             sx={{
                                                 display: 'flex',
                                                 alignItems: 'center',
@@ -905,7 +905,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         >
                                             <InputBase
                                                 sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                                placeholder="Canada"
+                                                placeholder='Canada'
                                                 inputProps={{ 'aria-label': 'headquater' }}
                                             />
                                         </Paper>
@@ -934,7 +934,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -946,16 +946,16 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             >
                                                 <IconButton
-                                                    type="button"
+                                                    type='button'
                                                     sx={{ p: '10px' }}
-                                                    aria-label="search"
+                                                    aria-label='search'
                                                 >
                                                     <Search />
                                                 </IconButton>
 
                                                 <InputBase
                                                     sx={{ flex: 1, fontSize: 16 }}
-                                                    placeholder="Search for label"
+                                                    placeholder='Search for label'
                                                     inputProps={{ 'aria-label': 'label search' }}
                                                 />
                                             </Paper>
@@ -1074,7 +1074,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -1087,7 +1087,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             >
                                                 <InputBase
                                                     sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                                    placeholder="12"
+                                                    placeholder='12'
                                                     inputProps={{ 'aria-label': 'company size' }}
                                                 />
                                             </Paper>
@@ -1108,7 +1108,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -1131,11 +1131,11 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
 
                                                 <Divider
                                                     sx={{ ml: 2, height: 50, m: 0.5 }}
-                                                    orientation="vertical"
+                                                    orientation='vertical'
                                                 />
                                                 <InputBase
                                                     sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                                    placeholder="www.dataprime.com"
+                                                    placeholder='www.dataprime.com'
                                                     inputProps={{ 'aria-label': 'label search' }}
                                                 />
                                             </Paper>
@@ -1165,7 +1165,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -1178,7 +1178,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                             >
                                                 <InputBase
                                                     sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                                    placeholder="info@dataprime.com"
+                                                    placeholder='info@dataprime.com'
                                                     inputProps={{ 'aria-label': 'company size' }}
                                                 />
                                             </Paper>
@@ -1199,7 +1199,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -1216,7 +1216,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 </Box>
                                                 <InputBase
                                                     sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                                    placeholder="twitter.com/example"
+                                                    placeholder='twitter.com/example'
                                                     inputProps={{ 'aria-label': 'label search' }}
                                                 />
                                             </Paper>
@@ -1237,7 +1237,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -1249,16 +1249,16 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             >
                                                 <IconButton
-                                                    type="button"
+                                                    type='button'
                                                     sx={{ p: '10px' }}
-                                                    aria-label="facebooklogo"
+                                                    aria-label='facebooklogo'
                                                 >
                                                     <FacebookOutlined sx={{ color: '#1DA1F2', width: '20px', height: '20px' }} />
                                                 </IconButton>
 
                                                 <InputBase
                                                     sx={{ flex: 1, fontSize: 16, }}
-                                                    placeholder="facebook.com/example"
+                                                    placeholder='facebook.com/example'
                                                     inputProps={{ 'aria-label': 'label search' }}
                                                 />
                                             </Paper>
@@ -1279,7 +1279,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -1299,7 +1299,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
 
                                                 <InputBase
                                                     sx={{ flex: 1, fontSize: 16, ml: 1.5 }}
-                                                    placeholder="linkedin.com/example"
+                                                    placeholder='linkedin.com/example'
                                                     inputProps={{ 'aria-label': 'label search' }}
                                                 />
                                             </Paper>
@@ -1320,7 +1320,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -1350,7 +1350,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
 
                                                 <InputBase
                                                     sx={{ flex: 1, fontSize: 16, ml: 1.5 }}
-                                                    placeholder="instagram.com/example"
+                                                    placeholder='instagram.com/example'
                                                     inputProps={{ 'aria-label': 'label search' }}
                                                 />
                                             </Paper>
@@ -1371,7 +1371,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         </Box>
                                         <Box sx={{ marginTop: '6px', width: '100%' }}>
                                             <Paper
-                                                component="form"
+                                                component='form'
                                                 sx={{
                                                     display: 'flex',
                                                     alignItems: 'center',
@@ -1383,16 +1383,16 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 }}
                                             >
                                                 <IconButton
-                                                    type="button"
+                                                    type='button'
                                                     sx={{ p: '10px' }}
-                                                    aria-label="youtubebutton"
+                                                    aria-label='youtubebutton'
                                                 >
                                                     <YouTube sx={{ color: 'red', width: '20px', height: '20px' }} />
                                                 </IconButton>
 
                                                 <InputBase
                                                     sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                                    placeholder="youtube.com/example"
+                                                    placeholder='youtube.com/example'
                                                     inputProps={{ 'aria-label': 'label search' }}
                                                 />
                                             </Paper>
@@ -1447,8 +1447,8 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         <Box>
                                             <TextField
                                                 // label="e.g.12"
-                                                size="small"
-                                                variant="outlined"
+                                                size='small'
+                                                variant='outlined'
                                                 sx={{
                                                     width: { md: 312, xs: '100%' },
                                                     marginTop: '6px',
@@ -1473,8 +1473,8 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                         <Box>
                                             <TextField
                                                 // label="e.g.12"
-                                                size="small"
-                                                variant="outlined"
+                                                size='small'
+                                                variant='outlined'
                                                 sx={{
                                                     width: { md: '312px', xs: '100%' },
                                                     marginTop: '10px',
@@ -1509,7 +1509,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 columnGap: '16px'
                                             }}
                                         >
-                                            <img src={dataprime} alt="ravigainvestor" />
+                                            <img src={dataprime} alt='ravigainvestor' />
                                             <Typography
                                                 sx={{
                                                     fontWeight: '500',
@@ -1528,7 +1528,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 columnGap: '16px'
                                             }}
                                         >
-                                            <img src={dataprime} alt="ravigainvestor" />
+                                            <img src={dataprime} alt='ravigainvestor' />
                                             <Typography
                                                 sx={{
                                                     fontWeight: '500',
@@ -1547,7 +1547,7 @@ With a focus on FinTech innovation, we combine advanced data analytics and artif
                                                 columnGap: '16px'
                                             }}
                                         >
-                                            <img src={raviga} alt="ravigainvestor" />
+                                            <img src={raviga} alt='ravigainvestor' />
                                             <Typography
                                                 sx={{
                                                     fontWeight: '500',

@@ -166,18 +166,18 @@ const AssignmentSubmissions = () => {
                     firstBox={true}
                     secondBox={true}
                     thirdBox={true}
-                    type="Search assignments"
-                    header1="Categories"
-                    header2="Cohorts"
-                    header3="Sort by"
-                    label1="Select"
-                    label2="Select"
-                    label3="Select"
+                    type='Search assignments'
+                    header1='Categories'
+                    header2='Cohorts'
+                    header3='Sort by'
+                    label1='Select'
+                    label2='Select'
+                    label3='Select'
                 />
             </Box>
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid
-                    className="pointer-cursor-datagrid"
+                    className='pointer-cursor-datagrid'
                     rows={rows}
                     columns={columns}
                     // onRowClick={handleRowClick}

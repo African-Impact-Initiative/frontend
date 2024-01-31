@@ -116,8 +116,8 @@ const SettingsPersonalInfo = () => {
                     </Box>
                     <Box sx={{ display: 'flex', columnGap: '20px', width: '60%', justifyContent: { xs: 'center', md: 'flex-end' }, marginTop: { xs: '10px' }, marginBottom: { xs: '20px' } }}>
                         <Button
-                            size="large"
-                            variant="outlined"
+                            size='large'
+                            variant='outlined'
                             sx={{
                                 border: '1px solid #D0D5DD',
                                 borderRadius: '8px',
@@ -134,8 +134,8 @@ const SettingsPersonalInfo = () => {
                         </Button>
                         <Button
                             onClick={handleFormSubmit}
-                            type="submit"
-                            variant="contained"
+                            type='submit'
+                            variant='contained'
                             sx={{
                                 color: '#FFFFFF',
                                 backgroundColor: '#DC6803',
@@ -179,7 +179,7 @@ const SettingsPersonalInfo = () => {
                         <Box sx={{ display: 'flex', width: '100%', justifyContent: { xs: 'center', md: 'flex-center' }, flexDirection: { xs: 'column', md: 'row' }, columnGap: '20px' }}>
                             <Box sx={{ marginTop: '12px' }}>
                                 <Paper
-                                    component="form"
+                                    component='form'
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -192,14 +192,14 @@ const SettingsPersonalInfo = () => {
                                 >
                                     <InputBase
                                         sx={{ ml: 2, flex: 1, fontSize: 16, width: { xs: '100%', md: 244 }, }}
-                                        placeholder="Sienna"
+                                        placeholder='Sienna'
                                         inputProps={{ 'aria-label': 'company size' }}
                                     />
                                 </Paper>
                             </Box>
                             <Box sx={{ marginTop: '12px' }}>
                                 <Paper
-                                    component="form"
+                                    component='form'
                                     sx={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -212,7 +212,7 @@ const SettingsPersonalInfo = () => {
                                 >
                                     <InputBase
                                         sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                        placeholder="Hewitt"
+                                        placeholder='Hewitt'
                                         inputProps={{ 'aria-label': 'company size' }}
                                     />
                                 </Paper>
@@ -253,7 +253,7 @@ const SettingsPersonalInfo = () => {
                             width: '100%'
                         }}>
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -264,12 +264,12 @@ const SettingsPersonalInfo = () => {
                                     border: '1px solid #D0D5DD'
                                 }}
                             >
-                                <IconButton sx={{ p: '10px' }} aria-label="menu">
+                                <IconButton sx={{ p: '10px' }} aria-label='menu'>
                                     <MailOutlined />
                                 </IconButton>
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16 }}
-                                    placeholder="sienna@dataprime.com"
+                                    placeholder='sienna@dataprime.com'
                                     inputProps={{ 'aria-label': 'company size' }}
                                 />
                             </Paper>
@@ -315,7 +315,7 @@ const SettingsPersonalInfo = () => {
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-center' }, marginTop: { xs: '20px', md: '0' }, columnGap: '20px', width: '61%' }}>
                         <Box>
-                            <img src={avatarimage} alt="humanimage" />
+                            <img src={avatarimage} alt='humanimage' />
                         </Box>
                         <Box
                             sx={{
@@ -358,18 +358,18 @@ const SettingsPersonalInfo = () => {
                                     marginTop: { md: '16px', xs: '0px' }
                                 }}
                             >
-                                <Typography variant="body1" sx={{ marginTop: '16px' }}>
+                                <Typography variant='body1' sx={{ marginTop: '16px' }}>
                                     {selectedFile ? `${selectedFile.name}` : ''}
                                 </Typography>
-                                <label htmlFor="file-upload">
+                                <label htmlFor='file-upload'>
                                     <input
-                                        type="file"
-                                        id="file-upload"
+                                        type='file'
+                                        id='file-upload'
                                         style={{ display: 'none' }}
                                         onChange={handleFileChange}
                                     />
                                     <Box
-                                        component="span"
+                                        component='span'
                                         onClick={handleUpload}
                                         sx={{
                                             marginTop: '16px',
@@ -434,7 +434,7 @@ const SettingsPersonalInfo = () => {
                     <Box>
                         <Box sx={{ marginTop: '12px', width: '100%', justifyContent: { xs: 'center', md: 'flex-center', width: '100%' } }}>
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -448,7 +448,7 @@ const SettingsPersonalInfo = () => {
                             >
                                 <InputBase
                                     sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                    placeholder="Founder"
+                                    placeholder='Founder'
                                     inputProps={{ 'aria-label': 'company size' }}
                                 />
                             </Paper>
@@ -488,8 +488,8 @@ const SettingsPersonalInfo = () => {
                             <TextField
                                 value={country}
                                 select
-                                label="Country"
-                                size="small"
+                                label='Country'
+                                size='small'
                                 onChange={(e) => setCountry(e.target.value)}
                                 sx={{
                                     width: { xs: '100%', md: 512 },
@@ -499,7 +499,7 @@ const SettingsPersonalInfo = () => {
                                     border: '0px'
                                 }}
                             >
-                                <MenuItem value="">
+                                <MenuItem value=''>
                                     <em>Country</em>
                                 </MenuItem>
                                 {countryList.map((country) => (
@@ -546,7 +546,7 @@ const SettingsPersonalInfo = () => {
 
                         <Box
                             sx={{ width: { md: '154%', xs: '100%' }, fontSize: '16px', color: '#475467', fontWeight: '400', lineHeight: '24px', padding: '14px' }}
-                            className="my-custom-editor-meeting"
+                            className='my-custom-editor-meeting'
                         >
                             <CKEditor
                                 editor={ClassicEditor}
@@ -573,12 +573,12 @@ const SettingsPersonalInfo = () => {
                                         ],
                                     },
                                 }}
-                                data="<p>
+                                data='<p>
                                 Greetings! I am the founder of DataPrime,
                                 an innovative <br/> company transforming the finance
                                 industry with AI-driven <br/> solutions
                                 and driving FinTech advancements.
-                                </p>"
+                                </p>'
                                 onReady={(editor) => {
                                     // you can store the "editor" and use when it is needed.
                                     console.log('Editor is ready to use!', editor)
@@ -607,8 +607,8 @@ const SettingsPersonalInfo = () => {
 
                 }}>
                     <Button
-                        size="large"
-                        variant="outlined"
+                        size='large'
+                        variant='outlined'
                         sx={{
                             border: '1px solid #D0D5DD',
                             borderRadius: '8px',
@@ -626,8 +626,8 @@ const SettingsPersonalInfo = () => {
                     </Button>
                     <Button
                         onClick={handleFormSubmit}
-                        type="submit"
-                        variant="contained"
+                        type='submit'
+                        variant='contained'
                         sx={{
                             color: '#FFFFFF',
                             backgroundColor: '#DC6803',

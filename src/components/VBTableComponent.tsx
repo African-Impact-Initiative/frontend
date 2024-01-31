@@ -60,7 +60,7 @@ const VBTableComponent = ({ headers, data, dataKeyAccessors }: ITableComponent) 
     const renderRow = (row: { [key: string]: string | number }) => {
         return (
             <TableRow
-                role="table-row"
+                role='table-row'
                 sx={{
                     borderBottom: '1px solid #EAECF0',
                     marginBottom: '2000px',
@@ -75,7 +75,7 @@ const VBTableComponent = ({ headers, data, dataKeyAccessors }: ITableComponent) 
                 style={{marginBottom: '10px' , fontSize: '20px'}}
             >
                 {dataKeyAccessors?.map((_, index) => (
-                    <TableCell key={`table-cell-${index}`} align="left" role="table-row-cell"
+                    <TableCell key={`table-cell-${index}`} align='left' role='table-row-cell'
                     >
                         {dataKeyAccessors[index] == 'team' ? (
                             <>
@@ -143,7 +143,7 @@ const VBTableComponent = ({ headers, data, dataKeyAccessors }: ITableComponent) 
             </Table>
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
-                component="div"
+                component='div'
                 count={data?.length}
                 rowsPerPage={rowsPerPage}
                 page={page}

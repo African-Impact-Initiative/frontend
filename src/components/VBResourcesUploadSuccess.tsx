@@ -36,8 +36,8 @@ const VBResourcesUploadSuccess = ({ open, handleClose, type, thumbnail, Icon }: 
             <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
                 style={{ backdropFilter: 'blur(5px)' }}
             >
                 <Box sx={style}>
@@ -45,7 +45,7 @@ const VBResourcesUploadSuccess = ({ open, handleClose, type, thumbnail, Icon }: 
                         {(thumbnail || Icon) && (
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 {thumbnail && <Box>
-                                    <img src={thumbnail} alt="upload" />
+                                    <img src={thumbnail} alt='upload' />
                                 </Box>}
                                 {Icon && <Icon />}
                                 <Box>

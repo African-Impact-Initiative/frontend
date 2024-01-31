@@ -122,8 +122,8 @@ const FundingOpportunuties = () => {
         <Box>
             <Modal
                 open={fundingModal}
-                aria-labelledby="modal-title"
-                aria-describedby="modal-description"
+                aria-labelledby='modal-title'
+                aria-describedby='modal-description'
                 onClose={() => {
                     setFundingModal(false)
                 }}
@@ -136,8 +136,8 @@ const FundingOpportunuties = () => {
             </Modal>
             <VBTopBanner
                 title={'Funding opportunities'}
-                description="Add and manage funding opportunities here.."
-                actionText="Add new"
+                description='Add and manage funding opportunities here..'
+                actionText='Add new'
                 action={openModal}
             />
 
@@ -155,7 +155,7 @@ const FundingOpportunuties = () => {
 
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
-                        className="pointer-cursor-datagrid"
+                        className='pointer-cursor-datagrid'
                         rows={rows}
                         columns={columns}
                         // onRowClick={handleRowClick}

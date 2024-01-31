@@ -109,7 +109,7 @@ const EmailNotificationSettings = () => {
                                 label={
                                     <Box sx={{ textAlign: { md: 'left', xs: 'left' } }}>
                                         <Typography
-                                            variant="body1"
+                                            variant='body1'
                                             sx={{
                                                 fontSize: '14px',
                                                 fontWeight: '500',
@@ -120,7 +120,7 @@ const EmailNotificationSettings = () => {
                                             News and updates
                                         </Typography>
                                         <Typography
-                                            variant="body1"
+                                            variant='body1'
                                             sx={{
                                                 color: '#475467',
                                                 fontSize: '14px',
@@ -150,7 +150,7 @@ const EmailNotificationSettings = () => {
                                 label={
                                     <Box sx={{ textAlign: { md: 'left', xs: 'left' } }}>
                                         <Typography
-                                            variant="body1"
+                                            variant='body1'
                                             sx={{
                                                 fontSize: '14px',
                                                 fontWeight: '500',
@@ -160,7 +160,7 @@ const EmailNotificationSettings = () => {
                                         >
                                             Tips and tutorials
                                         </Typography>
-                                        <Typography variant="body1"
+                                        <Typography variant='body1'
                                             sx={{
                                                 color: '#475467',
                                                 fontSize: '14px',
@@ -189,7 +189,7 @@ const EmailNotificationSettings = () => {
                                 label={
                                     <Box sx={{ textAlign: { md: 'left', xs: 'left' } }}>
                                         <Typography
-                                            variant="body1"
+                                            variant='body1'
                                             sx={{
                                                 fontSize: '14px',
                                                 fontWeight: '500',
@@ -199,7 +199,7 @@ const EmailNotificationSettings = () => {
                                         >
                                             Recommendations
                                         </Typography>
-                                        <Typography variant="body1" sx={{
+                                        <Typography variant='body1' sx={{
                                             color: '#475467',
                                             fontSize: '14px',
                                             fontWeight: '400',
@@ -207,7 +207,7 @@ const EmailNotificationSettings = () => {
                                         }}>
                                             Resources such as articles and courses
                                         </Typography>
-                                        <Typography variant="body1" sx={{
+                                        <Typography variant='body1' sx={{
                                             color: '#475467',
                                             fontSize: '14px',
                                             fontWeight: '400',
@@ -233,7 +233,7 @@ const EmailNotificationSettings = () => {
                                 label={
                                     <Box sx={{ textAlign: { md: 'left', xs: 'left' } }}>
                                         <Typography
-                                            variant="body1"
+                                            variant='body1'
                                             sx={{
                                                 fontSize: '14px',
                                                 fontWeight: '500',
@@ -243,7 +243,7 @@ const EmailNotificationSettings = () => {
                                         >
                                             Feedback survey
                                         </Typography>
-                                        <Typography variant="body1"
+                                        <Typography variant='body1'
                                             sx={{
                                                 color: '#475467',
                                                 fontSize: '14px',
@@ -328,7 +328,7 @@ const EmailNotificationSettings = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '14px',
                                             fontWeight: '500',
@@ -355,7 +355,7 @@ const EmailNotificationSettings = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '14px',
                                             fontWeight: '500',
@@ -382,7 +382,7 @@ const EmailNotificationSettings = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '14px',
                                             fontWeight: '500',
@@ -459,7 +459,7 @@ const EmailNotificationSettings = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '14px',
                                             fontWeight: '500',
@@ -486,7 +486,7 @@ const EmailNotificationSettings = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '14px',
                                             fontWeight: '500',
@@ -513,7 +513,7 @@ const EmailNotificationSettings = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '14px',
                                             fontWeight: '500',
@@ -539,7 +539,7 @@ const EmailNotificationSettings = () => {
                                 }
                                 label={
                                     <Typography
-                                        variant="body1"
+                                        variant='body1'
                                         sx={{
                                             fontSize: '14px',
                                             fontWeight: '500',

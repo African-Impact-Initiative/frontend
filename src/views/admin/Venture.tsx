@@ -80,7 +80,7 @@ const Venture = () => {
         <Box>
             <VBTopBanner
                 title={'Ventures'}
-                description="Explore and manage ventures here."
+                description='Explore and manage ventures here.'
                 Icon={SettingsOutlinedIcon}
                 action={action}
             />
@@ -89,13 +89,13 @@ const Venture = () => {
                 firstBox={true}
                 secondBox={true}
                 thirdBox={true}
-                type="Search ventures"
-                header1="Industries"
-                header2="Cohorts"
-                header3="Sort by"
-                label1="Select"
-                label2="Select"
-                label3="A - Z"
+                type='Search ventures'
+                header1='Industries'
+                header2='Cohorts'
+                header3='Sort by'
+                label1='Select'
+                label2='Select'
+                label3='A - Z'
             />
             <Box sx={{ marginBottom: '18px', textAlign: 'start' }}>
                 <Typography

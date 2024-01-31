@@ -31,8 +31,8 @@ const VBResourceUpload = ({ open, handleClose, action }: IResourceUploadProps) =
         <VBAppModal
             open={open}
             handleClose={handleClose}
-            width="75vw"
-            height="85vh"
+            width='75vw'
+            height='85vh'
         >
             <Box>
                 <Box>
@@ -45,9 +45,9 @@ const VBResourceUpload = ({ open, handleClose, action }: IResourceUploadProps) =
                             }}
                         >
                             <Typography
-                                id="modal-modal-title"
-                                variant="h6"
-                                component="h2"
+                                id='modal-modal-title'
+                                variant='h6'
+                                component='h2'
                                 sx={{
                                     color: 'rgba(16, 24, 40, 1)',
                                     fontWeight: 600,
@@ -205,14 +205,14 @@ const VBResourceUpload = ({ open, handleClose, action }: IResourceUploadProps) =
                                 </Typography>
                                 <TextField
                                     select
-                                    label="Categories"
+                                    label='Categories'
                                     // size="large"
                                     onChange={(e) => console.log(e.target.value)}
                                     sx={{
                                         width: '100%',
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>English</em>
                                     </MenuItem>
                                     {categories.map((state) => (
@@ -236,14 +236,14 @@ const VBResourceUpload = ({ open, handleClose, action }: IResourceUploadProps) =
                                 <TextField
                                     // value={status}
                                     select
-                                    label="Visibility"
+                                    label='Visibility'
                                     // size="large"
                                     onChange={(e) => console.log(e.target.value)}
                                     sx={{
                                         width: '100%',
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>Public</em>
                                     </MenuItem>
                                     {visibility.map((state) => (

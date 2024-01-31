@@ -75,9 +75,9 @@ const Events = () => {
             </VBAppModal>
             <VBTopBanner
                 title={'Events'}
-                description="Create and manage events here."
+                description='Create and manage events here.'
                 action={uploadAction}
-                actionText="Add new Event"
+                actionText='Add new Event'
             />
             <Box
                 sx={{
@@ -137,34 +137,34 @@ const Events = () => {
                                     marginTop: {xs: '10px', md: '0px'},
                                     marginBottom: {xs: '10px', md: '0px'}
                                 }}
-                                className="tab_component"
+                                className='tab_component'
                             >
                                 <TabList
                                     onChange={handleChange}
-                                    aria-label="API resources tabs"
-                                    textColor="secondary"
-                                    indicatorColor="secondary"
+                                    aria-label='API resources tabs'
+                                    textColor='secondary'
+                                    indicatorColor='secondary'
                                     // className={classes.customTab}
-                                    className="tab_nav_com"
+                                    className='tab_nav_com'
                                     centered
                                 >
                                     <Tab
                                         sx={{ textTransform: 'none' }}
-                                        label="Day"
-                                        value="1"
-                                        className="tab_nav_com"
+                                        label='Day'
+                                        value='1'
+                                        className='tab_nav_com'
                                     />
                                     <Tab
                                         sx={{ textTransform: 'none' }}
-                                        label="Week"
-                                        value="2"
-                                        className="tab_nav_com"
+                                        label='Week'
+                                        value='2'
+                                        className='tab_nav_com'
                                     />
                                     <Tab
                                         sx={{ textTransform: 'none' }}
-                                        label="Month"
-                                        value="3"
-                                        className="tab_nav_com"
+                                        label='Month'
+                                        value='3'
+                                        className='tab_nav_com'
                                     />
                                 </TabList>
                             </Box>
@@ -189,7 +189,7 @@ const Events = () => {
                             />
 
                             <TextField
-                                placeholder="Search"
+                                placeholder='Search'
                                 sx={{
                                     border: 'none',
                                     outline: 'none',
@@ -205,13 +205,13 @@ const Events = () => {
                     </Box>
 
                     <TabContext value={value}>
-                        <TabPanel value="1" sx={{ padding: '35px 0' }}>
+                        <TabPanel value='1' sx={{ padding: '35px 0' }}>
                             <VBWeeklyView events={eventsData} />
                         </TabPanel>
-                        <TabPanel value="2" sx={{ padding: '35px 0' }}>
+                        <TabPanel value='2' sx={{ padding: '35px 0' }}>
                             <VBWeeklyView events={eventsData} />
                         </TabPanel>
-                        <TabPanel value="3" sx={{ padding: '35px 0' }}></TabPanel>
+                        <TabPanel value='3' sx={{ padding: '35px 0' }}></TabPanel>
                     </TabContext>
                 </Box>
             </Box>

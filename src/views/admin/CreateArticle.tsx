@@ -185,7 +185,7 @@ const CreateArticle = () => {
 
                         <Divider sx={{ margin: '25px 0' }} />
 
-                        <Box className="my-custom-editor">
+                        <Box className='my-custom-editor'>
                             <CKEditor
                                 editor={ClassicEditor}
                                 config={{
@@ -211,7 +211,7 @@ const CreateArticle = () => {
                                         ],
                                     },
                                 }}
-                                data="<p>Start typing or pasting your text.</p>"
+                                data='<p>Start typing or pasting your text.</p>'
                                 onReady={(editor) => {
                                     // you can store the "editor" and use when it is needed.
                                     console.log('Editor is ready to use!', editor)
@@ -266,14 +266,14 @@ const CreateArticle = () => {
                                 <TextField
                                     // value={status}
                                     select
-                                    label="Lana Stein"
+                                    label='Lana Stein'
                                     // size="large"
                                     onChange={(e) => setStatus(e.target.value)}
                                     sx={{
                                         width: '100%',
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>Lana Stein</em>
                                     </MenuItem>
                                     {categories.map((state) => (
@@ -308,14 +308,14 @@ const CreateArticle = () => {
                                 <TextField
                                     // value={status}
                                     select
-                                    label="Select"
+                                    label='Select'
                                     // size="large"
                                     onChange={(e) => setStatus(e.target.value)}
                                     sx={{
                                         width: '100%',
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>English</em>
                                     </MenuItem>
                                     {categories.map((state) => (
@@ -339,14 +339,14 @@ const CreateArticle = () => {
                                 <TextField
                                     // value={status}
                                     select
-                                    label="Visibility"
+                                    label='Visibility'
                                     // size="large"
                                     onChange={(e) => setStatus(e.target.value)}
                                     sx={{
                                         width: '100%',
                                     }}
                                 >
-                                    <MenuItem value="">
+                                    <MenuItem value=''>
                                         <em>Public</em>
                                     </MenuItem>
                                     {visibility.map((state) => (

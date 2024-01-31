@@ -87,7 +87,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
             >
                 <Box sx={{marginTop: '10px', textAlign: 'start'}}>
                     {!isAdmin ? <Box>
-                        <img src={Logo} alt="logo" />
+                        <img src={Logo} alt='logo' />
                     </Box>
                         :
                         <VBLogo dark={false} />}
@@ -114,7 +114,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                         <Box className={`${searchClass}`}>
                             {' '}
                             <input
-                                placeholder="Search"
+                                placeholder='Search'
                                 style={{
                                     border: 'none',
                                     outline: 'none',
@@ -149,7 +149,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                             <Box className={`${searchClass}`}>
                                 {' '}
                                 <input
-                                    placeholder="Search"
+                                    placeholder='Search'
                                     style={{
                                         border: 'none',
                                         outline: 'none',
@@ -198,7 +198,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                                         {typeof sideBar.icon === 'string' ? ( // check if the icon is a string (asset path)
                                             <img
                                                 src={sideBar.icon}
-                                                alt="icon"
+                                                alt='icon'
                                                 style={{ color: '#667085' }}
                                             />
                                         ) : (
@@ -242,7 +242,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                         </Box>
                         <Box>
                             <Typography
-                                variant="body1"
+                                variant='body1'
                                 sx={{
                                     fontFamily: 'Inter',
                                     fontWeight: 600,
@@ -257,7 +257,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                             <Box>
                                 {' '}
                                 <Typography
-                                    variant="body1"
+                                    variant='body1'
                                     sx={{
                                         fontFamily: 'Inter',
                                         fontWeight: 400,
@@ -274,7 +274,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                             sx={{ display: 'flex', alignItems: 'center', columnGap: '10px' }}
                         >
                             <Typography
-                                variant="body1"
+                                variant='body1'
                                 sx={{
                                     fontFamily: 'Inter',
                                     fontWeight: 600,
@@ -286,7 +286,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                                 Discuss
                             </Typography>
                             <Typography
-                                variant="body1"
+                                variant='body1'
                                 sx={{
                                     fontFamily: 'Inter',
                                     fontWeight: 600,
@@ -310,12 +310,12 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                         }}
                     >
                         <Box sx={{ width: '40px', height: '40px', cursor: 'pointer' }}>
-                            <img src={userAvatar} alt="log-out" />
+                            <img src={userAvatar} alt='log-out' />
                         </Box>
                         <Box sx={{ cursor: 'pointer' }}>
                             <Box>
                                 <Typography
-                                    variant="body1"
+                                    variant='body1'
                                     sx={{
                                         fontFamily: 'Inter',
                                         fontWeight: 600,
@@ -330,7 +330,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                             </Box>
                             <Box>
                                 <Typography
-                                    variant="body1"
+                                    variant='body1'
                                     sx={{
                                         fontFamily: 'Inter',
                                         fontWeight: 400,

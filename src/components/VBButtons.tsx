@@ -60,7 +60,7 @@ export const VBIconButton = ({ size, onClick, Icon, aria }: IIconButtonProps) =>
             aria-controls={aria.controls}
             aria-haspopup={aria.popup}
             onClick={handleClick}
-            color="inherit"
+            color='inherit'
         >
             <Icon />
         </IconButton>

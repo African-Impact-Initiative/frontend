@@ -162,9 +162,9 @@ const Templates = () => {
         <Box>
             <VBTopBanner
                 title={'Templates'}
-                description="Upload and manage templates here."
+                description='Upload and manage templates here.'
                 action={uploadAction}
-                actionText="Upload"
+                actionText='Upload'
 
             />
             <VBResourceUpload
@@ -185,9 +185,9 @@ const Templates = () => {
                     <Box>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                             <Typography
-                                id="modal-modal-title"
-                                variant="h6"
-                                component="h2"
+                                id='modal-modal-title'
+                                variant='h6'
+                                component='h2'
                                 sx={{
                                     color: 'rgba(16, 24, 40, 1)',
                                     fontWeight: 600,
@@ -206,8 +206,8 @@ const Templates = () => {
                     </Box>
                     <Box>
                         <Typography
-                            variant="h6"
-                            component="h2"
+                            variant='h6'
+                            component='h2'
                             sx={{
                                 color: 'rgba(71, 84, 103, 1)',
                                 fontWeight: 400,
@@ -279,15 +279,15 @@ const Templates = () => {
                     search={true}
                     firstBox={true}
                     secondBox={true}
-                    type="Search templates"
-                    header1="Categories"
-                    header2="Sort by"
-                    label1="Select"
-                    label2="Select"
+                    type='Search templates'
+                    header1='Categories'
+                    header2='Sort by'
+                    label1='Select'
+                    label2='Select'
                 />
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
-                        className="pointer-cursor-datagrid"
+                        className='pointer-cursor-datagrid'
                         rows={rows}
                         columns={columns}
                         onRowClick={handleRowClick}

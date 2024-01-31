@@ -31,6 +31,7 @@ module.exports = {
     'brace-style': 'error',
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    'quotes': ['error', 'single']
+    '@typescript-eslint/quotes': ['error', 'single'],
+    'jsx-quotes': [2, 'prefer-single'],
   },
 }

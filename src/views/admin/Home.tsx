@@ -28,7 +28,7 @@ const columns: Array<GridColDef<any, any, any>> = [
                 >
                     <img
                         src={params.row.logo}
-                        alt="thumbnail"
+                        alt='thumbnail'
                         style={{ width: '40px', height: '40px' }}
                     />
                     <Typography
@@ -226,7 +226,7 @@ const Home = () => {
         <Box sx={{ paddingLeft: '20px', width: '100%', paddingRight: '0px' }}>
             <VBTopBanner
                 title={'Home'}
-                description="Explore and manage ventures here."
+                description='Explore and manage ventures here.'
                 Icon={SettingsOutlinedIcon}
                 action={() => console.log('temp action')}
             />
@@ -447,7 +447,7 @@ const Home = () => {
 
                             <div style={{ height: '100%', width: '100%' }}>
                                 <DataGrid
-                                    className="pointer-cursor-datagrid"
+                                    className='pointer-cursor-datagrid'
                                     rows={rows}
                                     columns={columns}
                                     // onRowClick={handleRowClick}
@@ -502,7 +502,7 @@ const Home = () => {
                             >
                                 <img
                                     src={each.logo}
-                                    alt="avata"
+                                    alt='avata'
                                     style={{ width: '32px', height: '32px' }}
                                 />
                                 <Box

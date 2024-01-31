@@ -55,7 +55,7 @@ const AddJobModal = () => {
                 </Box>
                 <Box sx={{ marginTop: '16px' }}>
                     <Typography
-                        variant="h5"
+                        variant='h5'
                         sx={{ fontSize: '18px', fontWeight: '600', lineHeight: '28px' }}
                     >
                         Add job
@@ -89,7 +89,7 @@ const AddJobModal = () => {
                     </Box>
                     <Box>
                         <Paper
-                            component="form"
+                            component='form'
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
@@ -102,7 +102,7 @@ const AddJobModal = () => {
                         >
                             <InputBase
                                 sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                placeholder="e.g. Program Manager"
+                                placeholder='e.g. Program Manager'
                                 inputProps={{ 'aria-label': 'company size' }}
                             />
                         </Paper>
@@ -129,8 +129,8 @@ const AddJobModal = () => {
                             <TextField
                             // value={status}
                                 select
-                                label="Select team"
-                                size="small"
+                                label='Select team'
+                                size='small'
                                 onChange={(e) => setTeam(e.target.value)}
                                 sx={{
                                     width: {md:'288px', xs: '100%'},
@@ -139,7 +139,7 @@ const AddJobModal = () => {
                                     marginTop: '10px'
                                 }}
                             >
-                                <MenuItem value="">
+                                <MenuItem value=''>
                                     <em>State</em>
                                 </MenuItem>
                                 {teams.map((state) => (
@@ -170,8 +170,8 @@ const AddJobModal = () => {
                             <TextField
                             // value={status}
                                 select
-                                label="$ e.g. 55k - 65k"
-                                size="small"
+                                label='$ e.g. 55k - 65k'
+                                size='small'
                                 onChange={(e) => setTeam(e.target.value)}
                                 sx={{
                                     width: {md:'288px', xs: '100%'},
@@ -180,7 +180,7 @@ const AddJobModal = () => {
                                     marginTop: '10px'
                                 }}
                             >
-                                <MenuItem value="">
+                                <MenuItem value=''>
                                     <em>State</em>
                                 </MenuItem>
                                 {teams.map((state) => (
@@ -211,7 +211,7 @@ const AddJobModal = () => {
                         </Box>
                         <Box sx={{ marginTop: '12px', width: '100%' }}>
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -223,16 +223,16 @@ const AddJobModal = () => {
                                 }}
                             >
                                 <IconButton
-                                    type="button"
+                                    type='button'
                                     sx={{ p: '10px' }}
-                                    aria-label="search"
+                                    aria-label='search'
                                 >
                                     <Search />
                                 </IconButton>
 
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16 }}
-                                    placeholder="Search for city"
+                                    placeholder='Search for city'
                                     inputProps={{ 'aria-label': 'label search' }}
                                 />
                             </Paper>
@@ -257,7 +257,7 @@ const AddJobModal = () => {
                         <TextField
                             // value={status}
                             select
-                            label="Select capacity"
+                            label='Select capacity'
                             size='small'
                             onChange={(e) => setTeam(e.target.value)}
                             sx={{
@@ -267,7 +267,7 @@ const AddJobModal = () => {
                                 marginTop: '10px'
                             }}
                         >
-                            <MenuItem value="">
+                            <MenuItem value=''>
                                 <em>State</em>
                             </MenuItem>
                             {teams.map((state) => (
@@ -307,7 +307,7 @@ const AddJobModal = () => {
                                 fontFamily: ' inter',
                                 color: '#667085'
                             }}
-                            placeholder="e.g. We are currently in search of a highly motivated individual to join our dynamic team. This role will involve working closely with various departments to contribute to the growth and success of our organization."
+                            placeholder='e.g. We are currently in search of a highly motivated individual to join our dynamic team. This role will involve working closely with various departments to contribute to the growth and success of our organization.'
                             rows={4}
                             onChange={(e) => {
                                 console.log(e)

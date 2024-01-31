@@ -160,7 +160,7 @@ const PublicCompanyView = () => {
                     >
                         <Box sx={{ display: 'flex', columnGap: '12px' }}>
                             <Box>
-                                <img src={avatar} alt="leaderimge" />
+                                <img src={avatar} alt='leaderimge' />
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                 <Typography
@@ -187,7 +187,7 @@ const PublicCompanyView = () => {
                         </Box>
                         <Box sx={{ display: 'flex', columnGap: '12px', textAlign: 'start' }}>
                             <Box>
-                                <img src={avatar} alt="leaderimge" />
+                                <img src={avatar} alt='leaderimge' />
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <Typography
@@ -214,7 +214,7 @@ const PublicCompanyView = () => {
                         </Box>
                         <Box sx={{ display: 'flex', columnGap: '12px', textAlign: 'start' }}>
                             <Box>
-                                <img src={avatar} alt="leaderimge" />
+                                <img src={avatar} alt='leaderimge' />
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <Typography
@@ -1020,7 +1020,7 @@ const PublicCompanyView = () => {
                                         columnGap: '16px'
                                     }}
                                 >
-                                    <img src={dataprime} alt="dataprimeinvestor" />
+                                    <img src={dataprime} alt='dataprimeinvestor' />
                                     <Typography
                                         sx={{
                                             fontWeight: '500',
@@ -1039,7 +1039,7 @@ const PublicCompanyView = () => {
                                         columnGap: '16px'
                                     }}
                                 >
-                                    <img src={dataprime} alt="dataprimeinvestor" />
+                                    <img src={dataprime} alt='dataprimeinvestor' />
                                     <Typography
                                         sx={{
                                             fontWeight: '500',
@@ -1058,7 +1058,7 @@ const PublicCompanyView = () => {
                                         columnGap: '16px'
                                     }}
                                 >
-                                    <img src={dataprime} alt="dataprimeinvestor" />
+                                    <img src={dataprime} alt='dataprimeinvestor' />
                                     <Typography
                                         sx={{
                                             fontWeight: '500',

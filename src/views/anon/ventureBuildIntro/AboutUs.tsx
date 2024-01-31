@@ -59,8 +59,8 @@ const AboutUs = () => {
                 <Box sx={{ marginTop: '44px' }}>
                     <Button
                         onClick={handleSendMessage}
-                        type="submit"
-                        variant="contained"
+                        type='submit'
+                        variant='contained'
                         sx={{
                             color: '#FFFFFF',
                             backgroundColor: '#DC6803',
@@ -194,8 +194,8 @@ const AboutUs = () => {
                     <Box>
                         <Button
                             onClick={handleSendMessage}
-                            type="submit"
-                            variant="contained"
+                            type='submit'
+                            variant='contained'
                             sx={{
                                 color: '#FFFFFF',
                                 backgroundColor: '#DC6803',
@@ -301,8 +301,8 @@ const AboutUs = () => {
                         <Box sx={{ display: 'flex', columnGap: '16px' }}>
                             <Button
                                 onClick={handleSendMessage}
-                                type="submit"
-                                variant="contained"
+                                type='submit'
+                                variant='contained'
                                 sx={{
                                     color: '#344054',
                                     backgroundColor: '#FFFFFF',
@@ -319,8 +319,8 @@ const AboutUs = () => {
                             </Button>
                             <Button
                                 onClick={handleSendMessage}
-                                type="submit"
-                                variant="contained"
+                                type='submit'
+                                variant='contained'
                                 sx={{
                                     color: '#FFFFFF',
                                     backgroundColor: '#DC6803',

@@ -124,7 +124,7 @@ const VBWeeklyView = ({ events }: IVBWeeklyViewProps) => {
     }
 
     return (
-        <Box sx={containerStyle} className="weekly-view">
+        <Box sx={containerStyle} className='weekly-view'>
             <Box sx={timeColumnStyle}>
                 {times.map((time, index) => (
                     <Box key={index} sx={{timeSlotStyle, height:'120px', width:'100px',}}>

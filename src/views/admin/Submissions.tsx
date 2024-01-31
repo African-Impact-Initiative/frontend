@@ -10,7 +10,7 @@ const Submissions = () => {
         <Box>
             <VBTopBanner
                 title={'Submissions'}
-                description="Monitor, respond, grade, and manage submissions here."
+                description='Monitor, respond, grade, and manage submissions here.'
                 Icon={SettingsOutlinedIcon}
                 action={() => console.log('temp action')}
             />

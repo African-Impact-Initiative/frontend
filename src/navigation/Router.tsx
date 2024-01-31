@@ -58,7 +58,7 @@ const Router = () => {
                 {...authWithNavBarRouter}
                 {...adminRouter}
                 {/* 404 page route */}
-                <Route path="*" element={<PageNotFound />} />
+                <Route path='*' element={<PageNotFound />} />
             </Routes>
         </ScrollToTop>
     )

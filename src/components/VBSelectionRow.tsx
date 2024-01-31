@@ -75,7 +75,7 @@ const VBSelectionRow = ({ search, type, header1, header2, label1, label2, firstB
                                 '& fieldset': { border: 'none' },
                                 width: '400px',
                             }}
-                            label="Search"
+                            label='Search'
                         />
                     </Box>
                 </Box>}
@@ -95,7 +95,7 @@ const VBSelectionRow = ({ search, type, header1, header2, label1, label2, firstB
                     <Box sx={{ width: '100%' }}>
                         <VBSelect
                             label={label1!}
-                            size="small"
+                            size='small'
                             setter={setStatus}
                             list={filters}
                             value={status}
@@ -120,7 +120,7 @@ const VBSelectionRow = ({ search, type, header1, header2, label1, label2, firstB
                     <Box sx={{ width: '100%', }}>
                         <VBSelect
                             label={label2!}
-                            size="small"
+                            size='small'
                             setter={setStatus}
                             list={categories}
                             value={status}
@@ -147,7 +147,7 @@ const VBSelectionRow = ({ search, type, header1, header2, label1, label2, firstB
                     <Box sx={{ width: '100%', }}>
                         <VBSelect
                             label={label3!}
-                            size="small"
+                            size='small'
                             setter={setStatus}
                             list={categories}
                             value={status}

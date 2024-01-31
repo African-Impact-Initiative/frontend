@@ -29,7 +29,7 @@ const columns: Array<GridColDef<any, any, any>> = [
                 <div style={{ width: '128px', height: '72px' }}>
                     <img
                         src={params.row.thumbnail}
-                        alt="thumbnail"
+                        alt='thumbnail'
                         style={{ width: '100%', height: '100%' }}
                     />
                 </div>
@@ -177,9 +177,9 @@ const Videos = () => {
         <Box>
             <VBTopBanner
                 title={'Videos'}
-                description="Upload and manage videos here."
+                description='Upload and manage videos here.'
                 action={uploadAction}
-                actionText="Upload"
+                actionText='Upload'
             />
 
             <VBAppModal open={openUpload} handleClose={handleCloseUpload}>
@@ -189,7 +189,7 @@ const Videos = () => {
             <VBResourcesUploadSuccess
                 open={openUploadSuccess}
                 handleClose={handleCloseUploadSuccess}
-                type="video"
+                type='video'
                 thumbnail={ResourceTempBg1}
             />
 
@@ -199,9 +199,9 @@ const Videos = () => {
                         <Box>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography
-                                    id="modal-modal-title"
-                                    variant="h6"
-                                    component="h2"
+                                    id='modal-modal-title'
+                                    variant='h6'
+                                    component='h2'
                                     sx={{
                                         color: 'rgba(16, 24, 40, 1)',
                                         fontWeight: 600,
@@ -220,8 +220,8 @@ const Videos = () => {
                         </Box>
                         <Box>
                             <Typography
-                                variant="h6"
-                                component="h2"
+                                variant='h6'
+                                component='h2'
                                 sx={{
                                     color: 'rgba(71, 84, 103, 1)',
                                     fontWeight: 400,
@@ -294,17 +294,17 @@ const Videos = () => {
                     search={true}
                     firstBox={true}
                     secondBox={true}
-                    type="Search videos"
-                    header1="Categories"
-                    header2="Sort by"
-                    label1="Select"
-                    label2="Select"
+                    type='Search videos'
+                    header1='Categories'
+                    header2='Sort by'
+                    label1='Select'
+                    label2='Select'
 
                 />
 
                 <Box sx={{ height: 400, width: '100%'}}>
                     <DataGrid
-                        className="pointer-cursor-datagrid"
+                        className='pointer-cursor-datagrid'
                         rows={rows}
                         columns={columns}
                         onRowClick={handleRowClick}

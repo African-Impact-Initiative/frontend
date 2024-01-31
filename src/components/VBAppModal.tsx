@@ -30,8 +30,8 @@ const VBAppModal = ({ children, open, handleClose, height, width }: IAppModalPro
         <Modal
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+            aria-labelledby='modal-modal-title'
+            aria-describedby='modal-modal-description'
             style={{ backdropFilter: 'blur(5px)' }}
         >
             <Box sx={style}>{children}</Box>

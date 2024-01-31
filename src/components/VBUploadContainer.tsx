@@ -29,7 +29,7 @@ const VBUploadContainer = ({ handleOnChange }: IUploadContainerProps) => {
             }}
         >
             <input
-                type="file"
+                type='file'
                 onChange={handleOnChange}
                 style={{ display: 'none' }}
                 ref={fileRef}

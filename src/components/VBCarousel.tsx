@@ -14,7 +14,7 @@ const VBCarousel = ({list, carouselKey}: CarouselProps) => {
                     list.map((set, j) =>
                         <Box key={`carousel-${carouselKey}-set-${j}`} sx={{display: 'flex', justifyContent: 'space-evenly', alignItems: 'center'}}>
                             {
-                                set.map((image, i) => <img src={image} key={`${image}-${carouselKey}-${i}`} style={{height: '450px', width: '400px'}} alt="slider" />)
+                                set.map((image, i) => <img src={image} key={`${image}-${carouselKey}-${i}`} style={{height: '450px', width: '400px'}} alt='slider' />)
                             }
                         </Box>)
                 }

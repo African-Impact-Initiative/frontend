@@ -168,11 +168,11 @@ const Signup = () => {
                             sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
                             InputProps={{
                                 endAdornment:
-                                    <InputAdornment position="end">
+                                    <InputAdornment position='end'>
                                         <IconButton
-                                            aria-label="toggle password visibility"
+                                            aria-label='toggle password visibility'
                                             onClick={() => setPasswordVisible(!passwordVisible)}
-                                            edge="end"
+                                            edge='end'
                                         >
                                             {passwordVisible ? <VisibilityOff /> : <Visibility />}
                                         </IconButton>
@@ -193,11 +193,11 @@ const Signup = () => {
                             sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
                             InputProps={{
                                 endAdornment:
-                                    <InputAdornment position="end">
+                                    <InputAdornment position='end'>
                                         <IconButton
-                                            aria-label="toggle password visibility"
+                                            aria-label='toggle password visibility'
                                             onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
-                                            edge="end"
+                                            edge='end'
                                         >
                                             {confirmPasswordVisible ? <VisibilityOff /> : <Visibility />}
                                         </IconButton>

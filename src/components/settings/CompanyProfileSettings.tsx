@@ -110,8 +110,8 @@ const CompanyProfileSettings = () => {
                     </Box>
                     <Box sx={{ display: 'flex', columnGap: '20px', width: '60%', justifyContent: { xs: 'center', md: 'flex-end' }, marginTop: {xs: '10px'} ,  marginBottom: {xs: '20px'}}}>
                         <Button
-                            size="large"
-                            variant="outlined"
+                            size='large'
+                            variant='outlined'
                             sx={{
                                 border: '1px solid #D0D5DD',
                                 borderRadius: '8px',
@@ -128,8 +128,8 @@ const CompanyProfileSettings = () => {
                         </Button>
                         <Button
                             onClick={handleFormSubmit}
-                            type="submit"
-                            variant="contained"
+                            type='submit'
+                            variant='contained'
                             sx={{
                                 color: '#FFFFFF',
                                 backgroundColor: '#DC6803',
@@ -198,7 +198,7 @@ const CompanyProfileSettings = () => {
                             }}
                         >
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -211,12 +211,12 @@ const CompanyProfileSettings = () => {
                             >
                                 <InputBase
                                     sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                    placeholder="DataPrime"
+                                    placeholder='DataPrime'
                                     inputProps={{ 'aria-label': 'company size' }}
                                 />
                             </Paper>
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -241,11 +241,11 @@ const CompanyProfileSettings = () => {
                                 </Typography>
                                 <Divider
                                     sx={{ ml: 2, height: 45, m: 0.5 }}
-                                    orientation="vertical"
+                                    orientation='vertical'
                                 />
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16, ml: 1, color: '#667085' }}
-                                    placeholder="dataprime"
+                                    placeholder='dataprime'
                                     inputProps={{ 'aria-label': 'company size' }}
                                 />
                             </Paper>
@@ -302,8 +302,8 @@ const CompanyProfileSettings = () => {
                             <TextField
                                 value={industry}
                                 select
-                                label="Industry"
-                                size="small"
+                                label='Industry'
+                                size='small'
                                 onChange={(e) => setIndustry(e.target.value)}
                                 sx={{
                                     width: { xs: '100%', md: 512 },
@@ -312,7 +312,7 @@ const CompanyProfileSettings = () => {
                                     marginBottom: '10px',
                                 }}
                             >
-                                <MenuItem value="">
+                                <MenuItem value=''>
                                     <em>None</em>
                                 </MenuItem>
                                 {industriesList.map((industry) => (
@@ -364,7 +364,7 @@ const CompanyProfileSettings = () => {
                     </Box>
                     <Box
                         sx={{ width: {md:'166%', xs: '100%'}, fontSize: { md: '16px', xs: '12px' }, color: '#475467', fontWeight: '400', lineHeight: '24px', padding: '14px' }}
-                        className="my-custom-editor-meeting"
+                        className='my-custom-editor-meeting'
                     >
                         <CKEditor
                             editor={ClassicEditor}
@@ -391,12 +391,12 @@ const CompanyProfileSettings = () => {
                                     ],
                                 },
                             }}
-                            data="<p>
+                            data='<p>
                             DataPrime empowers financial
                              insights with AI-driven solutions <br/>
                               for smarter decision-making and
                               thriving FinTech innovations.
-                                </p>"
+                                </p>'
                             onReady={(editor) => {
                                 // you can store the "editor" and use when it is needed.
                                 console.log('Editor is ready to use!', editor)
@@ -453,7 +453,7 @@ const CompanyProfileSettings = () => {
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-center' }, marginTop: { xs: '20px', md: '0' }, columnGap: '20px', width: '71%' }}>
                         <Box>
-                            <img src={dataprime} alt="humanimage" />
+                            <img src={dataprime} alt='humanimage' />
                         </Box>
                         <Box
                             sx={{
@@ -496,18 +496,18 @@ const CompanyProfileSettings = () => {
                                     marginTop: {md: '16px', xs: '0px'}
                                 }}
                             >
-                                <Typography variant="body1" sx={{ marginTop: '16px' }}>
+                                <Typography variant='body1' sx={{ marginTop: '16px' }}>
                                     {selectedFile ? `${selectedFile.name}` : ''}
                                 </Typography>
-                                <label htmlFor="file-upload">
+                                <label htmlFor='file-upload'>
                                     <input
-                                        type="file"
-                                        id="file-upload"
+                                        type='file'
+                                        id='file-upload'
                                         style={{ display: 'none' }}
                                         onChange={handleFileChange}
                                     />
                                     <Box
-                                        component="span"
+                                        component='span'
                                         onClick={handleUpload}
                                         sx={{
                                             marginTop: '16px',
@@ -578,7 +578,7 @@ const CompanyProfileSettings = () => {
                         >
 
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -601,17 +601,17 @@ const CompanyProfileSettings = () => {
 
                                 <Divider
                                     sx={{ ml: 2, height: 45, m: 0.5 }}
-                                    orientation="vertical"
+                                    orientation='vertical'
                                 />
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                    placeholder="dataprime"
+                                    placeholder='dataprime'
                                     inputProps={{ 'aria-label': 'label search' }}
                                 />
                             </Paper>
 
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -634,17 +634,17 @@ const CompanyProfileSettings = () => {
 
                                 <Divider
                                     sx={{ ml: 2, height: 45, m: 0.5 }}
-                                    orientation="vertical"
+                                    orientation='vertical'
                                 />
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                    placeholder="dataprime"
+                                    placeholder='dataprime'
                                     inputProps={{ 'aria-label': 'label search' }}
                                 />
                             </Paper>
 
                             <Paper
-                                component="form"
+                                component='form'
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -667,11 +667,11 @@ const CompanyProfileSettings = () => {
 
                                 <Divider
                                     sx={{ ml: 2, height: 45, m: 0.5 }}
-                                    orientation="vertical"
+                                    orientation='vertical'
                                 />
                                 <InputBase
                                     sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                    placeholder="dataprime"
+                                    placeholder='dataprime'
                                     inputProps={{ 'aria-label': 'label search' }}
                                 />
                             </Paper>
@@ -689,8 +689,8 @@ const CompanyProfileSettings = () => {
                     }}
                 >
                     <Button
-                        size="large"
-                        variant="outlined"
+                        size='large'
+                        variant='outlined'
                         sx={{
                             border: '1px solid #D0D5DD',
                             borderRadius: '8px',
@@ -707,8 +707,8 @@ const CompanyProfileSettings = () => {
                     </Button>
                     <Button
                         onClick={handleFormSubmit}
-                        type="submit"
-                        variant="contained"
+                        type='submit'
+                        variant='contained'
                         sx={{
                             color: '#FFFFFF',
                             backgroundColor: '#DC6803',

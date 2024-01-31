@@ -56,9 +56,9 @@ const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
                 }}
             >
                 <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
+                    id='modal-modal-title'
+                    variant='h6'
+                    component='h2'
                     sx={{
                         color: 'rgba(16, 24, 40, 1)',
                         fontWeight: 600,
@@ -91,7 +91,7 @@ const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
                 >
                     Title <span style={{ color: 'red' }}>*</span>
                 </Typography>
-                <TextField label="Add the event title" sx={{ width: '100%' }} />
+                <TextField label='Add the event title' sx={{ width: '100%' }} />
             </Box>
 
             <Box sx={{ marginTop: '20px' }}>
@@ -108,14 +108,14 @@ const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
                 <TextField
                     // value={status}
                     select
-                    label="Select cohorts for this event"
+                    label='Select cohorts for this event'
                     // size="large"
                     onChange={(e) => setStatus(e.target.value)}
                     sx={{
                         width: '100%',
                     }}
                 >
-                    <MenuItem value="">
+                    <MenuItem value=''>
                         <em>English</em>
                     </MenuItem>
                     {cohorts.map((state) => (
@@ -195,14 +195,14 @@ const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
                     <TextField
                         // value={status}
                         select
-                        label="15 minutes before"
+                        label='15 minutes before'
                         // size="large"
                         onChange={(e) => setStatus(e.target.value)}
                         sx={{
                             width: '100%',
                         }}
                     >
-                        <MenuItem value="">
+                        <MenuItem value=''>
                             <em>30 minutes before</em>
                         </MenuItem>
                         {categories.map((state) => (
@@ -229,14 +229,14 @@ const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
                     <TextField
                         // value={status}
                         select
-                        label="Do not repeat"
+                        label='Do not repeat'
                         // size="large"
                         onChange={(e) => setStatus(e.target.value)}
                         sx={{
                             width: '100%',
                         }}
                     >
-                        <MenuItem value="">
+                        <MenuItem value=''>
                             {/* <em>English</em> */}
                         </MenuItem>
                         {categories.map((state) => (
@@ -260,14 +260,14 @@ const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
                     <TextField
                         // value={status}
                         select
-                        label="15 minutes before"
+                        label='15 minutes before'
                         // size="large"
                         onChange={(e) => setStatus(e.target.value)}
                         sx={{
                             width: '100%',
                         }}
                     >
-                        <MenuItem value="">
+                        <MenuItem value=''>
                             <em>30 minutes before</em>
                         </MenuItem>
                         {categories.map((state) => (
@@ -281,7 +281,7 @@ const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
 
             <Box
                 sx={{ marginTop: '20px', marginBottom: '40px' }}
-                className="my-custom-editor-meeting"
+                className='my-custom-editor-meeting'
             >
                 <CKEditor
                     editor={ClassicEditor}
@@ -308,7 +308,7 @@ const CreateMeeting = ({ handleClose, action }: ICreateMeetingProps) => {
                             ],
                         },
                     }}
-                    data="<p>Describe the event.</p>"
+                    data='<p>Describe the event.</p>'
                     onReady={(editor) => {
                         // you can store the "editor" and use when it is needed.
                         console.log('Editor is ready to use!', editor)

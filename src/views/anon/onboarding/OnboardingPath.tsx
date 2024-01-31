@@ -60,7 +60,7 @@ const OnboardingPath = () => {
                 We&apos;re delighted to have you join Venture Build. Please select one of the following options below to proceed.
             </Typography>
             <Divider light sx={{marginBottom: '20px', marginTop: '10px'}}/>
-            <List component="nav" aria-label="main mailbox folders" sx={{width: '100%'}}>
+            <List component='nav' aria-label='main mailbox folders' sx={{width: '100%'}}>
                 {
                     items.map((item, i) =>
                         <ListItemButton key={`path-choice-${i}`} onClick={item.action} sx={{padding: '20px', border: 'solid 1px #C4C4C4', borderRadius: '20px', margin: '10px'}}>

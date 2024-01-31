@@ -88,10 +88,10 @@ const DevelopmentStage = () => {
                                         }
                                     />
                                     <CardContent sx={{height: '200px'}}>
-                                        <Typography variant="h6" gutterBottom sx={{marginTop: '50px'}}>
+                                        <Typography variant='h6' gutterBottom sx={{marginTop: '50px'}}>
                                             {stage.primary}
                                         </Typography>
-                                        <Typography variant="body2">
+                                        <Typography variant='body2'>
                                             {stage.secondary}
                                         </Typography>
                                     </CardContent>

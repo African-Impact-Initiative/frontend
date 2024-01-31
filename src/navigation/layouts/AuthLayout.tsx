@@ -26,12 +26,12 @@ const AuthLayout = ({ Component, title, ...otherProps }: BasicLayout) => {
                 <VBSidebar
                     links={sideBarLinks}
                     isAdmin={false}
-                    backgroundColor="#FFFFFF"
-                    className="active-nav"
-                    color1="rgba(16, 24, 40, 1)"
-                    color2="rgba(16, 24, 40, 1)"
-                    searchBoarder="#D0D5DD"
-                    textColor="rgba(16, 24, 40, 1)"
+                    backgroundColor='#FFFFFF'
+                    className='active-nav'
+                    color1='rgba(16, 24, 40, 1)'
+                    color2='rgba(16, 24, 40, 1)'
+                    searchBoarder='#D0D5DD'
+                    textColor='rgba(16, 24, 40, 1)'
                     searchClass={'app-search-placeholder'} />
                 <main style={{ background: '#FFFFFF', width: '100%', overflowY: 'auto' }}>
                     {loading? <VBLoading /> : <Component {...otherProps} />}
