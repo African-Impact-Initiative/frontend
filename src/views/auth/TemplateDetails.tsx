@@ -7,8 +7,8 @@ import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 
-import { resourceTemplateData } from '../../../data'
-import TemplateCard from '../../resources/TemplateCard'
+import { ResourceTemplateType, resourceTemplateData } from '../../utils/devUtils'
+import TemplateCard from '../../components/resources/TemplateCard'
 
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined'
@@ -20,20 +20,21 @@ import StarBorderIcon from '@mui/icons-material/StarBorder'
 
 import MsIcon from '../../../assets/ms_word.png'
 import GoogleIcon from '../../../assets/google.png'
-import BreadCrumb from '../../breadcrumb/BreadCrumb'
+import VBBreadCrumb from '../../components/VBBreadCrumb'
 
 export default function TemplateDetails() {
     const [value, setValue] = useState('1')
     const { id } = useParams()
-    const [resourceData, setresourceData] = useState({})
+    const [resourceData, setresourceData] = useState<ResourceTemplateType | null>(null)
 
-    const handleChange = (event, newValue) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleChange = (newValue: any) => {
         setValue(newValue)
     }
 
     useEffect(() => {
         const selected = resourceTemplateData.filter(
-            (resource) => JSON.parse(resource.id) === JSON.parse(id)
+            (resource) => resource.id === JSON.parse(id!)
         )
         setresourceData(selected[0])
     }, [id, resourceData])
@@ -62,7 +63,7 @@ export default function TemplateDetails() {
                 }}
             >
                 <Box sx={{ flex: '1.2' }}>
-                    <BreadCrumb breadCrumbs={breadCrumbs} />
+                    <VBBreadCrumb breadCrumbs={breadCrumbs} breadCrumbKey='template-details'/>
 
                     <Box
                         sx={{
@@ -84,7 +85,7 @@ export default function TemplateDetails() {
                                     cursor: 'pointer',
                                 }}
                             >
-                                {resourceData.name}
+                                {resourceData && resourceData.name}
                             </Typography>
                         </Box>
                         <Box
@@ -179,7 +180,7 @@ export default function TemplateDetails() {
                                     cursor: 'pointer',
                                 }}
                             >
-                                {resourceData.details}{' '}
+                                {resourceData && resourceData.details}{' '}
                             </Typography>
                         </Box>
                         <Box>
@@ -436,9 +437,9 @@ export default function TemplateDetails() {
                                 }}
                             >
                                 {resourceTemplateData
-                                    ?.filter((res) => JSON.parse(res.id) !== JSON.parse(id))
+                                    ?.filter((res) => res.id !== JSON.parse(id!))
                                     ?.map((template) => (
-                                        <TemplateCard key={template} template={template} />
+                                        <TemplateCard key={template.id} template={template} />
                                     ))}
                             </Box>
                         </TabPanel>
