@@ -11,19 +11,14 @@ import {
     Typography
 } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
-import TeamCard from './TeamCard'
-import avatar1 from '../../assets/Avatar1.png'
-import avatar2 from '../../assets/Avatar2.png'
-import avatar3 from '../../assets/Avatar3.png'
-import avatar4 from '../../assets/Avatar4.png'
-import PageHeader from '../pageHeader/PageHeader'
-import { DataGrid } from '@mui/x-data-grid'
-import SelectionRow from '../Admin/SelectionRow/SelectionRow'
-import { teamPageData, templateData } from '../../data'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import TeamCard from '../../components/teamPage/teamCard'
+import VBPageHeader from '../../components/VBPageHeader'
+import VBSelectionRow from '../../components/VBSelectionRow'
+import { teamPageData } from '../../utils/devUtils'
 
-
-const columns = [
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'name',
         headerName: 'Name',
@@ -37,7 +32,7 @@ const columns = [
                     <img
                         src={params.row.logo}
                         alt='personImage'
-                        style={{ width: '40px', heigh: '40px' }}
+                        style={{ width: '40px', height: '40px' }}
                     />
                 </div>
                 <div>
@@ -114,7 +109,7 @@ const columns = [
         headerName: '',
         width: 130,
         flex: 1,
-        renderCell: (params) => (
+        renderCell: () => (
             <div
                 style={{
                     display: 'flex',
@@ -138,15 +133,16 @@ const columns = [
 
 const rows = teamPageData
 
-
-
-
 const TeamPage = () => {
-    const [status, setStatus] = useState(false)
+
     return (
         <Box sx={{ padding: '20px', width: '100%' }}>
             <Box>
-                <PageHeader title='Team' subTitle='Manage your team members here.' />
+                <VBPageHeader 
+                    title='Team' 
+                    subTitle='Manage your team members here.' 
+                    noHr={true}
+                />
             </Box>
             <Box>
                 <TeamCard />
@@ -172,7 +168,7 @@ const TeamPage = () => {
                             sx={{ display: 'flex', columnGap: '10px', marginBottom: '6px' }}
                         >
                             <Typography
-                                variant='p'
+                                variant='body1'
                                 sx={{
                                     fontWeight: '600',
                                     lineHeight: '28px',
@@ -199,7 +195,7 @@ const TeamPage = () => {
                                 }}
                             >
                                 <Typography
-                                    variant='P'
+                                    variant='body1'
                                     sx={{
                                         color: '#B54708',
                                         fontWeight: '500',
@@ -214,7 +210,7 @@ const TeamPage = () => {
                         </Box>
                         <Box sx={{ textAlign: {xs: 'start'}}}>
                             <Typography
-                                variant='p'
+                                variant='body1'
                                 sx={{
                                     color: '#475467',
                                     fontSize: '14px',
@@ -242,7 +238,7 @@ const TeamPage = () => {
                         >
                             <CloudDownloadOutlined sx={{ color: '#344054' }} />
                             <Typography
-                                variant='p'
+                                variant='body1'
                                 sx={{
                                     color: '#344054',
                                     lineHeight: '20px',
@@ -269,7 +265,7 @@ const TeamPage = () => {
                             }}>
                             <AddOutlined sx={{ color: 'white', height: '20px', width: '20px' }} />
                             <Typography
-                                variant='p'
+                                variant='body1'
                                 sx={{
                                     lineHeight: '20px',
                                     fontWeight: '600',
@@ -287,7 +283,7 @@ const TeamPage = () => {
                 <Divider sx={{ marginTop: '30px' }}></Divider>
 
                 <Box>
-                    <SelectionRow
+                    <VBSelectionRow
                         search={true}
                         firstBox={true}
                         secondBox={true}
@@ -306,13 +302,6 @@ const TeamPage = () => {
                             rowHeight={120}
                             // adjust its height to accommodate all rows.
                             autoHeight
-                            getRowStyle={(params) => ({
-                                cursor: 'pointer', // set the cursor style to "pointer" for all rows
-                                sx: {
-                                    padding: '8px', // adjust the padding as needed
-                                },
-                                // add other row styles if needed
-                            })}
                             initialState={{
                                 pagination: {
                                     paginationModel: { page: 0, pageSize: 7 },
