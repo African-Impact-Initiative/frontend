@@ -28,7 +28,7 @@ const PathConstants: { [key: string]: string } = {
     adminArticles: `${adminPrefix}articles`,
     adminCreateArticles: `${adminPrefix}articles/create`,
     adminEvents: `${adminPrefix}events`,
-    adminFunding: `${adminPrefix}fundingOpportunuties`,
+    adminFunding: `${adminPrefix}funding-opportunities`,
     adminSubmissions: `${adminPrefix}submissions`,
     dashboard: `${authPrefix}dashboard`,
     tasks: `${authPrefix}tasks`,
@@ -37,10 +37,10 @@ const PathConstants: { [key: string]: string } = {
     templates: `${authPrefix}resources/template/:id`,
     articles: `${authPrefix}resources/article/:id`,
     settings: `${authPrefix}settings`,
-    teamPage: `${authPrefix}teamPage`,
-    companyEditPage: `${authPrefix}companyEditPage/:id`,
-    privateViewUpdate: `${authPrefix}privateViewUpdate`,
-    publicCompanyView: `${authPrefix}publicCompanyView`,
+    teamPage: `${authPrefix}team-page`,
+    companyEditPage: `${authPrefix}company-edit-page/:id`,
+    privateViewUpdate: `${authPrefix}private-view-update`,
+    publicCompanyView: `${authPrefix}public-company-view`,
 }
 
 export default PathConstants

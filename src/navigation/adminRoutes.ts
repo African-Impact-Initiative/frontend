@@ -28,7 +28,7 @@ export const adminRoutes = [
     },
     {
         title: 'Video Details',
-        path: PathConstants.adminVideos,
+        path: PathConstants.adminVideo,
         Component: ComposeAdminLayout(VideoDetails),
         exact: true,
     },
