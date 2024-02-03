@@ -1,4 +1,5 @@
 const adminPrefix = '/admin/'
+const authPrefix = '/app/'
 
 const PathConstants: { [key: string]: string } = {
     home: '/',
@@ -15,8 +16,6 @@ const PathConstants: { [key: string]: string } = {
     developmentStage: '/development/stage',
     developmentChallenges: '/development/challenges',
     developmentFundraising: '/development/fundraising',
-    dashboard: '/dashboard/',
-    resources: '/resources/',
     community: '/community/',
     help: '/help/',
     contactUs: '/contact/',
@@ -31,6 +30,17 @@ const PathConstants: { [key: string]: string } = {
     adminEvents: `${adminPrefix}events`,
     adminFunding: `${adminPrefix}fundingOpportunuties`,
     adminSubmissions: `${adminPrefix}submissions`,
+    dashboard: `${authPrefix}dashboard`,
+    tasks: `${authPrefix}tasks`,
+    resources: `${authPrefix}resources`,
+    videos: `${authPrefix}resources/video/:id`,
+    templates: `${authPrefix}resources/template/:id`,
+    articles: `${authPrefix}resources/article/:id`,
+    settings: `${authPrefix}settings`,
+    teamPage: `${authPrefix}teamPage`,
+    companyEditPage: `${authPrefix}companyEditPage/:id`,
+    privateViewUpdate: `${authPrefix}privateViewUpdate`,
+    publicCompanyView: `${authPrefix}publicCompanyView`,
 }
 
 export default PathConstants
