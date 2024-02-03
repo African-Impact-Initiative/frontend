@@ -12,8 +12,8 @@ import { Divider, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import avatar from '../../assets/avatar.png'
 import dataprime from '../../assets/dataprime.png'
-import articleBg from '../../assets/ArticleBg.png'
-import articleBg2 from '../../assets/Article2Bg.png'
+import articleBg from '../../assets/article-bg.png'
+import articleBg2 from '../../assets/article-2bg.png'
 import canadalogo from '../../assets/canadalogo.png'
 
 const PublicCompanyView = () => {

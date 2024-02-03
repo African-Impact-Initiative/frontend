@@ -1,10 +1,7 @@
 import { Box } from '@mui/system'
-import TeamInfo from './teamInfo'
+import TeamInfo from './TeamInfo'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
-import avatar1 from '../../assets/Avatar1.png'
-import avatar2 from '../../assets/Avatar2.png'
-import avatar3 from '../../assets/Avatar3.png'
-import avatar4 from '../../assets/Avatar4.png'
+import avatar from '../../assets/avatar.png'
 
 import {
     AnnouncementOutlined,
@@ -12,17 +9,17 @@ import {
     MoreVertOutlined
 } from '@mui/icons-material'
 
-const TeamCard = () => { 
+const TeamCard = () => {
 
     const  arrayOfImages= [
-        avatar1,
-        avatar2,
-        avatar3,
-        avatar4,
-        avatar1,
-        avatar2,
-        avatar3,
-        avatar4,
+        avatar,
+        avatar,
+        avatar,
+        avatar,
+        avatar,
+        avatar,
+        avatar,
+        avatar,
     ]
     const newTeamMembers = [
         {
@@ -31,7 +28,7 @@ const TeamCard = () => {
             icon: MoreVertOutlined,
             name: 'Executive',
             count: '6 updates',
-      
+
         },
         {
             id: 2,
@@ -39,7 +36,7 @@ const TeamCard = () => {
             icon: MoreVertOutlined,
             name: 'Advisory',
             count: '5 updates',
-     
+
         },
         {
             id: 3,
@@ -47,7 +44,7 @@ const TeamCard = () => {
             icon: MoreVertOutlined,
             name: 'Operations',
             count: '6 updates',
-      
+
         },
     ]
 
@@ -55,7 +52,7 @@ const TeamCard = () => {
         <Box sx={{marginBottom: '60px', marginTop: '40px'}}>
             <Box
                 sx={{
-         
+
                     display: 'flex',
                     flexWrap:'wrap',
                     columnGap:'30px',
@@ -70,7 +67,7 @@ const TeamCard = () => {
                             icon={team.icon}
                             name={team.name}
                             count={team.count}
-                            arrayOfImages={arrayOfImages}              
+                            arrayOfImages={arrayOfImages}
                         />
                     </Box>
                 ))}

@@ -9,7 +9,7 @@ import TabPanel from '@mui/lab/TabPanel'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined'
 
-import ArticleReader from '../../../assets/article_reader.png'
+import ArticleReader from '../../assets/article_reader.png'
 import { ResourceArticleType, resourceArticleData } from '../../utils/devUtils'
 import VBBreadCrumb from '../../components/VBBreadCrumb'
 

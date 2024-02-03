@@ -12,7 +12,7 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import TeamCard from '../../components/teamPage/teamCard'
+import TeamCard from '../../components/teamPage/TeamCard'
 import VBPageHeader from '../../components/VBPageHeader'
 import VBSelectionRow from '../../components/VBSelectionRow'
 import { teamPageData } from '../../utils/devUtils'
@@ -138,9 +138,9 @@ const TeamPage = () => {
     return (
         <Box sx={{ padding: '20px', width: '100%' }}>
             <Box>
-                <VBPageHeader 
-                    title='Team' 
-                    subTitle='Manage your team members here.' 
+                <VBPageHeader
+                    title='Team'
+                    subTitle='Manage your team members here.'
                     noHr={true}
                 />
             </Box>
