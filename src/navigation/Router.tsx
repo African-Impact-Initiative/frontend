@@ -19,11 +19,11 @@ const Router = () => {
 
     // routes with layouts having a side bar and authenticated
     const authRouter = authRoutes.map(
-        ({ path, component }) => (
+        ({ path, Component }) => (
             <Route
                 key={path}
                 path={path}
-                element={component}
+                element={<Component />}
             />
         )
     )

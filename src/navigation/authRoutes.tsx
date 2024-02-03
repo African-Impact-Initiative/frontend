@@ -1,3 +1,4 @@
+import TemplateDetails from '../views/admin/TemplateDetails'
 import CompanyProfile from '../views/anon/onboarding/CompanyProfile'
 import DevelopmentChallenges from '../views/anon/onboarding/DevelopmentChallenges'
 import DevelopmentFundraising from '../views/anon/onboarding/DevelopmentFundraising'
@@ -5,8 +6,18 @@ import DevelopmentStage from '../views/anon/onboarding/DevelopmentStage'
 import OnboardingPath from '../views/anon/onboarding/OnboardingPath'
 import PersonalInfo from '../views/anon/onboarding/PersonalInfo'
 import TermsOfUse from '../views/anon/onboarding/TermsOfUse'
+import ArticleDetails from '../views/auth/ArticleDetails'
+import CompanyEditPage from '../views/auth/CompanyEditPage'
+import Dashboard from '../views/auth/Dashboard'
+import PrivateViewUpdate from '../views/auth/PrivateViewUpdate'
+import PublicCompanyView from '../views/auth/PublicCompanyView'
+import Resources from '../views/auth/Resource'
+import ResourcesDetails from '../views/auth/ResourcesDetails'
+import Settings from '../views/auth/Settings'
+import TaskPage from '../views/auth/TaskPage'
+import TeamPage from '../views/auth/TeamPage'
+import ComposeAuthLayout from './hoc/ComposeAuthLayout'
 import ComposeAuthWithNavBarLayout from './hoc/ComposeAuthWithNavBarLayout'
-import AuthLayout from './layouts/AuthLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute } from './types/route'
 
@@ -15,68 +26,68 @@ export const authRoutes = [
     {
         title: 'Home',
         path: '/app/dashboard',
-        component: AuthLayout(Dashboard),
+        Component: ComposeAuthLayout(Dashboard),
         exact: true,
     },
     {
         title: 'Tasks',
         path: '/app/tasks',
-        component: AuthLayout(TaskPage),
+        Component: ComposeAuthLayout(TaskPage),
         exact: true,
     },
     {
         title: 'Resources',
         path: '/app/resources',
-        component: AuthLayout(Resources),
+        Component: ComposeAuthLayout(Resources),
         exact: true,
     },
     {
         title: 'Resources Details',
         path: '/app/resources/video/:id',
-        component: AuthLayout(ResourcesDetails),
+        Component: ComposeAuthLayout(ResourcesDetails),
         exact: true,
     },
     {
         title: 'Resources Video Details',
         path: '/app/resources/template/:id',
-        component: AuthLayout(TemplateDetails),
+        Component: ComposeAuthLayout(TemplateDetails),
         exact: true,
     },
     {
         title: 'Resources Article Details',
         path: '/app/resources/article/:id',
-        component: AuthLayout(ArticleDetails),
+        Component: ComposeAuthLayout(ArticleDetails),
         exact: true,
     },
     {
         title: 'Settings Page',
         path: '/app/settings',
-        component: AuthLayout(Settings),
+        Component: ComposeAuthLayout(Settings),
         exact: true,
     },
     {
         title: 'Team Page',
         path: '/app/teamPage',
-        component: AuthLayout(TeamPage),
+        Component: ComposeAuthLayout(TeamPage),
         exact: true,
     },
 
     {
         title: 'Compaany Edit Page',
         path: '/app/companyEditPage/:id',
-        component: AuthLayout(CompanyEditPage),
+        Component: ComposeAuthLayout(CompanyEditPage),
         exact: true,
     },
     {
         title: 'Private View Update',
         path: '/app/privateViewUpdate',
-        component: AuthLayout(PrivateViewUpdate),
+        Component: ComposeAuthLayout(PrivateViewUpdate),
         exact: true,
     },
     {
         title: 'Public Company View',
         path: '/app/publicCompanyView',
-        component: AuthLayout(PublicCompanyView),
+        Component: ComposeAuthLayout(PublicCompanyView),
         exact: true,
     },
 ]
