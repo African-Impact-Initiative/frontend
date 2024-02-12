@@ -25,6 +25,10 @@ const update = async (id: Id, organization: Organization): Promise<ServiceRespon
     return await organizationService.update(id, organization)
 }
 
+const modify = async (id: Id, organization: Organization): Promise<ServiceResponse<Organization>> => {
+    return await organizationService.modify(id, organization)
+}
+
 const destroy = async (id: Id): Promise<ServiceResponse<Empty>> => {
     return await organizationService.destroy(id)
 }
@@ -60,6 +64,7 @@ export default {
     retrieveSingle,
     create,
     update,
+    modify,
     destroy,
     addStage,
     addChallenges,
