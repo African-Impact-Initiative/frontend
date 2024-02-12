@@ -72,9 +72,8 @@ export const authRoutes = [
         Component: ComposeAuthLayout(TeamPage),
         exact: true,
     },
-
     {
-        title: 'Compaany Edit Page',
+        title: 'Company Edit Page',
         path: PathConstants.companyEditPage,
         Component: ComposeAuthLayout(CompanyEditPage),
         exact: true,
