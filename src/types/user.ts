@@ -1,4 +1,4 @@
-import { ForeignRelation, Id } from './propertyTypes'
+import { Id } from './propertyTypes'
 
 type User = {
     // personal data
@@ -21,8 +21,8 @@ type User = {
     anon: null | boolean,
     termsOfUse: null | boolean,
 
-    // organizations
-    organizations: ForeignRelation,
+    // organization
+    organization: Id | null,
 
     // meta data
     joined: string,
@@ -44,7 +44,7 @@ export const emptyUser: User = {
     admin: null,
     anon: null,
     termsOfUse: null,
-    organizations: [],
+    organization: null,
     joined: '',
     lastLogin: ''
 }
