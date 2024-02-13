@@ -3,29 +3,29 @@ import organizationService from '../api/organizationService'
 import { changeOrganization } from './organizationReducer'
 import { setSuccessNotification, setErrorNotification } from './notificationReducer'
 import Organization from '../types/organization'
-import { SetAppOrganizationState, UpdateAppOrganizationState } from './types/appOrganizationState'
+import { SetUserOrganizationState, UpdateUserOrganizationState } from './types/userOrganizationState'
 import { Id } from '../types/propertyTypes'
 import { AppDispatch } from './store'
 
-type AppOrganization = {
+type UserOrganization = {
     data: Organization | null
 }
 
-const initialState: AppOrganization = {
+const initialState: UserOrganization = {
     data: null,
 }
 
 // toolkit sets up the redux and state
 const organizationSlice = createSlice({
-    name: 'organization',
+    name: 'userOrganization',
     initialState,
     reducers: {
-        setAppOrganization(_state: AppOrganization, action: SetAppOrganizationState) {
+        setUserOrganization(_state: UserOrganization, action: SetUserOrganizationState) {
             return {
                 data: action.payload
             }
         },
-        updateAppOrganization(state: AppOrganization, action: UpdateAppOrganizationState) {
+        updateUserOrganization(state: UserOrganization, action: UpdateUserOrganizationState) {
             return {
                 ...state,
                 data: {
@@ -37,13 +37,13 @@ const organizationSlice = createSlice({
     }
 })
 
-export const { setAppOrganization, updateAppOrganization } = organizationSlice.actions
+export const { setUserOrganization, updateUserOrganization } = organizationSlice.actions
 
 export const updateOrganization = (id: Id, org: Organization) => {
     return async (dispatch: AppDispatch) => {
         try {
             const organization = await organizationService.modify(id, org)
-            dispatch(updateAppOrganization(organization.data as Organization))
+            dispatch(updateUserOrganization(organization.data as Organization))
             dispatch(changeOrganization(organization.data as Organization))
             dispatch(setSuccessNotification('Organization updated successfully'))
         } catch {

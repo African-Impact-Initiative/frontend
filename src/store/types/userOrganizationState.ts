@@ -1,11 +1,11 @@
 import Organization from "../../types/organization"
 
-export type SetAppOrganizationState = {
+export type SetUserOrganizationState = {
     type: string,
     payload: Organization | null
 }
 
-export type UpdateAppOrganizationState = {
+export type UpdateUserOrganizationState = {
     type: string,
     payload: Organization
 }

@@ -14,7 +14,7 @@ import ServiceResponse from '../types/serviceResponse'
 import { CreateUser, UpdatePersonalInfo, UpdateTerms } from '../api/contracts/userContracts'
 import { AppDispatch } from './store'
 import organizationService from '../api/organizationService'
-import { setAppOrganization } from './appOrganizationReducer'
+import { setUserOrganization } from './userOrganizationReducer'
 import Organization from '../types/organization'
 
 const stateManager: ITokenStateManager = new TokenStateManager()
@@ -77,7 +77,7 @@ export const login = (username: string, password: string) => {
             const user = await userService.getCurrent()
             dispatch(setUser(user.data as User))
             const org = await organizationService.retrieveSingle((user.data as User).organization!)
-            dispatch(setAppOrganization(org.data as Organization))
+            dispatch(setUserOrganization(org.data as Organization))
             dispatch(setSuccessNotification('Logged in successfully'))
         } catch {
             dispatch(setErrorNotification('Invalid username or password'))
@@ -102,7 +102,7 @@ export const googleLogin = (token: string) => {
             const user = await userService.getCurrent()
             dispatch(setUser(user.data as User))
             const org = await organizationService.retrieveSingle((user.data as User).organization!)
-            dispatch(setAppOrganization(org.data as Organization))
+            dispatch(setUserOrganization(org.data as Organization))
             dispatch(setSuccessNotification('Logged in successfully'))
         } catch {
             dispatch(setErrorNotification('Error logging in, please try again later'))
@@ -130,7 +130,7 @@ export const logout = (expired: boolean = false) => {
                 dispatch(setSuccessNotification('Logged out successfully'))
 
             dispatch(setAppUser({ anon: true, data: null, loading: false }))
-            dispatch(setAppOrganization(null))
+            dispatch(setUserOrganization(null))
         }
     }
 }
@@ -157,7 +157,7 @@ export const setUserOnRefresh = () => {
                     const user = await userService.getCurrent()
                     dispatch(setUser(user.data as User))
                     const org = await organizationService.retrieveSingle((user.data as User).organization!)
-                    dispatch(setAppOrganization(org.data as Organization))
+                    dispatch(setUserOrganization(org.data as Organization))
                 } catch {
                     dispatch(setErrorNotification('Session has expired'))
                     dispatch(logout(true))
@@ -166,11 +166,11 @@ export const setUserOnRefresh = () => {
                 const user = await userService.getCurrent()
                 dispatch(setUser(user.data as User))
                 const org = await organizationService.retrieveSingle((user.data as User).organization!)
-                dispatch(setAppOrganization(org.data as Organization))
+                dispatch(setUserOrganization(org.data as Organization))
             }
         } else {
             dispatch(setAppUser({ anon: true, data: null, loading: false }))
-            dispatch(setAppOrganization(null))
+            dispatch(setUserOrganization(null))
         }
     }
 }
@@ -211,7 +211,7 @@ export const userAddToOrg = (id: Id) => {
         const user = await userService.getCurrent()
         dispatch(setUser(user.data as User))
         const org = await organizationService.retrieveSingle((user.data as User).organization!)
-        dispatch(setAppOrganization(org.data as Organization))
+        dispatch(setUserOrganization(org.data as Organization))
     }
 }
 

@@ -3,7 +3,7 @@ import notificationReducer from './notificationReducer'
 import usersReducer from './usersReducer'
 import organizationReducer from './organizationReducer'
 import appUserReducer from './appUserReducer'
-import appOrganizationReducer from './appOrganizationReducer'
+import userOrganizationReducer from './userOrganizationReducer'
 
 // create store for redux
 const store = configureStore({
@@ -11,7 +11,7 @@ const store = configureStore({
         notifications: notificationReducer,
         user: appUserReducer,
         users: usersReducer,
-        organization: appOrganizationReducer,
+        userOrganization: userOrganizationReducer,
         organizations: organizationReducer
     }
 })
