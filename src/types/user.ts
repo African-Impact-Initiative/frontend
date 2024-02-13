@@ -11,6 +11,8 @@ type User = {
     photo: null | string,
     country: null | string,
     bio: null | string,
+    leadership: null | boolean,
+    team: Array<String>,
 
     // only on creation
     password?: string
@@ -18,6 +20,7 @@ type User = {
     // permissions
     staff: null | boolean,
     admin: null | boolean,
+    owner: null | boolean,
     anon: null | boolean,
     termsOfUse: null | boolean,
 
@@ -40,8 +43,11 @@ export const emptyUser: User = {
     photo: null,
     country: null,
     bio: null,
+    leadership: null,
+    team: [],
     staff: null,
     admin: null,
+    owner: null,
     anon: null,
     termsOfUse: null,
     organization: null,

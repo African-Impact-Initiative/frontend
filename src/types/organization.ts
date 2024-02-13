@@ -31,13 +31,11 @@ type Organization = {
     challenge1: CompanyChallenges,
     challenge2: CompanyChallenges,
     challenge3: CompanyChallenges,
-    owner: Id
 }
 
 export const emptyOrganization: Organization = {
     identifier: '',
     name: '',
-    owner: '',
     website: '',
     linkedin: '',
     twitter: '',
