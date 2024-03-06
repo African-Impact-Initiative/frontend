@@ -8,7 +8,7 @@ import Service from './service'
 import { METHODS } from './utils'
 
 const organizationService = new Service<Organization>(apiRoutes.organizationOperations.baseUrl)
-const queryPrefix = '?organizations='
+const queryPrefix = 'organizations='
 
 const retrieve = async (query?: string): Promise<ServiceResponse<Array<Organization>>> => {
     return await organizationService.retrieve(`${queryPrefix}${query}`)
