@@ -7,6 +7,7 @@ import VerificationSent from '../views/anon/registration/VerificationSent'
 import ComposeAnonLayout from './hoc/ComposeAnonLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute, Route } from './types/route'
+import VentureDirectory from '../views/anon/ventureBuildIntro/VentureDirectory'
 
 export const anonRoutes: Array<Route> = [
     {
@@ -18,6 +19,11 @@ export const anonRoutes: Array<Route> = [
         title: 'About Us',
         path: PathConstants.about,
         component: ComposeAnonLayout(<AboutUs />)(),
+    },
+    {
+        title: 'Venture Directory',
+        path: PathConstants.ventureDirectory,
+        component: ComposeAnonLayout(<VentureDirectory />)(),
     },
     {
         title: 'Contact Us',
@@ -43,8 +49,8 @@ export const anonRoutes: Array<Route> = [
 
 export const noUserPages: Array<BasicRoute> = [
     {
-        title: 'Venture directory',
-        path: PathConstants.community
+        title: 'Venture Directory',
+        path: PathConstants.ventureDirectory
     },
     {
         title: 'What we offer',
