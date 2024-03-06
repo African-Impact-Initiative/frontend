@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { setInfoNotification } from '../store/notificationReducer'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
-const VBErrorNotification = () => {
+const VBInfoNotification = () => {
     const theme = useTheme()
     const smallScreen = theme.breakpoints.values.sm
     const notification = useAppSelector(state => state.notifications.infoNotification)
@@ -42,4 +42,4 @@ const VBErrorNotification = () => {
     )
 }
 
-export default VBErrorNotification
+export default VBInfoNotification

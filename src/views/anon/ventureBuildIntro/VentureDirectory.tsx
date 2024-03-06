@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import { useEffect, useState } from 'react'
-import { useAppSelector } from '../../../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import PathConstants from '../../../navigation/pathConstants'
 import organizationService from '../../../api/organizationService'
@@ -12,6 +12,7 @@ const ORGANIZATION_QUERY = 'organizations'
 
 const VentureDirectory = () => {
     const organizations = useAppSelector(state => state.organizations)
+    const dispatch = useAppDispatch()
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
     const [query, setQuery] = useState('')
@@ -26,11 +27,11 @@ const VentureDirectory = () => {
 
     const updateDisplay = async (search: string) => {
         const orgs = await organizationService.retrieve(search)
-        console.log(orgs)
-        if (orgs.success)
-            setOrganizations(orgs.data as Organization[])
+        console.log((orgs.success && orgs.data))
+        if (orgs.success && (orgs.data as Organization[]).length > 0){
+        }
         else {
-            setInfoNotification('Could not find any results for your query')
+            dispatch(setInfoNotification('Could not find any results for your query'))
             setOrganizations([])
         }
     }
