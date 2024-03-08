@@ -67,11 +67,11 @@ export const noUserPages: Array<BasicRoute> = [
 export const noUserFooterPages: Array<BasicRoute> = [
     ...noUserPages,
     {
-        title: 'About Us',
+        title: '',
         path: '/about/'
     },
     {
-        title: 'Help',
+        title: '',
         path: '/help/'
     },
 ]

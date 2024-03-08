@@ -12,6 +12,7 @@ import VBAccordion, { AccordionItems } from '../../../components/VBAccordion'
 import VBCarousel from '../../../components/VBCarousel'
 
 import person from '../../../assets/person.svg'
+import background from '../../../assets/background.png'
 import home from '../../../assets/home.svg'
 import guide from '../../../assets/guide.svg'
 import community from '../../../assets/community.svg'
@@ -28,6 +29,7 @@ import laptop from '../../../assets/laptop.svg'
 import video from '../../../assets/video.svg'
 import mosaic from '../../../assets/mosaic.svg'
 import { orange } from '@mui/material/colors'
+
 
 const Home = () => {
     const items: Array<Array<string>> = [
@@ -96,37 +98,49 @@ const Home = () => {
 
     return (
         <>
-            <Box sx={{display: { xs: 'none', lg: 'flex' }, height: '90vh', overflowX: 'hidden'}}>
+            <Box sx={{display: { xs: 'none', lg: 'flex' }, height: '90vh', overflowX: 'hidden', backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat",
+    backgroundSize: "cover", backgroundPosition: `right bottom`}}>
                 <Grid sx={{width: '100%', height: '100%'}} container spacing={0}>
-                    <Grid item lg={5} sx={{height: '100%', width: '100%', padding: '80px', display: 'flex !important', alignItems: 'center !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
-                    <Typography sx={{display: {lg: 'inline', xl: 'inline', }}} variant='h6' component='div' gutterBottom>
-                            <a href='https://www.africanimpact.ca/the-african-impact-challenge'>New winners - 2023 African Impact Challenge</a>
-                        </Typography>
-                        <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
-                            Empowering Young African Innovators
-                        </Typography>
-                        <Typography sx={{display: {lg: 'none', xl: 'inline'}}} variant='h2' component='div' gutterBottom>
-                            Empowering Young African Innovators
-                        </Typography>
-
-                        <Typography sx={{display: {lg: 'none', xl: 'inline'}, fontSize: '120%'}} variant='subtitle1' component='div' gutterBottom>
-                            Unleash your business potential with data-driven insights, fundraising tools, educational resources, and more, all in Venture Build
-                        </Typography>
-
-                        <Box sx={{display: 'flex', justifyContent: 'space-evenly', width: '100%', marginTop: '20px'}}>
-                            <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button>
-                            <Link to={PathConstants.signUp}>
-                                <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
-                            </Link>
+                    <Grid item lg={5} sx={{height: '100%', width: '100%', padding: '80px', display: 'flex !important', alignItems: 'left !important', justifyContent: 'left !important', flexDirection: 'column !important'}}>
+                    <Typography sx={{display: {lg: 'inline', xl: 'inline'}}} variant='h6' component='div' gutterBottom>
+                        <Box sx={{
+                            backgroundColor: '#FFFAEB',
+                            maxWidth: '365px',
+                            borderRadius: '16px',                                                                                           
+                        }}>
+                            <Typography sx={{color: '#B54708'}}>
+                            <p>
+                                New winners 2023 African Impact Challenge →
+                            </p>
+                            </Typography>
                         </Box>
+                        
+                    </Typography>
+                    <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
+                        Empowering Young African Innovators
+                    </Typography>
+                    <Typography sx={{display: {lg: 'none', xl: 'inline'}}} variant='h2' component='div' gutterBottom>
+                        Empowering Young African Innovators
+                    </Typography>
+
+                    <Typography sx={{display: {lg: 'none', xl: 'inline'}, fontSize: '120%'}} variant='subtitle1' component='div' gutterBottom>
+                        Unleash your business potential with data-driven insights, fundraising tools, educational resources, and more, all in Venture Build
+                    </Typography>
+
+                    <Box sx={{display: 'flex', justifyContent: 'flex-start', width: '100%', marginTop: '20px', alignItems: 'left'}}>
+                        <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button>
+                        <Link to={PathConstants.signUp}>
+                            <Button size='large' variant='contained' sx={{color: '#fff', alignItems: 'left', marginLeft: '100px', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
+                        </Link>
+                    </Box>
                     </Grid>
-                    <Grid item lg={7} sx={{background: `url(${laptop}) no-repeat center right`, marginTop: '10vh', height: '80vh', width: '100%', backgroundSize: 'contain'}}>
+                    <Grid item lg={7} sx={{background: `url(${laptop}) no-repeat center right`, alignItems: 'left', marginTop: '10vh', height: '80vh', width: '100%', backgroundSize: 'contain'}}>
                     </Grid>
                 </Grid>
             </Box>
 
             <Box>
-                <Box sx={{overflowX: 'hidden', marginTop: '50px', display: 'flex', alignItems: 'center', flexDirection: 'column', textAlign: 'center'}}>
+                <Box sx={{overflowX: 'hidden', marginTop: '150px', display: 'flex', alignItems: 'center', flexDirection: 'column', textAlign: 'center'}}>
                     <Typography variant='overline' fontWeight='bold' color='#B54708'>
                         Features
                     </Typography>
@@ -142,7 +156,7 @@ const Home = () => {
                     </Typography>
                 </Box>
 
-                <Container maxWidth='lg' sx={{paddingTop: '40px', paddingBottom: '40px'}}>
+                <Container maxWidth='lg' sx={{paddingTop: '40px', paddingBottom: '96px'}}>
                     <Grid container spacing={2}>
                         {
                             growthItems.map(val =>
