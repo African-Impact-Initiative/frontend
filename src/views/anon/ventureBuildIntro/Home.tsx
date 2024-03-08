@@ -103,18 +103,19 @@ const Home = () => {
                 <Grid sx={{width: '100%', height: '100%'}} container spacing={0}>
                     <Grid item lg={5} sx={{height: '100%', width: '100%', padding: '80px', display: 'flex !important', alignItems: 'left !important', justifyContent: 'left !important', flexDirection: 'column !important'}}>
                     <Typography sx={{display: {lg: 'inline', xl: 'inline'}}} variant='h6' component='div' gutterBottom>
+                    <Link to="https://www.africanimpact.ca/the-african-impact-challenge" underline="none">
                         <Box sx={{
                             backgroundColor: '#FFFAEB',
                             maxWidth: '365px',
                             borderRadius: '16px',                                                                                           
                         }}>
-                            <Typography sx={{color: '#B54708'}}>
+                            <Typography style={{color: '#B54708', textDecoration: 'none'}}>
                             <p>
                                 New winners 2023 African Impact Challenge →
                             </p>
                             </Typography>
                         </Box>
-                        
+                    </Link>    
                     </Typography>
                     <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
                         Empowering Young African Innovators
