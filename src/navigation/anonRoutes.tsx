@@ -7,12 +7,18 @@ import VerificationSent from '../views/anon/registration/VerificationSent'
 import ComposeAnonLayout from './hoc/ComposeAnonLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute, Route } from './types/route'
+import PublicProfilePage from '../views/anon/ventureBuildIntro/PublicProfilePage'
 
 export const anonRoutes: Array<Route> = [
     {
         title: 'Venture Build',
         path: PathConstants.home,
         component: ComposeAnonLayout(<Home />)(),
+    },
+    {
+        title: 'Public Profile',
+        path: PathConstants.publicProfile,
+        component: ComposeAnonLayout(<PublicProfilePage />)(),
     },
     {
         title: 'About Us',
