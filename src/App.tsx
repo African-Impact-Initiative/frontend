@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import VBLoading from './components/VBLoading'
 import Router from './navigation/Router'
 import { useAppDispatch, useAppSelector } from './hooks/redux'
+import { initializeOrganizations } from './store/organizationReducer'
 
 const App = () => {
     const theme = getTheme()
@@ -22,6 +23,11 @@ const App = () => {
 
     useEffect(() => {
         dispatch(setUserOnRefresh())
+    }, [dispatch])
+
+    useEffect(() => {
+        // todo: optimize this
+        dispatch(initializeOrganizations())
     }, [dispatch])
 
     useEffect(() => {
