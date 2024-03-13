@@ -3,6 +3,7 @@ const authPrefix = '/app/'
 
 const PathConstants: { [key: string]: string } = {
     home: '/',
+    publicProfile: '/profile/:identifier',
     about: '/about/',
     login: '/login/',
     signUp: '/register/',
