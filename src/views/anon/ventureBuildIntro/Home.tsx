@@ -28,7 +28,6 @@ import logo from '../../../assets/logo.svg'
 import laptop from '../../../assets/laptop.svg'
 import video from '../../../assets/video.svg'
 import mosaic from '../../../assets/mosaic.svg'
-import { orange } from '@mui/material/colors'
 
 
 const Home = () => {
