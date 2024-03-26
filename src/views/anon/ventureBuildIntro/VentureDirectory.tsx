@@ -13,6 +13,7 @@ import { AppDispatch } from '../../../store/store'
 
 import ventureDirectory from '../../../assets/venture_directory.svg'
 import { industriesList } from '../../../utils/industries'
+import { VentureCard } from '../../../components/VBCards'
 
 export interface IVentureStats {
     title: string,
@@ -180,7 +181,11 @@ const VentureDirectory = () => {
             </Box>
 
             {organizationsToDisplay.length == 0 && <Typography>No results found</Typography>}
-            {organizationsToDisplay.map(org => <Typography key={org.id}>{org.name}</Typography>)}
+            <Grid container spacing={2}>
+                {organizationsToDisplay.map(org => <Grid item md={3} key={org.id}>
+                    <VentureCard name={org.name} category={org.industry} logo={org.logo} caption={org.tagline} details={org.tagline} action={() => 1}/>
+                </Grid>)}
+            </Grid>
 
         </Container>
     )

@@ -57,8 +57,8 @@ export const AboutCard = ({ title, description, image, address }: IAboutCardProp
 export interface IVentureCardProps {
     name: string,
     caption: string,
-    category: string,
-    logo: string,
+    category: string | null,
+    logo: string | null,
     details: string,
     action: (e: React.MouseEvent<HTMLElement>) => void
 }
@@ -75,9 +75,9 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
         >
             <Box sx={{ padding: '20px' }}>
                 <Box sx={{ display: 'flex', columnGap: '15px' }}>
-                    <Box>
+                    {logo && <Box>
                         <img src={logo} alt='logo' style={{ width: '40px', height: '40px' }} />
-                    </Box>
+                    </Box>}
                     <Box>
                         <Box sx={{ textAlign: 'start' }}>
                             <Box>
@@ -127,7 +127,7 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
                     alignItems: 'center'
                 }}
             >
-                <Box
+                {category && <Box
                     sx={{
                         borderRadius: '20px',
                         background: 'rgba(249, 250, 251, 1)',
@@ -140,7 +140,7 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
                     }}
                 >
                     <Typography>{category}</Typography>
-                </Box>
+                </Box>}
                 <Box>
                     <Button
                         sx={{
