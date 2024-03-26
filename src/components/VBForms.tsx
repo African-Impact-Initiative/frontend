@@ -25,9 +25,9 @@ export const VBTextField = ({value, setter, type, label, placeholder, validator,
 
         if (validator !== undefined)
             valid = validator()
-        else if (required) 
+        else if (required)
             valid = (value && value.length > 0) as boolean
-        
+
 
         setFormError(!valid)
 
@@ -65,17 +65,21 @@ type SelectItem = {
 export interface ISelectProps {
     value: string,
     setter: (value: string) => void,
-    label: string,
+    label?: string,
     required: boolean,
     helper?: string,
     size?: 'small' | 'medium',
-    list: Array<SelectItem>
+    list: Array<SelectItem>,
+    margin?: boolean,
+    gutter?: boolean
 }
 
-export const VBSelect = ({ label, list, value, setter, required, helper, size }: ISelectProps) => {
+export const VBSelect = ({ label, list, value, setter, required, helper, size, margin, gutter }: ISelectProps) => {
+    const margins = margin === undefined? '10px' : (margin? '0px' : '10px')
+
     return (
         <>
-            <Typography variant='h6' gutterBottom>{label}</Typography><TextField
+            <Typography variant='h6' gutterBottom={gutter === undefined? true : gutter}>{label}</Typography><TextField
                 value={value}
                 select
                 label={label}
@@ -84,7 +88,7 @@ export const VBSelect = ({ label, list, value, setter, required, helper, size }:
                 onChange={(e) => setter(e.target.value)}
                 required={required}
                 helperText={helper}
-                sx={{ width: '100%', marginTop: '10px', marginBottom: '10px' }}
+                sx={{ width: '100%', marginTop: margins, marginBottom: margins }}
             >
                 <MenuItem value=''>
                     <em>None</em>
