@@ -20,6 +20,7 @@ const App = () => {
     const dispatch = useAppDispatch()
     const [loading, setLoading] = useState(true)
     const user = useAppSelector(state => state.user)
+    const organizations = useAppSelector(state => state.organizations)
 
     useEffect(() => {
         dispatch(setUserOnRefresh())
@@ -31,8 +32,8 @@ const App = () => {
     }, [dispatch])
 
     useEffect(() => {
-        if (user && !user.loading) setLoading(false)
-    }, [user])
+        if (user && !user.loading && organizations && !organizations.loading) setLoading(false)
+    }, [user, organizations])
 
     return (
         <ThemeProvider theme={theme}>

@@ -1,7 +1,10 @@
 import Organization from '../../types/organization'
 import { Id } from '../../types/propertyTypes'
 
-export type AppOrganizations = Array<Organization>
+export type AppOrganizations = {
+    loading: boolean,
+    data: Array<Organization>
+}
 
 export type AppSetOrganizationsAction = {
     type: string
