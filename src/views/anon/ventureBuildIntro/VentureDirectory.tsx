@@ -23,9 +23,9 @@ export interface IVentureStats {
 
 const VentureStats = ({title, value, text} : IVentureStats) => (
     <Box>
-        <Typography variant='h3'>{value}+</Typography>
-        <Typography variant='body1' fontWeight='bold'>{title}</Typography>
-        <Typography variant='body1'>{text}</Typography>
+        <Typography marginBottom='10px' marginTop='20px' variant='h3' color='#DC6803'>{value}+</Typography>
+        <Typography marginBottom='10px' variant='body1' fontWeight='bold'>{title}</Typography>
+        <Typography marginBottom='10px' variant='body1'>{text}</Typography>
     </Box>
 )
 
@@ -102,92 +102,93 @@ const VentureDirectory = () => {
     }
 
     return (
-        <Container maxWidth='lg' sx={{padding: '0 40px 40px 40px'}}>
-            <Box sx={{display: 'flex', height: '75vh', overflowX: 'hidden'}}>
-                <Grid container spacing={0}>
-                    <Grid item lg={5} sx={{height: '100%', width: '100%', display: 'flex !important', alignItems: 'left !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
-                        <Typography variant='h3' component='div' gutterBottom>
-                            Venture Directory
-                        </Typography>
+        <>
+            <img style={{position: 'absolute', top: 0, right: 0, height: '100vh'}} src={ventureDirectory} />
+            <Container maxWidth='lg' sx={{padding: '0 40px 0 40px'}}>
+                <Box sx={{display: 'flex', height: '100vh', overflowX: 'hidden'}}>
+                    <Grid container spacing={0}>
+                        <Grid item md={5} sx={{height: '100%', width: '100%', display: 'flex !important', alignItems: 'left !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
+                            <Typography variant='h1' component='div' gutterBottom>
+                                Venture Directory
+                            </Typography>
 
-                        <Typography variant='subtitle1' component='div' gutterBottom>
-                            Discover a spectrum of pioneering startups with a reach extending from quantum computing to driving social change. These innovative ventures are reshaping industries and touching lives worldwide.
-                        </Typography>
+                            <Typography variant='subtitle1' component='div' gutterBottom>
+                                Discover a spectrum of pioneering startups with a reach extending from quantum computing to driving social change. These innovative ventures are reshaping industries and touching lives worldwide.
+                            </Typography>
 
-                        <Box sx={{display: 'flex', width: '100%', marginTop: '20px'}}>
-                            <Button size='large' variant='outlined' sx={{marginRight: '10px'}}>Browse all ventures</Button>
-                            <Link to={PathConstants.signUp}>
-                                <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
-                            </Link>
-                        </Box>
+                            <Box sx={{display: 'flex', width: '100%', marginTop: '20px'}}>
+                                <Button size='large' variant='outlined' sx={{marginRight: '10px'}}>Browse all ventures</Button>
+                                <Link to={PathConstants.signUp}>
+                                    <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
+                                </Link>
+                            </Box>
+                        </Grid>
                     </Grid>
-                    <Grid item lg={7} sx={{background: `url(${ventureDirectory}) no-repeat top right`, backgroundSize: 'contain'}}>
-                    </Grid>
-                </Grid>
-            </Box>
-
-            <Box sx={{marginTop: '40px'}}>
-                <Typography variant='h2' gutterBottom>How far we've gone so far</Typography>
-                <Typography variant='body1' gutterBottom>
-                    Venture Build is suited in one of Canada's fastest-growing startup incubation hub, committed to nurturing the creativity of young African innovators.
-                </Typography>
-                <Grid container spacing={2}>
-                    {stats.map(stat => <Grid item md={3} key={stat.title}><VentureStats {...stat} /></Grid>)}
-                </Grid>
-            </Box>
-
-            <Divider sx={{marginTop: '40px', marginBottom: '40px'}} />
-
-            <Box sx={{marginTop: '30px', padding: '10px', borderRadius: '10px', backgroundColor: '#FAFAFA'}}>
-                <Grid container spacing={2}>
-                    <Grid item md={4}>
-                        <Box display='flex' flexDirection='column' justifyContent='center'>
-                            <Typography>Search for venture</Typography>
-                            <VBTextField value={orgQuery} setter={setOrgQuery} required={false}  label='Search'/>
-                        </Box>
-                    </Grid>
-                    <Grid item md={4}>
-                        <Box display='flex' flexDirection='column' justifyContent='center'>
-                            <Typography>Industry</Typography>
-                            <VBSelect
-                                value={industryQuery}
-                                size='medium'
-                                required={false}
-                                list={industriesList}
-                                setter={setIndustryQuery}
-                                gutter={false}
-                                margin={false}
-                            />
-                        </Box>
-                    </Grid>
-                    <Grid item md={4}>
-                        <Box display='flex' flexDirection='column' justifyContent='center'>
-                            <Typography>Sort By</Typography>
-                            <VBSelect
-                                value={industryQuery}
-                                size='medium'
-                                required={false}
-                                list={industriesList}
-                                setter={setIndustryQuery}
-                                gutter={false}
-                                margin={false}
-                            />
-                        </Box>
-                    </Grid>
-                </Grid>
-                <Box display='flex' justifyContent='end'>
-                    <Button onClick={handleSearch} variant='contained'>Search</Button>
                 </Box>
-            </Box>
 
-            {organizationsToDisplay.length == 0 && <Typography>No results found</Typography>}
-            <Grid container spacing={2}>
-                {organizationsToDisplay.map(org => <Grid item md={3} key={org.id}>
-                    <VentureCard name={org.name} category={org.industry} logo={org.logo} caption={org.tagline} details={org.tagline} action={() => 1}/>
-                </Grid>)}
-            </Grid>
+                <Box sx={{marginTop: '40px'}}>
+                    <Typography variant='h2' gutterBottom>How far we've gone so far</Typography>
+                    <Typography variant='body1' gutterBottom>
+                        Venture Build is suited in one of Canada's fastest-growing startup incubation hub, committed to nurturing the creativity of young African innovators.
+                    </Typography>
+                    <Grid container spacing={2}>
+                        {stats.map(stat => <Grid item md={3} key={stat.title}><VentureStats {...stat} /></Grid>)}
+                    </Grid>
+                </Box>
 
-        </Container>
+                <Divider sx={{marginTop: '40px', marginBottom: '40px'}} />
+
+                <Box sx={{marginTop: '30px', padding: '10px', borderRadius: '10px', backgroundColor: '#FAFAFA'}}>
+                    <Grid container spacing={2}>
+                        <Grid item md={4}>
+                            <Box display='flex' flexDirection='column' justifyContent='center'>
+                                <Typography>Search for venture</Typography>
+                                <VBTextField value={orgQuery} setter={setOrgQuery} required={false}  label='Search'/>
+                            </Box>
+                        </Grid>
+                        <Grid item md={4}>
+                            <Box display='flex' flexDirection='column' justifyContent='center'>
+                                <Typography>Industry</Typography>
+                                <VBSelect
+                                    value={industryQuery}
+                                    size='medium'
+                                    required={false}
+                                    list={industriesList}
+                                    setter={setIndustryQuery}
+                                    gutter={false}
+                                    margin={false}
+                                />
+                            </Box>
+                        </Grid>
+                        <Grid item md={4}>
+                            <Box display='flex' flexDirection='column' justifyContent='center'>
+                                <Typography>Sort By</Typography>
+                                <VBSelect
+                                    value={industryQuery}
+                                    size='medium'
+                                    required={false}
+                                    list={industriesList}
+                                    setter={setIndustryQuery}
+                                    gutter={false}
+                                    margin={false}
+                                />
+                            </Box>
+                        </Grid>
+                    </Grid>
+                    <Box display='flex' justifyContent='end'>
+                        <Button onClick={handleSearch} variant='contained'>Search</Button>
+                    </Box>
+                </Box>
+
+                {organizationsToDisplay.length == 0 && <Typography>No results found</Typography>}
+                <Grid container spacing={2}>
+                    {organizationsToDisplay.map(org => <Grid item md={3} key={org.id}>
+                        <VentureCard name={org.name} category={org.industry} logo={org.logo} caption={org.tagline} details={org.tagline} action={() => 1}/>
+                    </Grid>)}
+                </Grid>
+
+            </Container>
+        </>
     )
 }
 
