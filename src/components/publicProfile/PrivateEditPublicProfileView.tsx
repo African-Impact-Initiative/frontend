@@ -8,6 +8,8 @@ import EditLogoModal from '../companyEdit/EditLogoModal'
 import AddLeadershipModal from '../companyEdit/AddLeadershipModal'
 import AddJobModal from '../companyEdit/AddJobModal'
 import { countryList } from '../../utils/countries'
+import User from '../../types/user'
+import personLogo from '../../assets/personLogo.png';
 
 const sizeList = [
     { label: '1-10', value: '1-10' },
@@ -22,6 +24,7 @@ const sizeList = [
 
 export type PrivateEditPublicProfileViewType = {
     name: string,
+    logo: string,
     tagline: string,
     aboutUs: string,
     country: string,
@@ -32,9 +35,12 @@ export type PrivateEditPublicProfileViewType = {
     twitter: string,
     facebook: string,
     instagram: string,
+    leadership: Array<User>,
+    industries: Array<String>,
     logoModal: boolean,
     leadershipModal: boolean,
     jobModal: boolean,
+    setLogo: React.Dispatch<React.SetStateAction<string>>
     setTagline: React.Dispatch<React.SetStateAction<string>>
     setAboutUs: React.Dispatch<React.SetStateAction<string>>
     setCountry: React.Dispatch<React.SetStateAction<string>>
@@ -45,6 +51,8 @@ export type PrivateEditPublicProfileViewType = {
     setTwitter: React.Dispatch<React.SetStateAction<string>>
     setFacebook: React.Dispatch<React.SetStateAction<string>>
     setInstagram: React.Dispatch<React.SetStateAction<string>>
+    setLeadership: React.Dispatch<React.SetStateAction<Array<User>>>
+    setIndustries: React.Dispatch<React.SetStateAction<Array<String>>>
     setLogoModal: React.Dispatch<React.SetStateAction<boolean>>
     setLeadershipModal: React.Dispatch<React.SetStateAction<boolean>>
     setJobModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -57,6 +65,7 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
 
     const {
         name,
+        logo,
         tagline,
         aboutUs,
         country,
@@ -67,9 +76,12 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
         twitter,
         facebook,
         instagram,
+        leadership,
+        industries,
         logoModal,
         leadershipModal,
         jobModal,
+        setLogo,
         setTagline,
         setAboutUs,
         setCountry,
@@ -80,6 +92,8 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
         setTwitter,
         setFacebook,
         setInstagram,
+        setLeadership,
+        setIndustries,
         setLogoModal,
         setLeadershipModal,
         setJobModal,
@@ -173,16 +187,25 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                             setLogoModal(true)
                           }}
                         >
-                            <Typography
-                              sx={{
-                                color: "#475467",
-                                fontWeight: "600",
-                                lineHeight: "72px",
-                                fontSize: "60px",
-                              }}
-                            >
-                                DP
-                            </Typography>
+                            { 
+                              !logo && <Typography
+                                sx={{
+                                  color: "#475467",
+                                  fontWeight: "600",
+                                  lineHeight: "72px",
+                                  fontSize: "60px",
+                                }}
+                              >
+                                  {name.charAt(0).toLocaleUpperCase()}
+                              </Typography>
+                            }
+                            {
+                              logo && <img 
+                                src={logo} 
+                                alt='logo' 
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                              />
+                            }
                         </Box>
                     </Box>
                     <Box>
@@ -452,6 +475,73 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                     </Box>
                     <Divider sx={{ marginTop: '20px' }} />
                     <Box
+                        sx={{ 
+                          display: 'flex', 
+                          marginTop: '32px', 
+                          flexDirection: { md: 'row', xs: 'column' }, 
+                          width: '80%',
+                          justifyContent: 'space-between' 
+                        }}
+                    >
+                        {
+                          leadership.map((leader, index) => (
+                              <Box 
+                                key={index} 
+                                sx={{ 
+                                  display: 'flex', 
+                                  columnGap: '12px'
+                                }}
+                              >
+                                  <Box
+                                    sx={{
+                                      width: '50px',
+                                      height: '50px',
+                                      overflow: 'hidden',
+                                      borderRadius: '50%',
+                                      border: '1px solid #D3D3D3',
+                                    }}
+                                  >
+                                    <img 
+                                      style={{
+                                        display:'block', 
+                                        width:'100%', 
+                                        height:'100%',
+                                        objectFit: 'cover',
+                                      }} 
+                                      src={leader.photo ?? personLogo} 
+                                      alt='headshot' 
+                                    />
+                                  </Box>
+                                  <Box sx={{ 
+                                    display: 'flex', 
+                                    flexDirection: 'column', 
+                                    textAlign: 'start' }}>
+                                      <Typography
+                                        sx={{
+                                          color: '#344054',
+                                          fontWeight: '600',
+                                          fontSize: '14px',
+                                          lineHeight: '20px'
+                                        }}
+                                      >
+                                          { leader.firstName + " " + leader.lastName }
+                                      </Typography>
+                                      <Typography
+                                        sx={{
+                                          color: '#475467',
+                                          fontWeight: '400',
+                                          lineHeight: '20px',
+                                          fontSize: '14px'
+                                        }}
+                                      >
+                                          { leader.role }
+                                      </Typography>
+                                  </Box>
+                              </Box>
+                          ))
+                        }
+                    </Box>
+                    <Box
                       sx={{ 
                         display: 'flex', 
                         flexDirection: 'column', 
@@ -660,84 +750,36 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                     rowGap: { xs: '10px', md: '0px' }
                                   }}
                                 >
-                                    <Box
-                                      sx={{
-                                        border: '1px solid #E9D7FE',
-                                        height: '22px',
-                                        width: '110px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        borderRadius: '14px',
-                                        color: '#6941C6',
-                                        backgroundColor: '#E9D7FE',
-                                        columnGap: '10px'
-                                      }}
-                                    >
-                                        <Typography
+                                  {
+                                    industries.map((industry) => (
+                                        <Box
                                           sx={{
+                                            border: '1px solid #E9D7FE',
+                                            height: '22px',
+                                            width: '110px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            borderRadius: '14px',
                                             color: '#6941C6',
-                                            fontWeight: '500',
-                                            lineHeight: '20px',
-                                            fontSize: '14px'
+                                            backgroundColor: '#E9D7FE',
+                                            columnGap: '10px'
                                           }}
                                         >
-                                            FinTech
-                                        </Typography>
-                                        <ClearOutlined sx={{ height: '15px', width: '15px' }} />
-                                    </Box>
-                                    <Box
-                                      sx={{
-                                        border: '1px solid #C7D7FE',
-                                        height: '22px',
-                                        width: '110px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        borderRadius: '14px',
-                                        color: '#6941C6',
-                                        backgroundColor: '#C7D7FE',
-                                        columnGap: '10px'
-                                      }}
-                                    >
-                                        <Typography
-                                          sx={{
-                                            color: '#3538CD',
-                                            fontWeight: '500',
-                                            lineHeight: '20px',
-                                            fontSize: '14px'
-                                          }}
-                                        >
-                                            AI-driven
-                                        </Typography>
-                                        <ClearOutlined sx={{ height: '15px', width: '15px' }} />
-                                    </Box>
-                                    <Box
-                                      sx={{
-                                        border: '1px solid #FCCEEE',
-                                        height: '22px',
-                                        width: '110px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        borderRadius: '14px',
-                                        color: '#6941C6',
-                                        backgroundColor: '#FCCEEE',
-                                        columnGap: '10px'
-                                      }}
-                                    >
-                                        <Typography
-                                          sx={{
-                                            color: '#C11574',
-                                            fontWeight: '500',
-                                            lineHeight: '20px',
-                                            fontSize: '14px'
-                                          }}
-                                        >
-                                            Software
-                                        </Typography>
-                                        <ClearOutlined sx={{ height: '15px', width: '15px' }} />
-                                    </Box>
+                                            <Typography
+                                              sx={{
+                                                color: '#6941C6',
+                                                fontWeight: '500',
+                                                lineHeight: '20px',
+                                                fontSize: '14px'
+                                              }}
+                                            >
+                                                {industry}
+                                            </Typography>
+                                            <ClearOutlined sx={{ height: '15px', width: '15px' }} />
+                                        </Box>
+                                    ))
+                                  }
                                 </Box>
                             </Box>
                             <Box>

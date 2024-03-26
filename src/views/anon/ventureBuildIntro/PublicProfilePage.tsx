@@ -8,10 +8,11 @@ const PublicProfilePage = () => {
 
     const { identifier } = useParams();
     const orgs = useAppSelector((state) => state.organizations);
-    const org = orgs.find((org) => org.identifier === identifier);
+    const org = orgs.data.find((org) => org.identifier === identifier);
 
     const PublicProfileViewProp: PublicProfileViewType = {
         name: org?.name || '',
+        logo: org?.logo || '',
         tagline: org?.tagline || '',
         aboutUs: org?.aboutUs || '',
         country: org?.location || '',
@@ -22,14 +23,16 @@ const PublicProfilePage = () => {
         twitter: org?.twitter && org.twitter.replace(/^https?:\/\//, '') || '',
         facebook: org?.facebook && org.facebook.replace(/^https?:\/\//, '') || '',
         instagram: org?.instagram && org.instagram.replace(/^https?:\/\//, '') || '',
+        leadership: org?.userSet.filter(user => user.leadership === true) || [],
+        industries: org?.industries || [],
         isEditing: false,
-        toggleView: null,
-        handleSubmit: null
+        toggleView: undefined,
+        handleSubmit: undefined
     };
 
     useEffect(() => {
-        !orgs.find((org) => org.identifier === identifier) && navigate('/profile');
-    }, [orgs])
+        !orgs.data.find((org) => org.identifier === identifier) && navigate('/profile');
+    }, [identifier])
 
     return <PublicProfileView {...PublicProfileViewProp} />;
 }

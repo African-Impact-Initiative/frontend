@@ -4,6 +4,7 @@ import { updateOrganization } from "../../store/userOrganizationReducer";
 import Organization from "../../types/organization";
 import PrivateEditPublicProfileView, { PrivateEditPublicProfileViewType } from "../../components/publicProfile/PrivateEditPublicProfileView";
 import PublicProfileView, { PublicProfileViewType } from "../../components/publicProfile/PublicProfileView";
+import User from "../../types/user";
 
 const EditPublicProfilePage = () => {
     const dispatch = useAppDispatch();
@@ -11,9 +12,10 @@ const EditPublicProfilePage = () => {
     const org = useAppSelector((state) => state.userOrganization);
 
     const [isPublicView, setIsPublicView] = useState(false);
-    const [logoModal, setLogoModal] = useState(false)
-    const [leadershipModal, setLeadershipModal] = useState(false)
-    const [jobModal, setJobModal] = useState(false)
+    const [logoModal, setLogoModal] = useState(false);
+    const [leadershipModal, setLeadershipModal] = useState(false);
+    const [jobModal, setJobModal] = useState(false);
+    const [logo, setLogo] = useState('');
     const [tagline, setTagline] = useState('');
     const [aboutUs, setAboutUs] = useState('');
     const [country, setCountry] = useState('')
@@ -24,9 +26,12 @@ const EditPublicProfilePage = () => {
     const [facebook, setFacebook] = useState('');
     const [linkedin, setLinkedin] = useState('');
     const [instagram, setInstagram] = useState('');
+    const [leadership, setLeadership] = useState<Array<User>>([]);
+    const [industries, setIndustries] = useState<Array<String>>([]);
 
     useEffect(() => {
         if (org.data) {
+            setLogo(org.data.logo || '');
             setTagline(org.data.tagline || '');
             setAboutUs(org.data.aboutUs || '');
             setCountry(org.data.location || '');
@@ -37,6 +42,8 @@ const EditPublicProfilePage = () => {
             setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\//, '') || '');
             setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\//, '') || '');
             setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\//, '') || '');
+            setLeadership(org.data.userSet.filter(user => user.leadership === true))
+            setIndustries(org.data.industries)
         }
     }, [org]);
 
@@ -64,6 +71,7 @@ const EditPublicProfilePage = () => {
 
     const PrivateEditPublicProfileViewProp: PrivateEditPublicProfileViewType = {
         name: org.data?.name || '',
+        logo,
         tagline,
         aboutUs,
         country,
@@ -74,9 +82,12 @@ const EditPublicProfilePage = () => {
         twitter,
         facebook,
         instagram,
+        leadership,
+        industries,
         jobModal,
         leadershipModal,
         logoModal,
+        setLogo,
         setTagline,
         setAboutUs,
         setCountry,
@@ -87,6 +98,8 @@ const EditPublicProfilePage = () => {
         setTwitter,
         setFacebook,
         setInstagram,
+        setLeadership,
+        setIndustries,
         setJobModal,
         setLeadershipModal,
         setLogoModal,
@@ -96,6 +109,7 @@ const EditPublicProfilePage = () => {
 
     const PublicProfileViewProp: PublicProfileViewType = {
         name: org.data?.name || '',
+        logo,
         tagline,
         aboutUs,
         country,
@@ -106,6 +120,8 @@ const EditPublicProfilePage = () => {
         twitter,
         facebook,
         instagram,
+        leadership,
+        industries,
         isEditing: true,
         toggleView,
         handleSubmit
