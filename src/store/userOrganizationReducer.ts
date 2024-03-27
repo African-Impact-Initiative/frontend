@@ -29,7 +29,7 @@ const organizationSlice = createSlice({
             return {
                 ...state,
                 data: {
-                    ...(state?.data || {}),
+                    ...state.data,
                     ...action.payload
                 }
             }
