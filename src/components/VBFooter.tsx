@@ -45,7 +45,7 @@ const Footer = () => {
                 <Divider sx={{width: '100%', marginTop: '40px', marginBottom: '10px', backgroundColor: '#667085'}} />
                 <Box sx={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
                     <Box sx={{marginTop: '10px', color: '#D0D5DD', fontSize: '14px', lineHeight: '24px'}}>
-                        <Typography variant='body1'>&copy; 2023 Venture Build. All rights reserved</Typography>
+                        <Typography variant='body1'>&copy; 2024 Venture Build. All rights reserved</Typography>
                     </Box>
                     <Box sx={{marginTop: '10px', display: 'flex', columnGap: '10px'}}>
                         {permissions.map(perm =>
