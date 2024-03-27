@@ -47,7 +47,7 @@ const VBNavBar = () => {
     }
 
     return (
-        <AppBar position='fixed' sx={{boxShadow: 0, backgroundColor: '#FFF', zIndex: '100000000', marginBottom: '20px'}}>
+        <AppBar position='fixed' sx={{boxShadow: 0, backgroundColor: '#fff', zIndex: '100000000', marginBottom: '20px'}}>
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
                     <Box sx={{  display: 'flex', alignItems: 'center' }}>

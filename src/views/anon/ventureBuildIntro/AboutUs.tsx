@@ -46,12 +46,18 @@ const AboutUs = () => {
             >
                 <img src={aboutsusbg} alt='bg' style={{
                     height: '552px',
-                    width: '100vw'
+                    width: '100vw',
+                    top: 0,
+                    left: 0,
+                    filter: 'brightness(60%)'
                 }} />
             </Box>
             <Box sx={{ position: 'absolute', display: 'flex', alignItems: 'start', justifyContent: 'center', flexDirection: 'column', top: {md:'-60px', xs: '-200px'}, left: '80px', width: '100%', height: '100%' }} >
-                <Box sx={{ width: '60%', fontSize: {md:'60px', xs: '30px'}, fontWeight: '600', lineHeight:{ md:'72px', xs: '30px'}, color: '#FFFFFF', letterSpacing: '-2px', zIndex: 100000, textAlign: 'left' }}>
+                {/* <Box sx={{ width: '60%', fontSize: {md:'80px', xl: '40px'}, fontWeight: '600', lineHeight:{ md:'80px', xl: '40px'}, color: '#FFFFFF', letterSpacing: '-2px', zIndex: 100000, textAlign: 'left' }}>
                     <Typography>We predict the future of Africa by creating it</Typography>
+                </Box> */}
+                <Box sx={{ marginTop: '16px', width: '50%', textAlign: 'left' }}>
+                    <Typography sx={{ fontSize: {md: '60px', xs: '42px'}, fontWeight: '500', lineHeight: {md: '60px', xs: '45px'}, color: '#EAECF0' }}>We predict the future of Africa by creating it</Typography>
                 </Box>
                 <Box sx={{ marginTop: '16px', width: '50%', textAlign: 'left' }}>
                     <Typography sx={{ fontSize: {md: '20px', xs: '12px'}, fontWeight: '400', lineHeight: {md: '30px', xs: '15px'}, color: '#EAECF0' }}>Our platform enables African youth on the continent and in Canada, <br/> to actively get involved in changing our narrative.</Typography>
@@ -80,7 +86,7 @@ const AboutUs = () => {
             </Box>
 
             <Box sx={{ display: 'flex', width: '100%', padding: '50px', flexDirection: {md: 'row', xs: 'column'}, }}>
-                <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'start', padding:{md: '40px', xs:'0px'} , border: '2px solid blue'}}>
+                <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'start', padding:{md: '40px', xs:'0px'}}}>
                     <Box>
                         <Typography sx={{ fontSize: '16px', fontWeight: '600', lineHeight: '24px', color: '#B54708' }}>About us</Typography>
                     </Box>
@@ -133,7 +139,7 @@ const AboutUs = () => {
                 }} />
             </Box>
             <Box sx={{ display: 'flex', width: '100%', padding: '50px', flexDirection: {md: 'row', xs: 'column'} }}>
-                <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start',  padding:{md: '40px', xs:'0px'}, border: '2px solid red' }}>
+                <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start',  padding:{md: '40px', xs:'0px'}}}>
                     <Box>
                         <Typography sx={{ fontSize: '16px', fontWeight: '600', lineHeight: '24px', color: '#B54708' }}>Why choose us</Typography>
                     </Box>
@@ -235,7 +241,7 @@ const AboutUs = () => {
                     </Box>
                 </Box>
             </Box>
-            <Box sx={{ width: '100%', display: 'flex', right: {md:'40px', xs: '0px'} , border: '2px solid blue'}}>
+            <Box sx={{ width: '100%', display: 'flex', right: {md:'40px', xs: '0px'}}}>
                 <Box sx={{ display: 'flex', width: '50%', flexDirection: 'column', textAlign: 'left', marginLeft: '70px', marginTop: '40px' }}>
                     <Box>
                         <Typography sx={{ fontSize: '16px', fontWeight: '600', lineHeight: '24px', color: '#B54708', }}>Features</Typography>
@@ -248,12 +254,12 @@ const AboutUs = () => {
 
                     </Box>
                 </Box>
-                <Box sx={{ width: '50%', position: 'relative', left: '130px', top: '110px', zIndex: 100000,display: {xs: 'none', md: 'inherit'} }}>
+                <Box sx={{ width: '50%', position: 'relative', left: '200px', top: '90px', zIndex: 100000,display: {xs: 'none', md: 'inherit'} }}>
                     <img src={downArrow} alt='dowmaeeow' />
                 </Box>
             </Box>
             <Box sx={{ width: '100%', display: 'flex', flexDirection: {md: 'row', xs: 'column'},}}>
-                <Box sx={{ width: {md: '50%', xs: '100%'}, height: {md:'580px', xs: '100%'}, padding: {md:'50px', xs: '0px'}, border: '2px solid black' }}>
+                <Box sx={{ width: {md: '50%', xs: '100%'}, height: {md:'580px', xs: '100%'}, padding: {md:'50px', xs: '0px'} }}>
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -285,9 +291,9 @@ const AboutUs = () => {
                     </Box>
                 </Box>
 
-                <Box sx={{ width: {md: '50%', xs: '100%'}, backgroundColor: '#F9FAFB', borderRadius: '16px', height: '680px', border: '2px solid black', display: {xs: 'none', md: 'inherit'}}}>
-                    <img src={macbook} alt='macbook' style={{ width:'630px', height:'595px', position: 'absolute', marginTop: '50px' }} />
-                    <img src={homeScreen} alt='homescreen' style={{ width: '560px', height: '530px', position: 'relative', left: '70px', top: '30px', marginTop: '40px' }} />
+                <Box sx={{ width: {md: '50%', xs: '100%'}, backgroundColor: '#F9FAFB', borderRadius: '16px', height: '680px', display: {xs: 'none', md: 'inherit'}}}>
+                    <img src={macbook} alt='macbook' style={{ width:'630px', height:'595px', position: 'absolute', marginTop: '50px', right: '0px'}} />
+                    <img src={homeScreen} alt='homescreen' style={{ width: '560px', height: '513px', position: 'relative', left: '350px', top: '30px', marginTop: '40px' }} />
                 </Box>
 
             </Box>
@@ -454,14 +460,14 @@ const AboutUs = () => {
                         <Typography sx={{ fontSize: {md:'36px', xs: '25px'}, fontWeight: '600', lineHeight: '44px', letterSpacing: '-0.72px', color: '#101828' }}>We help Africa’s brightest minds go from idea <br/> to MVP to market</Typography>
                     </Box>
                     <Box sx={{ marginTop: '20px' }}>
-                        <Typography sx={{ color: '#475467', fontSize: {md:'12px', xs: '14px'}, fontWeight: '400', lineHeight: '30px', }}>Start building your vision today: join venture build and realize your <br/> entrepreneurial dream.</Typography>
+                        <Typography sx={{ color: '#475467', fontSize: {md:'12px', xs: '14px'}, fontWeight: '400' }}>Start building your vision today: join venture build and realize your <br/> entrepreneurial dream.</Typography>
 
                     </Box>
                 </Box>
             </Box>
-            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 100000, bottom: '70px', }}>
-                <Box sx={{height: '420px', width: '1000px', border: '5px solid black', borderRadius: '16px', borderBottom: '0px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px', display: {xs: 'none', md: 'inherit'}}}>
-                    <img src={homeScreen} alt='homescreen' style={{ width: '980px', height: '410px', }} />
+            <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 100000, bottom: '0px', marginTop: '-100px'}}>
+                <Box sx={{height: '420px', width: '680px', border: '5px solid black', borderRadius: '16px', borderBottom: '0px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px', display: {xs: 'none', md: 'inherit'}}}>
+                    <img src={homeScreen} alt='homescreen' style={{ width: '670px', height: '410px', borderRadius: '16px'}} />
                 </Box>
             </Box>
         </Box>
