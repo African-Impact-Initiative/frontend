@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { AccessTimeOutlined, ArrowOutwardOutlined, LocationOnOutlined } from '@mui/icons-material'
+import { AccessTimeOutlined, ArrowOutwardOutlined, LocationOnOutlined, PlayCircleOutline } from '@mui/icons-material'
 
 import home from '../../../assets/home.svg'
 import guide from '../../../assets/guide.svg'
@@ -321,6 +321,7 @@ const AboutUs = () => {
                                     fontSize: '14px',
                                 }}
                             >
+                                <PlayCircleOutline sx={{ width: '18px', height: '18px', color: '#98A2B3', padding: '2px' }}/>
                                 Demo
                             </Button>
                             <Button
