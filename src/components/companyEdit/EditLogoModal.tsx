@@ -1,9 +1,16 @@
 import { CloseOutlined, ErrorOutlineOutlined, PersonOutlineOutlined } from '@mui/icons-material'
 import { Button, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 
-const EditLogoModal = () => {
+export type EditLogoModalType = {
+    setLogoModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const EditLogoModal: FC<EditLogoModalType> = (prop) => {
+
+    const {setLogoModal} = prop;
+    
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const [formData] = useState({})
 
@@ -32,6 +39,7 @@ const EditLogoModal = () => {
     const handleFormSubmit = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
         console.log('Form submitted:', formData)
+        setLogoModal(false)
     }
 
     const handleUpload = () => {
@@ -66,6 +74,7 @@ const EditLogoModal = () => {
                     </Typography>
                     <CloseOutlined
                         sx={{ color: '#667085', height: '30px', width: '30px' }}
+                        onClick={() => setLogoModal(false)}
                     />
                 </Box>
                 <Box>
@@ -210,6 +219,7 @@ const EditLogoModal = () => {
                             textTransform: 'none',
                             marginBottom: {xs: '20px', md: '0px'}
                         }}
+                        onClick={() => setLogoModal(false)}
                     >
                         Cancel
                     </Button>

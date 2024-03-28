@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import VBLoading from './components/VBLoading'
 import Router from './navigation/Router'
 import { useAppDispatch, useAppSelector } from './hooks/redux'
+import { initializeOrganizations } from './store/organizationReducer'
 
 const App = () => {
     const theme = getTheme()
@@ -19,14 +20,20 @@ const App = () => {
     const dispatch = useAppDispatch()
     const [loading, setLoading] = useState(true)
     const user = useAppSelector(state => state.user)
+    const organizations = useAppSelector(state => state.organizations)
 
     useEffect(() => {
         dispatch(setUserOnRefresh())
     }, [dispatch])
 
     useEffect(() => {
-        if (user && !user.loading) setLoading(false)
-    }, [user])
+        // todo: optimize this
+        dispatch(initializeOrganizations())
+    }, [dispatch])
+
+    useEffect(() => {
+        if (user && !user.loading && organizations && !organizations.loading) setLoading(false)
+    }, [user, organizations])
 
     return (
         <ThemeProvider theme={theme}>

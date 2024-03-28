@@ -13,6 +13,9 @@ import ITokenStateManager from '../api/types/tokenStateManager'
 import ServiceResponse from '../types/serviceResponse'
 import { CreateUser, UpdatePersonalInfo, UpdateTerms } from '../api/contracts/userContracts'
 import { AppDispatch } from './store'
+import organizationService from '../api/organizationService'
+import { setUserOrganization } from './userOrganizationReducer'
+import Organization from '../types/organization'
 
 const stateManager: ITokenStateManager = new TokenStateManager()
 
@@ -73,6 +76,11 @@ export const login = (username: string, password: string) => {
 
             const user = await userService.getCurrent()
             dispatch(setUser(user.data as User))
+            // fetch organization if user has one
+            if ((user.data as User).organization !== null) {
+                const org = await organizationService.retrieveSingle((user.data as User).organization!)
+                dispatch(setUserOrganization(org.data as Organization))
+            }
             dispatch(setSuccessNotification('Logged in successfully'))
         } catch {
             dispatch(setErrorNotification('Invalid username or password'))
@@ -96,6 +104,11 @@ export const googleLogin = (token: string) => {
 
             const user = await userService.getCurrent()
             dispatch(setUser(user.data as User))
+            // fetch organization if user has one
+            if ((user.data as User).organization !== null) {
+                const org = await organizationService.retrieveSingle((user.data as User).organization!)
+                dispatch(setUserOrganization(org.data as Organization))
+            }
             dispatch(setSuccessNotification('Logged in successfully'))
         } catch {
             dispatch(setErrorNotification('Error logging in, please try again later'))
@@ -123,6 +136,7 @@ export const logout = (expired: boolean = false) => {
                 dispatch(setSuccessNotification('Logged out successfully'))
 
             dispatch(setAppUser({ anon: true, data: null, loading: false }))
+            dispatch(setUserOrganization(null))
         }
     }
 }
@@ -148,6 +162,12 @@ export const setUserOnRefresh = () => {
                     window.localStorage.setItem(VBLocalStorage, JSON.stringify(tokens.data))
                     const user = await userService.getCurrent()
                     dispatch(setUser(user.data as User))
+                    // fetch organization if user has one
+                    if ((user.data as User).organization !== null) {
+                        const org = await organizationService.retrieveSingle((user.data as User).organization!)
+                        dispatch(setUserOrganization(org.data as Organization))
+                    }
+                    dispatch(setSuccessNotification('Logged in successfully'))
                 } catch {
                     dispatch(setErrorNotification('Session has expired'))
                     dispatch(logout(true))
@@ -155,10 +175,17 @@ export const setUserOnRefresh = () => {
             } else {
                 const user = await userService.getCurrent()
                 dispatch(setUser(user.data as User))
+                // fetch organization if user has one
+                if ((user.data as User).organization !== null) {
+                    const org = await organizationService.retrieveSingle((user.data as User).organization!)
+                    dispatch(setUserOrganization(org.data as Organization))
+                }
+                dispatch(setSuccessNotification('Logged in successfully'))
             }
-        } else
+        } else {
             dispatch(setAppUser({ anon: true, data: null, loading: false }))
-
+            dispatch(setUserOrganization(null))
+        }
     }
 }
 
@@ -197,6 +224,8 @@ export const userAddToOrg = (id: Id) => {
         await userService.addOrganizationToUser(id)
         const user = await userService.getCurrent()
         dispatch(setUser(user.data as User))
+        const org = await organizationService.retrieveSingle((user.data as User).organization!)
+        dispatch(setUserOrganization(org.data as Organization))
     }
 }
 

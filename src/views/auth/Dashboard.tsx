@@ -11,6 +11,8 @@ import VBCalendar from '../../components/VBCalender'
 import VBPageHeader from '../../components/VBPageHeader'
 import VBEventTime from '../../components/VBEventTime'
 import DashboardTable from '../../components/dashboard/DashboardTable'
+import PathConstants from '../../navigation/pathConstants'
+import { useAppSelector } from '../../hooks/redux'
 
 const headers = ['TaskName', 'Team', 'Progress', 'DueDate']
 const dataKeyAccessors = ['taskName', 'team', 'progress', 'dueDate']
@@ -69,6 +71,8 @@ const Dashboard = () => {
     const [, setStatus] = useState('')
 
     const navigate = useNavigate()
+
+    const org = useAppSelector((state) => state.userOrganization)
 
     const filters = [
         { label: 'English', value: 'English' },
@@ -219,7 +223,7 @@ const Dashboard = () => {
                                             display: 'flex',
                                         }}
                                     >
-                                        <img src={dataprime} alt='dataprime' style={{height: '30px', width: '30px'}} />
+                                        <img src={org.data?.logo || dataprime} style={{height: '30px', width: '30px'}} />
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography
@@ -230,7 +234,7 @@ const Dashboard = () => {
                                                 color: '#344054',
                                             }}
                                         >
-                                            DataPrime Solutions
+                                            {org.data?.name}
                                         </Typography>
                                         <Typography
                                             sx={{
@@ -240,7 +244,7 @@ const Dashboard = () => {
                                                 lineHeight: '20px',
                                             }}
                                         >
-                                            An AI-driven FinTech company.
+                                            {org.data?.tagline}
                                         </Typography>
                                     </Box>
                                 </Box>
@@ -264,7 +268,7 @@ const Dashboard = () => {
                                     variant='text'
                                     sx={{
                                         display: 'flex',
-                                        justifyContent: 'flex-end',
+                                        justifyContent: 'center',
                                         color: '#DC6803',
                                         fontSize: '14px',
                                         fontWeight: '600',
@@ -272,7 +276,7 @@ const Dashboard = () => {
                                         lineHeight: '20px',
                                     }}
                                     onClick={() => {
-                                        navigate('/app/companyEditPage/2')
+                                        navigate(PathConstants.companyEditPage)
                                     }}
                                 >
                                     Edit
