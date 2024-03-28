@@ -12,6 +12,7 @@ import VBAccordion, { AccordionItems } from '../../../components/VBAccordion'
 import VBCarousel from '../../../components/VBCarousel'
 
 import person from '../../../assets/person.svg'
+import background from '../../../assets/background.png'
 import home from '../../../assets/home.svg'
 import guide from '../../../assets/guide.svg'
 import community from '../../../assets/community.svg'
@@ -27,6 +28,7 @@ import logo from '../../../assets/logo.svg'
 import laptop from '../../../assets/laptop.svg'
 import video from '../../../assets/video.svg'
 import mosaic from '../../../assets/mosaic.svg'
+
 
 const Home = () => {
     const items: Array<Array<string>> = [
@@ -95,35 +97,51 @@ const Home = () => {
 
     return (
         <>
-            <Box sx={{display: { xs: 'none', lg: 'flex' }, height: '90vh', overflowX: 'hidden'}}>
+            <Box sx={{display: { xs: 'none', lg: 'flex' }, height: '90vh', overflowX: 'hidden', backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat",
+    backgroundSize: "cover", backgroundPosition: `right bottom`}}>
                 <Grid sx={{width: '100%', height: '100%'}} container spacing={0}>
-                    <Grid item lg={5} sx={{height: '100%', width: '100%', padding: '80px', display: 'flex !important', alignItems: 'center !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
-                        <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
-                            Empowering Young African Innovators
-                        </Typography>
-                        <Typography sx={{display: {lg: 'none', xl: 'inline'}}} variant='h2' component='div' gutterBottom>
-                            Empowering Young African Innovators
-                        </Typography>
-
-                        <Typography sx={{display: {lg: 'none', xl: 'inline'}, fontSize: '120%'}} variant='subtitle1' component='div' gutterBottom>
-                            Unleash your business potential with data-driven insights, fundraising tools, educational resources, and more, all in Venture Build
-                        </Typography>
-
-                        <Box sx={{display: 'flex', justifyContent: 'space-evenly', width: '100%', marginTop: '20px'}}>
-                            <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button>
-                            <Link to={PathConstants.signUp}>
-                                <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
-                            </Link>
+                    <Grid item lg={5} sx={{height: '100%', width: '100%', padding: '80px', display: 'flex !important', alignItems: 'left !important', justifyContent: 'left !important', flexDirection: 'column !important'}}>
+                    <Typography sx={{display: {lg: 'inline', xl: 'inline'}}} variant='h6' component='div' gutterBottom>
+                    <Link to="https://www.africanimpact.ca/the-african-impact-challenge" underline="none">
+                        <Box sx={{
+                            backgroundColor: '#FFFAEB',
+                            maxWidth: '365px',
+                            borderRadius: '16px',                                                                                           
+                        }}>
+                            <Typography style={{color: '#B54708', textDecoration: 'none'}}>
+                            <p>
+                                New winners 2023 African Impact Challenge →
+                            </p>
+                            </Typography>
                         </Box>
+                    </Link>    
+                    </Typography>
+                    <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
+                        Empowering Young African Innovators
+                    </Typography>
+                    <Typography sx={{display: {lg: 'none', xl: 'inline'}}} variant='h2' component='div' gutterBottom>
+                        Empowering Young African Innovators
+                    </Typography>
+
+                    <Typography sx={{display: {lg: 'none', xl: 'inline'}, fontSize: '120%'}} variant='subtitle1' component='div' gutterBottom>
+                        Unleash your business potential with data-driven insights, fundraising tools, educational resources, and more, all in Venture Build
+                    </Typography>
+
+                    <Box sx={{display: 'flex', justifyContent: 'flex-start', width: '100%', marginTop: '20px', alignItems: 'left'}}>
+                        <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button>
+                        <Link to={PathConstants.signUp}>
+                            <Button size='large' variant='contained' sx={{color: '#fff', alignItems: 'left', marginLeft: '100px', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
+                        </Link>
+                    </Box>
                     </Grid>
-                    <Grid item lg={7} sx={{background: `url(${laptop}) no-repeat center right`, marginTop: '10vh', height: '80vh', width: '100%', backgroundSize: 'contain'}}>
+                    <Grid item lg={7} sx={{background: `url(${laptop}) no-repeat center right`, alignItems: 'left', marginTop: '10vh', height: '80vh', width: '100%', backgroundSize: 'contain'}}>
                     </Grid>
                 </Grid>
             </Box>
 
             <Box>
-                <Box sx={{overflowX: 'hidden', marginTop: '50px', display: 'flex', alignItems: 'center', flexDirection: 'column', textAlign: 'center'}}>
-                    <Typography variant='overline' fontWeight='bold'>
+                <Box sx={{overflowX: 'hidden', marginTop: '150px', display: 'flex', alignItems: 'center', flexDirection: 'column', textAlign: 'center'}}>
+                    <Typography variant='overline' fontWeight='bold' color='#B54708'>
                         Features
                     </Typography>
                     <Typography sx={{display: {xs: 'inline', xl: 'none'}}} variant='h3' gutterBottom>
@@ -138,7 +156,7 @@ const Home = () => {
                     </Typography>
                 </Box>
 
-                <Container maxWidth='lg' sx={{paddingTop: '40px', paddingBottom: '40px'}}>
+                <Container maxWidth='lg' sx={{paddingTop: '40px', paddingBottom: '96px'}}>
                     <Grid container spacing={2}>
                         {
                             growthItems.map(val =>
@@ -152,7 +170,7 @@ const Home = () => {
 
             <Box>
                 <Box sx={{overflowX: 'hidden', marginTop: '50px', display: 'flex', alignItems: 'center', flexDirection: 'column', textAlign: 'center'}}>
-                    <Typography variant='overline' fontWeight='bold'>
+                    <Typography variant='overline' fontWeight='bold' color='#B54708'>
                         Features
                     </Typography>
                     <Typography sx={{display: {xs: 'inline', xl: 'none'}}} variant='h3' gutterBottom>
@@ -167,7 +185,7 @@ const Home = () => {
                     </Typography>
                 </Box>
 
-                <JumboPanel title={'Manage teams with ease'} icon={home} image={team} right={true} points={['Simplify team communication and project coordination', 'Assign roles and responsibilities effortlessly', 'Track progress in real-time for increased productivity']} prompt={'Empower your team with a user-friendly dashboard to streamline collaboration and task management.'}/>
+                <JumboPanel title={'Manage teams with ease'} icon={community} image={team} right={true} points={['Simplify team communication and project coordination', 'Assign roles and responsibilities effortlessly', 'Track progress in real-time for increased productivity']} prompt={'Empower your team with a user-friendly dashboard to streamline collaboration and task management.'}/>
                 <JumboPanel title={'Track fundraising progress'} icon={grow} image={fundraising} right={false} points={['Monitor and analyze donation trends', 'Engage with investors effectively', 'Prioritize follow-ups for successful fundraising']} prompt={'Stay on top of your fundraising journey with our dedicated dashboard, managing interactions and CRM in one place.'}/>
                 <JumboPanel title={'Access comprehensive resources'} icon={book} image={resources} right={true} points={['Learn from industry experts and successful entrepreneurs', 'Gain valuable insights for business success', 'Access an extensive collection of expert-led courses']} prompt={'Harness our extensive library of courses and tools designed to accelerate your startup\'s growth.'}/>
             </Box>
@@ -175,35 +193,35 @@ const Home = () => {
             <Box sx={{paddingTop: '40px', paddingBottom: '40px', backgroundImage: 'linear-gradient(to bottom, #F2F2F2 60%, #FFFFFF 40%, rgba(203, 65, 100, 0))'}}>
                 <Grid sx={{width: '100%', height: '100%'}} container spacing={0}>
                     <Grid item lg={6} sx={{height: '100%', width: '100%', padding: '0 80px 20px 80px', display: 'flex !important', alignItems: 'start !important', justifyContent: 'start !important', flexDirection: 'column !important'}}>
-                        <Typography variant='overline' fontWeight='bold'>
+                        <Typography variant='overline' fontWeight='bold' color='#B54708'>
                             About Us
                         </Typography>
                         <Typography sx={{display: {xs: 'inline', xl: 'none'}}} variant='h3' gutterBottom>
-                            Supercharge your startup experience
+                            Who we are
                         </Typography>
                         <Typography sx={{display: {xs: 'none', xl: 'inline'}}} variant='h3' gutterBottom>
-                            Supercharge your startup experience
+                            Who we are
                         </Typography>
 
                         <Typography variant='subtitle1'>
-                            Embrace our incubation platform and embark on an exciting entrepreneurial journey filled with opportunities for growth and transformation.
+                        We are an organization committed to building the future of our continent through its early innovators; by empowering them to create sustainable solutions to our biggest challenges. 
                         </Typography>
                     </Grid>
                     <Grid item lg={6} sx={{height: '100%', width: '100%'}}>
                         <Box sx={{marginBottom: '20px'}}>
-                            <Typography variant='h5'>
+                            <Typography variant='h5' fontWeight='bold'>
                                 Our Mission
                             </Typography>
                             <Typography variant='subtitle1'>
-                                Embrace our incubation platform and embark on an exciting entrepreneurial journey filled with opportunities for growth and transformation.
+                            We are an organization committed to building the future of our continent through its early innovators.
                             </Typography>
                         </Box>
                         <Box>
-                            <Typography variant='h5'>
+                            <Typography variant='h5' fontWeight='bold'>
                                 Our Vision
                             </Typography>
                             <Typography variant='subtitle1'>
-                                Embrace our incubation platform and embark on an exciting entrepreneurial journey filled with opportunities for growth and transformation.
+                            We strive for a reality where it's never too early or difficult, for every African innovator to bring their ideas to life and make a difference.
                             </Typography>
                         </Box>
                     </Grid>
@@ -239,7 +257,7 @@ const Home = () => {
                         Don&apos;t just take our word for it
                     </Typography>
 
-                    <Button variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>
+                    <Button variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}} href="/community/">
                         Our Startups
                     </Button>
                 </Box>
@@ -251,7 +269,7 @@ const Home = () => {
                 <Grid sx={{width: '100%', height: '100%'}} container spacing={0}>
                     <Grid item lg={5} sx={{height: '100%', width: '100%', padding: ' 0 80px 40px 80px', display: 'flex !important', alignItems: 'start !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
                         <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
-                            Join 120+ startups growing with African Impact Initiative
+                            Join 500+ startups growing with African Impact Initiative
                         </Typography>
                         <Typography sx={{display: {lg: 'none', xl: 'inline'}}} variant='h2' component='div' gutterBottom>
                             Join 120+ startups growing with African Impact Initiative
@@ -262,7 +280,7 @@ const Home = () => {
                         </Typography>
 
                         <Box sx={{width: '100%', marginTop: '20px'}}>
-                            <Button size='large' variant='outlined' sx={{color: '#000', marginRight: '10px'}}>Learn more</Button>
+                            <Button size='large' variant='outlined' sx={{color: '#000', marginRight: '10px'}} href="/chooseus">Learn more</Button>
                             <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Apply now</Button>
                         </Box>
                     </Grid>
