@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Runs a lint, fixing errors is devs responsibility
+# this is just a nice reminder
+
+npm run lint
+
+exit 0
