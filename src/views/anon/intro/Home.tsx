@@ -97,42 +97,42 @@ const Home = () => {
 
     return (
         <>
-            <Box sx={{display: { xs: 'none', lg: 'flex' }, height: '90vh', overflowX: 'hidden', backgroundImage: `url(${background})`, backgroundRepeat: "no-repeat",
-    backgroundSize: "cover", backgroundPosition: `right bottom`}}>
+            <Box sx={{display: { xs: 'none', lg: 'flex' }, height: '90vh', overflowX: 'hidden', backgroundImage: `url(${background})`, backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover', backgroundPosition: 'right bottom'}}>
                 <Grid sx={{width: '100%', height: '100%'}} container spacing={0}>
                     <Grid item lg={5} sx={{height: '100%', width: '100%', padding: '80px', display: 'flex !important', alignItems: 'left !important', justifyContent: 'left !important', flexDirection: 'column !important'}}>
-                    <Typography sx={{display: {lg: 'inline', xl: 'inline'}}} variant='h6' component='div' gutterBottom>
-                    <Link to="https://www.africanimpact.ca/the-african-impact-challenge" underline="none">
-                        <Box sx={{
-                            backgroundColor: '#FFFAEB',
-                            maxWidth: '365px',
-                            borderRadius: '16px',                                                                                           
-                        }}>
-                            <Typography style={{color: '#B54708', textDecoration: 'none'}}>
-                            <p>
+                        <Typography sx={{display: {lg: 'inline', xl: 'inline'}}} variant='h6' component='div' gutterBottom>
+                            <Link to='https://www.africanimpact.ca/the-african-impact-challenge'>
+                                <Box sx={{
+                                    backgroundColor: '#FFFAEB',
+                                    maxWidth: '365px',
+                                    borderRadius: '16px',
+                                }}>
+                                    <Typography style={{color: '#B54708', textDecoration: 'none'}}>
+                                        <p>
                                 New winners 2023 African Impact Challenge →
-                            </p>
-                            </Typography>
-                        </Box>
-                    </Link>    
-                    </Typography>
-                    <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
+                                        </p>
+                                    </Typography>
+                                </Box>
+                            </Link>
+                        </Typography>
+                        <Typography sx={{display: {lg: 'inline', xl: 'none'}}} variant='h3' component='div' gutterBottom>
                         Empowering Young African Innovators
-                    </Typography>
-                    <Typography sx={{display: {lg: 'none', xl: 'inline'}}} variant='h2' component='div' gutterBottom>
+                        </Typography>
+                        <Typography sx={{display: {lg: 'none', xl: 'inline'}}} variant='h2' component='div' gutterBottom>
                         Empowering Young African Innovators
-                    </Typography>
+                        </Typography>
 
-                    <Typography sx={{display: {lg: 'none', xl: 'inline'}, fontSize: '120%'}} variant='subtitle1' component='div' gutterBottom>
+                        <Typography sx={{display: {lg: 'none', xl: 'inline'}, fontSize: '120%'}} variant='subtitle1' component='div' gutterBottom>
                         Unleash your business potential with data-driven insights, fundraising tools, educational resources, and more, all in Venture Build
-                    </Typography>
+                        </Typography>
 
-                    <Box sx={{display: 'flex', justifyContent: 'flex-start', width: '100%', marginTop: '20px', alignItems: 'left'}}>
-                        <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button>
-                        <Link to={PathConstants.signUp}>
-                            <Button size='large' variant='contained' sx={{color: '#fff', alignItems: 'left', marginLeft: '100px', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
-                        </Link>
-                    </Box>
+                        <Box sx={{display: 'flex', justifyContent: 'flex-start', width: '100%', marginTop: '20px', alignItems: 'left'}}>
+                            <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button>
+                            <Link to={PathConstants.signUp}>
+                                <Button size='large' variant='contained' sx={{color: '#fff', alignItems: 'left', marginLeft: '100px', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
+                            </Link>
+                        </Box>
                     </Grid>
                     <Grid item lg={7} sx={{background: `url(${laptop}) no-repeat center right`, alignItems: 'left', marginTop: '10vh', height: '80vh', width: '100%', backgroundSize: 'contain'}}>
                     </Grid>
@@ -204,7 +204,7 @@ const Home = () => {
                         </Typography>
 
                         <Typography variant='subtitle1'>
-                        We are an organization committed to building the future of our continent through its early innovators; by empowering them to create sustainable solutions to our biggest challenges. 
+                        We are an organization committed to building the future of our continent through its early innovators; by empowering them to create sustainable solutions to our biggest challenges.
                         </Typography>
                     </Grid>
                     <Grid item lg={6} sx={{height: '100%', width: '100%'}}>
@@ -257,7 +257,7 @@ const Home = () => {
                         Don&apos;t just take our word for it
                     </Typography>
 
-                    <Button variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}} href="/community/">
+                    <Button variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}} href='/community/'>
                         Our Startups
                     </Button>
                 </Box>
@@ -280,7 +280,7 @@ const Home = () => {
                         </Typography>
 
                         <Box sx={{width: '100%', marginTop: '20px'}}>
-                            <Button size='large' variant='outlined' sx={{color: '#000', marginRight: '10px'}} href="/chooseus">Learn more</Button>
+                            <Button size='large' variant='outlined' sx={{color: '#000', marginRight: '10px'}} href='/chooseus'>Learn more</Button>
                             <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Apply now</Button>
                         </Box>
                     </Grid>

@@ -16,7 +16,7 @@ type Organization = {
     website: string | null,
     logo: string | null,
     identifier: string,
-    industries: Array<String>,
+    industries: Array<string>,
     linkedin: string | null,
     twitter: string | null,
     facebook: string | null,

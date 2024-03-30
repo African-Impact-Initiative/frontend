@@ -1,14 +1,14 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useAppSelector } from "../../../hooks/redux";
-import PublicProfileView, { PublicProfileViewType } from "../../../components/publicProfile/PublicProfileView";
-import { useEffect } from "react";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useAppSelector } from '../../../hooks/redux'
+import PublicProfileView, { PublicProfileViewType } from '../../../components/publicProfile/PublicProfileView'
+import { useEffect } from 'react'
 
 const PublicProfilePage = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const { identifier } = useParams();
-    const orgs = useAppSelector((state) => state.organizations);
-    const org = orgs.data.find((org) => org.identifier === identifier);
+    const { identifier } = useParams()
+    const orgs = useAppSelector((state) => state.organizations)
+    const org = orgs.data.find((org) => org.identifier === identifier)
 
     const PublicProfileViewProp: PublicProfileViewType = {
         name: org?.name || '',
@@ -28,13 +28,13 @@ const PublicProfilePage = () => {
         isEditing: false,
         toggleView: undefined,
         handleSubmit: undefined
-    };
+    }
 
     useEffect(() => {
-        !orgs.data.find((org) => org.identifier === identifier) && navigate('/profile');
+        !orgs.data.find((org) => org.identifier === identifier) && navigate('/profile')
     }, [identifier])
 
-    return <PublicProfileView {...PublicProfileViewProp} />;
+    return <PublicProfileView {...PublicProfileViewProp} />
 }
 
-export default PublicProfilePage;
+export default PublicProfilePage

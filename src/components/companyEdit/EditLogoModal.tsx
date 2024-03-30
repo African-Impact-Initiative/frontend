@@ -9,7 +9,7 @@ export type EditLogoModalType = {
 
 const EditLogoModal: FC<EditLogoModalType> = (prop) => {
 
-    const {setLogoModal} = prop;
+    const {setLogoModal} = prop
     
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const [formData] = useState({})
