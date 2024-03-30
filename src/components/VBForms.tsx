@@ -71,18 +71,19 @@ export interface ISelectProps {
     size?: 'small' | 'medium',
     list: Array<SelectItem>,
     margin?: boolean,
-    gutter?: boolean
+    gutter?: boolean,
+    defaultValue?: boolean
 }
 
-export const VBSelect = ({ label, list, value, setter, required, helper, size, margin, gutter }: ISelectProps) => {
+export const VBSelect = ({ label, list, value, setter, required, helper, size, margin, gutter, defaultValue }: ISelectProps) => {
     const margins = margin === undefined? '10px' : (margin? '0px' : '10px')
 
     return (
         <>
-            <Typography variant='h6' gutterBottom={gutter === undefined? true : gutter}>{label}</Typography><TextField
+            <Typography variant='h6' gutterBottom={gutter === undefined? true : gutter}>{label}</Typography>
+            <TextField
                 value={value}
                 select
-                label={label}
                 fullWidth
                 size={size}
                 onChange={(e) => setter(e.target.value)}
@@ -90,9 +91,9 @@ export const VBSelect = ({ label, list, value, setter, required, helper, size, m
                 helperText={helper}
                 sx={{ width: '100%', marginTop: margins, marginBottom: margins }}
             >
-                <MenuItem value=''>
+                {!defaultValue && <MenuItem value=''>
                     <em>None</em>
-                </MenuItem>
+                </MenuItem>}
                 {list.map(item => <MenuItem key={item.value} value={item.value}>{item.label}</MenuItem>)}
             </TextField>
         </>

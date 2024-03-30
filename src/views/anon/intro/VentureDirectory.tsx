@@ -14,6 +14,7 @@ import { AppDispatch } from '../../../store/store'
 import ventureDirectory from '../../../assets/venture_directory.svg'
 import { industriesList } from '../../../utils/industries'
 import { VentureCard } from '../../../components/VBCards'
+import { ASCEND, sortByKey, sortList } from '../../../utils/sort'
 
 export interface IVentureStats {
     title: string,
@@ -29,6 +30,8 @@ const VentureStats = ({title, value, text} : IVentureStats) => (
     </Box>
 )
 
+const searchId = 'org-search'
+
 const VentureDirectory = () => {
     const organizations = useAppSelector(state => state.organizations)
     const dispatch = useAppDispatch()
@@ -36,7 +39,8 @@ const VentureDirectory = () => {
     const navigate = useNavigate()
     const [orgQuery, setOrgQuery] = useState('')
     const [industryQuery, setIndustryQuery] = useState('')
-    const [organizationsToDisplay, setOrganizations] = useState(organizations)
+    const [sortBy, setSortBy] = useState(ASCEND)
+    const [organizationsToDisplay, setOrganizations] = useState(organizations.data)
 
     const stats: Array<IVentureStats> = [
         {
@@ -64,27 +68,39 @@ const VentureDirectory = () => {
     useEffect(() => {
         const orgSearch = searchParams.get(organizationQueryPrefix)
         const industrySearch = searchParams.get(industryQueryPrefix)
+        const sortValue = searchParams.get(sortByKey)
 
-        if (orgSearch || industrySearch)
-            updateDisplay(orgSearch, industrySearch)
+        if (orgSearch || industrySearch || sortValue)
+            updateDisplay(orgSearch, industrySearch, sortValue)
         else
             initializeSearch(dispatch)
     }, [searchParams])
 
     useEffect(() => {
         if (organizationsToDisplay.length == 0)
-            setOrganizations(organizations)
+            setOrganizations(organizations.data)
     }, [organizations])
 
-    const updateDisplay = async (org: string | null, industry: string | null) => {
+    const updateDisplay = async (org: string | null, industry: string | null, sortBy: string | null) => {
         const orgs = await organizationService.retrieve(org, industry)
 
-        if (orgs.success && (orgs.data as Organization[]).length > 0)
-            setOrganizations(orgs.data as Organization[])
-        else {
+        if (orgs.success && (orgs.data as Organization[]).length > 0) {
+            let toDisplay: Array<Organization> = []
+
+            if (sortBy == ASCEND)
+                toDisplay = (orgs.data as Organization[]).sort((a, b) => a.name.localeCompare(b.name))
+            else
+                toDisplay = (orgs.data as Organization[]).sort((a, b) => b.name.localeCompare(a.name))
+
+            setOrganizations(toDisplay)
+        } else {
             dispatch(setInfoNotification('Could not find any results for your query'))
             setOrganizations([])
         }
+
+        const releventDiv = document.getElementById(searchId)
+        // behavior: "smooth" parameter for smooth movement
+        releventDiv!.scrollIntoView({behavior: "smooth"})
     }
 
     const initializeSearch = async (dispatch: AppDispatch) => {
@@ -93,12 +109,21 @@ const VentureDirectory = () => {
     }
 
     const handleSearch = () => {
-        let query = ''
+        let query = `${sortByKey}=${sortBy}`
         if (orgQuery)
-            query = `${organizationQueryPrefix}=${orgQuery}`
+            query = `&${organizationQueryPrefix}=${orgQuery}`
         if (industryQuery)
-            query = query == undefined? `${industryQueryPrefix}=${industryQuery}` : query + `&${industryQueryPrefix}=${industryQuery}`
+            query += `&${industryQueryPrefix}=${industryQuery}`
         navigate(`${PathConstants.ventureDirectory}?${query}`)
+    }
+
+    const openInNewTab = (url: string | null, org: Organization): void => {
+        if (url == null) {
+            let endpoint = PathConstants.publicProfile
+            url = `${endpoint.slice(0, endpoint.indexOf(':'))}${org.identifier}`
+        }
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+        if (newWindow) newWindow.opener = null
     }
 
     return (
@@ -164,13 +189,14 @@ const VentureDirectory = () => {
                             <Box display='flex' flexDirection='column' justifyContent='center'>
                                 <Typography>Sort By</Typography>
                                 <VBSelect
-                                    value={industryQuery}
+                                    value={sortBy}
                                     size='medium'
                                     required={false}
-                                    list={industriesList}
-                                    setter={setIndustryQuery}
+                                    list={sortList}
+                                    setter={setSortBy}
                                     gutter={false}
                                     margin={false}
+                                    defaultValue={true}
                                 />
                             </Box>
                         </Grid>
@@ -181,9 +207,16 @@ const VentureDirectory = () => {
                 </Box>
 
                 {organizationsToDisplay.length == 0 && <Typography>No results found</Typography>}
-                <Grid container spacing={2}>
-                    {organizationsToDisplay.map(org => <Grid item md={3} key={org.id}>
-                        <VentureCard name={org.name} category={org.industry} logo={org.logo} caption={org.tagline} details={org.tagline} action={() => 1}/>
+                <Grid id={searchId} container spacing={2} sx={{ margin: '20px 0 20px 0'}}>
+                    {organizationsToDisplay.map(org => <Grid item md={4} key={org.id}>
+                        <VentureCard
+                            name={org.name}
+                            category={org.industries[0]}
+                            logo={org.logo}
+                            caption={org.tagline}
+                            details={org.aboutUs}
+                            action={() => openInNewTab(org.website, org)}
+                        />
                     </Grid>)}
                 </Grid>
 
