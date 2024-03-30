@@ -77,7 +77,7 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
                 <Box sx={{ display: 'flex', columnGap: '15px' }}>
                     {logo?
                         <img src={logo} alt='logo' style={{ width: '40px', height: '40px' }} />
-                     : <StoreIcon sx={{backgroundColor: '#EAECF0', borderRadius: '20px', padding: '7px', width: '40px', height: '40px'}} />}
+                        : <StoreIcon sx={{backgroundColor: '#EAECF0', borderRadius: '20px', padding: '7px', width: '40px', height: '40px'}} />}
                     <Box>
                         <Box sx={{ textAlign: 'start' }}>
                             <Box>
@@ -114,7 +114,7 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
                             color: '#475467',
                         }}
                     >
-                        {details?.length! > 125? `${details?.substring(0, 125).trim()}...` : details}
+                        {details?.length &&  details?.length > 125? `${details?.substring(0, 125).trim()}...` : details}
                     </Typography>
                 </Box>
             </Box>

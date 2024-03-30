@@ -1,4 +1,4 @@
-import { AddOutlined, EditOutlined, FacebookOutlined, Instagram, LinkedIn, Search, Twitter, YouTube } from '@mui/icons-material'
+import { AddOutlined, EditOutlined, FacebookOutlined, Instagram, LinkedIn, Search, Twitter } from '@mui/icons-material'
 import { Button, Divider, IconButton, InputBase, MenuItem, Modal, Paper, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useEffect, useState } from 'react'
@@ -116,9 +116,9 @@ const CompanyEditPage = () => {
             linkedin: linkedin && 'https://' + linkedin || '',
             instagram: instagram && 'https://' + instagram || '',
         }
-        if (org.data && org.data.id) 
+        if (org.data && org.data.id)
             dispatch(updateOrganization(org.data.id, updateOrg as Organization))
-        
+
     }
 
     return (
@@ -626,7 +626,7 @@ const CompanyEditPage = () => {
                                             height: '30px',
                                             fontSize: '16px'
                                         }}
-                                    >  
+                                    >
                                         <MenuItem value=''>
                                             <em>Range</em>
                                         </MenuItem>

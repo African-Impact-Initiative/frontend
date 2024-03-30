@@ -81,7 +81,6 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
         logoModal,
         leadershipModal,
         jobModal,
-        setLogo,
         setTagline,
         setAboutUs,
         setCountry,
@@ -92,8 +91,6 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
         setTwitter,
         setFacebook,
         setInstagram,
-        setLeadership,
-        setIndustries,
         setLogoModal,
         setLeadershipModal,
         setJobModal,
@@ -187,7 +184,7 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                 setLogoModal(true)
                             }}
                         >
-                            { 
+                            {
                                 !logo && <Typography
                                     sx={{
                                         color: '#475467',
@@ -200,10 +197,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                 </Typography>
                             }
                             {
-                                logo && <img 
-                                    src={logo} 
-                                    alt='logo' 
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                                logo && <img
+                                    src={logo}
+                                    alt='logo'
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
                             }
                         </Box>
@@ -348,10 +345,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                     <Divider sx={{ marginTop: '20px' }} />
                     <Box>
                         <Box
-                            sx={{ 
-                                marginTop: '32px', 
-                                display: 'flex', 
-                                columnGap: '6px' 
+                            sx={{
+                                marginTop: '32px',
+                                display: 'flex',
+                                columnGap: '6px'
                             }}
                         >
                             <Typography
@@ -387,11 +384,11 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                         </Box>
                     </Box>
                     <Box>
-                        <Box 
-                            sx={{ 
-                                marginTop: '40px', 
-                                display: 'flex', 
-                                columnGap: '6px' 
+                        <Box
+                            sx={{
+                                marginTop: '40px',
+                                display: 'flex',
+                                columnGap: '6px'
                             }}
                         >
                             <Typography
@@ -424,14 +421,14 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                 rows={5}
                                 onChange={(e) => setAboutUs(e.target.value)}
                             />
-                        </Box> 
+                        </Box>
                     </Box>
                     <Box
-                        sx={{ 
-                            display: 'flex', 
-                            flexDirection: 'column', 
-                            marginTop: '60px', 
-                            textAlign: 'start' 
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            marginTop: '60px',
+                            textAlign: 'start'
                         }}
                     >
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -445,14 +442,14 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                             >
                                 Leadership
                             </Typography>
-                            <Box 
-                                sx={{ 
-                                    display: 'flex', 
-                                    columnGap: '30px', 
-                                    color: '#475467' 
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    columnGap: '30px',
+                                    color: '#475467'
                                 }}
                             >
-                                <AddOutlined 
+                                <AddOutlined
                                     style={{width: '20px', height: '20px'}}
                                     onClick={() => {
                                         setLeadershipModal(true)
@@ -475,20 +472,20 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                     </Box>
                     <Divider sx={{ marginTop: '20px' }} />
                     <Box
-                        sx={{ 
-                            display: 'flex', 
-                            marginTop: '32px', 
-                            flexDirection: { md: 'row', xs: 'column' }, 
+                        sx={{
+                            display: 'flex',
+                            marginTop: '32px',
+                            flexDirection: { md: 'row', xs: 'column' },
                             width: '80%',
-                            justifyContent: 'space-between' 
+                            justifyContent: 'space-between'
                         }}
                     >
                         {
                             leadership.map((leader, index) => (
-                                <Box 
-                                    key={index} 
-                                    sx={{ 
-                                        display: 'flex', 
+                                <Box
+                                    key={index}
+                                    sx={{
+                                        display: 'flex',
                                         columnGap: '12px'
                                     }}
                                 >
@@ -501,20 +498,20 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                             border: '1px solid #D3D3D3',
                                         }}
                                     >
-                                        <img 
+                                        <img
                                             style={{
-                                                display:'block', 
-                                                width:'100%', 
+                                                display:'block',
+                                                width:'100%',
                                                 height:'100%',
                                                 objectFit: 'cover',
-                                            }} 
-                                            src={leader.photo ?? personLogo} 
-                                            alt='headshot' 
+                                            }}
+                                            src={leader.photo ?? personLogo}
+                                            alt='headshot'
                                         />
                                     </Box>
-                                    <Box sx={{ 
-                                        display: 'flex', 
-                                        flexDirection: 'column', 
+                                    <Box sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
                                         textAlign: 'start' }}>
                                         <Typography
                                             sx={{
@@ -542,11 +539,11 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                         }
                     </Box>
                     <Box
-                        sx={{ 
-                            display: 'flex', 
-                            flexDirection: 'column', 
-                            marginTop: '60px' ,  
-                            textAlign: 'start' 
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            marginTop: '60px' ,
+                            textAlign: 'start'
                         }}
                     >
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -561,10 +558,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                 Open positions
                             </Typography>
                             <Box
-                                sx={{ 
-                                    display: 'flex', 
-                                    columnGap: '30px', 
-                                    color: '#475467' 
+                                sx={{
+                                    display: 'flex',
+                                    columnGap: '30px',
+                                    color: '#475467'
                                 }}
                             >
                                 <AddOutlined style={{width: '20px', height: '20px'}}
@@ -589,11 +586,11 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                     </Box>
                     <Divider sx={{ marginTop: '20px' }} />
                     <Box
-                        sx={{ 
-                            display: 'flex', 
-                            flexDirection: 'column', 
-                            marginTop: '60px',  
-                            textAlign: 'start'  
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            marginTop: '60px',
+                            textAlign: 'start'
                         }}
                     >
                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -608,10 +605,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                 More about the startup
                             </Typography>
                             <Box
-                                sx={{ 
-                                    display: 'flex', 
-                                    columnGap: '30px', 
-                                    color: '#475467' 
+                                sx={{
+                                    display: 'flex',
+                                    columnGap: '30px',
+                                    color: '#475467'
                                 }}
                             >
                                 <AddOutlined  style={{width: '20px', height: '20px'}}/>
@@ -633,10 +630,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                     <Divider sx={{ marginTop: '20px' }} />
                 </Box>
 
-                <Box 
-                    sx={{ 
+                <Box
+                    sx={{
                         width: {md:'32%', xs: '100%'},
-                        paddingRight: '32px' 
+                        paddingRight: '32px'
                     }}
                 >
                     <Box
@@ -653,9 +650,9 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                     >
                         <Box sx={{ width: '100%'}}>
                             <Box
-                                sx={{ 
-                                    display: 'flex', 
-                                    columnGap: '6px', 
+                                sx={{
+                                    display: 'flex',
+                                    columnGap: '6px',
                                     width: '100%'
                                 }}
                             >
@@ -696,10 +693,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                             </Box>
                             <Box sx={{ width: '100%'}}>
                                 <Box
-                                    sx={{ 
-                                        marginTop: '24px', 
-                                        display: 'flex', 
-                                        columnGap: '6px',  
+                                    sx={{
+                                        marginTop: '24px',
+                                        display: 'flex',
+                                        columnGap: '6px',
                                     }}
                                 >
                                     <Typography
@@ -784,10 +781,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                             </Box>
                             <Box>
                                 <Box
-                                    sx={{ 
-                                        marginTop: '24px', 
-                                        display: 'flex', 
-                                        columnGap: '6px' 
+                                    sx={{
+                                        marginTop: '24px',
+                                        display: 'flex',
+                                        columnGap: '6px'
                                     }}
                                 >
                                     <Typography
@@ -814,7 +811,7 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                             marginTop: '6px',
                                             fontSize: '14px'
                                         }}
-                                    >  
+                                    >
                                         <MenuItem value=''>
                                             <em>Range</em>
                                         </MenuItem>
@@ -877,10 +874,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                             </Box>
                             <Box>
                                 <Box
-                                    sx={{ 
-                                        marginTop: '24px', 
-                                        display: 'flex', 
-                                        columnGap: '6px' 
+                                    sx={{
+                                        marginTop: '24px',
+                                        display: 'flex',
+                                        columnGap: '6px'
                                     }}
                                 >
                                     <Typography

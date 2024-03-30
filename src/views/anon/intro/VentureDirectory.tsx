@@ -74,12 +74,13 @@ const VentureDirectory = () => {
             updateDisplay(orgSearch, industrySearch, sortValue)
         else
             initializeSearch(dispatch)
-    }, [searchParams])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchParams, dispatch])
 
     useEffect(() => {
         if (organizationsToDisplay.length == 0)
             setOrganizations(organizations.data)
-    }, [organizations])
+    }, [organizations, organizationsToDisplay])
 
     const updateDisplay = async (org: string | null, industry: string | null, sortBy: string | null) => {
         const orgs = await organizationService.retrieve(org, industry)
@@ -100,7 +101,7 @@ const VentureDirectory = () => {
 
         const releventDiv = document.getElementById(searchId)
         // behavior: "smooth" parameter for smooth movement
-        releventDiv!.scrollIntoView({behavior: "smooth"})
+        releventDiv!.scrollIntoView({behavior: 'smooth'})
     }
 
     const initializeSearch = async (dispatch: AppDispatch) => {
@@ -119,7 +120,7 @@ const VentureDirectory = () => {
 
     const openInNewTab = (url: string | null, org: Organization): void => {
         if (url == null) {
-            let endpoint = PathConstants.publicProfile
+            const endpoint = PathConstants.publicProfile
             url = `${endpoint.slice(0, endpoint.indexOf(':'))}${org.identifier}`
         }
         const newWindow = window.open(url, '_blank', 'noopener,noreferrer')

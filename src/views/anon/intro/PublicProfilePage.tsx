@@ -32,7 +32,7 @@ const PublicProfilePage = () => {
 
     useEffect(() => {
         !orgs.data.find((org) => org.identifier === identifier) && navigate('/profile')
-    }, [identifier])
+    }, [identifier, navigate, orgs])
 
     return <PublicProfileView {...PublicProfileViewProp} />
 }
