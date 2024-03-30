@@ -3,6 +3,7 @@ const authPrefix = '/app/'
 
 const PathConstants: { [key: string]: string } = {
     home: '/',
+    publicProfile: '/profile/:identifier',
     about: '/about/',
     ventureDirectory: '/directory/',
     login: '/login/',
@@ -39,7 +40,7 @@ const PathConstants: { [key: string]: string } = {
     articles: `${authPrefix}resources/article/:id`,
     settings: `${authPrefix}settings`,
     teamPage: `${authPrefix}team-page`,
-    companyEditPage: `${authPrefix}company-edit-page/:id`,
+    companyEditPage: `${authPrefix}company-edit-page`,
     privateViewUpdate: `${authPrefix}private-view-update`,
     publicCompanyView: `${authPrefix}public-company-view`,
 }

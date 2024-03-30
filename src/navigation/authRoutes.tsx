@@ -8,7 +8,7 @@ import OnboardingPath from '../views/anon/onboarding/OnboardingPath'
 import PersonalInfo from '../views/anon/onboarding/PersonalInfo'
 import TermsOfUse from '../views/anon/onboarding/TermsOfUse'
 import ArticleDetails from '../views/auth/ArticleDetails'
-import CompanyEditPage from '../views/auth/CompanyEditPage'
+import EditPublicProfilePage from '../views/auth/EditPublicProfilePage'
 import Dashboard from '../views/auth/Dashboard'
 import PrivateViewUpdate from '../views/auth/PrivateViewUpdate'
 import PublicCompanyView from '../views/auth/PublicCompanyView'
@@ -72,11 +72,10 @@ export const authRoutes = [
         Component: ComposeAuthLayout(TeamPage),
         exact: true,
     },
-
     {
-        title: 'Compaany Edit Page',
+        title: 'Company Edit Page',
         path: PathConstants.companyEditPage,
-        Component: ComposeAuthLayout(CompanyEditPage),
+        Component: ComposeAuthLayout(EditPublicProfilePage),
         exact: true,
     },
     {

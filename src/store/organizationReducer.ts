@@ -8,25 +8,36 @@ import Organization, { CompanyChallenges, CompanyFunding, CompanyStage } from '.
 import { Id } from '../types/propertyTypes'
 import { AppDispatch } from './store'
 
-const initialState: AppOrganizations = []
+const initialState: AppOrganizations = {
+    loading: true,
+    data: []
+}
 
 // toolkit sets up the redux and state
 const organizationSlice = createSlice({
     name: 'organizations',
     initialState,
     reducers: {
-        setOrganizations(state: AppOrganizations, action: AppSetOrganizationsAction) {
-            state = [...action.payload]
-            return state
+        setOrganizations(_state: AppOrganizations, action: AppSetOrganizationsAction) {
+            return {
+                loading: false,
+                data: action.payload
+            }
         },
         appendOrganization(state: AppOrganizations, action: AppUpdateOrAddOrganizationAction){
-            state.push(action.payload)
+            state.data.push(action.payload)
         },
         destroyOrganization(state: AppOrganizations, action: AppDestroyOrganizationAction){
-            return state.filter(organization => organization.id !== action.payload)
+            return {
+                loading: false,
+                data: state.data.filter(organization => organization.id !== action.payload)
+            }
         },
         changeOrganization(state: AppOrganizations, action: AppUpdateOrAddOrganizationAction){
-            return state.map(organization => organization.id === action.payload.id ? action.payload : organization)
+            return {
+                loading: false,
+                data: state.data.map(organization => organization.id === action.payload.id ? action.payload : organization)
+            }
         }
     }
 })

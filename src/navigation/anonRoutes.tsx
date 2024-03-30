@@ -1,19 +1,25 @@
-import AboutUs from '../views/anon/ventureBuildIntro/AboutUs'
-import ContactUs from '../views/anon/ventureBuildIntro/ContactUs'
-import Home from '../views/anon/ventureBuildIntro/Home'
+import AboutUs from '../views/anon/intro/AboutUs'
+import ContactUs from '../views/anon/intro/ContactUs'
+import Home from '../views/anon/intro/Home'
 import Login from '../views/anon/registration/Login'
 import Signup from '../views/anon/registration/Signup'
 import VerificationSent from '../views/anon/registration/VerificationSent'
 import ComposeAnonLayout from './hoc/ComposeAnonLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute, Route } from './types/route'
-import VentureDirectory from '../views/anon/ventureBuildIntro/VentureDirectory'
+import VentureDirectory from '../views/anon/intro/VentureDirectory'
+import PublicProfilePage from '../views/anon/intro/PublicProfilePage'
 
 export const anonRoutes: Array<Route> = [
     {
         title: 'Venture Build',
         path: PathConstants.home,
         component: ComposeAnonLayout(<Home />)(),
+    },
+    {
+        title: 'Public Profile',
+        path: PathConstants.publicProfile,
+        component: ComposeAnonLayout(<PublicProfilePage />)(),
     },
     {
         title: 'About Us',

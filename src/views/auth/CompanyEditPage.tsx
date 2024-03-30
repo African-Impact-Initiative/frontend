@@ -1,13 +1,17 @@
 import { AddOutlined, EditOutlined, FacebookOutlined, Instagram, LinkedIn, Search, Twitter, YouTube } from '@mui/icons-material'
 import { Button, Divider, IconButton, InputBase, MenuItem, Modal, Paper, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { countryList } from '../../utils/countries'
 import { useNavigate } from 'react-router-dom'
 import EditLogoModal from '../../components/companyEdit/EditLogoModal'
 import AddLeadershipModal from '../../components/companyEdit/AddLeadershipModal'
 import AddJobModal from '../../components/companyEdit/AddJobModal'
 import { VBTextField } from '../../components/VBForms'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { updateOrganization } from '../../store/userOrganizationReducer'
+import Organization from '../../types/organization'
+import PathConstants from '../../navigation/pathConstants'
 
 const items = [
     {
@@ -51,7 +55,27 @@ const currencies = [
     }
 ]
 
+const sizeList = [
+    { label: '1-10', value: '1-10' },
+    { label: '11-50', value: '11-50' },
+    { label: '51-200', value: '51-200' },
+    { label: '201-500', value: '201-500' },
+    { label: '501-1,000', value: '501-1,000' },
+    { label: '1,001-5,000', value: '1,001-5,000' },
+    { label: '5,001-10,000', value: '5,001-10,000' },
+    { label: '10,001+', value: '10,001+' },
+]
+
 const CompanyEditPage = () => {
+    const [tagline, setTagline] = useState('');
+    const [aboutUs, setAboutUs] = useState('');
+    const [website, setWebsite] = useState('');
+    const [email, setEmail] = useState('');
+    const [twitter, setTwitter] = useState('');
+    const [facebook, setFacebook] = useState('');
+    const [linkedin, setLinkedin] = useState('');
+    const [instagram, setInstagram] = useState('');
+    const [size, setSize] = useState('');
     const [country, setCountry] = useState('')
     const [industry, setIndustry] = useState('')
     const [logoModal, setLogoModal] = useState(false)
@@ -60,6 +84,42 @@ const CompanyEditPage = () => {
     const [, setSelectItem] = useState('')
 
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+
+    const org = useAppSelector((state) => state.userOrganization);
+
+    useEffect(() => {
+        if (org.data) {
+            setTagline(org.data.tagline || '');
+            setAboutUs(org.data.aboutUs || '');
+            setCountry(org.data.location || '');
+            setEmail(org.data.email || '');
+            setSize(org.data.size || '');
+            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\//, '') || '');
+            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\//, '') || '');
+            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\//, '') || '');
+            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\//, '') || '');
+            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\//, '') || '');
+        }
+    }, [org]);
+
+    const handleSubmit = () => {
+        const updateOrg = {
+            tagline,
+            size,
+            email,
+            aboutUs,
+            location: country && country || null,
+            twitter: twitter && "https://" + twitter || '',
+            website: website && "https://" + website || '',
+            facebook: facebook && "https://" + facebook || '',
+            linkedin: linkedin && "https://" + linkedin || '',
+            instagram: instagram && "https://" + instagram || '',
+        }
+        if (org.data && org.data.id) {
+            dispatch(updateOrganization(org.data.id, updateOrg as Organization));
+        }
+    }
 
     return (
         <Box>
@@ -163,7 +223,7 @@ const CompanyEditPage = () => {
                                 color: '#101828'
                             }}
                         >
-                            DataPrime
+                            {org.data?.name}
                         </Typography>
                     </Box>
                 </Box>
@@ -198,6 +258,9 @@ const CompanyEditPage = () => {
                                 width: { md: '80px', xs: '100%' },
                                 textTransform: 'none'
                             }}
+                            onClick={() => {
+                                navigate(PathConstants.dashboard);
+                            }}
                         >
                             Cancel
                         </Button>
@@ -215,9 +278,7 @@ const CompanyEditPage = () => {
                                 textTransform: 'none',
                                 fontSize: '14px'
                             }}
-                            onClick={() => {
-                                navigate('/app/privateViewUpdate')
-                            }}
+                            onClick={handleSubmit}
                         >
                             Save changes
                         </Button>
@@ -278,11 +339,10 @@ const CompanyEditPage = () => {
                                     fontWeight: '400',
                                     fontFamily: ' inter'
                                 }}
-                                placeholder='DataPrime empowers financial insights with AI-driven solutions for smarter decision-making.'
+                                value={tagline}
+                                placeholder="A quick snapshot of your company."
                                 rows={1}
-                                onChange={(e) => {
-                                    console.log(e)
-                                }}
+                                onChange={(e) => setTagline(e.target.value)}
                             />
                         </Box>
                     </Box>
@@ -314,11 +374,10 @@ const CompanyEditPage = () => {
                                     fontWeight: '400',
                                     fontFamily: ' inter'
                                 }}
+                                value={aboutUs}
                                 placeholder='Talk about your company’s values, mission, and vision.'
                                 rows={5}
-                                onChange={(e) => {
-                                    console.log(e)
-                                }}
+                                onChange={(e) => setAboutUs(e.target.value)}
                             />
                         </Box>
                     </Box>
@@ -554,25 +613,29 @@ const CompanyEditPage = () => {
                                         *
                                     </Typography>
                                 </Box>
-                                <Box sx={{ marginTop: '6px' }}>
-                                    <Paper
-                                        component='form'
+                                <Box sx={{ textAlign: 'start' }}>
+                                    <TextField
+                                        value={size}
+                                        select
+                                        label="Range"
+                                        onChange={(e) => setSize(e.target.value)}
                                         sx={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            width: { md: 312, xs: '100%' },
-                                            height: 44,
-                                            borderRadius: 2,
-                                            boxShadow: 0,
-                                            border: '1px solid #D0D5DD'
+                                            width: {md: '312px', xs: '100%'},
+                                            marginTop: '6px',
+                                            marginBottom: '10px',
+                                            height: '30px',
+                                            fontSize: '16px'
                                         }}
-                                    >
-                                        <InputBase
-                                            sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                            placeholder='e.g. 12'
-                                            inputProps={{ 'aria-label': 'company size' }}
-                                        />
-                                    </Paper>
+                                    >  
+                                        <MenuItem value="">
+                                            <em>Range</em>
+                                        </MenuItem>
+                                        {sizeList.map((size) => (
+                                            <MenuItem key={size.value} value={size.value}>
+                                                {size.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
                                 </Box>
                             </Box>
                             <Box>
@@ -608,7 +671,7 @@ const CompanyEditPage = () => {
                                                 fontSize: '14px'
                                             }}
                                         >
-                                            http://
+                                            https://
                                         </Typography>
 
                                         <Divider
@@ -619,6 +682,8 @@ const CompanyEditPage = () => {
                                             sx={{ flex: 1, fontSize: 16, ml: 1 }}
                                             placeholder='www.example.com'
                                             inputProps={{ 'aria-label': 'label search' }}
+                                            value={website}
+                                            onChange={(e) => setWebsite(e.target.value)}
                                         />
                                     </Paper>
                                 </Box>
@@ -658,6 +723,8 @@ const CompanyEditPage = () => {
                                             sx={{ ml: 2, flex: 1, fontSize: 16 }}
                                             placeholder='example@gmail.com'
                                             inputProps={{ 'aria-label': 'company size' }}
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                         />
                                     </Paper>
                                 </Box>
@@ -696,6 +763,8 @@ const CompanyEditPage = () => {
                                             sx={{ flex: 1, fontSize: 16, ml: 2 }}
                                             placeholder='twitter.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
+                                            value={twitter}
+                                            onChange={(e) => setTwitter(e.target.value)}
                                         />
                                     </Paper>
                                 </Box>
@@ -738,6 +807,8 @@ const CompanyEditPage = () => {
                                             sx={{ flex: 1, fontSize: 16, ml: 1 }}
                                             placeholder='facebook.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
+                                            value={facebook}
+                                            onChange={(e) => setFacebook(e.target.value)}
                                         />
                                     </Paper>
                                 </Box>
@@ -779,6 +850,8 @@ const CompanyEditPage = () => {
                                             sx={{ flex: 1, fontSize: 16, ml: 2 }}
                                             placeholder='linkedin.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
+                                            value={linkedin}
+                                            onChange={(e) => setLinkedin(e.target.value)}
                                         />
                                     </Paper>
                                 </Box>
@@ -830,49 +903,8 @@ const CompanyEditPage = () => {
                                             sx={{ flex: 1, fontSize: 16, ml: 2 }}
                                             placeholder='instagram.com/example'
                                             inputProps={{ 'aria-label': 'label search' }}
-                                        />
-                                    </Paper>
-                                </Box>
-                            </Box>
-                            <Box sx={{ marginBottom: '24px' }}>
-                                <Box sx={{ marginTop: '24px', display: 'flex' }}>
-                                    <Typography
-                                        sx={{
-                                            color: '#344054',
-                                            fontSize: '14px',
-                                            fontWeight: '500',
-                                            lineHeight: '20px'
-                                        }}
-                                    >
-                                        Youtube
-                                    </Typography>
-                                </Box>
-                                <Box sx={{ marginTop: '6px' }}>
-                                    <Paper
-                                        component='form'
-                                        sx={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            width: {md:312, xs: '100%'},
-                                            height: 44,
-                                            borderRadius: 2,
-                                            boxShadow: 0,
-                                            border: '1px solid #D0D5DD'
-                                        }}
-                                    >
-                                        <IconButton
-                                            type='button'
-                                            sx={{ p: '10px' }}
-                                            aria-label='youtubebutton'
-                                        >
-                                            <YouTube
-                                                sx={{ color: 'red' }} />
-                                        </IconButton>
-
-                                        <InputBase
-                                            sx={{ flex: 1, fontSize: 16, ml: 1 }}
-                                            placeholder='youtube.com/example'
-                                            inputProps={{ 'aria-label': 'label search' }}
+                                            value={instagram}
+                                            onChange={(e) => setInstagram(e.target.value)}
                                         />
                                     </Paper>
                                 </Box>
