@@ -2,6 +2,7 @@
 
 # Runs a lint, fixing errors is devs responsibility
 # this is just a nice reminder
+# To use the hook run: git config --local core.hooksPath hooks
 
 npm run lint
 
