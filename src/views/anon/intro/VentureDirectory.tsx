@@ -99,6 +99,10 @@ const VentureDirectory = () => {
             setOrganizations([])
         }
 
+        scrollToSearch()
+    }
+
+    const scrollToSearch = () => {
         const releventDiv = document.getElementById(searchId)
         // behavior: "smooth" parameter for smooth movement
         releventDiv!.scrollIntoView({behavior: 'smooth'})
@@ -112,17 +116,15 @@ const VentureDirectory = () => {
     const handleSearch = () => {
         let query = `${sortByKey}=${sortBy}`
         if (orgQuery)
-            query = `&${organizationQueryPrefix}=${orgQuery}`
+            query += `&${organizationQueryPrefix}=${orgQuery}`
         if (industryQuery)
             query += `&${industryQueryPrefix}=${industryQuery}`
         navigate(`${PathConstants.ventureDirectory}?${query}`)
     }
 
-    const openInNewTab = (url: string | null, org: Organization): void => {
-        if (url == null) {
-            const endpoint = PathConstants.publicProfile
-            url = `${endpoint.slice(0, endpoint.indexOf(':'))}${org.identifier}`
-        }
+    const openInNewTab = (org: Organization): void => {
+        const endpoint = PathConstants.publicProfile
+        const url = `${endpoint.slice(0, endpoint.indexOf(':'))}${org.identifier}`
         const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
         if (newWindow) newWindow.opener = null
     }
@@ -133,7 +135,7 @@ const VentureDirectory = () => {
             <Container maxWidth='lg' sx={{padding: '0 40px 0 40px'}}>
                 <Box sx={{display: 'flex', height: '100vh', overflowX: 'hidden'}}>
                     <Grid container spacing={0}>
-                        <Grid item md={5} sx={{height: '100%', width: '100%', display: 'flex !important', alignItems: 'left !important', justifyContent: 'center !important', flexDirection: 'column !important'}}>
+                        <Grid item md={5} height='100%' width='100%' display='flex !important' alignItems='left !important' justifyContent='center !important' sx={{flexDirection: 'column !important'}}>
                             <Typography variant='h1' component='div' gutterBottom>
                                 Venture Directory
                             </Typography>
@@ -143,7 +145,7 @@ const VentureDirectory = () => {
                             </Typography>
 
                             <Box sx={{display: 'flex', width: '100%', marginTop: '20px'}}>
-                                <Button size='large' variant='outlined' sx={{marginRight: '10px'}}>Browse all ventures</Button>
+                                <Button onClick={scrollToSearch} size='large' variant='outlined' sx={{marginRight: '10px'}}>Browse all ventures</Button>
                                 <Link to={PathConstants.signUp}>
                                     <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
                                 </Link>
@@ -169,7 +171,7 @@ const VentureDirectory = () => {
                         <Grid item md={4}>
                             <Box display='flex' flexDirection='column' justifyContent='center'>
                                 <Typography>Search for venture</Typography>
-                                <VBTextField value={orgQuery} setter={setOrgQuery} required={false}  label='Search'/>
+                                <VBTextField value={orgQuery} setter={setOrgQuery} required={false} label='Search'/>
                             </Box>
                         </Grid>
                         <Grid item md={4}>
@@ -208,7 +210,7 @@ const VentureDirectory = () => {
                 </Box>
 
                 {organizationsToDisplay.length == 0 && <Typography>No results found</Typography>}
-                <Grid id={searchId} container spacing={2} sx={{ margin: '20px 0 20px 0'}}>
+                <Grid id={searchId} container spacing={2} margin='20px 0 20px 0'>
                     {organizationsToDisplay.map(org => <Grid item md={4} key={org.id}>
                         <VentureCard
                             name={org.name}
@@ -216,7 +218,7 @@ const VentureDirectory = () => {
                             logo={org.logo}
                             caption={org.tagline}
                             details={org.aboutUs}
-                            action={() => openInNewTab(org.website, org)}
+                            action={() => openInNewTab(org)}
                         />
                     </Grid>)}
                 </Grid>
