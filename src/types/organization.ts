@@ -44,7 +44,7 @@ export const emptyOrganization: Organization = {
     industries: [],
     tagline: '',
     aboutUs: '',
-    location: '',
+    location: null,
     size: '',
     email: '',
     id: null,

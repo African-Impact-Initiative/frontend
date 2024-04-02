@@ -45,10 +45,10 @@ export const VBTextField = ({value, setter, type, label, placeholder, validator,
             onChange={(e) => setter(e.target.value)}
             helperText={formError? helper : ''}
             error={formError}
-            required
+            required={required}
             type={type}
             sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
-            InputLabelProps={{ required: false }}
+            InputLabelProps={{ required: required }}
             inputProps={inputProps}
             multiline={multiline}
             rows={rows}

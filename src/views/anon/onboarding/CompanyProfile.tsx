@@ -48,13 +48,16 @@ const CompanyProfile = () => {
 
             const org = {...emptyOrganization}
             org.identifier = identifier
-            org.name = companyName
-            org.owner = user.data!.id
+            org.name = companyName            
             org.website = companyWebsite
-            org.linkedin = `https://www.linkedin.com/company/${linkedin}`
-            org.twitter = `https://www.twitter.com/${twitter}`
-            org.facebook = `https://www.facebook.com/${facebook}`
-            org.industry = industry
+            if (linkedin)
+                org.linkedin = `https://www.linkedin.com/company/${linkedin}`
+            if (twitter)
+                org.twitter = `https://www.twitter.com/${twitter}`
+            if (facebook)
+                org.facebook = `https://www.facebook.com/${facebook}`
+            if (industry)
+                org.industries.push(industry)
             org.tagline = tagline
 
             await dispatch(createOrganization(org))
