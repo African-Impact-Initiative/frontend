@@ -37,11 +37,11 @@ const EditPublicProfilePage = () => {
             setCountry(org.data.location || '');
             setEmail(org.data.email || '');
             setSize(org.data.size || '');
-            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\//, '') || '');
-            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\//, '') || '');
-            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\//, '') || '');
-            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\//, '') || '');
-            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\//, '') || '');
+            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\/(www\.)?/, '') || '');
+            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\/(www\.)?/, '') || '');
+            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\/(www\.)?/, '') || '');
+            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\/(www\.)?/, '') || '');
+            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\/(www\.)?/, '') || '');
             setLeadership(org.data.userSet.filter(user => user.leadership === true))
             setIndustries(org.data.industries)
         }
