@@ -5,6 +5,7 @@ const PathConstants: { [key: string]: string } = {
     home: '/',
     publicProfile: '/profile/:identifier',
     about: '/about/',
+    ventureDirectory: '/directory/',
     login: '/login/',
     signUp: '/register/',
     signUpVerification: '/register/verification',

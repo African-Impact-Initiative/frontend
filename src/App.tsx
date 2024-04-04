@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 
 import SuccessNotification from './components/VBSuccessNotification'
 import ErrorNotification from './components/VBErrorNotification'
+import InfoNotification from './components/VBInfoNotification'
 
 import { setUserOnRefresh } from './store/appUserReducer'
 import { useEffect, useState } from 'react'
@@ -40,6 +41,7 @@ const App = () => {
             <CssBaseline />
             <SuccessNotification />
             <ErrorNotification />
+            <InfoNotification />
             {loading ? <VBLoading /> : <Router />}
         </ThemeProvider>
     )

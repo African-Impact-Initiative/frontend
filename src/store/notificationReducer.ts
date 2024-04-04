@@ -3,7 +3,8 @@ import { AppNotificationState, AppNotificationAction } from './types/notificatio
 
 const initialState: AppNotificationState = {
     successNotification: null,
-    errorNotification: null
+    errorNotification: null,
+    infoNotification: null
 }
 
 // toolkit sets up the redux and state
@@ -22,9 +23,15 @@ const notificationSlice = createSlice({
                 ...state,
                 errorNotification: action.payload
             }
+        },
+        setInfoNotification(state: AppNotificationState, action: AppNotificationAction) {
+            return {
+                ...state,
+                infoNotification: action.payload
+            }
         }
     }
 })
 
-export const { setSuccessNotification, setErrorNotification } = notificationSlice.actions
+export const { setSuccessNotification, setErrorNotification, setInfoNotification } = notificationSlice.actions
 export default notificationSlice.reducer

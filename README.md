@@ -58,6 +58,8 @@ Navigate to `./frontend` in the terminal. You will see a file called `package.js
 
 To start the frontend project run `npm start` in the frontend folder. If there are no issues the application will start at <http://localhost:3000/>.
 
+We have a hooks folder at the root of the project responsible for creating GitHub hooks. Currently we have a single pre-push hook which runs in order to remind developers to fix their lint errors. The hooks should be configured when running `npm install` but in case you have any issues run: `git config --local core.hooksPath hooks`.
+
 ### Project Structure
 
 The project structure is straight-forward. The `src` folder contains all of the project code, and the public folder contains `index.html`  and a few static files such as images.

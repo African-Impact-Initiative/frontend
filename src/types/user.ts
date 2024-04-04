@@ -12,7 +12,7 @@ type User = {
     country: null | string,
     bio: null | string,
     leadership: null | boolean,
-    team: Array<String>,
+    team: Array<string>,
 
     // only on creation
     password?: string
