@@ -56,23 +56,23 @@ export const anonRoutes: Array<Route> = [
 export const noUserPages: Array<BasicRoute> = [
     {
         title: 'Dashboard',
-        path: PathConstants.community
+        path: PathConstants.dashboard
     },
     {
         title: 'Venture directory',
-        path: PathConstants.community
+        path: PathConstants.ventureDirectory
     },
     {
         title: 'What we offer',
-        path: PathConstants.community
+        path: PathConstants.about
     },
     {
         title: 'Why choose us',
-        path: PathConstants.community
+        path: PathConstants.about
     },
     {
         title: 'Connect',
-        path: PathConstants.community
+        path: PathConstants.contactUs
     },
 ]
 
