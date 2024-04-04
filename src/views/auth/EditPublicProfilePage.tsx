@@ -11,7 +11,7 @@ const EditPublicProfilePage = () => {
 
     const org = useAppSelector((state) => state.userOrganization)
 
-    const [isPublicView, setIsPublicView] = useState(false);
+    const [isPublicView, setIsPublicView] = useState(false)
     const [logoModal, setLogoModal] = useState(false)
     const [leadershipModal, setLeadershipModal] = useState(false)
     const [jobModal, setJobModal] = useState(false)
