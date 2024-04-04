@@ -8,8 +8,15 @@ import Service from './service'
 import { METHODS } from './utils'
 
 const organizationService = new Service<Organization>(apiRoutes.organizationOperations.baseUrl)
+export const organizationQueryPrefix = 'organization'
+export const industryQueryPrefix = 'industry'
 
-const retrieve = async (query?: string): Promise<ServiceResponse<Array<Organization>>> => {
+const retrieve = async (organization: string | null, industry: string | null): Promise<ServiceResponse<Array<Organization>>> => {
+    let query = undefined
+    if (organization)
+        query = `${organizationQueryPrefix}=${organization}`
+    if (industry)
+        query = query == undefined? `${industryQueryPrefix}=${industry}` : query + `&${industryQueryPrefix}=${industry}`
     return await organizationService.retrieve(query)
 }
 

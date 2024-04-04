@@ -1,5 +1,6 @@
 import { Box, Button, Divider, Typography, Card, CardContent } from '@mui/material'
 import React from 'react'
+import StoreIcon from '@mui/icons-material/Store'
 
 export interface IAboutCardProps {
     title: string,
@@ -56,10 +57,10 @@ export const AboutCard = ({ title, description, image, address }: IAboutCardProp
 
 export interface IVentureCardProps {
     name: string,
-    caption: string,
-    category: string,
-    logo: string,
-    details: string,
+    caption: string | null,
+    category: string | null,
+    logo: string | null,
+    details: string | null,
     action: (e: React.MouseEvent<HTMLElement>) => void
 }
 
@@ -70,14 +71,13 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
                 width: {md:'344px', xs: '100%'},
                 border: '1px solid rgba(234, 236, 240, 1)',
                 borderRadius: '12px',
-                cursor: 'pointer',
             }}
         >
-            <Box sx={{ padding: '20px' }}>
+            <Box sx={{ padding: '20px', height: '180px' }}>
                 <Box sx={{ display: 'flex', columnGap: '15px' }}>
-                    <Box>
+                    {logo?
                         <img src={logo} alt='logo' style={{ width: '40px', height: '40px' }} />
-                    </Box>
+                        : <StoreIcon sx={{backgroundColor: '#EAECF0', borderRadius: '20px', padding: '7px', width: '40px', height: '40px'}} />}
                     <Box>
                         <Box sx={{ textAlign: 'start' }}>
                             <Box>
@@ -114,7 +114,7 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
                             color: '#475467',
                         }}
                     >
-                        {details}
+                        {details?.length &&  details?.length > 125? `${details?.substring(0, 125).trim()}...` : details}
                     </Typography>
                 </Box>
             </Box>
@@ -127,20 +127,6 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
                     alignItems: 'center'
                 }}
             >
-                <Box
-                    sx={{
-                        borderRadius: '20px',
-                        background: 'rgba(249, 250, 251, 1)',
-                        fontSize: '12px',
-                        fontWeight: 500,
-                        lineHeight: '20px',
-                        color: 'rgba(52, 64, 84, 1)',
-                        width: '93px',
-                        height: '24px'
-                    }}
-                >
-                    <Typography>{category}</Typography>
-                </Box>
                 <Box>
                     <Button
                         sx={{
@@ -164,6 +150,19 @@ export const VentureCard = ({ name, caption, logo, details, category, action }: 
                         </Typography>
                     </Button>
                 </Box>
+                {category && <Box
+                    sx={{
+                        padding: '7px',
+                        borderRadius: '20px',
+                        background: 'rgba(249, 250, 251, 1)',
+                        border: '1px solid #EAECF0',
+                        fontSize: '12px',
+                        fontWeight: 500,
+                        lineHeight: '20px',
+                    }}
+                >
+                    <Typography>{category}</Typography>
+                </Box>}
             </Box>
         </Box>
     )

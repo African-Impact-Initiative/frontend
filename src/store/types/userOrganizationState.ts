@@ -1,4 +1,4 @@
-import Organization from "../../types/organization"
+import Organization from '../../types/organization'
 
 export type SetUserOrganizationState = {
     type: string,

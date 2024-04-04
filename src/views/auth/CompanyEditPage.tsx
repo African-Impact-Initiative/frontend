@@ -1,4 +1,4 @@
-import { AddOutlined, EditOutlined, FacebookOutlined, Instagram, LinkedIn, Search, Twitter, YouTube } from '@mui/icons-material'
+import { AddOutlined, EditOutlined, FacebookOutlined, Instagram, LinkedIn, Search, Twitter } from '@mui/icons-material'
 import { Button, Divider, IconButton, InputBase, MenuItem, Modal, Paper, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useEffect, useState } from 'react'
@@ -67,15 +67,15 @@ const sizeList = [
 ]
 
 const CompanyEditPage = () => {
-    const [tagline, setTagline] = useState('');
-    const [aboutUs, setAboutUs] = useState('');
-    const [website, setWebsite] = useState('');
-    const [email, setEmail] = useState('');
-    const [twitter, setTwitter] = useState('');
-    const [facebook, setFacebook] = useState('');
-    const [linkedin, setLinkedin] = useState('');
-    const [instagram, setInstagram] = useState('');
-    const [size, setSize] = useState('');
+    const [tagline, setTagline] = useState('')
+    const [aboutUs, setAboutUs] = useState('')
+    const [website, setWebsite] = useState('')
+    const [email, setEmail] = useState('')
+    const [twitter, setTwitter] = useState('')
+    const [facebook, setFacebook] = useState('')
+    const [linkedin, setLinkedin] = useState('')
+    const [instagram, setInstagram] = useState('')
+    const [size, setSize] = useState('')
     const [country, setCountry] = useState('')
     const [industry, setIndustry] = useState('')
     const [logoModal, setLogoModal] = useState(false)
@@ -86,22 +86,22 @@ const CompanyEditPage = () => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
-    const org = useAppSelector((state) => state.userOrganization);
+    const org = useAppSelector((state) => state.userOrganization)
 
     useEffect(() => {
         if (org.data) {
-            setTagline(org.data.tagline || '');
-            setAboutUs(org.data.aboutUs || '');
-            setCountry(org.data.location || '');
-            setEmail(org.data.email || '');
-            setSize(org.data.size || '');
-            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\//, '') || '');
-            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\//, '') || '');
-            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\//, '') || '');
-            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\//, '') || '');
-            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\//, '') || '');
+            setTagline(org.data.tagline || '')
+            setAboutUs(org.data.aboutUs || '')
+            setCountry(org.data.location || '')
+            setEmail(org.data.email || '')
+            setSize(org.data.size || '')
+            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\//, '') || '')
+            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\//, '') || '')
+            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\//, '') || '')
+            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\//, '') || '')
+            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\//, '') || '')
         }
-    }, [org]);
+    }, [org])
 
     const handleSubmit = () => {
         const updateOrg = {
@@ -110,15 +110,15 @@ const CompanyEditPage = () => {
             email,
             aboutUs,
             location: country && country || null,
-            twitter: twitter && "https://" + twitter || '',
-            website: website && "https://" + website || '',
-            facebook: facebook && "https://" + facebook || '',
-            linkedin: linkedin && "https://" + linkedin || '',
-            instagram: instagram && "https://" + instagram || '',
+            twitter: twitter && 'https://' + twitter || '',
+            website: website && 'https://' + website || '',
+            facebook: facebook && 'https://' + facebook || '',
+            linkedin: linkedin && 'https://' + linkedin || '',
+            instagram: instagram && 'https://' + instagram || '',
         }
-        if (org.data && org.data.id) {
-            dispatch(updateOrganization(org.data.id, updateOrg as Organization));
-        }
+        if (org.data && org.data.id)
+            dispatch(updateOrganization(org.data.id, updateOrg as Organization))
+
     }
 
     return (
@@ -259,7 +259,7 @@ const CompanyEditPage = () => {
                                 textTransform: 'none'
                             }}
                             onClick={() => {
-                                navigate(PathConstants.dashboard);
+                                navigate(PathConstants.dashboard)
                             }}
                         >
                             Cancel
@@ -340,7 +340,7 @@ const CompanyEditPage = () => {
                                     fontFamily: ' inter'
                                 }}
                                 value={tagline}
-                                placeholder="A quick snapshot of your company."
+                                placeholder='A quick snapshot of your company.'
                                 rows={1}
                                 onChange={(e) => setTagline(e.target.value)}
                             />
@@ -617,7 +617,7 @@ const CompanyEditPage = () => {
                                     <TextField
                                         value={size}
                                         select
-                                        label="Range"
+                                        label='Range'
                                         onChange={(e) => setSize(e.target.value)}
                                         sx={{
                                             width: {md: '312px', xs: '100%'},
@@ -626,8 +626,8 @@ const CompanyEditPage = () => {
                                             height: '30px',
                                             fontSize: '16px'
                                         }}
-                                    >  
-                                        <MenuItem value="">
+                                    >
+                                        <MenuItem value=''>
                                             <em>Range</em>
                                         </MenuItem>
                                         {sizeList.map((size) => (

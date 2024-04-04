@@ -12,28 +12,28 @@ import Organization from '../../types/organization'
 import { updateOrganization } from '../../store/userOrganizationReducer'
 
 const CompanyProfileSettings = () => {
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
 
-    const org = useAppSelector((state) => state.userOrganization);
+    const org = useAppSelector((state) => state.userOrganization)
 
-    const [companyName, setCompanyName] = useState('');
-    const [identifier, setIdentifier] = useState('');
+    const [companyName, setCompanyName] = useState('')
+    const [identifier, setIdentifier] = useState('')
 
     useEffect(() => {
         if (org.data) {
-            setCompanyName(org.data.name || '');
-            setIdentifier(org.data.identifier || '');
+            setCompanyName(org.data.name || '')
+            setIdentifier(org.data.identifier || '')
         }
-    }, [org]);
+    }, [org])
 
     const handleSubmit = () => {
         const updateOrg = {
             name: companyName,
             identifier
         }
-        if (org.data && org.data.id) {
-            dispatch(updateOrganization(org.data.id, updateOrg as Organization));
-        }
+        if (org.data && org.data.id) 
+            dispatch(updateOrganization(org.data.id, updateOrg as Organization))
+        
     }
 
     return (
