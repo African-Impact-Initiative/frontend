@@ -31,17 +31,17 @@ const EditPublicProfilePage = () => {
 
     useEffect(() => {
         if (org.data) {
-            setLogo(org.data.logo || '');
-            setTagline(org.data.tagline || '');
-            setAboutUs(org.data.aboutUs || '');
-            setCountry(org.data.location || '');
-            setEmail(org.data.email || '');
-            setSize(org.data.size || '');
-            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\/(www\.)?/, '') || '');
-            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\/(www\.)?/, '') || '');
-            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\/(www\.)?/, '') || '');
-            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\/(www\.)?/, '') || '');
-            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\/(www\.)?/, '') || '');
+            setLogo(org.data.logo || '')
+            setTagline(org.data.tagline || '')
+            setAboutUs(org.data.aboutUs || '')
+            setCountry(org.data.location || '')
+            setEmail(org.data.email || '')
+            setSize(org.data.size || '')
+            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\/(www\.)?/, '') || '')
+            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\/(www\.)?/, '') || '')
+            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\/(www\.)?/, '') || '')
+            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\/(www\.)?/, '') || '')
+            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\/(www\.)?/, '') || '')
             setLeadership(org.data.userSet.filter(user => user.leadership === true))
             setIndustries(org.data.industries)
         }
