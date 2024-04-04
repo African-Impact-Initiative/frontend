@@ -8,8 +8,6 @@ import organizationService, { industryQueryPrefix, organizationQueryPrefix } fro
 import Organization from '../../../types/organization'
 import { setInfoNotification } from '../../../store/notificationReducer'
 import { VBSelect, VBTextField } from '../../../components/VBForms'
-import { initializeOrganizations } from '../../../store/organizationReducer'
-import { AppDispatch } from '../../../store/store'
 
 import ventureDirectory from '../../../assets/venture_directory.svg'
 import { industriesList } from '../../../utils/industries'
@@ -72,8 +70,6 @@ const VentureDirectory = () => {
 
         if (orgSearch || industrySearch || sortValue)
             updateDisplay(orgSearch, industrySearch, sortValue)
-        else
-            initializeSearch(dispatch)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams, dispatch])
 
@@ -106,11 +102,6 @@ const VentureDirectory = () => {
         const releventDiv = document.getElementById(searchId)
         // behavior: "smooth" parameter for smooth movement
         releventDiv!.scrollIntoView({behavior: 'smooth'})
-    }
-
-    const initializeSearch = async (dispatch: AppDispatch) => {
-        if (organizationsToDisplay.length == 0)
-            await dispatch(initializeOrganizations())
     }
 
     const handleSearch = () => {
