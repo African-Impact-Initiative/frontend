@@ -4,6 +4,7 @@ const authPrefix = '/app/'
 const PathConstants: { [key: string]: string } = {
     home: '/',
     about: '/about/',
+    offer: '/offer/',
     login: '/login/',
     signUp: '/register/',
     signUpVerification: '/register/verification',

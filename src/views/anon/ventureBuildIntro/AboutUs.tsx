@@ -293,7 +293,6 @@ const AboutUs = () => {
 
                 <Box sx={{ width: {md: '50%', xs: '100%'}, backgroundColor: '#F9FAFB', borderRadius: '16px', height: '680px', display: {xs: 'none', md: 'inherit'}}}>
                     <img src={macbook} alt='macbook' style={{ width:'630px', height:'595px', position: 'absolute', marginTop: '50px', right: '0px'}} />
-                    <img src={homeScreen} alt='homescreen' style={{ width: '560px', height: '513px', position: 'relative', left: '350px', top: '30px', marginTop: '40px' }} />
                 </Box>
 
             </Box>
