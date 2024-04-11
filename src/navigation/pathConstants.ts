@@ -3,8 +3,10 @@ const authPrefix = '/app/'
 
 const PathConstants: { [key: string]: string } = {
     home: '/',
+    publicProfile: '/profile/:identifier',
     about: '/about/',
-    offer: '/offer/',
+    offer: '/offer',
+    ventureDirectory: '/directory/',
     login: '/login/',
     signUp: '/register/',
     signUpVerification: '/register/verification',
@@ -39,7 +41,7 @@ const PathConstants: { [key: string]: string } = {
     articles: `${authPrefix}resources/article/:id`,
     settings: `${authPrefix}settings`,
     teamPage: `${authPrefix}team-page`,
-    companyEditPage: `${authPrefix}company-edit-page/:id`,
+    companyEditPage: `${authPrefix}company-edit-page`,
     privateViewUpdate: `${authPrefix}private-view-update`,
     publicCompanyView: `${authPrefix}public-company-view`,
 }
