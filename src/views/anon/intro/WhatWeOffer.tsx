@@ -47,9 +47,6 @@ const WhatWeOffer = () => {
                         </Box>
                     </Link>    
                     </Typography>
-                    <Typography sx={{mt: -20, display: {lg: 'flex', xl: 'none'}, marginLeft: '30rem', fontWeight: '600', alignItems: 'space-evenly !important', justifyContent: 'center !important'}} variant='h3' component='div' gutterBottom>
-                        What we offer
-                    </Typography>
                     <Typography sx={{mt: -25, display: {lg: 'none', xl: 'flex'}, marginLeft: '30rem', fontWeight: '600'}} variant='h2' component='div' gutterBottom>
                         What we offer
                     </Typography>
@@ -77,9 +74,6 @@ const WhatWeOffer = () => {
                     <Grid item lg={6} sx={{height: '100%', width: '100%', padding: '0 80px 20px 80px', display: 'flex !important', alignItems: 'start !important', justifyContent: 'start !important', flexDirection: 'column !important'}}>
                         <Typography variant='overline' fontWeight='bold' color='#B54708'>
                             Overview
-                        </Typography>
-                        <Typography sx={{display: {xs: 'inline', xl: 'none'}}} variant='h3' gutterBottom>
-                        Beyond a co-working space
                         </Typography>
                         <Typography sx={{display: {xs: 'none', xl: 'inline'}}} variant='h3' gutterBottom>
                         Beyond a co-working space
