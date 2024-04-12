@@ -1,6 +1,7 @@
 import AboutUs from '../views/anon/intro/AboutUs'
 import ContactUs from '../views/anon/intro/ContactUs'
 import Home from '../views/anon/intro/Home'
+import WhatWeOffer from '../views/anon/intro/WhatWeOffer'
 import Login from '../views/anon/registration/Login'
 import Signup from '../views/anon/registration/Signup'
 import VerificationSent from '../views/anon/registration/VerificationSent'
@@ -51,6 +52,12 @@ export const anonRoutes: Array<Route> = [
         path: PathConstants.signUpVerification,
         component: ComposeAnonLayout(<VerificationSent />)(),
     },
+    {
+        title: 'What We Offer',
+        path: PathConstants.offer,
+        component: ComposeAnonLayout(<WhatWeOffer />)(),
+
+    },
 ]
 
 export const noUserPages: Array<BasicRoute> = [
@@ -64,7 +71,7 @@ export const noUserPages: Array<BasicRoute> = [
     },
     {
         title: 'What we offer',
-        path: PathConstants.about
+        path: PathConstants.offer
     },
     {
         title: 'Why choose us',

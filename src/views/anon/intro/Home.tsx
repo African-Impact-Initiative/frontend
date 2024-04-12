@@ -12,7 +12,7 @@ import VBAccordion, { AccordionItems } from '../../../components/VBAccordion'
 import VBCarousel from '../../../components/VBCarousel'
 
 import person from '../../../assets/person.svg'
-import background from '../../../assets/background.png'
+import background from '../../../assets/background.svg'
 import home from '../../../assets/home.svg'
 import guide from '../../../assets/guide.svg'
 import community from '../../../assets/community.svg'

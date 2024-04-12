@@ -3,12 +3,10 @@ import Logo from '../assets/logo.svg'
 import { Box, Divider, Typography } from '@mui/material'
 import userAvatar from '../assets/avatar.png'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Doughnut } from 'react-chartjs-2'
 import { SearchOutlined } from '@mui/icons-material'
 import { Link } from '../navigation/types/sideBar'
 
 import LogoutIcon from '@mui/icons-material/Logout'
-import CloseIcon from '@mui/icons-material/Close'
 import VBLogo from './VBLogo'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
@@ -228,76 +226,7 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
 
                         }}
                     >
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
-                            <Box style={{ width: '100px', height: '100px' }}>
-                                <Doughnut
-                                    data={data}
-                                    options={options}
-                                    plugins={[textCenter]}
-                                />
-                            </Box>
-                            <Box sx={{ cursor: 'pointer' }}>
-                                <CloseIcon />
-                            </Box>
-                        </Box>
-                        <Box>
-                            <Typography
-                                variant='body1'
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-                                    color: 'rgba(71, 84, 103, 1)',
-                                    marginBottom: '4px',
-                                }}
-                            >
-                                Used Budget
-                            </Typography>
-                            <Box>
-                                {' '}
-                                <Typography
-                                    variant='body1'
-                                    sx={{
-                                        fontFamily: 'Inter',
-                                        fontWeight: 400,
-                                        fontSize: '14px',
-                                        lineHeight: '20px',
-                                        color: 'rgba(71, 84, 103, 1)',
-                                    }}
-                                >
-                                    Your team has used 80% of your budget this month.
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Box
-                            sx={{ display: 'flex', alignItems: 'center', columnGap: '10px' }}
-                        >
-                            <Typography
-                                variant='body1'
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-                                    color: 'rgba(71, 84, 103, 1)',
-                                }}
-                            >
-                                Discuss
-                            </Typography>
-                            <Typography
-                                variant='body1'
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-                                    color: 'rgba(181, 71, 8, 1)',
-                                }}
-                            >
-                                Budget Settings
-                            </Typography>
-                        </Box>
+                        
                     </Box>}
 
 
