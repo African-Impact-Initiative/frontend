@@ -15,7 +15,7 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
     const { selectedFile, setSelectedFile, setLogo, setLogoModal } = prop
     
     const [imgSrc, setImgSrc] = useState<string | null>('')
-    const [lastSelectedFile] = useState<File | null>(selectedFile)
+    const [curImg, setCurImg] = useState<File | null>(selectedFile)
     const [imageLoaded, setImageLoaded] = useState(false)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,7 +29,7 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
                 image.src = event!.target!.result as string
                 setImgSrc(image.src)
                 image.onload = () => {
-                    setSelectedFile(file)
+                    setCurImg(file)
                     setImageLoaded(true)
                 }
             }
@@ -44,12 +44,7 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
 
     const handleDone = () => {
         setLogo(imgSrc!)
-        setLogoModal(false)
-    }
-
-    const handleCancel = () => { 
-        setImgSrc('')
-        setSelectedFile(lastSelectedFile)
+        setSelectedFile(curImg)
         setLogoModal(false)
     }
 
@@ -78,7 +73,7 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
                     </Typography>
                     <CloseOutlined
                         sx={{ color: '#667085', height: '30px', width: '30px' }}
-                        onClick={handleCancel}
+                        onClick={() => setLogoModal(false)}
                     />
                 </Box>
                 <Box>
@@ -125,9 +120,9 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
                         }}
                     >
                         <Box>
-                            { selectedFile 
+                            { curImg 
                                 ? <Typography variant='body1' sx={{ marginTop: '16px' }}>
-                                    {selectedFile ? `${selectedFile.name}` : ''}
+                                    {curImg ? `${curImg.name}` : ''}
                                 </Typography>
                                 : <Box
                                     sx={{
@@ -224,7 +219,7 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
                             textTransform: 'none',
                             marginBottom: {xs: '20px', md: '0px'}
                         }}
-                        onClick={handleCancel}
+                        onClick={() => setLogoModal(false)}
                     >
                         Cancel
                     </Button>
