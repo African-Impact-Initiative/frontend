@@ -11,51 +11,6 @@ import VBLogo from './VBLogo'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-const data = {
-    labels: ['Red', 'Blue'],
-    datasets: [
-        {
-            label: '# of Votes',
-            data: [12, 2],
-            backgroundColor: ['rgba(220, 104, 3, 1)', '#ccc'],
-            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
-            borderWidth: 0,
-            borderRadius: 10,
-        },
-    ],
-}
-
-const textCenter = {
-    id: 'Id Chart',
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    beforeDraw: (chart: any) => {
-        const ctx = chart.ctx
-        ctx.save()
-        ctx.font = '15px Roboto'
-        ctx.fillStyle = 'black'
-        ctx.textAlign = 'center'
-        ctx.fillText(
-            '80%',
-            chart.getDatasetMeta(0).data[0].x,
-            chart.getDatasetMeta(0).data[0].y - 0
-        )
-    },
-}
-
-const options = {
-    // reduce the thickness of the doughnut
-    cutout: '75%',
-    plugins: {
-        legend: {
-            display: false, // hide the legend (labels)
-        },
-        doughnutBackground: {
-            enabled: true,
-            color: '#000000', // set the background color of the doughnut.
-        },
-    },
-}
-
 export interface ISideBarProps {
     links: Array<Link>,
     backgroundColor: string,

@@ -1,4 +1,4 @@
-import { BookOutlined, BookmarkOutlined, CalendarMonthOutlined, DashboardOutlined, MoneyOutlined, PeopleAltOutlined, SettingsOutlined, SupportAgentOutlined } from '@mui/icons-material'
+import { BookOutlined, CalendarMonthOutlined, DashboardOutlined, MoneyOutlined, PeopleAltOutlined, SettingsOutlined, SupportAgentOutlined } from '@mui/icons-material'
 import TemplateDetails from '../views/admin/TemplateDetails'
 import CompanyProfile from '../views/anon/onboarding/CompanyProfile'
 import DevelopmentChallenges from '../views/anon/onboarding/DevelopmentChallenges'
