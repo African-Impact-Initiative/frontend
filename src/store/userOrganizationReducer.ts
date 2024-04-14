@@ -39,10 +39,15 @@ const organizationSlice = createSlice({
 
 export const { setUserOrganization, updateUserOrganization } = organizationSlice.actions
 
-export const updateOrganization = (id: Id, org: Organization) => {
+export const updateOrganization = (id: Id, org: Organization, logo?: File | null) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const organization = await organizationService.modify(id, org)
+            let organization = await organizationService.modify(id, org)
+            if (logo) {
+                const formData = new FormData()
+                formData.append('logo', logo)
+                organization = await organizationService.uploadLogo(id, formData)
+            }
             dispatch(updateUserOrganization(organization.data as Organization))
             dispatch(changeOrganization(organization.data as Organization))
             dispatch(setSuccessNotification('Organization updated successfully'))

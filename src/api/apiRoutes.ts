@@ -18,6 +18,7 @@ const apiRoutes: { [key: string]: { [key:string]: string } } = {
         challengeUrl: 'challenges/',
         fundingUrl: 'funding/',
         findById: 'identifier/',
+        uploadLogo: 'upload-logo/',
     },
     authorizationOperations: {
         baseUrl: 'auth/',

@@ -66,6 +66,10 @@ const findByIdentifier = async (id: Id): Promise<ServiceResponse<Organization>> 
     return await organizationService.request<Organization>(METHODS.get, undefined, `${apiRoutes.organizationOperations.findById}${id}/`)
 }
 
+const uploadLogo = async (id: Id, data: FormData): Promise<ServiceResponse<Organization>> => {
+    return await organizationService.uploadFile(data, `${apiRoutes.organizationOperations.uploadLogo}${id}/`)
+}
+
 export default {
     retrieve,
     retrieveSingle,
@@ -76,5 +80,6 @@ export default {
     addStage,
     addChallenges,
     addFunding,
-    findByIdentifier
+    findByIdentifier,
+    uploadLogo
 }
