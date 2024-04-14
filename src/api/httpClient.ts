@@ -96,7 +96,7 @@ class HttpClient<T> implements IHttpClient<T> {
             ...this.getAuthorizationHeader(),
             'Content-Type': 'multipart/form-data',
         }
-        // Don't know why cannot use this client for form data...
+        // don't know why cannot use this client for form data...
         return await axios.post<T>(`${this.baseURL}${endpoint}`, data, { headers })
     }
 }
