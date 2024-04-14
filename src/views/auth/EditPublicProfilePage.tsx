@@ -28,6 +28,7 @@ const EditPublicProfilePage = () => {
     const [instagram, setInstagram] = useState('')
     const [leadership, setLeadership] = useState<Array<User>>([])
     const [industries, setIndustries] = useState<Array<string>>([])
+    const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
     useEffect(() => {
         if (org.data) {
@@ -53,6 +54,7 @@ const EditPublicProfilePage = () => {
             size,
             email,
             aboutUs,
+            industries,
             location: country || null,
             twitter: twitter && 'https://' + twitter || '',
             website: website && 'https://' + website || '',
@@ -61,7 +63,7 @@ const EditPublicProfilePage = () => {
             instagram: instagram && 'https://' + instagram || '',
         }
         if (org.data && org.data.id) 
-            dispatch(updateOrganization(org.data.id, updateOrg as Organization))
+            dispatch(updateOrganization(org.data.id, updateOrg as Organization, selectedFile))
         
     }
 
@@ -87,6 +89,8 @@ const EditPublicProfilePage = () => {
         jobModal,
         leadershipModal,
         logoModal,
+        selectedFile, 
+        setSelectedFile,
         setLogo,
         setTagline,
         setAboutUs,

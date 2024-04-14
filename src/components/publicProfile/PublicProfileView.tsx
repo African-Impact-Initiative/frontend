@@ -1,11 +1,11 @@
 import { ArrowOutwardOutlined, FacebookOutlined, Instagram, LinkedIn, Twitter } from '@mui/icons-material'
 import { Button, Divider, Switch, Typography } from '@mui/material'
+import PersonIcon from '@mui/icons-material/Person'
 import { Box } from '@mui/system'
 import { useNavigate } from 'react-router-dom'
 import PathConstants from '../../navigation/pathConstants'
 import { FC } from 'react'
 import User from '../../types/user'
-import personLogo from '../../assets/personLogo.png'
 
 export type PublicProfileViewType = {
     name: string,
@@ -95,11 +95,13 @@ const PublicProfileView: FC<PublicProfileViewType> = (prop) => {
                                 display: 'flex',
                                 height: '160px',
                                 width: '160px',
-                                border: '4px solid #FFFFFF',
+                                overflow: 'hidden',
+                                border: '1px solid #ecedee',
+                                boxShadow: '0 0 0 4px #FFFFFF',
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 borderRadius: '100%',
-                                backgroundColor: '#EAECF0'
+                                backgroundColor: '#f3f4f7',
                             }}
                         >
                             { 
@@ -143,7 +145,11 @@ const PublicProfileView: FC<PublicProfileViewType> = (prop) => {
                                 marginTop: '4px'
                             }}
                         >
-                            {`${country ? country : ''}${size ? country ? ' · ' + size + ' employess' : size + ' employees': ''}`}
+                            {`${industries.length > 0 ? industries.join(' · ') : ''}`}
+                            {`${industries.length > 0 && (country || size) ? ' · ' : ''}`}
+                            {`${country ? country : ''}`}
+                            {`${country && size ? ' · ' : ''}`}
+                            {`${size ? size + ' employees' : ''}`}
                         </Typography>
                     </Box>
                 </Box>
@@ -274,70 +280,74 @@ const PublicProfileView: FC<PublicProfileViewType> = (prop) => {
                         </Typography>
                     </Box>
                     <Divider sx={{ marginTop: '20px' }} />
-                    <Box>
-                        <Box 
-                            sx={{ 
-                                marginTop: '32px', 
-                                display: 'flex', 
-                                columnGap: '6px' 
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    color: '#344054',
-                                    fontSize: '14px',
-                                    fontWeight: '600',
-                                    lineHeight: '20px'
+                    { 
+                        tagline && <Box>
+                            <Box 
+                                sx={{ 
+                                    marginTop: '32px', 
+                                    display: 'flex', 
+                                    columnGap: '6px' 
                                 }}
                             >
-                                Tagline
-                            </Typography>
+                                <Typography
+                                    sx={{
+                                        color: '#344054',
+                                        fontSize: '14px',
+                                        fontWeight: '600',
+                                        lineHeight: '20px'
+                                    }}
+                                >
+                                    Tagline
+                                </Typography>
+                            </Box>
+                            <Box sx={{ marginTop: '8px' }}>
+                                <Typography
+                                    sx={{
+                                        color: '#475467',
+                                        fontWeight: '400',
+                                        fontSize: '16px',
+                                        lineHeight: '24px'
+                                    }}
+                                >
+                                    { tagline }
+                                </Typography>
+                            </Box>
                         </Box>
-                        <Box sx={{ marginTop: '8px' }}>
-                            <Typography
-                                sx={{
-                                    color: '#475467',
-                                    fontWeight: '400',
-                                    fontSize: '16px',
-                                    lineHeight: '24px'
+                    }
+                    {
+                        aboutUs && <Box>
+                            <Box 
+                                sx={{ 
+                                    marginTop: '40px', 
+                                    display: 'flex', 
+                                    columnGap: '6px' 
                                 }}
                             >
-                                { tagline }
-                            </Typography>
+                                <Typography
+                                    sx={{
+                                        color: '#344054',
+                                        fontSize: '14px',
+                                        fontWeight: '600',
+                                        lineHeight: '20px'
+                                    }}
+                                >
+                                    About
+                                </Typography>
+                            </Box>
+                            <Box sx={{ marginTop: '8px' }}>
+                                <Typography
+                                    sx={{
+                                        color: '#475467',
+                                        fontWeight: '400',
+                                        fontSize: '16px',
+                                        lineHeight: '24px'
+                                    }}
+                                >
+                                    { aboutUs }
+                                </Typography>
+                            </Box>
                         </Box>
-                    </Box>
-                    <Box>
-                        <Box 
-                            sx={{ 
-                                marginTop: '40px', 
-                                display: 'flex', 
-                                columnGap: '6px' 
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    color: '#344054',
-                                    fontSize: '14px',
-                                    fontWeight: '600',
-                                    lineHeight: '20px'
-                                }}
-                            >
-                                About
-                            </Typography>
-                        </Box>
-                        <Box sx={{ marginTop: '8px' }}>
-                            <Typography
-                                sx={{
-                                    color: '#475467',
-                                    fontWeight: '400',
-                                    fontSize: '16px',
-                                    lineHeight: '24px'
-                                }}
-                            >
-                                { aboutUs }
-                            </Typography>
-                        </Box>
-                    </Box>
+                    }
                     {
                         leadership.length > 0 && 
                       <Box>
@@ -397,19 +407,29 @@ const PublicProfileView: FC<PublicProfileViewType> = (prop) => {
                                                   height: '50px',
                                                   overflow: 'hidden',
                                                   borderRadius: '50%',
-                                                  border: '1px solid #D3D3D3',
+                                                  border: '1px solid #EAECF0',
+                                                  justifyContent: 'center',
+                                                  alignItems: 'center',
+                                                  display: 'flex',
                                               }}
                                           >
-                                              <img 
-                                                  style={{
-                                                      display:'block', 
-                                                      width:'100%', 
-                                                      height:'100%',
-                                                      objectFit: 'cover',
-                                                  }} 
-                                                  src={leader.photo ?? personLogo} 
-                                                  alt='headshot' 
-                                              />
+                                              { leader.photo ? 
+                                                  <img
+                                                      style={{
+                                                          width:'100%',
+                                                          height:'100%',
+                                                      }}
+                                                      src={leader.photo}
+                                                      alt='headshot'
+                                                  /> :
+                                                  <PersonIcon 
+                                                      sx={{
+                                                          backgroundColor: '#FFFFFF', 
+                                                          width:'100%',
+                                                          height:'100%',
+                                                      }} 
+                                                  />
+                                              }
                                           </Box>
                                           <Box sx={{ 
                                               display: 'flex', 
