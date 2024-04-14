@@ -40,7 +40,6 @@ export type PrivateEditPublicProfileViewType = {
     industries: Array<string>
     logoModal: boolean
     leadershipModal: boolean
-    jobModal: boolean
     selectedFile: File | null
     setSelectedFile: React.Dispatch<React.SetStateAction<File | null>>
     setLogo: React.Dispatch<React.SetStateAction<string>>
@@ -58,7 +57,6 @@ export type PrivateEditPublicProfileViewType = {
     setIndustries: React.Dispatch<React.SetStateAction<Array<string>>>
     setLogoModal: React.Dispatch<React.SetStateAction<boolean>>
     setLeadershipModal: React.Dispatch<React.SetStateAction<boolean>>
-    setJobModal: React.Dispatch<React.SetStateAction<boolean>>
     toggleView: () => void;
     handleSubmit: () => void;
 }
@@ -96,6 +94,7 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
         setTwitter,
         setFacebook,
         setInstagram,
+        setLeadership,
         setIndustries,
         setLogoModal,
         setLeadershipModal,
@@ -120,11 +119,11 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                 open={leadershipModal}
                 aria-labelledby='modal-title'
                 aria-describedby='modal-description'
-                onClose={() => {
-                    setLeadershipModal(false)
-                }}
             >
-                <AddLeadershipModal />
+                <AddLeadershipModal 
+                    leadership={leadership}
+                    setLeadership={setLeadership}
+                    setLeadershipModal={setLeadershipModal} />
             </Modal>
 
             <Box

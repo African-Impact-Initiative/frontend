@@ -6,6 +6,9 @@ import Organization from '../types/organization'
 import { SetUserOrganizationState, UpdateUserOrganizationState } from './types/userOrganizationState'
 import { Id } from '../types/propertyTypes'
 import { AppDispatch } from './store'
+import User from '../types/user'
+import userService from '../api/userService'
+import { changeUsers } from './usersReducer'
 
 type UserOrganization = {
     data: Organization | null
@@ -39,15 +42,34 @@ const organizationSlice = createSlice({
 
 export const { setUserOrganization, updateUserOrganization } = organizationSlice.actions
 
-export const updateOrganization = (id: Id, org: Organization, logo?: File | null) => {
+export const updateOrganization = (id: Id, org: Organization, logo?: File | null, leadersToUpdate?: Array<User>) => {
     return async (dispatch: AppDispatch) => {
         try {
-            let organization = await organizationService.modify(id, org)
+            await organizationService.modify(id, org)
+
+            // upload logo
             if (logo) {
                 const formData = new FormData()
                 formData.append('logo', logo)
-                organization = await organizationService.uploadLogo(id, formData)
+                await organizationService.uploadLogo(id, formData)
             }
+
+            // update leadership
+            if (leadersToUpdate) {
+                for (const leader of leadersToUpdate) {
+                    const user = await userService.update(
+                        leader.id, 
+                        {
+                            firstName: leader.firstName,
+                            lastName: leader.lastName,
+                            leadership: !leader.leadership
+                        } as User
+                    )
+                    dispatch(changeUsers(user.data as User))
+                }
+            }
+
+            const organization = await organizationService.retrieveSingle(id)
             dispatch(updateUserOrganization(organization.data as Organization))
             dispatch(changeOrganization(organization.data as Organization))
             dispatch(setSuccessNotification('Organization updated successfully'))

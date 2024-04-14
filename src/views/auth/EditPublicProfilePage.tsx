@@ -14,7 +14,6 @@ const EditPublicProfilePage = () => {
     const [isPublicView, setIsPublicView] = useState(false)
     const [logoModal, setLogoModal] = useState(false)
     const [leadershipModal, setLeadershipModal] = useState(false)
-    const [jobModal, setJobModal] = useState(false)
     const [logo, setLogo] = useState('')
     const [tagline, setTagline] = useState('')
     const [aboutUs, setAboutUs] = useState('')
@@ -49,6 +48,9 @@ const EditPublicProfilePage = () => {
     }, [org])
 
     const handleSubmit = () => {
+        if (!org.data || !org.data.id) 
+            return
+
         const updateOrg = {
             tagline,
             size,
@@ -62,9 +64,16 @@ const EditPublicProfilePage = () => {
             linkedin: linkedin && 'https://' + linkedin || '',
             instagram: instagram && 'https://' + instagram || '',
         }
-        if (org.data && org.data.id) 
-            dispatch(updateOrganization(org.data.id, updateOrg as Organization, selectedFile))
-        
+
+        const curLeaders = org.data?.userSet.filter(user => user.leadership === true)
+        let leadersToUpdate = leadership
+        if (curLeaders && curLeaders.length > 0) {
+            const newLeaders = leadership.filter(newLeader => !curLeaders.some(curLeader => curLeader.id === newLeader.id))
+            const leadersToRemove = curLeaders.filter(curLeader => !leadership.some(newLeader => newLeader.id === curLeader.id))
+            leadersToUpdate = [...newLeaders, ...leadersToRemove]
+        }
+
+        dispatch(updateOrganization(org.data.id, updateOrg as Organization, selectedFile, leadersToUpdate))
     }
 
     const toggleView = () => {
@@ -86,7 +95,6 @@ const EditPublicProfilePage = () => {
         instagram,
         leadership,
         industries,
-        jobModal,
         leadershipModal,
         logoModal,
         selectedFile, 
@@ -104,7 +112,6 @@ const EditPublicProfilePage = () => {
         setInstagram,
         setLeadership,
         setIndustries,
-        setJobModal,
         setLeadershipModal,
         setLogoModal,
         toggleView,
