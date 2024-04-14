@@ -5,20 +5,24 @@ export interface ITextFieldProps {
     value: string,
     setter: (value: string) => void,
     type?: string,
-    label: string,
+    label?: string,
     placeholder?: string,
     validator?: () => boolean,
     required: boolean,
     helper?: string,
     size?: 'small' | 'medium',
+    margin?: boolean,
     inputProps?: InputBaseComponentProps,
     multiline?: boolean,
     rows?: number,
     InputProps?: Partial<OutlinedInputProps> | Partial<FilledInputProps> | Partial<InputProps>
 }
 
-export const VBTextField = ({value, setter, type, label, placeholder, validator, required, helper, size, inputProps, multiline, rows, InputProps}: ITextFieldProps) => {
+export const VBTextField = ({value, setter, type, label, placeholder, validator, required, helper, size, margin, inputProps, multiline, rows, InputProps}: ITextFieldProps) => {
+    const margins = margin ? '0px' : '10px'
+
     const [formError, setFormError] = useState(false)
+    const [errorText, setErrorText] = useState('')
 
     const validate = () => {
         let valid = true
@@ -31,23 +35,23 @@ export const VBTextField = ({value, setter, type, label, placeholder, validator,
 
         setFormError(!valid)
 
-        if(!valid && helper === undefined)
-            helper = 'Required Field!'
+        if(!valid && required && value.length === 0)
+            setErrorText('Required Field!')
     }
 
     return (
         <TextField
             size={size}
-            label={label}
+            label={label ? label : ''}
             placeholder={placeholder? placeholder : ''}
             value={value}
             onBlur={() => validate()}
             onChange={(e) => setter(e.target.value)}
-            helperText={formError? helper : ''}
+            helperText={formError ? errorText : helper}
             error={formError}
             required={required}
             type={type}
-            sx={{width: '100%', marginTop: '10px', marginBottom: '10px'}}
+            sx={{width: '100%', marginTop: margins, marginBottom: margins}}
             InputLabelProps={{ required: required }}
             inputProps={inputProps}
             multiline={multiline}
@@ -76,7 +80,22 @@ export interface ISelectProps {
 }
 
 export const VBSelect = ({ label, list, value, setter, required, helper, size, margin, gutter, defaultValue }: ISelectProps) => {
-    const margins = margin === undefined? '10px' : (margin? '0px' : '10px')
+    const margins = margin ? '0px' : '10px'
+
+    const [formError, setFormError] = useState(false)
+    const [errorText, setErrorText] = useState('')
+
+    const validate = () => {
+        let valid = true
+
+        if (required)
+            valid = (value && value.length > 0) as boolean
+
+        setFormError(!valid)
+
+        if(!valid && required && value.length === 0)
+            setErrorText('Required Field!')
+    }
 
     return (
         <>
@@ -86,9 +105,11 @@ export const VBSelect = ({ label, list, value, setter, required, helper, size, m
                 select
                 fullWidth
                 size={size}
+                onBlur={() => validate()}
                 onChange={(e) => setter(e.target.value)}
                 required={required}
-                helperText={helper}
+                helperText={formError ? errorText : helper}
+                error={formError}
                 sx={{ width: '100%', marginTop: margins, marginBottom: margins }}
             >
                 {!defaultValue && <MenuItem value=''>
