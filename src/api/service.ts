@@ -66,6 +66,11 @@ class Service<T> implements IService<T> {
         const res = await this.client.requestWith<K, V>(method, data, endpoint)
         return this.buildRes<K>(res, true)
     }
+
+    async uploadFile(data: FormData, endpoint: string): Promise<ServiceResponse<T>> {
+        const res = await this.client.uploadFile(data, endpoint)
+        return this.buildRes<T>(res, true)
+    }
 }
 
 export default Service

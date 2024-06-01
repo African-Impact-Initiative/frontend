@@ -56,7 +56,7 @@ This guide will assume that you already have Node.js installed. At the time of d
 
 Navigate to `./frontend` in the terminal. You will see a file called `package.json`, this file contains all the package information related to the frontend project. To install all the packages run `npm install` in terminal. If there are any issues with installing a package run `npm install --force`. Note do not upgrade any of the packages unless you know for sure that it will not cause versioning errors with other packages.
 
-To start the frontend project run `npm start` in the frontend folder. If there are no issues the application will start at <http://localhost:3000/>.
+To start the frontend project run `npm run dev` in the frontend folder. If there are no issues the application will start at <http://localhost:3000/>.
 
 We have a hooks folder at the root of the project responsible for creating GitHub hooks. Currently we have a single pre-push hook which runs in order to remind developers to fix their lint errors. The hooks should be configured when running `npm install` but in case you have any issues run: `git config --local core.hooksPath hooks`.
 

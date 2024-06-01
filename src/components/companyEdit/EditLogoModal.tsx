@@ -1,52 +1,51 @@
 import { CloseOutlined, ErrorOutlineOutlined, PersonOutlineOutlined } from '@mui/icons-material'
 import { Button, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 export type EditLogoModalType = {
+    selectedFile: File | null
+    setSelectedFile: React.Dispatch<React.SetStateAction<File | null>>
+    setLogo: React.Dispatch<React.SetStateAction<string>>
     setLogoModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const EditLogoModal: FC<EditLogoModalType> = (prop) => {
 
-    const {setLogoModal} = prop
+    const { selectedFile, setSelectedFile, setLogo, setLogoModal } = prop
     
-    const [selectedFile, setSelectedFile] = useState<File | null>(null)
-    const [formData] = useState({})
+    const [imgSrc, setImgSrc] = useState<string | null>('')
+    const [curImg, setCurImg] = useState<File | null>(selectedFile)
+    const [imageLoaded, setImageLoaded] = useState(false)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFileChange = (e: any) => {
+        setImageLoaded(false)
         const file = e.target.files[0]
         if (file) {
             const reader = new FileReader()
             reader.onload = (event) => {
                 const image = new Image()
                 image.src = event!.target!.result as string
+                setImgSrc(image.src)
                 image.onload = () => {
-                    const maxWidth = 800
-                    const maxHeight = 400
-                    if (image.width <= maxWidth && image.height <= maxHeight)
-                        setSelectedFile(file)
-                    else
-                        alert('Image dimensions must be max. 800x400px')
-
+                    setCurImg(file)
+                    setImageLoaded(true)
                 }
             }
             reader.readAsDataURL(file)
         }
     }
 
-    const handleFormSubmit = (e: React.MouseEvent<HTMLElement>) => {
-        e.preventDefault()
-        console.log('Form submitted:', formData)
-        setLogoModal(false)
-    }
-
-    const handleUpload = () => {
-        if (selectedFile)
+    useEffect(() => {
+        if (imageLoaded)
             alert('Upload successful')
-        else
-            console.log('No file selected.')
+    }, [imageLoaded])
+
+    const handleDone = () => {
+        setLogo(imgSrc!)
+        setSelectedFile(curImg)
+        setLogoModal(false)
     }
 
     return (
@@ -121,25 +120,30 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
                         }}
                     >
                         <Box>
-                            <Box
-                                sx={{
-                                    border: '1px solid #EAECF0',
-                                    borderRadius: '6px',
-                                    height: '36px',
-                                    width: '36px',
-                                    justifyContent: 'center',
-                                    boxShadow: 1
-                                }}
-                            >
-                                <ErrorOutlineOutlined
+                            { curImg 
+                                ? <Typography variant='body1' sx={{ marginTop: '16px' }}>
+                                    {curImg ? `${curImg.name}` : ''}
+                                </Typography>
+                                : <Box
                                     sx={{
-                                        height: '26px',
-                                        width: '28px',
-                                        paddingTop: '6px',
-                                        paddingLeft: '6px'
+                                        border: '1px solid #EAECF0',
+                                        borderRadius: '6px',
+                                        height: '36px',
+                                        width: '36px',
+                                        justifyContent: 'center',
+                                        boxShadow: 1
                                     }}
-                                />
-                            </Box>
+                                >
+                                    <ErrorOutlineOutlined
+                                        sx={{
+                                            height: '26px',
+                                            width: '28px',
+                                            paddingTop: '6px',
+                                            paddingLeft: '6px'
+                                        }}
+                                    />
+                                </Box>
+                            }
                         </Box>
                         <Box
                             sx={{
@@ -149,9 +153,6 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
                                 marginTop: '16px'
                             }}
                         >
-                            <Typography variant='body1' sx={{ marginTop: '16px' }}>
-                                {selectedFile ? `${selectedFile.name}` : ''}
-                            </Typography>
                             <label htmlFor='file-upload'>
                                 <input
                                     type='file'
@@ -161,7 +162,6 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
                                 />
                                 <Box
                                     component='span'
-                                    onClick={handleUpload}
                                     sx={{
                                         marginTop: '14px',
                                         color: '#B54708',
@@ -224,7 +224,8 @@ const EditLogoModal: FC<EditLogoModalType> = (prop) => {
                         Cancel
                     </Button>
                     <Button
-                        onClick={handleFormSubmit}
+                        disabled={!imageLoaded}
+                        onClick={handleDone}
                         type='submit'
                         variant='contained'
                         sx={{

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Box } from '@mui/system'
 import avatar from '../../assets/avatar.png'
-import dataprime from '../../assets/dataprime.png'
+import StoreIcon from '@mui/icons-material/Store'
 import Typography from '@mui/material/Typography'
 import { Add, MoreVert, MoreVertOutlined, Search } from '@mui/icons-material'
 import Button from '@mui/material/Button'
@@ -218,12 +218,16 @@ const Dashboard = () => {
                                             border: '1px solid #EAECF0',
                                             width: '50px',
                                             height: '50px',
+                                            overflow: 'hidden',
                                             justifyContent: 'center',
                                             alignItems: 'center',
                                             display: 'flex',
                                         }}
                                     >
-                                        <img src={org.data?.logo || dataprime} style={{height: '30px', width: '30px'}} />
+                                        { org.data?.logo ?
+                                            <img src={org.data?.logo} style={{width:'100%', height:'100%',}} /> :
+                                            <StoreIcon sx={{backgroundColor: '#FFFFFF', borderRadius: '20px', height: '30px', width: '30px'}} />
+                                        }
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography

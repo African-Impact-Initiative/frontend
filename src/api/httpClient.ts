@@ -10,17 +10,16 @@ import { camelizeKeys, decamelizeKeys } from 'humps'
 class HttpClient<T> implements IHttpClient<T> {
     client: AxiosInstance
     stateManager: ITokenStateManager
+    baseURL: string
 
     constructor(root: string, base?: string) {
-        let baseURL = ''
-
         if (base)
-            baseURL = `${base}/${root}`
+            this.baseURL = `${base}/${root}`
         else
-            baseURL = `${import.meta.env.VITE_APP_HOST_BACKEND}/${root}`
+            this.baseURL = `${import.meta.env.VITE_APP_HOST_BACKEND}/${root}`
 
         this.client = axios.create({
-            baseURL: baseURL,
+            baseURL: this.baseURL,
         })
 
         this.client.interceptors.response.use((response: AxiosResponse): AxiosResponse => {
@@ -90,6 +89,15 @@ class HttpClient<T> implements IHttpClient<T> {
             data: data,
             headers: this.getAuthorizationHeader()
         })
+    }
+
+    async uploadFile(data: FormData, endpoint: string): Promise<AxiosResponse<T>> {
+        const headers = {
+            ...this.getAuthorizationHeader(),
+            'Content-Type': 'multipart/form-data',
+        }
+        // don't know why cannot use this client for form data...
+        return await axios.post<T>(`${this.baseURL}${endpoint}`, data, { headers })
     }
 }
 

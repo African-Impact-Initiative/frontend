@@ -89,7 +89,7 @@ const Login = () => {
 
     if(user && !user.anon) {
         return (
-            <Navigate to={PathConstants.home} />
+            <Navigate to={PathConstants.dashboard} />
         )
     }
 

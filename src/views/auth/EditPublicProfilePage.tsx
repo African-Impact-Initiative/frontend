@@ -14,7 +14,6 @@ const EditPublicProfilePage = () => {
     const [isPublicView, setIsPublicView] = useState(false)
     const [logoModal, setLogoModal] = useState(false)
     const [leadershipModal, setLeadershipModal] = useState(false)
-    const [jobModal, setJobModal] = useState(false)
     const [logo, setLogo] = useState('')
     const [tagline, setTagline] = useState('')
     const [aboutUs, setAboutUs] = useState('')
@@ -28,6 +27,7 @@ const EditPublicProfilePage = () => {
     const [instagram, setInstagram] = useState('')
     const [leadership, setLeadership] = useState<Array<User>>([])
     const [industries, setIndustries] = useState<Array<string>>([])
+    const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
     useEffect(() => {
         if (org.data) {
@@ -37,22 +37,26 @@ const EditPublicProfilePage = () => {
             setCountry(org.data.location || '')
             setEmail(org.data.email || '')
             setSize(org.data.size || '')
-            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\//, '') || '')
-            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\//, '') || '')
-            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\//, '') || '')
-            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\//, '') || '')
-            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\//, '') || '')
+            setWebsite(org.data.website && org.data.website.replace(/^https?:\/\/(www\.)?/, '') || '')
+            setInstagram(org.data.instagram && org.data.instagram.replace(/^https?:\/\/(www\.)?/, '') || '')
+            setFacebook(org.data.facebook && org.data.facebook.replace(/^https?:\/\/(www\.)?/, '') || '')
+            setTwitter(org.data.twitter && org.data.twitter.replace(/^https?:\/\/(www\.)?/, '') || '')
+            setLinkedin(org.data.linkedin && org.data.linkedin.replace(/^https?:\/\/(www\.)?/, '') || '')
             setLeadership(org.data.userSet.filter(user => user.leadership === true))
             setIndustries(org.data.industries)
         }
     }, [org])
 
     const handleSubmit = () => {
+        if (!org.data || !org.data.id) 
+            return
+
         const updateOrg = {
             tagline,
             size,
             email,
             aboutUs,
+            industries,
             location: country || null,
             twitter: twitter && 'https://' + twitter || '',
             website: website && 'https://' + website || '',
@@ -60,9 +64,16 @@ const EditPublicProfilePage = () => {
             linkedin: linkedin && 'https://' + linkedin || '',
             instagram: instagram && 'https://' + instagram || '',
         }
-        if (org.data && org.data.id) 
-            dispatch(updateOrganization(org.data.id, updateOrg as Organization))
-        
+
+        const curLeaders = org.data?.userSet.filter(user => user.leadership === true)
+        let leadersToUpdate = leadership
+        if (curLeaders && curLeaders.length > 0) {
+            const newLeaders = leadership.filter(newLeader => !curLeaders.some(curLeader => curLeader.id === newLeader.id))
+            const leadersToRemove = curLeaders.filter(curLeader => !leadership.some(newLeader => newLeader.id === curLeader.id))
+            leadersToUpdate = [...newLeaders, ...leadersToRemove]
+        }
+
+        dispatch(updateOrganization(org.data.id, updateOrg as Organization, selectedFile, leadersToUpdate))
     }
 
     const toggleView = () => {
@@ -84,9 +95,10 @@ const EditPublicProfilePage = () => {
         instagram,
         leadership,
         industries,
-        jobModal,
         leadershipModal,
         logoModal,
+        selectedFile, 
+        setSelectedFile,
         setLogo,
         setTagline,
         setAboutUs,
@@ -100,7 +112,6 @@ const EditPublicProfilePage = () => {
         setInstagram,
         setLeadership,
         setIndustries,
-        setJobModal,
         setLeadershipModal,
         setLogoModal,
         toggleView,

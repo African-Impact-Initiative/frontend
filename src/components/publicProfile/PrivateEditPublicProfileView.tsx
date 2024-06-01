@@ -1,15 +1,16 @@
-import { AddOutlined, ClearOutlined, EditOutlined, FacebookOutlined, Instagram, LinkedIn, Search, Twitter } from '@mui/icons-material'
-import { Button, Divider, IconButton, InputBase, MenuItem, Modal, Paper, Switch, TextField, Typography } from '@mui/material'
+import { AddOutlined, EditOutlined, FacebookOutlined, Instagram, LinkedIn, Twitter } from '@mui/icons-material'
+import { Button, Divider, InputBase, Modal, Paper, Switch, Typography } from '@mui/material'
+import PersonIcon from '@mui/icons-material/Person'
 import { Box } from '@mui/system'
 import { FC } from 'react'
 import PathConstants from '../../navigation/pathConstants'
 import { useNavigate } from 'react-router-dom'
 import EditLogoModal from '../companyEdit/EditLogoModal'
 import AddLeadershipModal from '../companyEdit/AddLeadershipModal'
-import AddJobModal from '../companyEdit/AddJobModal'
 import { countryList } from '../../utils/countries'
 import User from '../../types/user'
-import personLogo from '../../assets/personLogo.png'
+import { VBSelect, VBTextField } from '../VBForms'
+import { industriesList } from '../../utils/industries'
 
 const sizeList = [
     { label: '1-10', value: '1-10' },
@@ -23,23 +24,24 @@ const sizeList = [
 ]
 
 export type PrivateEditPublicProfileViewType = {
-    name: string,
-    logo: string,
-    tagline: string,
-    aboutUs: string,
-    country: string,
-    size: string,
-    website: string,
-    email: string,
-    linkedin: string,
-    twitter: string,
-    facebook: string,
-    instagram: string,
-    leadership: Array<User>,
-    industries: Array<string>,
-    logoModal: boolean,
-    leadershipModal: boolean,
-    jobModal: boolean,
+    name: string
+    logo: string
+    tagline: string
+    aboutUs: string
+    country: string
+    size: string
+    website: string
+    email: string
+    linkedin: string
+    twitter: string
+    facebook: string
+    instagram: string
+    leadership: Array<User>
+    industries: Array<string>
+    logoModal: boolean
+    leadershipModal: boolean
+    selectedFile: File | null
+    setSelectedFile: React.Dispatch<React.SetStateAction<File | null>>
     setLogo: React.Dispatch<React.SetStateAction<string>>
     setTagline: React.Dispatch<React.SetStateAction<string>>
     setAboutUs: React.Dispatch<React.SetStateAction<string>>
@@ -55,7 +57,6 @@ export type PrivateEditPublicProfileViewType = {
     setIndustries: React.Dispatch<React.SetStateAction<Array<string>>>
     setLogoModal: React.Dispatch<React.SetStateAction<boolean>>
     setLeadershipModal: React.Dispatch<React.SetStateAction<boolean>>
-    setJobModal: React.Dispatch<React.SetStateAction<boolean>>
     toggleView: () => void;
     handleSubmit: () => void;
 }
@@ -80,7 +81,9 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
         industries,
         logoModal,
         leadershipModal,
-        jobModal,
+        selectedFile,
+        setSelectedFile,
+        setLogo,
         setTagline,
         setAboutUs,
         setCountry,
@@ -91,9 +94,10 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
         setTwitter,
         setFacebook,
         setInstagram,
+        setLeadership,
+        setIndustries,
         setLogoModal,
         setLeadershipModal,
-        setJobModal,
         toggleView,
         handleSubmit
     } = prop
@@ -104,31 +108,22 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                 open={logoModal}
                 aria-labelledby='modal-title'
                 aria-describedby='modal-description'
-                onClose={() => {
-                    setLogoModal(false)
-                }}
             >
-                <EditLogoModal setLogoModal={setLogoModal} />
+                <EditLogoModal
+                    selectedFile={selectedFile}
+                    setSelectedFile={setSelectedFile}
+                    setLogo={setLogo}
+                    setLogoModal={setLogoModal} />
             </Modal>
             <Modal
                 open={leadershipModal}
                 aria-labelledby='modal-title'
                 aria-describedby='modal-description'
-                onClose={() => {
-                    setLeadershipModal(false)
-                }}
             >
-                <AddLeadershipModal />
-            </Modal>
-            <Modal
-                open={jobModal}
-                aria-labelledby='modal-title'
-                aria-describedby='modal-description'
-                onClose={() => {
-                    setJobModal(false)
-                }}
-            >
-                <AddJobModal />
+                <AddLeadershipModal 
+                    leadership={leadership}
+                    setLeadership={setLeadership}
+                    setLeadershipModal={setLeadershipModal} />
             </Modal>
 
             <Box
@@ -174,11 +169,13 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                 display: 'flex',
                                 height: '160px',
                                 width: '160px',
-                                border: '4px solid #FFFFFF',
+                                overflow: 'hidden',
+                                border: '1px solid #ecedee',
+                                boxShadow: '0 0 0 4px #FFFFFF',
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 borderRadius: '100%',
-                                backgroundColor: '#EAECF0',
+                                backgroundColor: '#f3f4f7',
                             }}
                             onClick={() => {
                                 setLogoModal(true)
@@ -364,22 +361,16 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                             <Typography sx={{ color: '#F04438' }}>*</Typography>
                         </Box>
                         <Box sx={{ marginTop: '10px' }}>
-                            <textarea
-                                style={{
-                                    width: '100%',
-                                    border: '1px solid rgba(208, 213, 221, 1)',
-                                    borderRadius: '8px',
-                                    padding: '20px',
-                                    fontSize: '16px',
-                                    lineHeight: '24px',
-                                    fontWeight: '400',
-                                    fontFamily: 'inter',
-                                    resize: 'none',
-                                }}
-                                value={tagline}
+                            <VBTextField
+                                size='medium'
+                                margin={true}
                                 placeholder='A quick snapshot of your company.'
+                                value={tagline}
                                 rows={1}
-                                onChange={(e) => setTagline(e.target.value)}
+                                setter={setTagline}
+                                required={true}
+                                inputProps={{maxLength: 20}}
+                                helper={`${tagline.length}/20 characters`}
                             />
                         </Box>
                     </Box>
@@ -404,22 +395,17 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                             <Typography sx={{ color: '#F04438' }}>*</Typography>
                         </Box>
                         <Box sx={{ marginTop: '10px' }}>
-                            <textarea
-                                style={{
-                                    width: '100%',
-                                    border: '1px solid rgba(208, 213, 221, 1)',
-                                    borderRadius: '8px',
-                                    padding: '20px',
-                                    fontSize: '16px',
-                                    lineHeight: '24px',
-                                    fontWeight: '400',
-                                    fontFamily: 'inter',
-                                    resize: 'none'
-                                }}
-                                value={aboutUs}
+                            <VBTextField
+                                size='medium'
+                                margin={true}
                                 placeholder='Talk about your company’s values, mission, and vision.'
-                                rows={5}
-                                onChange={(e) => setAboutUs(e.target.value)}
+                                value={aboutUs}
+                                multiline={true}
+                                rows={6}
+                                setter={setAboutUs}
+                                required={true}
+                                inputProps={{maxLength: 200}}
+                                helper={`${aboutUs.length}/200 characters`}
                             />
                         </Box>
                     </Box>
@@ -495,19 +481,29 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                             height: '50px',
                                             overflow: 'hidden',
                                             borderRadius: '50%',
-                                            border: '1px solid #D3D3D3',
+                                            border: '1px solid #EAECF0',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            display: 'flex',
                                         }}
                                     >
-                                        <img
-                                            style={{
-                                                display:'block',
-                                                width:'100%',
-                                                height:'100%',
-                                                objectFit: 'cover',
-                                            }}
-                                            src={leader.photo ?? personLogo}
-                                            alt='headshot'
-                                        />
+                                        { leader.photo ? 
+                                            <img
+                                                style={{
+                                                    width:'100%',
+                                                    height:'100%',
+                                                }}
+                                                src={leader.photo}
+                                                alt='headshot'
+                                            /> :
+                                            <PersonIcon 
+                                                sx={{
+                                                    backgroundColor: '#FFFFFF', 
+                                                    width:'100%',
+                                                    height:'100%',
+                                                }} 
+                                            />
+                                        }
                                     </Box>
                                     <Box sx={{
                                         display: 'flex',
@@ -538,98 +534,7 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                             ))
                         }
                     </Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            marginTop: '60px' ,
-                            textAlign: 'start'
-                        }}
-                    >
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Typography
-                                sx={{
-                                    fontSize: '18px',
-                                    fontWeight: '600',
-                                    linetHeight: '28px',
-                                    color: '#101828'
-                                }}
-                            >
-                                Open positions
-                            </Typography>
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    columnGap: '30px',
-                                    color: '#475467'
-                                }}
-                            >
-                                <AddOutlined style={{width: '20px', height: '20px'}}
-                                    onClick={() => {
-                                        setJobModal(true)
-                                    }}
-                                />
-                                <EditOutlined />
-                            </Box>
-                        </Box>
-                        <Typography
-                            sx={{
-                                fontSize: '14px',
-                                fontWeight: '400',
-                                lineHeight: '20px',
-                                color: '#475467',
-                                marginTop: '4px'
-                            }}
-                        >
-                            Show open positions in your company.
-                        </Typography>
-                    </Box>
-                    <Divider sx={{ marginTop: '20px' }} />
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            marginTop: '60px',
-                            textAlign: 'start'
-                        }}
-                    >
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <Typography
-                                sx={{
-                                    fontSize: '18px',
-                                    fontWeight: '600',
-                                    linetHeight: '28px',
-                                    color: '#101828'
-                                }}
-                            >
-                                More about the startup
-                            </Typography>
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    columnGap: '30px',
-                                    color: '#475467'
-                                }}
-                            >
-                                <AddOutlined  style={{width: '20px', height: '20px'}}/>
-                                <EditOutlined />
-                            </Box>
-                        </Box>
-                        <Typography
-                            sx={{
-                                fontSize: '14px',
-                                fontWeight: '400',
-                                lineHeight: '20px',
-                                color: '#475467',
-                                marginTop: '4px'
-                            }}
-                        >
-                            Show articles featuring your company.
-                        </Typography>
-                    </Box>
-                    <Divider sx={{ marginTop: '20px' }} />
                 </Box>
-
                 <Box
                     sx={{
                         width: {md:'32%', xs: '100%'},
@@ -669,27 +574,14 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                 <Typography sx={{ color: '#F04438' }}>*</Typography>
                             </Box>
                             <Box sx={{textAlign: 'start'}}>
-                                <TextField
-                                    value={country}
-                                    select
-                                    label='Country'
+                                <VBSelect
                                     size='small'
-                                    onChange={(e) => setCountry(e.target.value)}
-                                    sx={{
-                                        width: { md: 312, xs: '100%' },
-                                        marginTop: '6px',
-                                        fontSize: '14px'
-                                    }}
-                                >
-                                    <MenuItem value=''>
-                                        <em>Country</em>
-                                    </MenuItem>
-                                    {countryList.map((country) => (
-                                        <MenuItem key={country.value} value={country.value}>
-                                            {country.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+                                    setter={setCountry}
+                                    list={countryList}
+                                    value={country}
+                                    required={true}
+                                    margin={true}
+                                />
                             </Box>
                             <Box sx={{ width: '100%'}}>
                                 <Box
@@ -711,73 +603,15 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                     </Typography>
                                     <Typography sx={{ color: '#F04438' }}>*</Typography>
                                 </Box>
-                                <Box sx={{ marginTop: '6px', width: '100%' }}>
-                                    <Paper
-                                        component='form'
-                                        sx={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            width: { md: 312, xs: '100%' },
-                                            height: 44,
-                                            borderRadius: 2,
-                                            boxShadow: 0,
-                                            border: '1px solid #D0D5DD'
-                                        }}
-                                    >
-                                        <IconButton
-                                            type='button'
-                                            sx={{ p: '10px' }}
-                                            aria-label='search'
-                                        >
-                                            <Search />
-                                        </IconButton>
-                                        <InputBase
-                                            sx={{ flex: 1, fontSize: 16 }}
-                                            placeholder='Search for label'
-                                            inputProps={{ 'aria-label': 'label search' }}
-                                        />
-                                    </Paper>
-                                </Box>
-                                <Box
-                                    sx={{
-                                        marginTop: '12px',
-                                        display: 'flex',
-                                        columnGap: '10px',
-                                        flexDirection: { md: 'row', xs: 'column' },
-                                        rowGap: { xs: '10px', md: '0px' }
-                                    }}
-                                >
-                                    {
-                                        industries.map((industry) => (
-                                            <Box
-                                                sx={{
-                                                    border: '1px solid #E9D7FE',
-                                                    height: '22px',
-                                                    width: '110px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    borderRadius: '14px',
-                                                    color: '#6941C6',
-                                                    backgroundColor: '#E9D7FE',
-                                                    columnGap: '10px'
-                                                }}
-                                            >
-                                                <Typography
-                                                    sx={{
-                                                        color: '#6941C6',
-                                                        fontWeight: '500',
-                                                        lineHeight: '20px',
-                                                        fontSize: '14px'
-                                                    }}
-                                                >
-                                                    {industry}
-                                                </Typography>
-                                                <ClearOutlined sx={{ height: '15px', width: '15px' }} />
-                                            </Box>
-                                        ))
-                                    }
-                                </Box>
+                                {/* todo: refactor this later */}
+                                <VBSelect
+                                    value={industries && industries.length > 0 ? industries[0] : ''}
+                                    size='small'
+                                    required={true}
+                                    list={industriesList}
+                                    margin={true}
+                                    setter={(value) => setIndustries(value && [value] || [])}
+                                />
                             </Box>
                             <Box>
                                 <Box
@@ -800,27 +634,14 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                     <Typography sx={{ color: '#F04438' }}>*</Typography>
                                 </Box>
                                 <Box sx={{ textAlign: 'start' }}>
-                                    <TextField
-                                        value={size}
-                                        select
-                                        label='Range'
+                                    <VBSelect
                                         size='small'
-                                        onChange={(e) => setSize(e.target.value)}
-                                        sx={{
-                                            width: { md: 312, xs: '100%' },
-                                            marginTop: '6px',
-                                            fontSize: '14px'
-                                        }}
-                                    >
-                                        <MenuItem value=''>
-                                            <em>Range</em>
-                                        </MenuItem>
-                                        {sizeList.map((size) => (
-                                            <MenuItem key={size.value} value={size.value}>
-                                                {size.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
+                                        setter={setSize}
+                                        list={sizeList}
+                                        value={size}
+                                        required={true}
+                                        margin={true}
+                                    />
                                 </Box>
                             </Box>
                             <Box>
@@ -842,7 +663,7 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
-                                            width: { md: 312, xs: '100%' },
+                                            width: '100%',
                                             height: 44,
                                             borderRadius: 2,
                                             boxShadow: 0,
@@ -859,7 +680,7 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                             https://
                                         </Typography>
                                         <Divider
-                                            sx={{ ml: 2, height: 50, m: 0.5 }}
+                                            sx={{ ml: 2, height: 44, m: 0.5 }}
                                             orientation='vertical'
                                         />
                                         <InputBase
@@ -893,26 +714,15 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                     <Typography sx={{ color: '#F04438' }}>*</Typography>
                                 </Box>
                                 <Box sx={{ marginTop: '6px' }}>
-                                    <Paper
-                                        component='form'
-                                        sx={{
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            width: {md:312, xs: '100%'},
-                                            height: 44,
-                                            borderRadius: 2,
-                                            boxShadow: 0,
-                                            border: '1px solid #D0D5DD'
-                                        }}
-                                    >
-                                        <InputBase
-                                            sx={{ ml: 2, flex: 1, fontSize: 16 }}
-                                            placeholder='example@gmail.com'
-                                            inputProps={{ 'aria-label': 'company size' }}
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                        />
-                                    </Paper>
+                                    <VBTextField
+                                        size='small'
+                                        margin={true}
+                                        placeholder='example@gmail.com'
+                                        value={email}
+                                        rows={1}
+                                        setter={setEmail}
+                                        required={true}
+                                    />
                                 </Box>
                             </Box>
                             <Box>
@@ -935,19 +745,16 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                             sx={{
                                                 display: 'flex',
                                                 alignItems: 'center',
-                                                width: {md:312, xs: '100%'},
+                                                width: '100%',
                                                 height: 44,
                                                 borderRadius: 2,
                                                 boxShadow: 0,
                                                 border: '1px solid #D0D5DD'
                                             }}
                                         >
-                                            <Box sx={{ marginLeft: '20px' }}>
-                                                {' '}
-                                                <Twitter sx={{ color: '#1DA1F2' }} />
-                                            </Box>
+                                            <Twitter sx={{ ml: '10px', color: '#1DA1F2' }} />
                                             <InputBase
-                                                sx={{ flex: 1, fontSize: 16, ml: 2 }}
+                                                sx={{ flex: 1, fontSize: 16, ml: '10px' }}
                                                 placeholder='twitter.com/example'
                                                 inputProps={{ 'aria-label': 'label search' }}
                                                 value={twitter}
@@ -975,22 +782,16 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                             sx={{
                                                 display: 'flex',
                                                 alignItems: 'center',
-                                                width: {md:312, xs: '100%'},
+                                                width: '100%',
                                                 height: 44,
                                                 borderRadius: 2,
                                                 boxShadow: 0,
                                                 border: '1px solid #D0D5DD'
                                             }}
                                         >
-                                            <IconButton
-                                                type='button'
-                                                sx={{ p: '10px' }}
-                                                aria-label='facebooklogo'
-                                            >
-                                                <FacebookOutlined sx={{ color: '#1DA1F2' }} />
-                                            </IconButton>
+                                            <FacebookOutlined sx={{ ml: '10px', color: '#1DA1F2' }} />
                                             <InputBase
-                                                sx={{ flex: 1, fontSize: 16, ml: 1 }}
+                                                sx={{ flex: 1, fontSize: 16, ml: '10px' }}
                                                 placeholder='facebook.com/example'
                                                 inputProps={{ 'aria-label': 'label search' }}
                                                 value={facebook}
@@ -1018,21 +819,18 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                             sx={{
                                                 display: 'flex',
                                                 alignItems: 'center',
-                                                width: {md:312, xs: '100%'},
+                                                width: '100%',
                                                 height: 44,
                                                 borderRadius: 2,
                                                 boxShadow: 0,
                                                 border: '1px solid #D0D5DD'
                                             }}
                                         >
-                                            <Box sx={{ marginLeft: '20px' }}>
-                                                {' '}
-                                                <LinkedIn
-                                                    sx={{ color: '#0A66C2', backgroundColor: 'white' }}
-                                                />
-                                            </Box>
+                                            <LinkedIn 
+                                                sx={{ ml: '10px', color: '#0A66C2', backgroundColor: 'white' }}
+                                            />
                                             <InputBase
-                                                sx={{ flex: 1, fontSize: 16, ml: 2 }}
+                                                sx={{ flex: 1, fontSize: 16, ml: '10px' }}
                                                 placeholder='linkedin.com/example'
                                                 inputProps={{ 'aria-label': 'label search' }}
                                                 value={linkedin}
@@ -1060,31 +858,18 @@ const PrivateEditPublicProfileView: FC<PrivateEditPublicProfileViewType> = (prop
                                             sx={{
                                                 display: 'flex',
                                                 alignItems: 'center',
-                                                width: {md:312, xs: '100%'},
+                                                width: '100%',
                                                 height: 44,
                                                 borderRadius: 2,
                                                 boxShadow: 0,
                                                 border: '1px solid #D0D5DD'
                                             }}
                                         >
-                                            <Box
-                                                sx={{
-                                                    height: '20px',
-                                                    width: '20px',
-                                                    border: '3px  solid #98A2B3',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    borderRadius: '5px',
-                                                    justifyContent: 'center',
-                                                    marginLeft: '20px'
-                                                }}
-                                            >
-                                                <Instagram
-                                                    sx={{ backgroundColor: 'white', color: '#000100' }}
-                                                />
-                                            </Box>
+                                            <Instagram
+                                                sx={{ ml: '10px', backgroundColor: 'white', color: '#000100' }}
+                                            />
                                             <InputBase
-                                                sx={{ flex: 1, fontSize: 16, ml: 2 }}
+                                                sx={{ flex: 1, fontSize: 16, ml: '10px' }}
                                                 placeholder='instagram.com/example'
                                                 inputProps={{ 'aria-label': 'label search' }}
                                                 value={instagram}
