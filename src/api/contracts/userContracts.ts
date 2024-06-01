@@ -9,8 +9,8 @@ export type UpdatePersonalInfo = {
     lastName: string,
     role: string,
     linkedin?: string,
-    country?:	string,
-    bio?:	string,
+    country?: string | null,
+    bio?: string,
 }
 
 export type AddUserToOrganization = {

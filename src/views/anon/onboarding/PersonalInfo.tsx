@@ -59,7 +59,7 @@ const PersonalInfo = () => {
                 role: role,
                 linkedin: linkedin,
                 bio: bio,
-                country: country,
+                country: country || null,
             }
 
             if(validateLinkedIn()) {
@@ -176,7 +176,7 @@ const PersonalInfo = () => {
                             value={country}
                             label='Country'
                             size='small'
-                            required={true}
+                            required={false}
                             setter={setCountry}
                             list={countryList}
                         />
