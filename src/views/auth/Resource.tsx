@@ -6,7 +6,34 @@ import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 
 import VBPageHeader from '../../components/VBPageHeader'
-import AllTopics from '../../components/resources/AllTopics'
+import Topic from '../../components/resources/Topic'
+
+const TOPICS = [
+    {
+        label: 'All Topics',
+        value: '1' 
+    }, 
+    {
+        label: 'Product',
+        value: '2'
+    },
+    {
+        label: 'Marketing',
+        value: '3' 
+    }, 
+    {
+        label: 'Operations',
+        value: '4'
+    },
+    {
+        label: 'Legal',
+        value: '5' 
+    }, 
+    {
+        label: 'Management',
+        value: '6'
+    }
+]
 
 const Resources = () => {
     const [value, setValue] = useState('1')
@@ -24,7 +51,7 @@ const Resources = () => {
             />
             <Box sx={{ width: '100%', typography: 'body1' }}>
                 <TabContext value={value}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider', border: '2px solid red', }}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList
                             onChange={handleChange}
                             aria-label='API resources tabs'
@@ -32,44 +59,16 @@ const Resources = () => {
                             indicatorColor='secondary'
                             sx={{ textTransform: 'none', display: 'flex', flexDirection: { md: 'row', xs: 'column' } }}
                         >
-                            <Tab
-                                sx={{ textTransform: 'none' }}
-                                label='All  Topics'
-                                value='1'
-                            />
-                            <Tab label='Product' value='2' sx={{ textTransform: 'none' }} />
-                            <Tab label='Marketing' value='3' sx={{ textTransform: 'none' }} />
-                            <Tab
-                                label='Operations'
-                                value='4'
-                                sx={{ textTransform: 'none' }}
-                            />
-                            <Tab label='Legal' value='5' sx={{ textTransform: 'none' }} />
-                            <Tab
-                                label='Management'
-                                value='6'
-                                sx={{ textTransform: 'none' }}
-                            />
+                            {TOPICS.map(({label, value}) => (
+                                <Tab label={label} value={value} sx={{ textTransform: 'none' }} />
+                            ))}
                         </TabList>
                     </Box>
-                    <TabPanel value='1' sx={{ padding: '35px 0' }}>
-                        <AllTopics />
-                    </TabPanel>
-                    <TabPanel value='2' sx={{ padding: '35px 0' }}>
-                        Item Two
-                    </TabPanel>
-                    <TabPanel value='3' sx={{ padding: '35px 0' }}>
-                        Item Three
-                    </TabPanel>
-                    <TabPanel value='4' sx={{ padding: '35px 0' }}>
-                        Item 4
-                    </TabPanel>
-                    <TabPanel value='5' sx={{ padding: '35px 0' }}>
-                        Item 5
-                    </TabPanel>
-                    <TabPanel value='6' sx={{ padding: '35px 0' }}>
-                        Item 6
-                    </TabPanel>
+                    {TOPICS.map(({label, value}) => (
+                        <TabPanel value={value} sx={{ padding: '35px 0' }}>
+                            <Topic topicLabel={label} />
+                        </TabPanel>
+                    ))}
                 </TabContext>
             </Box>
         </Box>

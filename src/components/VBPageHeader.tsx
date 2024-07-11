@@ -47,7 +47,7 @@ const VBPageHeader = ({ title, subTitle, noHr }: IPageHeader) => {
                     </Typography>
                 </Box>
 
-                <Box sx={{ display: 'flex', columnGap: '30px' }}>
+                {/* <Box sx={{ display: 'flex', columnGap: '30px' }}>
                     <Box>
                         <SearchOutlined sx={{ fontSize: '20px', color:'rgba(102, 112, 133, 1)', cursor:'pointer' }} />
                     </Box>
@@ -55,7 +55,7 @@ const VBPageHeader = ({ title, subTitle, noHr }: IPageHeader) => {
                         {' '}
                         <SettingsOutlined sx={{ fontSize: '20px', color: 'rgba(102, 112, 133, 1)', cursor:'pointer' }} />
                     </Box>
-                </Box>
+                </Box> */}
             </Box>
             {!noHr && <Divider sx={{ marginBottom: '30px' }} />}
         </Box>

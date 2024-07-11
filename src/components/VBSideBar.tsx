@@ -74,13 +74,13 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
             <Box
                 sx={{
                     borderRight: '0.5px solid #ccc',
-                    width: '325px',
+                    width: '280px',
                     padding: '18px',
                     overflowY: 'auto',
                     background: `${backgroundColor}`,
                     color: color1,
+                    flexShrink: 0,
                     display: { xs: 'none', md: 'inherit' },
-
                 }}
             >
                 <Box sx={{marginTop: '10px', textAlign: 'start'}}>

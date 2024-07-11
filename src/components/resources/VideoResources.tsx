@@ -10,23 +10,20 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
     const navigate = useNavigate()
 
     return (
-        <Box
-            sx={{
-                overflow: 'auto',
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '15px',
-            }}
-        >
+        <Box sx={{ overflow: 'auto', display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
             {resourceData?.map((resource) => (
                 <Box
                     key={resource?.id}
-                    sx={{ marginBottom: '40px', cursor: 'pointer' }}
+                    sx={{ 
+                        marginBottom: '40px', 
+                        cursor: 'pointer',
+                        width: '100%', 
+                        maxWidth: '344px',
+                        flex: '1 1 300px',
+                    }}
                     onClick={() => navigate(`/app/resources/video/${resource.id}`)}
                 >
-                    <Box
-                        sx={{ display: 'flex', flexDirection: 'column', rowGap: '20px' }}
-                    >
+                    <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: '20px' }}>
                         <Box
                             sx={{
                                 width: '344px',
@@ -38,14 +35,15 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                             <img
                                 src={resource.thumbnail}
                                 alt='resource-thumbnail'
-                                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             />
                         </Box>
                         <Box sx={{ display: 'flex', columnGap: '10px' }}>
-                            <Box sx={{ width: '40px', height: '40px' }}>
-                                <img src={resource?.authorImage} alt='resource-thumbnail' />
+                            <Box sx={{ width: '50px', height: '50px' }}>
+                                <img src={resource?.authorImage} alt='resource-author-image'
+                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                             </Box>
-                            <Box>
+                            <Box sx ={{ width: '100%' }}>
                                 <Box>
                                     <Typography
                                         variant='body1'
@@ -55,7 +53,8 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                                             fontSize: '14px',
                                             lineHeight: '20px',
                                             color: 'rgba(71, 84, 103, 1)',
-                                            marginBottom: '4px',
+                                            wordBreak: 'break-word',
+                                            whiteSpace: 'normal',
                                         }}
                                     >
                                         {resource?.name}
@@ -82,11 +81,10 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                                                 marginBottom: '4px',
                                             }}
                                         >
-                                            {resource?.views} views
+                                            {resource?.views} {resource?.views === '1' ? 'view' : 'views'}
                                         </Typography>
                                     </Box>
                                     <Box>&#8226;</Box>
-
                                     <Box>
                                         <Typography
                                             variant='body1'
