@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
@@ -13,16 +13,42 @@ import { resourceArticleData, resourceTemplateData, resourceVideoData } from '..
 
 const Topic = ({ topicLabel }: { topicLabel: string }) => {
     const [value, setValue] = useState('1')
+    const [searchQuery, setSearchQuery] = useState('document')
 
     const handleChange = (_: React.SyntheticEvent<Element, Event>, newValue: string) => {
         setValue(newValue)
     }
 
-    // filter for videos as well but they do not have a type.
-    // also should be checking for equality in label but i don't think labels will overlap (no conflict)
-    const filteredVideoData = resourceVideoData
-    const filteredArticleData = topicLabel == 'All Topics' ? resourceArticleData : resourceArticleData.filter(article => article.type.includes(topicLabel))
-    const filteredTemplateData = topicLabel == 'All Topics' ? resourceTemplateData : resourceTemplateData.filter(template => template.type.includes(topicLabel))
+    const [filteredVideoData, setFilteredVideoData] = useState(resourceVideoData)
+    const [filteredArticleData, setFilteredArticleData] = useState(resourceArticleData)
+    const [filteredTemplateData, setFilteredTemplateData] = useState(resourceTemplateData)
+
+    const filterData = () => {
+        // todo: add filtering for videos
+        // also should be checking for equality in label but i don't think labels will overlap (no conflict)
+        setFilteredArticleData( 
+            resourceArticleData.filter(article => 
+                (topicLabel === 'All Topics' || article.type.includes(topicLabel)) && article.name.includes(searchQuery)
+            )
+        )
+        setFilteredTemplateData(
+            resourceTemplateData.filter(template => 
+                (topicLabel === 'All Topics' || template.type.includes(topicLabel)) && template.name.includes(searchQuery)
+            )
+        )
+    }
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(event.target.value)
+    }
+
+    const handleSearchSubmit = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') filterData()
+    }
+
+    useEffect(() => {
+        filterData()
+    }, [topicLabel])
 
     return (
         <Box>
@@ -74,6 +100,8 @@ const Topic = ({ topicLabel }: { topicLabel: string }) => {
                                     width: '400px',
                                 }}
                                 label='Search'
+                                onChange={handleSearchChange}
+                                onKeyUp={handleSearchSubmit}
                             />
                         </Box>
                     </Box>
