@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
+import { useNavigate } from 'react-router-dom'
 import { Add, Search, MoreHorizRounded, ArrowForwardRounded } from '@mui/icons-material'
 import { GridColDef, DataGrid } from '@mui/x-data-grid'
 import { taskPageData } from '../../utils/devUtils'
@@ -11,6 +12,7 @@ import { renderStatusTypeBorder, renderStatusTypeBackground, renderStatusTypeBg 
 
 
 import VBPageHeader from '../../components/VBPageHeader'
+import ActionIcons from '../../components/tasks/ActionIcons.tsx'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const columns: Array<GridColDef<any, any, any>> = [
@@ -127,25 +129,8 @@ const columns: Array<GridColDef<any, any, any>> = [
         headerName: '',
         width: 120,
         // flex: 1,
-        renderCell: () => (
-            <div
-                style={{
-                    display: 'flex',
-                    columnGap: '5px',
-                    height: '100%',
-                    color: 'rgba(71, 84, 103, 1)',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                <IconButton>
-                    <MoreHorizRounded style={{ height: '20px', width: '20px', }} />
-                </IconButton>
-                <IconButton>
-                    <ArrowForwardRounded style={{ height: '20px', width: '20px' }} />
-                </IconButton>
-
-            </div>
+        renderCell: (params) => (
+            <ActionIcons id={params.row.id}></ActionIcons>
         ),
     },
 ]
