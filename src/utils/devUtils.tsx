@@ -8,18 +8,18 @@ import avatar from '../assets/avatar.png'
 export const resourceVideoData = [
     {
         id: 1,
-        name: 'Start to Enterprise: Building Your Dream',
+        name: 'Legal hello there and there aasdfas a asdfa Essentials for New Ventures',
         thumbnail: video,
         thumbnail2: article,
         authorImage: avatar,
         author: 'Maya Williams',
-        views: '16',
+        views: '18',
         likes: '128',
         visible: false,
         action: '',
         timePosted: 'Oct 16, 2023',
         details:
-      'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover asdf asdf asdf asdf asdf asdfthe secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
     {
         id: 2,
@@ -125,6 +125,21 @@ export const resourceVideoData = [
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+    },
+    {
+        id: 9,
+        name: 'Legal hello there and there aasdfas a asdfa Essentialsasdfasdf asdf asdf asdf asd fasd fas dfa sdf asd fas dfa sdf asd fa sdf asd fa sdf asd fa sdf as ',
+        thumbnail: resourceBg,
+        thumbnail2: article,
+        authorImage: avatar,
+        author: 'Maya Williams',
+        views: '1',
+        likes: '128999',
+        visible: false,
+        action: '',
+        timePosted: 'Oct 16, 2023',
+        details:
+      'Discover asdf asdf asdf asdf asdf asdfthe secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
 ]
 
@@ -240,6 +255,160 @@ export const teamPageData = [
         emailaddress: 'natali@dataprime.com',
         team: 'Marketing',
         action: '',
+    },
+]
+
+
+export const taskPageData = [
+    {
+        id: 1,
+        assignment: 'FutureFit strategy blueprint',
+        author: 'John John',
+        category: 'Strategic Planning',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Submitted',
+        action: ''
+    },
+    {
+        id: 2,
+        assignment: 'Brand harmony masterplan',
+        author: 'John john',
+        category: 'Branding & Identity',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Submitted',
+        action: ''
+    },
+    {
+        id: 3,
+        assignment: 'Market maverick campaign design',
+        author: 'John john',
+        category: 'Marketing & Outreach',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Due',
+        action: ''
+    },
+    {
+        id: 4,
+        assignment: 'Financial horizon optimization proposal',
+        author: 'John john',
+        category: 'Financial Planning',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Submitted',
+        action: ''
+    },
+    {
+        id: 5,
+        assignment: 'Innovation voyage: product roadmap',
+        author: 'John john',
+        category: 'Product Development',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Missing',
+        action: ''
+    },
+    {
+        id: 6,
+        assignment: 'Operational excellence blueprint',
+        author: 'John john',
+        category: 'Company Operations',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Missing',
+        action: ''
+    },
+    {
+        id: 7,
+        assignment: 'Operational excellence blueprint',
+        author: 'John john',
+        category: 'Company Operations',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Missing',
+        action: ''
+    },
+    {
+        id: 8,
+        assignment: 'Operational excellence blueprint',
+        author: 'John john',
+        category: 'Company Operations',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Missing',
+        action: ''
+    },
+    {
+        id: 9,
+        assignment: 'Operational excellence blueprint',
+        author: 'John john',
+        category: 'Company Operations',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Missing',
+        action: ''
+    },
+    {
+        id: 10,
+        assignment: 'Operational excellence blueprint',
+        author: 'John john',
+        category: 'Company Operations',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Missing',
+        action: ''
+    },
+    {
+        id: 11,
+        assignment: 'Operational excellence blueprint',
+        author: 'John john',
+        category: 'Company Operations',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Missing',
+        action: ''
+    },
+    {
+        id: 12,
+        assignment: 'Brand harmony masterplan',
+        author: 'John john',
+        category: 'Branding & Identity',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Submitted',
+        action: ''
+    },
+    {
+        id: 13,
+        assignment: 'Market maverick campaign design',
+        author: 'John john',
+        category: 'Marketing & Outreach',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Due',
+        action: ''
+    },
+    {
+        id: 14,
+        assignment: 'Financial horizon optimization proposal',
+        author: 'John john',
+        category: 'Financial Planning',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Submitted',
+        action: ''
+    },
+    {
+        id: 15,
+        assignment: 'Innovation voyage: product roadmap',
+        author: 'John john',
+        category: 'Product Development',
+        postdate: '2024-11-12',
+        duedate: '2024-11-28',
+        status: 'Missing',
+        action: ''
     },
 ]
 
