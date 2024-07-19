@@ -13,7 +13,7 @@ import { resourceArticleData, resourceTemplateData, resourceVideoData } from '..
 
 const Topic = ({ topicLabel }: { topicLabel: string }) => {
     const [value, setValue] = useState('1')
-    const [searchQuery, setSearchQuery] = useState('document')
+    const [searchQuery, setSearchQuery] = useState('')
 
     const handleChange = (_: React.SyntheticEvent<Element, Event>, newValue: string) => {
         setValue(newValue)
