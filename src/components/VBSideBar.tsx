@@ -84,11 +84,8 @@ const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor,
                 }}
             >
                 <Box sx={{marginTop: '10px', textAlign: 'start'}}>
-                    {!isAdmin ? <Box>
-                        <img src={Logo} alt='logo' />
-                    </Box>
-                        :
-                        <VBLogo dark={false} />}
+                    {!isAdmin ? <VBLogo dark={true} /> : <VBLogo dark={false} />}
+
                     {!isAdmin ? <Box
                         sx={{
                             display: 'flex',
