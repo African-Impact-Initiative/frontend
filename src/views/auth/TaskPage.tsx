@@ -237,6 +237,7 @@ const TaskPage = () => {
                                         </Typography>
                                     </Box>
                                 </Box>
+                                {/*
                                 <Button
                                     sx={{
                                         color: '#FFFFFF',
@@ -263,6 +264,7 @@ const TaskPage = () => {
                                         Add tasks
                                     </Box>
                                 </Button>
+                                */}
                             </Box>
 
                             <Divider sx={{ width: '100%' }} />
