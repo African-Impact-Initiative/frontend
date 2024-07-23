@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import Logo from '../assets/logo.svg'
 import { Box, Divider, Typography } from '@mui/material'
 import userAvatar from '../assets/avatar.png'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
@@ -8,6 +7,8 @@ import { Link } from '../navigation/types/sideBar'
 
 import LogoutIcon from '@mui/icons-material/Logout'
 import VBLogo from './VBLogo'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { logout } from '../store/appUserReducer'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -58,223 +59,267 @@ const options = {
 
 export interface ISideBarProps {
     links: Array<Link>,
-    backgroundColor: string,
+    sidebarBackgroundColor: string,
+    rightBorderColor: string,
+    logoTextColor: string,
+
+    searchTextColor: string,
+    searchIconColor: string,
+    searchBorderColor: string,
+    searchBackgroundColor: string,
+
+    // "item" here refers to the menu items 
+    selectedItemBackgroundColor: string,
+    selectedItemTextColor: string,
+    itemTextColor: string,
+    itemIconColor: string,
+
+    userNameColor: string,
+    userEmailColor: string,
+
+    dividerColor: string,
+    logoutIconColor: string,
+
     className: string,
-    color1: string,
-    color2: string,
-    textColor: string,
     searchClass: string,
-    searchBoarder: string,
     isAdmin: boolean,
 }
 
-const Sidebar = ({ links, backgroundColor, className, color1, color2, textColor, searchClass, searchBoarder, isAdmin }: ISideBarProps) => {
+const Sidebar = ({
+    links,
+    sidebarBackgroundColor,
+    rightBorderColor,
+    logoTextColor,
+    searchTextColor,
+    searchIconColor,
+    searchBorderColor,
+    searchBackgroundColor,
+    selectedItemBackgroundColor,
+    selectedItemTextColor,
+    itemTextColor,
+    itemIconColor,
+    userNameColor,
+    userEmailColor,
+    dividerColor,
+    logoutIconColor,
+    className,
+    searchClass,
+    isAdmin,
+}: ISideBarProps) => {
+    const user = useAppSelector(state => state.user)
+    const dispatch = useAppDispatch()
+
+    const handleLogout = (event: React.FormEvent<HTMLElement>) => {
+        // event.preventDefault()
+        
+        dispatch(logout(false))
+        // dispatch(setErrorNotification('Please fix the form errors before submission'))
+    }
     return (
         <>
             <Box
                 sx={{
-                    borderRight: '0.5px solid #ccc',
-                    width: '325px',
-                    padding: '18px',
+                    borderRight: `1px solid ${rightBorderColor}`,
+                    width: { xs: '81px', md: '280px' },
                     overflowY: 'auto',
-                    background: `${backgroundColor}`,
-                    color: color1,
-                    display: { xs: 'none', md: 'inherit' },
-
+                    background: sidebarBackgroundColor,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flexShrink: 0,
+                    justifyContent: 'space-between'
                 }}
             >
-                <Box sx={{marginTop: '10px', textAlign: 'start'}}>
-                    {!isAdmin ? <VBLogo dark={true} /> : <VBLogo dark={false} />}
+                {/* top half of the sidebar, containing logo, search, menu items */}
+                <Box sx={{ pt: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                    <Box sx={{ pl: '24px', pr: '24px' }}>
+                        <VBLogo textColor={logoTextColor} />
+                    </Box>
 
-                    {!isAdmin ? <Box
-                        sx={{
+                    <Box sx={{ pl: '24px', pr: '24px', display: { xs: 'none', md: 'inherit' } }}>
+                        <Box sx={{
                             display: 'flex',
-                            border: `1px solid ${searchBoarder}`,
+                            border: `1px solid ${searchBorderColor}`,
                             borderRadius: '8px',
                             height: '44px',
                             alignItems: 'center',
                             justifyContent: 'center',
                             columnGap: '8px',
                             padding: '10px 14px 10px 14px',
-                            margin: '40px 0',
-                        }}
-                    >
+                            background: searchBackgroundColor
+                        }}>
 
-                        <SearchOutlined
-                            style={{
-                                color: color2,
-                            }}
-                        />
-
-                        <Box className={`${searchClass}`}>
-                            {' '}
-                            <input
-                                placeholder='Search'
-                                style={{
-                                    border: 'none',
-                                    outline: 'none',
-                                    fontSize: '16px',
-                                    borderBottom: '0px',
-                                    background: `${backgroundColor}`,
-                                    color: color1,
-                                }}
-                            />
-                        </Box>
-                    </Box> :
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                borderRadius: '8px',
-                                height: '44px',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                columnGap: '8px',
-                                padding: '10px 14px 10px 14px',
-                                margin: '40px 0',
-                                backgroundColor: '#DC6803'
-                            }}
-                        >
-
-                            <SearchOutlined
-                                style={{
-                                    color: color2,
-                                }}
-                            />
-
-                            <Box className={`${searchClass}`}>
+                            <SearchOutlined style={{ color: searchIconColor }} />
+                            <Box className={searchClass}>
                                 {' '}
                                 <input
                                     placeholder='Search'
                                     style={{
                                         border: 'none',
                                         outline: 'none',
-                                        fontSize: '16px',
                                         borderBottom: '0px',
-                                        background: ' #DC6803',
-                                        color: color1,
+                                        fontSize: '16px',
+                                        fontWeight: '400',
+                                        lineHeight: '24px',
+                                        color: searchTextColor,
+                                        background: searchBackgroundColor,
                                     }}
                                 />
                             </Box>
-                        </Box>}
+                        </Box>
+                    </Box>
 
-                    <Box
-                        style={{
-                            background: `${backgroundColor}`,
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                        }}>
-                        {links &&
-                            links.map((sideBar) => (
+                    <Box sx={{ pl: '16px', pr: '16px' }}>
+                        <Box sx={{ height: '100%', display: 'flex', gap: '4px', flexDirection: 'column' }}>
+                            {links.slice(0, -2).map((link) => (  // be sure that links have >= 2 elements
                                 <NavLink
-                                    key={sideBar.id}
-                                    to={sideBar.to}
+                                    key={link.id}
+                                    to={link.to}
                                     className={({ isActive, isPending }) =>
-                                        isPending
-                                            ? 'pending'
-                                            : isActive
-                                                ? className
-                                                : 'inactive-nav'
+                                        isPending ? 'pending' : isActive ? className : 'inactive-nav'
                                     }
-                                    style={{
+                                    style={({ isActive }) => ({
                                         height: '40px',
                                         display: 'flex',
-                                        columnGap: '40px',
-                                        textDecoration: 'none',
-                                        marginTop: `${sideBar?.name === 'Support' ? '150px' : '10px'
-                                        }`,
-                                        alignItems: 'center',
-                                        padding: '10px',
-                                        borderRadius: '6px',
+                                        gap: '12px',
+                                        padding: '8px 12px 8px 12px',
                                         cursor: 'pointer',
-                                    }}
+                                        borderRadius: '6px',
+                                        textDecoration: 'none',
+                                        background: isActive ? selectedItemBackgroundColor : 'transparent',
+                                        color: isActive ? selectedItemTextColor : itemTextColor
+                                        // background: selectedItemBackgroundColor
+                                    })}
                                 >
-                                    <Box sx={{ width: '20px', height: '20px', }}>
-                                        {typeof sideBar.icon === 'string' ? ( // check if the icon is a string (asset path)
-                                            <img
-                                                src={sideBar.icon}
-                                                alt='icon'
-                                                style={{ color: '#667085' }}
-                                            />
-                                        ) : (
-                                            <sideBar.icon sx={{ color: '#667085' }} /> // assuming it's a React component
-                                        )}
-                                    </Box>
-                                    <span
-                                        style={{
-                                            fontWeight: 600,
+                                    {/* for now assume icon is react component always */}
+                                    <link.icon sx={{ width: '24px', height: '24px', color: itemIconColor }} />
+                                    <Typography
+                                        sx={{
+                                            display: { xs: 'none', md: 'inherit' },
                                             fontSize: '16px',
-                                            color: textColor,
+                                            fontWeight: '600',
+                                            lineHeight: '24px',
                                         }}
                                     >
-                                        {sideBar.name}
-                                    </span>
+                                        {link.name}
+                                    </Typography>
                                 </NavLink>
                             ))}
+                        </Box>
                     </Box>
-                    {!isAdmin && <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            rowGap: '14px',
-                            background: 'rgba(249, 250, 251, 1)',
-                            padding: '20px 16px 20px 16px',
-                            borderRadius: '8px',
 
-                        }}
-                    >
-                        
-                    </Box>}
+                </Box>
 
 
-                    <Divider sx={{ margin: '20px 0' }} />
+                {/* bottom half of the sidebar, containing settings, profile, logout */}
+                <Box sx={{ padding: '0 16px 32px 16px' }}>
+                    <Box sx={{ pb: '24px' }}>
+                        <Box sx={{ height: '100%', display: 'flex', gap: '4px', flexDirection: 'column' }}>
+                            {links.slice(-2).map((link) => (  // be sure that links have >= 2 elements
+                                <NavLink
+                                    key={link.id}
+                                    to={link.to}
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? 'pending' : isActive ? className : 'inactive-nav'
+                                    }
+                                    style={({ isActive }) => ({
+                                        height: '40px',
+                                        display: 'flex',
+                                        gap: '12px',
+                                        padding: '8px 12px 8px 12px',
+                                        cursor: 'pointer',
+                                        borderRadius: '6px',
+                                        textDecoration: 'none',
+                                        background: isActive ? selectedItemBackgroundColor : 'transparent',
+                                        color: isActive ? selectedItemTextColor : itemTextColor
+                                        // background: selectedItemBackgroundColor
+                                    })}
+                                >
+                                    {/* for now assume icon is react component always */}
+                                    <link.icon sx={{ width: '24px', height: '24px', color: itemIconColor }} />
+                                    <Typography
+                                        sx={{
+                                            display: { xs: 'none', md: 'inherit' },
+                                            fontSize: '16px',
+                                            fontWeight: '600',
+                                            lineHeight: '24px',
+                                        }}
+                                    >
+                                        {link.name}
+                                    </Typography>
+                                </NavLink>
+                            ))}
+                        </Box>
+                    </Box>
+                    <Divider sx={{ background: dividerColor }} />
                     <Box
                         sx={{
                             display: 'flex',
-                            justifyContent: 'space-between',
                             alignItems: 'center',
+                            padding: '24px 8px 0 8px',
+                            borderRadius: '12px',
                         }}
                     >
-                        <Box sx={{ width: '40px', height: '40px', cursor: 'pointer' }}>
-                            <img src={userAvatar} alt='log-out' />
-                        </Box>
-                        <Box sx={{ cursor: 'pointer' }}>
-                            <Box>
-                                <Typography
-                                    variant='body1'
-                                    sx={{
-                                        fontFamily: 'Inter',
-                                        fontWeight: 600,
-                                        fontSize: '14px',
-                                        lineHeight: '20px',
-                                        // color: "rgba(71, 84, 103, 1)",
-                                        color: color1,
-                                    }}
-                                >
-                                    Sienna Hewitt
-                                </Typography>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                gap: '12px',
+                                alignItems: 'center',
+                                borderRadius: '12px',
+                                // padding: '8px 8px 8px 8px',
+                                // transition: 'background-color 0.3s ease',
+                                // '&:hover': {
+                                //     backgroundColor: '#eeeeee'
+                                // },
+                            }}
+                        >                   
+                            <Box sx={{ width: '40px', height: '40px', cursor: 'pointer' }}>
+                                <Box sx={{ height: '40px', width: '40px' }}>
+                                    <img
+                                        src={userAvatar} alt='logo'
+                                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                    />
+                                </Box>
                             </Box>
-                            <Box>
-                                <Typography
-                                    variant='body1'
-                                    sx={{
-                                        fontFamily: 'Inter',
-                                        fontWeight: 400,
-                                        fontSize: '14px',
-                                        lineHeight: '20px',
-                                        // color: "rgba(71, 84, 103, 1)",
-                                        color: color2,
-                                    }}
-                                >
-                                    sienna@gmail.com
-                                </Typography>
+                            <Box sx={{ cursor: 'pointer' }}>
+                                <Box>
+                                    <Typography
+                                        variant='body1'
+                                        sx={{
+                                            fontFamily: 'Inter',
+                                            fontWeight: 600,
+                                            fontSize: '14px',
+                                            lineHeight: '20px',
+                                            color: userNameColor,
+                                        }}
+                                    >
+                                        Sienna Hewitt
+                                    </Typography>
+                                </Box>
+                                <Box>
+                                    <Typography
+                                        variant='body1'
+                                        sx={{
+                                            fontFamily: 'Inter',
+                                            fontWeight: 400,
+                                            fontSize: '14px',
+                                            lineHeight: '20px',
+                                            color: userEmailColor,
+                                        }}
+                                    >
+                                        sienna@gmail.com
+                                    </Typography>
+                                </Box>
                             </Box>
                         </Box>
-                        <Box sx={{ width: '20px', height: '20px', cursor: 'pointer' }}>
-                            <LogoutIcon />
+                        <Box onClick={handleLogout} 
+                            sx={{ width: '20px', height: '20px', ml: 'auto', cursor: 'pointer' }}
+                        >
+                            <LogoutIcon style={{color: logoutIconColor}} />
                         </Box>
                     </Box>
+
                 </Box>
+
             </Box>
         </>
     )
