@@ -1,33 +1,24 @@
 import { Box, Icon, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import PathConstants from '../navigation/pathConstants'
-import logo from '../assets/logo.svg'
+import logo from '../assets/mini_logo.png'
 
 interface LogoProps {
-    textColor: string
+    dark: boolean
 }
 
-/* changes to VBLogo  affects other pages. TODO: create seperate VBLogo for the sidebar. */
+const VBLogo = ({ dark }: LogoProps) => {
+    const color = dark ? '#101828' : '#FFFFFF'
 
-const VBLogo = ({ textColor }: LogoProps) => {
     return (
         <Link to={PathConstants.home} style={{ textDecoration: 'none' }}>
-            <Box sx={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <Icon sx={{ height: '32px', width: '32px' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', width: '150px', height: '30px' }}>
+                <Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                     <img src={logo} alt='logo' />
                 </Icon>
-                <Typography
-                    variant='body1'
-                    sx={{
-                        display: { md: 'inline-block', xs: 'none' },
-                        fontSize: '18px',
-                        fontWeight: '600',
-                        lineHeight: '28px',
-                        color: `${ textColor }`
-                    }}
-                >
-                    Venture Build
-                </Typography>
+                <Box>
+                    <Typography variant='body1' sx={{ color: { color }, fontWeight: '600', fontSize: '18px', lineHeight: '28px' }}>Venture Build</Typography>
+                </Box>
             </Box>
         </Link>
     )

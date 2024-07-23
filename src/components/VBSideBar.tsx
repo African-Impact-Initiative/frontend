@@ -1,14 +1,15 @@
-import { NavLink } from 'react-router-dom'
-import { Box, Divider, Typography } from '@mui/material'
+import { Link, NavLink } from 'react-router-dom'
+import { Box, Divider, Icon, Typography } from '@mui/material'
 import userAvatar from '../assets/avatar.png'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { SearchOutlined } from '@mui/icons-material'
-import { Link } from '../navigation/types/sideBar'
+import { Link as LinkType } from '../navigation/types/sideBar'
 
 import LogoutIcon from '@mui/icons-material/Logout'
-import VBLogo from './VBLogo'
+import logo from '../assets/logo.svg'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { logout } from '../store/appUserReducer'
+import PathConstants from '../navigation/pathConstants'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -58,7 +59,7 @@ const options = {
 }
 
 export interface ISideBarProps {
-    links: Array<Link>,
+    links: Array<LinkType>,
     sidebarBackgroundColor: string,
     rightBorderColor: string,
     logoTextColor: string,
@@ -109,7 +110,7 @@ const Sidebar = ({
     const user = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
 
-    const handleLogout = (event: React.FormEvent<HTMLElement>) => {
+    const handleLogout = () => {
         // event.preventDefault()
         
         dispatch(logout(false))
@@ -132,7 +133,25 @@ const Sidebar = ({
                 {/* top half of the sidebar, containing logo, search, menu items */}
                 <Box sx={{ pt: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
                     <Box sx={{ pl: '24px', pr: '24px' }}>
-                        <VBLogo textColor={logoTextColor} />
+                        <Link to={PathConstants.home} style={{ textDecoration: 'none' }}>
+                            <Box sx={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                                <Icon sx={{ height: '32px', width: '32px' }}>
+                                    <img src={logo} alt='logo' />
+                                </Icon>
+                                <Typography
+                                    variant='body1'
+                                    sx={{
+                                        display: { md: 'inline-block', xs: 'none' },
+                                        fontSize: '18px',
+                                        fontWeight: '600',
+                                        lineHeight: '28px',
+                                        color: logoTextColor
+                                    }}
+                                >
+                                    Venture Build
+                                </Typography>
+                            </Box>
+                        </Link>
                     </Box>
 
                     <Box sx={{ pl: '24px', pr: '24px', display: { xs: 'none', md: 'inherit' } }}>
