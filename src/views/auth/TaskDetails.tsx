@@ -16,7 +16,7 @@ const TaskDetails = () => {
         duedate: '2024-11-28',
         status: 'Submitted',
         action: '',
-        attempts: 1,
+        attempts: 3,
         submissionformat: 'PDF',
         goal: 'In this assignment, you will focus on developing a Financial Horizon Optimization Proposal tailored to your startup company. The goal is to craft strategic recommendations that enhance the financial performance, stability, and growth prospects of your own startup.',
         instructions: 'For this assignment, focus on creating a Financial Horizon Optimization Proposal specifically for your startup. Begin with an overview of your current financial standing, emphasizing key metrics. Identify areas for enhancement, covering aspects like cost management and revenue strategies. Develop tailored, strategic recommendations aligned with your startup\'s goals for both short and long-term success. Conduct a comprehensive risk assessment with mitigation plans and provide clear financial projections. Organize your proposal professionally, including an executive summary, methodology, findings, recommendations, and conclusion. Submit your PDF assignment, ensuring clarity, accuracy, and proper citation of external sources.',
@@ -257,7 +257,7 @@ const TaskDetails = () => {
                                     color: '#344054'
                                 }}
                             >
-                                {task.attempts + 'attempts'}
+                                {task.attempts + ' attempts'}
                             </Typography>
                         </Box>
 
