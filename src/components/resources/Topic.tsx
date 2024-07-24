@@ -26,6 +26,11 @@ const Topic = ({ topicLabel }: { topicLabel: string }) => {
     const filterData = () => {
         // todo: add filtering for videos
         // also should be checking for equality in label but i don't think labels will overlap (no conflict)
+        setFilteredVideoData( 
+            resourceVideoData.filter(video => 
+                (topicLabel === 'All Topics' || video.type.includes(topicLabel)) && video.name.includes(searchQuery)
+            )
+        )
         setFilteredArticleData( 
             resourceArticleData.filter(article => 
                 (topicLabel === 'All Topics' || article.type.includes(topicLabel)) && article.name.includes(searchQuery)

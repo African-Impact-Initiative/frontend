@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { ResourceVideoType } from '../../utils/devUtils'
+import { renderTeamtypeBorder, renderTeamtypeBg } from '../utils/tableUtils'
 
 export interface IVideoResources {
     resourceData: Array<ResourceVideoType>
@@ -23,7 +24,7 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                     }}
                     onClick={() => navigate(`/app/resources/video/${resource.id}`)}
                 >
-                    <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: '20px' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', rowGap: '5px' }}>
                         <Box
                             sx={{
                                 width: '344px',
@@ -38,7 +39,7 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             />
                         </Box>
-                        <Box sx={{ display: 'flex', columnGap: '10px' }}>
+                        <Box sx={{ display: 'flex', columnGap: '10px', marginTop: '10px' }}>
                             <Box sx={{ width: '50px', height: '50px' }}>
                                 <img src={resource?.authorImage} alt='resource-author-image'
                                     style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
@@ -102,6 +103,27 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                                     </Box>
                                 </Box>
                             </Box>
+                        </Box>
+                        <Box
+                            sx={{
+                                border: renderTeamtypeBorder(resource?.type),
+                                width: '108px',
+                                height: '24px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: '100px',
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    color: renderTeamtypeBg(resource?.type),
+                                    fontWeight: '500',
+                                    fontSize: '14px',
+                                }}
+                            >
+                                {resource?.type}
+                            </Typography>
                         </Box>
                     </Box>
                 </Box>
