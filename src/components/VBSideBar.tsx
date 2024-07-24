@@ -116,6 +116,7 @@ const Sidebar = ({
         dispatch(logout(false))
         // dispatch(setErrorNotification('Please fix the form errors before submission'))
     }
+
     return (
         <>
             <Box
@@ -299,7 +300,7 @@ const Sidebar = ({
                                     />
                                 </Box>
                             </Box>
-                            <Box sx={{ cursor: 'pointer' }}>
+                            <Box sx={{ cursor: 'pointer', display: {xs: 'none', md: 'block' } }}>
                                 <Box>
                                     <Typography
                                         variant='body1'
@@ -311,7 +312,7 @@ const Sidebar = ({
                                             color: userNameColor,
                                         }}
                                     >
-                                        Sienna Hewitt
+                                        {user.data?.firstName + ' ' + user.data?.lastName}
                                     </Typography>
                                 </Box>
                                 <Box>
@@ -322,16 +323,19 @@ const Sidebar = ({
                                             fontWeight: 400,
                                             fontSize: '14px',
                                             lineHeight: '20px',
+                                            maxWidth: '143px',
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis', 
                                             color: userEmailColor,
                                         }}
                                     >
-                                        sienna@gmail.com
+                                        {user.data?.email}
                                     </Typography>
                                 </Box>
                             </Box>
                         </Box>
                         <Box onClick={handleLogout} 
-                            sx={{ width: '20px', height: '20px', ml: 'auto', cursor: 'pointer' }}
+                            sx={{ width: '20px', height: '20px', ml: 'auto', cursor: 'pointer', display: {xs: 'none', md: 'block' } }}
                         >
                             <LogoutIcon style={{color: logoutIconColor}} />
                         </Box>
