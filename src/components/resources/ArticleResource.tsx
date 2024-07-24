@@ -42,53 +42,6 @@ const ArticleResources = ({ resourceArticleData }: IArticleResources) => {
                             borderRadius:'18px'
                         }}
                     ></Box>
-                    <Box sx={{ display: 'flex' }}>
-                        <Box>
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-
-                                    marginBottom: '4px',
-                                    color: 'rgba(181, 71, 8, 1)',
-                                }}
-                            >
-                                {article?.author}
-                            </Typography>
-                        </Box>
-                        <Box>
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-
-                                    marginBottom: '4px',
-                                    color: 'rgba(181, 71, 8, 1)',
-                                }}
-                            >
-                &#8226;
-                            </Typography>{' '}
-                        </Box>
-                        <Box>
-                            {' '}
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-                                    color: 'rgba(181, 71, 8, 1)',
-                                    marginBottom: '4px',
-                                }}
-                            >
-                                {article?.date}
-                            </Typography>
-                        </Box>
-                    </Box>
                     <Box>
                         <Typography
                             sx={{
@@ -96,6 +49,19 @@ const ArticleResources = ({ resourceArticleData }: IArticleResources) => {
                                 fontWeight: 600,
                                 fontSize: '14px',
                                 lineHeight: '20px',
+                                color: 'rgba(181, 71, 8, 1)',
+                            }}
+                        >
+                            {article?.author} &#8226; {article?.date}
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography
+                            sx={{
+                                fontFamily: 'Inter',
+                                fontWeight: 600,
+                                fontSize: '18px',
+                                lineHeight: '28px',
                                 color: 'rgba(16, 24, 40, 1)',
                             }}
                         >

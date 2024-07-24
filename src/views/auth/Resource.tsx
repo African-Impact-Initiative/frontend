@@ -60,7 +60,14 @@ const Resources = () => {
                             sx={{ textTransform: 'none', display: 'flex', flexDirection: { md: 'row', xs: 'column' } }}
                         >
                             {TOPICS.map(({label, value}) => (
-                                <Tab label={label} value={value} sx={{ textTransform: 'none' }} />
+                                <Tab label={label} value={value} 
+                                    sx={{ 
+                                        textTransform: 'none',
+                                        fontWeight: '600',
+                                        fontSize: '14px',
+                                        lineHeight: '20px'
+                                    }} 
+                                />
                             ))}
                         </TabList>
                     </Box>

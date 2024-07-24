@@ -39,69 +39,52 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             />
                         </Box>
-                        <Box sx={{ display: 'flex', columnGap: '10px', marginTop: '10px' }}>
+                        <Box sx={{ display: 'flex', columnGap: '12px', marginTop: '10px' }}>
                             <Box sx={{ width: '50px', height: '50px' }}>
                                 <img src={resource?.authorImage} alt='resource-author-image'
                                     style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                             </Box>
-                            <Box sx ={{ width: '100%' }}>
-                                <Box>
-                                    <Typography
-                                        variant='body1'
-                                        sx={{
-                                            fontFamily: 'Inter',
-                                            fontWeight: 600,
-                                            fontSize: '14px',
-                                            lineHeight: '20px',
-                                            color: 'rgba(71, 84, 103, 1)',
-                                            wordBreak: 'break-word',
-                                            whiteSpace: 'normal',
-                                        }}
-                                    >
-                                        {resource?.name}
-                                    </Typography>
-                                </Box>
-                                <Box>{resource?.author}</Box>
-                                <Box
+                            <Box sx ={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+                                <Typography
+                                    variant='body1'
                                     sx={{
-                                        display: 'flex',
-                                        columnGap: '5px',
-                                        alignItems: 'center',
-                                        //   justifyContent: "center",
+                                        fontFamily: 'Inter',
+                                        fontWeight: 600,
+                                        fontSize: '16px',
+                                        lineHeight: '24px',
+                                        color: '#101828',
+                                        wordBreak: 'break-word',
+                                        whiteSpace: 'normal',
+                                        marginBottom: '4px'
                                     }}
                                 >
-                                    <Box>
-                                        <Typography
-                                            variant='body1'
-                                            sx={{
-                                                fontFamily: 'Inter',
-                                                fontWeight: 600,
-                                                fontSize: '14px',
-                                                lineHeight: '20px',
-                                                color: 'rgba(71, 84, 103, 1)',
-                                                marginBottom: '4px',
-                                            }}
-                                        >
-                                            {resource?.views} {resource?.views === '1' ? 'view' : 'views'}
-                                        </Typography>
-                                    </Box>
-                                    <Box>&#8226;</Box>
-                                    <Box>
-                                        <Typography
-                                            variant='body1'
-                                            sx={{
-                                                fontFamily: 'Inter',
-                                                fontWeight: 600,
-                                                fontSize: '14px',
-                                                lineHeight: '20px',
-                                                color: 'rgba(71, 84, 103, 1)',
-                                                marginBottom: '4px',
-                                            }}
-                                        >
-                                            {resource?.timePosted}
-                                        </Typography>
-                                    </Box>
-                                </Box>
+                                    {resource?.name}
+                                </Typography>
+                                <Typography
+                                    variant='body1'
+                                    sx={{
+                                        fontFamily: 'Inter',
+                                        fontWeight: 400,
+                                        fontSize: '14px',
+                                        lineHeight: '20px',
+                                        color: '#475467',
+                                    }}
+                                >
+                                    {resource?.author}
+                                </Typography>
+                                
+                                <Typography
+                                    variant='body1'
+                                    sx={{
+                                        fontFamily: 'Inter',
+                                        fontWeight: 400,
+                                        fontSize: '14px',
+                                        lineHeight: '20px',
+                                        color: '#475467',
+                                    }}
+                                >
+                                    {resource?.views} {resource?.views === '1' ? 'view' : 'views'} &#8226; {resource?.timePosted}
+                                </Typography>
                             </Box>
                         </Box>
                         <Box

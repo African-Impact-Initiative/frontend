@@ -8,7 +8,7 @@ import avatar from '../assets/avatar.png'
 export const resourceVideoData = [
     {
         id: 1,
-        name: 'Start to Enterprise: Building Your Dream',
+        name: 'Start to Enterprise: Building Your Dream Start to Enterprise: Building',
         thumbnail: video,
         thumbnail2: article,
         authorImage: avatar,
