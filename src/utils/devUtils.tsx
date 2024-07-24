@@ -8,7 +8,7 @@ import avatar from '../assets/avatar.png'
 export const resourceVideoData = [
     {
         id: 1,
-        name: 'Start to Enterprise: Building Your Dream Start to Enterprise: Building',
+        name: 'Start to Enterprise: Building Your Dream Start to Enterprise: Building  Building  Building  Building  Building',
         thumbnail: video,
         thumbnail2: article,
         authorImage: avatar,
@@ -376,7 +376,7 @@ export const resourceTemplateData = [
     },
     {
         id: 2,
-        name: 'Sample letter template',
+        name: 'Sample letter template Sample letter template Sample letter templat Sample letter templateSample letter templatee',
         thumbnail: article,
         type: 'Operations',
         details:
@@ -421,7 +421,7 @@ export const resourceArticleData = [
         date: '19 Jan 2023',
         description:
       'Linear helps streamline software projects, sprints, tasks, and bug tracking. Here’s how to get started.',
-        name: 'PM mental models',
+        name: 'PM mental models PM mental models PM mental models PM mentmodels PM mental models ',
         thumbnail: tempResource,
         type: 'Product',
         authorImage: avatar,

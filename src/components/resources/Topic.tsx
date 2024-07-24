@@ -26,18 +26,18 @@ const Topic = ({ topicLabel }: { topicLabel: string }) => {
     const filterData = () => {
         // todo: add filtering for videos
         // also should be checking for equality in label but i don't think labels will overlap (no conflict)
-        setFilteredVideoData( 
-            resourceVideoData.filter(video => 
+        setFilteredVideoData(
+            resourceVideoData.filter(video =>
                 (topicLabel === 'All Topics' || video.type.includes(topicLabel)) && video.name.includes(searchQuery)
             )
         )
-        setFilteredArticleData( 
-            resourceArticleData.filter(article => 
+        setFilteredArticleData(
+            resourceArticleData.filter(article =>
                 (topicLabel === 'All Topics' || article.type.includes(topicLabel)) && article.name.includes(searchQuery)
             )
         )
         setFilteredTemplateData(
-            resourceTemplateData.filter(template => 
+            resourceTemplateData.filter(template =>
                 (topicLabel === 'All Topics' || template.type.includes(topicLabel)) && template.name.includes(searchQuery)
             )
         )
@@ -58,8 +58,9 @@ const Topic = ({ topicLabel }: { topicLabel: string }) => {
     return (
         <Box>
             <TabContext value={value}  >
-                <Box 
-                    sx={{ borderBottom: 0, borderColor: 'divider', display: 'flex',
+                <Box
+                    sx={{
+                        borderBottom: 0, borderColor: 'divider', display: 'flex',
                         flexDirection: { xs: 'column', md: 'row' },
                         justifyContent: { xs: 'flex-start', md: 'space-between' },
                         alignItems: 'flex-start',
@@ -73,22 +74,43 @@ const Topic = ({ topicLabel }: { topicLabel: string }) => {
                         textColor='secondary'
                         indicatorColor='secondary'
                         className='tab_nav_com'
-                        sx={{  }}
+                        sx={{}}
                     >
-                        <Tab label='Video' value='1' />
-                        <Tab label='Templates' value='2' />
-                        <Tab label='Article' value='3' />
+                        <Tab label='Video' value='1'
+                            sx={{
+                                textTransform: 'none',
+                                fontWeight: '600',
+                                fontSize: '14px',
+                                lineHeight: '20px'
+                            }}
+                        />
+                        <Tab label='Templates' value='2'
+                            sx={{
+                                textTransform: 'none',
+                                fontWeight: '600',
+                                fontSize: '14px',
+                                lineHeight: '20px'
+                            }}
+                        />
+                        <Tab label='Article' value='3'
+                            sx={{
+                                textTransform: 'none',
+                                fontWeight: '600',
+                                fontSize: '14px',
+                                lineHeight: '20px'
+                            }}
+                        />
                     </TabList>
-                    <Box 
-                        sx={{ 
+                    <Box
+                        sx={{
                             width: { md: '360px', xs: '100%' },
                             display: 'flex',
-                        }} 
+                        }}
                     >
                         <Box
                             sx={{
                                 width: '100%',
-                                maxWidth: '360px', 
+                                maxWidth: '360px',
                                 height: '40px',
                                 borderRadius: '4px',
                                 border: '1px solid #D0D5DD',
@@ -139,7 +161,7 @@ const Topic = ({ topicLabel }: { topicLabel: string }) => {
                     )}
                 </TabPanel>
             </TabContext>
-            
+
         </Box>
     )
 }

@@ -15,10 +15,10 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
             {resourceData?.map((resource) => (
                 <Box
                     key={resource?.id}
-                    sx={{ 
-                        marginBottom: '40px', 
+                    sx={{
+                        marginBottom: '40px',
                         cursor: 'pointer',
-                        width: '100%', 
+                        width: '100%',
                         maxWidth: '344px',
                         flex: '1 1 300px',
                     }}
@@ -44,18 +44,20 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                                 <img src={resource?.authorImage} alt='resource-author-image'
                                     style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                             </Box>
-                            <Box sx ={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+                            <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
                                 <Typography
                                     variant='body1'
                                     sx={{
-                                        fontFamily: 'Inter',
                                         fontWeight: 600,
                                         fontSize: '16px',
                                         lineHeight: '24px',
                                         color: '#101828',
+                                        marginBottom: '4px',
                                         wordBreak: 'break-word',
-                                        whiteSpace: 'normal',
-                                        marginBottom: '4px'
+                                        overflow: 'hidden',
+                                        display: '-webkit-box',
+                                        WebkitBoxOrient: 'vertical',
+                                        WebkitLineClamp: 2,
                                     }}
                                 >
                                     {resource?.name}
@@ -72,7 +74,7 @@ const VideoResources = ({ resourceData }: IVideoResources) => {
                                 >
                                     {resource?.author}
                                 </Typography>
-                                
+
                                 <Typography
                                     variant='body1'
                                     sx={{

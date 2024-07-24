@@ -11,24 +11,24 @@ import Topic from '../../components/resources/Topic'
 const TOPICS = [
     {
         label: 'All Topics',
-        value: '1' 
-    }, 
+        value: '1'
+    },
     {
         label: 'Product',
         value: '2'
     },
     {
         label: 'Marketing',
-        value: '3' 
-    }, 
+        value: '3'
+    },
     {
         label: 'Operations',
         value: '4'
     },
     {
         label: 'Legal',
-        value: '5' 
-    }, 
+        value: '5'
+    },
     {
         label: 'Management',
         value: '6'
@@ -59,19 +59,19 @@ const Resources = () => {
                             indicatorColor='secondary'
                             sx={{ textTransform: 'none', display: 'flex', flexDirection: { md: 'row', xs: 'column' } }}
                         >
-                            {TOPICS.map(({label, value}) => (
-                                <Tab label={label} value={value} 
-                                    sx={{ 
+                            {TOPICS.map(({ label, value }) => (
+                                <Tab label={label} value={value}
+                                    sx={{
                                         textTransform: 'none',
                                         fontWeight: '600',
                                         fontSize: '14px',
                                         lineHeight: '20px'
-                                    }} 
+                                    }}
                                 />
                             ))}
                         </TabList>
                     </Box>
-                    {TOPICS.map(({label, value}) => (
+                    {TOPICS.map(({ label, value }) => (
                         <TabPanel value={value} sx={{ padding: '35px 0' }}>
                             <Topic topicLabel={label} />
                         </TabPanel>
