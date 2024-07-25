@@ -19,16 +19,15 @@ const TOPICS = ['All Topics', 'Product', 'Marketing', 'Operations', 'Legal', 'Ma
 
 const Resources = () => {
     const [topic, setTopic] = useState('All Topics')
-
-    const handleChange = (_: React.SyntheticEvent<Element, Event>, newTopic: string) => {
-        setTopic(newTopic)
-    }
-
     const [contentType, setContentType] = useState('Videos')
     const [searchQuery, setSearchQuery] = useState('')
     const [filteredVideoData, setFilteredVideoData] = useState(resourceVideoData)
     const [filteredArticleData, setFilteredArticleData] = useState(resourceArticleData)
     const [filteredTemplateData, setFilteredTemplateData] = useState(resourceTemplateData)
+
+    const handleChange = (_: React.SyntheticEvent<Element, Event>, newTopic: string) => {
+        setTopic(newTopic)
+    }
 
     const filterData = (topicLabel: string) => {
         setFilteredVideoData(
@@ -61,7 +60,7 @@ const Resources = () => {
     }, [topic])
 
     return (
-        <Box sx={{ padding: '20px' }}>
+        <Box sx={{ padding: '12px 32px 20px 32px' }}>
             <VBPageHeader
                 title='Resources'
                 subTitle='Discover resources for startup growth.'
@@ -83,7 +82,7 @@ const Resources = () => {
                                         textTransform: 'none',
                                         fontWeight: '600',
                                         fontSize: '14px',
-                                        lineHeight: '20px'
+                                        lineHeight: '20px',
                                     }}
                                 />
                             ))}
@@ -100,7 +99,7 @@ const Resources = () => {
                                         fontSize: '14px',
                                         fontWeight: 600,
                                         lineHeight: '20px',
-                                        textDecoration: 'none',
+                                        textTransform: 'none',
                                         color: contentType === type ? '#B54708' : '#667085',
                                         backgroundColor: contentType === type ? '#FFFAEB' : '#FFFFFF'
                                     }}
@@ -167,9 +166,7 @@ const Resources = () => {
                                     ) : (
                                         <TemplateResources resourceTemplateData={filteredTemplateData} />
                                     )
-                                    
                                 )}
-
                             </Box>
                         </TabPanel>
                     ))}
