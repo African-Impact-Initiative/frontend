@@ -166,7 +166,7 @@ const TaskPage = () => {
     }
 
     return (
-        <Box sx={{ padding: '20px' }}>
+        <Box sx={{ padding: '12px 32px 20px 32px' }}>
             <VBPageHeader
                 title='Tasks'
                 subTitle='Create, manage, and grade tasks here.'
