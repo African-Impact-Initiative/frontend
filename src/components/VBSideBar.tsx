@@ -111,10 +111,7 @@ const Sidebar = ({
     const dispatch = useAppDispatch()
 
     const handleLogout = () => {
-        // event.preventDefault()
-        
         dispatch(logout(false))
-        // dispatch(setErrorNotification('Please fix the form errors before submission'))
     }
 
     return (
@@ -153,7 +150,7 @@ const Sidebar = ({
                                 Venture Build
                             </Typography>
                             {isAdmin && (
-                                <Box 
+                                <Box
                                     sx={{
                                         border: '1px solid #FEDF89',
                                         borderRadius: '6px',
@@ -227,14 +224,14 @@ const Sidebar = ({
                                     })}
                                 >
                                     {typeof link.icon === 'string' ? ( // check if the icon is a string (asset path)
-                                        <Box sx={{ color: itemIconColor}}>
+                                        <Box sx={{ color: itemIconColor }}>
                                             <img src={link.icon} alt='sidebar-icon' style={{ color: itemIconColor }} />
 
                                         </Box>
                                     ) : (
                                         <link.icon sx={{ color: itemIconColor }} /> // assuming it's a React component
                                     )}
-                                    
+
                                     <Typography
                                         sx={{
                                             display: { xs: 'none', md: 'inherit' },
@@ -249,7 +246,6 @@ const Sidebar = ({
                             ))}
                         </Box>
                     </Box>
-
                 </Box>
 
 
@@ -274,7 +270,6 @@ const Sidebar = ({
                                         textDecoration: 'none',
                                         background: isActive ? selectedItemBackgroundColor : 'transparent',
                                         color: isActive ? selectedItemTextColor : itemTextColor
-                                        // background: selectedItemBackgroundColor
                                     })}
                                 >
                                     {typeof link.icon === 'string' ? ( // check if the icon is a string (asset path)
@@ -317,7 +312,7 @@ const Sidebar = ({
                                 //     backgroundColor: '#eeeeee'
                                 // },
                             }}
-                        >                   
+                        >
                             <Box sx={{ width: '40px', height: '40px', cursor: 'pointer' }}>
                                 <Box sx={{ height: '40px', width: '40px' }}>
                                     <img
@@ -326,7 +321,7 @@ const Sidebar = ({
                                     />
                                 </Box>
                             </Box>
-                            <Box sx={{ cursor: 'pointer', display: {xs: 'none', md: 'block' } }}>
+                            <Box sx={{ cursor: 'pointer', display: { xs: 'none', md: 'block' } }}>
                                 <Box>
                                     <Typography
                                         variant='body1'
@@ -351,7 +346,7 @@ const Sidebar = ({
                                             lineHeight: '20px',
                                             maxWidth: '143px',
                                             overflow: 'hidden',
-                                            textOverflow: 'ellipsis', 
+                                            textOverflow: 'ellipsis',
                                             color: userEmailColor,
                                         }}
                                     >
@@ -360,10 +355,10 @@ const Sidebar = ({
                                 </Box>
                             </Box>
                         </Box>
-                        <Box onClick={handleLogout} 
-                            sx={{ width: '20px', height: '20px', ml: 'auto', cursor: 'pointer', display: {xs: 'none', md: 'block' } }}
+                        <Box onClick={handleLogout}
+                            sx={{ width: '20px', height: '20px', ml: 'auto', cursor: 'pointer', display: { xs: 'none', md: 'block' } }}
                         >
-                            <LogoutIcon style={{color: logoutIconColor}} />
+                            <LogoutIcon style={{ color: logoutIconColor }} />
                         </Box>
                     </Box>
 
