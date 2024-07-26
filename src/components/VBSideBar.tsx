@@ -210,8 +210,15 @@ const Sidebar = ({
                                         // background: selectedItemBackgroundColor
                                     })}
                                 >
-                                    {/* for now assume icon is react component always */}
-                                    <link.icon sx={{ width: '24px', height: '24px', color: itemIconColor }} />
+                                    {typeof link.icon === 'string' ? ( // check if the icon is a string (asset path)
+                                        <Box sx={{ color: itemIconColor}}>
+                                            <img src={link.icon} alt='sidebar-icon' style={{ color: itemIconColor }} />
+
+                                        </Box>
+                                    ) : (
+                                        <link.icon sx={{ color: itemIconColor }} /> // assuming it's a React component
+                                    )}
+                                    
                                     <Typography
                                         sx={{
                                             display: { xs: 'none', md: 'inherit' },
@@ -254,8 +261,11 @@ const Sidebar = ({
                                         // background: selectedItemBackgroundColor
                                     })}
                                 >
-                                    {/* for now assume icon is react component always */}
-                                    <link.icon sx={{ width: '24px', height: '24px', color: itemIconColor }} />
+                                    {typeof link.icon === 'string' ? ( // check if the icon is a string (asset path)
+                                        <img src={link.icon} alt='sidebar-icon' style={{ color: itemIconColor }} />
+                                    ) : (
+                                        <link.icon sx={{ color: itemIconColor }} /> // assuming it's a React component
+                                    )}
                                     <Typography
                                         sx={{
                                             display: { xs: 'none', md: 'inherit' },

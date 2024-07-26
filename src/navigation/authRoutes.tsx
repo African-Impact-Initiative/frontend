@@ -1,4 +1,12 @@
 import { BookOutlined, BookmarkOutlined, CalendarMonthOutlined, DashboardOutlined, MoneyOutlined, PeopleAltOutlined, SettingsOutlined, SupportAgentOutlined } from '@mui/icons-material'
+import HomeIcon from '../assets/sidebar_icons/home.svg'
+import TasksIcon from '../assets/sidebar_icons/tasks.svg'
+import FundraisingIcon from '../assets/sidebar_icons/fundraising.svg'
+import EventsIcon from '../assets/sidebar_icons/events.svg'
+import ResourcesIcon from '../assets/sidebar_icons/resources.svg'
+import SettingsIcon from '../assets/sidebar_icons/settings.svg'
+import SupportIcon from '../assets/sidebar_icons/support.svg'
+import TeamIcon from '../assets/sidebar_icons/team.svg'
 import TemplateDetails from '../views/admin/TemplateDetails'
 import CompanyProfile from '../views/anon/onboarding/CompanyProfile'
 import DevelopmentChallenges from '../views/anon/onboarding/DevelopmentChallenges'
@@ -131,13 +139,13 @@ export const authNavBarRoutes = [
 ]
 
 export const sideBarLinks = [
-    { id: 1, name: 'Home', to: PathConstants.dashboard, icon: DashboardOutlined },
-    { id: 2, name: 'Resources', to: PathConstants.resources, icon: BookOutlined },
-    { id: 3, name: 'Tasks', to: PathConstants.tasks, icon: CalendarMonthOutlined },
-    { id: 4, name: 'Fundraising', to: '/app/#', icon: MoneyOutlined },
-    { id: 5, name: 'Team', to: PathConstants.teamPage, icon: PeopleAltOutlined },
-    { id: 6, name: 'Support', to: '/app/#', icon: SupportAgentOutlined },
-    { id: 7, name: 'Settings', to: PathConstants.settings, icon: SettingsOutlined },
+    { id: 1, name: 'Home', to: PathConstants.dashboard, icon: HomeIcon },
+    { id: 2, name: 'Resources', to: PathConstants.resources, icon: ResourcesIcon },
+    { id: 3, name: 'Tasks', to: PathConstants.tasks, icon: TasksIcon },
+    { id: 4, name: 'Fundraising', to: '/#', icon: FundraisingIcon },
+    { id: 5, name: 'Team', to: PathConstants.teamPage, icon: TeamIcon },
+    { id: 6, name: 'Support', to: '/#', icon: SupportIcon },
+    { id: 7, name: 'Settings', to: PathConstants.settings, icon: SettingsIcon },
 ]
 
 export const navPages: Array<BasicRoute> = [
