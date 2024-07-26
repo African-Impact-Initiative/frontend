@@ -36,7 +36,7 @@ const AdminLayout = ({ Component, title, ...otherProps }: BasicLayout) => {
                     searchBorderColor='#B54708'
                     searchBackgroundColor='#DC6803'
                     selectedItemBackgroundColor='#DC6803'
-                    selectedItemTextColor='$FFFFFF'
+                    selectedItemTextColor='#FFFFFF'
                     itemTextColor='#FEF0C7'
                     itemIconColor='#FEC84B'
                     userNameColor='#FFFFFF'

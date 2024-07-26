@@ -134,25 +134,41 @@ const Sidebar = ({
                 {/* top half of the sidebar, containing logo, search, menu items */}
                 <Box sx={{ pt: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
                     <Box sx={{ pl: '24px', pr: '24px' }}>
-                        <Link to={PathConstants.home} style={{ textDecoration: 'none' }}>
-                            <Box sx={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                        <Box sx={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                            <Link to={PathConstants.home} style={{ textDecoration: 'none' }}>
                                 <Icon sx={{ height: '32px', width: '32px' }}>
                                     <img src={logo} alt='logo' />
                                 </Icon>
-                                <Typography
-                                    variant='body1'
+                            </Link>
+                            <Typography
+                                variant='body1'
+                                sx={{
+                                    display: { md: 'inline-block', xs: 'none' },
+                                    fontSize: '18px',
+                                    fontWeight: '600',
+                                    lineHeight: '28px',
+                                    color: logoTextColor
+                                }}
+                            >
+                                Venture Build
+                            </Typography>
+                            {isAdmin && (
+                                <Box 
                                     sx={{
-                                        display: { md: 'inline-block', xs: 'none' },
-                                        fontSize: '18px',
-                                        fontWeight: '600',
-                                        lineHeight: '28px',
-                                        color: logoTextColor
+                                        border: '1px solid #FEDF89',
+                                        borderRadius: '6px',
+                                        padding: '2px 6px 2px 6px',
+                                        backgroundColor: '#FFFAEB',
+                                        color: sidebarBackgroundColor,
+                                        fontSize: '12px',
+                                        fontWeight: 500,
+                                        lineHeight: '18px',
                                     }}
                                 >
-                                    Venture Build
-                                </Typography>
-                            </Box>
-                        </Link>
+                                    Admin
+                                </Box>
+                            )}
+                        </Box>
                     </Box>
 
                     <Box sx={{ pl: '24px', pr: '24px', display: { xs: 'none', md: 'inherit' } }}>

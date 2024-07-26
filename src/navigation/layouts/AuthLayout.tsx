@@ -42,7 +42,8 @@ const AuthLayout = ({ Component, title, ...otherProps }: BasicLayout) => {
                     dividerColor='#EAECF0'
                     logoutIconColor='#667085'
                     className='active-nav'
-                    searchClass={'app-search-placeholder'} />
+                    searchClass={'app-search-placeholder'} 
+                />
                 <main style={{ background: '#FFFFFF', width: '100%', overflowY: 'auto' }}>
                     {loading? <VBLoading /> : <Component {...otherProps} />}
                 </main>
