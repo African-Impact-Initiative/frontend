@@ -135,13 +135,14 @@ const columns: Array<GridColDef<any, any, any>> = [
     },
 ]
 
-const rows = taskPageData
-
 const TaskPage = () => {
     const [value, setValue] = useState('1')
     const [search, setSearch] = useState('')
     const [category, setCategory] = useState('')
-    const [sortBy, setSortBy] = useState('')
+    // const [sortBy, setSortBy] = useState('')
+    const [rows, setRows] = useState(taskPageData)
+
+    const categories = [...new Set(taskPageData.map(row => row.category))]
 
     const handleChange = (_: React.SyntheticEvent<Element, Event>, newValue: string) => {
         setValue(newValue)
@@ -149,20 +150,29 @@ const TaskPage = () => {
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value)
+        setRows(taskPageData.filter(row => (
+            row.assignment.includes(search) 
+            && (category === '' || row.category === category))
+        ))
     }
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCategory(event.target.value)
+        setRows(taskPageData.filter(row => (
+            row.assignment.includes(search) 
+            && (event.target.value === '' || row.category === event.target.value))
+        ))
     }
 
-    const handleSortByChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSortBy(event.target.value)
-    }
+    // const handleSortByChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setSortBy(event.target.value)
+    // }
 
     const handleClearAll = () => {
         setSearch('')
         setCategory('')
-        setSortBy('')
+        // setSortBy('')
+        setRows(taskPageData)   // clear all button will also reset the filtered data back to original
     }
 
     return (
@@ -329,9 +339,8 @@ const TaskPage = () => {
                                     <TextField
                                         select
                                         variant='outlined'
-                                        value={sortBy}
-                                        placeholder='Select'
-                                        onChange={handleSortByChange}
+                                        value={category}
+                                        onChange={handleCategoryChange}
                                         size='small'
                                         sx={{
                                             width: '300px',
@@ -343,13 +352,16 @@ const TaskPage = () => {
                                         <MenuItem value=''>
                                             <em>Select</em>
                                         </MenuItem>
-                                        <MenuItem value='test'>test</MenuItem>
-                                        <MenuItem value='test2'>test2</MenuItem>
+                                        {categories.map((category) => (
+                                            <MenuItem value={category}>
+                                                {category}
+                                            </MenuItem>
+                                        ))}
                                     </TextField>
                                 </Box>
 
 
-                                <Box>
+                                {/* <Box>
                                     <Typography
                                         variant='body1'
                                         sx={{
@@ -364,9 +376,9 @@ const TaskPage = () => {
                                     <TextField
                                         select
                                         variant='outlined'
-                                        value={category}
-                                        onChange={handleCategoryChange}
+                                        value={sortBy}
                                         placeholder='Select'
+                                        onChange={handleSortByChange}
                                         size='small'
                                         sx={{ width: '200px' }}
                                     >
@@ -376,7 +388,7 @@ const TaskPage = () => {
                                         <MenuItem value='test'>test</MenuItem>
                                         <MenuItem value='test2'>test2</MenuItem>
                                     </TextField>
-                                </Box>
+                                </Box> */}
 
 
 

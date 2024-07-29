@@ -24,7 +24,7 @@ const TaskDetails = () => {
         criteria: 'Submit your assignment in a PDF format.\nInclude all relevant calculations, charts, and graphs.\nClearly cite any external sources used in your analysis and recommendations.'
     }
     return (
-        <Box sx={{ padding: '32px' }}>
+        <Box sx={{ padding: '12px 32px 20px 32px' }}>
             <VBPageHeader
                 title={task.assignment}
                 subTitle={'Posted on ' + task.postdate + ' by ' + task.author}
