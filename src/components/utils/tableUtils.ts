@@ -52,3 +52,18 @@ export const renderStatusTypeBg = (type: string) => {
     else
         return 'rgba(180, 35, 24, 1)'
 }
+
+
+
+export const renderChallengeGroupBorder = (type: string) => {
+    return '1px solid #ABEFC6'
+}
+
+export const renderChallengeGroupBackground = (type: string) => {
+    
+    return '#ECFDF3'
+}
+
+export const renderChallengeGroupBg = (type: string) => {
+    return '#085D3A'
+}

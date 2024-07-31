@@ -4,6 +4,7 @@ import { Box, Button, Divider, Link, Typography } from '@mui/material'
 import VBPageHeader from '../../components/VBPageHeader'
 import FileUploadModal from '../../components/tasks/FileUploadModal'
 import { getFileIcon } from '../../utils/fileUtils'
+import { renderChallengeGroupBackground, renderChallengeGroupBg, renderChallengeGroupBorder } from '../../components/utils/tableUtils.ts'
 
 // the task with this id should be retrieved from backend.
 // currently hardcoding just for front end development
@@ -217,7 +218,7 @@ const TaskDetails = () => {
                 <Box
                     sx={{
                         width: { md: '360px', xs: '100%' },
-                        height: '550px',
+                        height: '480px',
                         padding: '24px',
                         borderRadius: '12px',
                         border: '1px solid #EAECF0',
@@ -267,7 +268,30 @@ const TaskDetails = () => {
                             >
                                 Target groups
                             </Typography>
-                            fill in
+                            <Box
+                                sx={{
+                                    border: renderChallengeGroupBorder(task.targetgroup),
+                                    backgroundColor: renderChallengeGroupBackground(task.targetgroup),
+                                    width: { md: 'fit-content', xs: '100%' },
+                                    height: { md: '22px', xs: '100%' },
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    borderRadius: '16px',
+                                    padding: '2px 10px 2px 10px'
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        color: renderChallengeGroupBg(task.targetgroup),
+                                        fontSize: '14px',
+                                        fontWeight: '500',
+                                        lineHeight: '20px'
+                                    }}
+                                >
+                                    {task.targetgroup}
+                                </Typography>
+                            </Box>
                         </Box>
 
                         <Box>
@@ -358,7 +382,7 @@ const TaskDetails = () => {
                                 {/* if a file is uploaded, show icon */}
                                 {uploadedFile &&
                                     <img src={getFileIcon(uploadedFile.name)}
-                                        style={{ width: 40, height: 40, marginRight: 16 }} />
+                                        style={{ width: 30, height: 30, marginRight: 16 }} />
                                 }
 
                                 {/* if a file is uploaded and we have a url, show clickable filename */}
@@ -367,7 +391,18 @@ const TaskDetails = () => {
                                 </Link>}
 
                                 {/* if a file is uploaded and we do NOT have a url, show normal text filename */}
-                                {uploadedFile && !fileUrl && <Typography variant='body1'>{uploadedFile.name}</Typography>}
+                                {uploadedFile && !fileUrl && 
+                                    <Typography
+                                        sx={{
+                                            fontSize: '16px',
+                                            fontWeight: '500',
+                                            lineHeight: '24px',
+                                            color: '#344054'
+                                        }}
+                                    >
+                                        {uploadedFile.name}
+                                    </Typography>
+                                }
                                 
                                 {/* if a file is not uploaded, show 'N/A' */}
                                 {!uploadedFile && 
@@ -379,7 +414,7 @@ const TaskDetails = () => {
                                             color: '#344054'
                                         }}
                                     >
-                                        'N/A'
+                                        N/A
                                     </Typography>
                                 }
 
