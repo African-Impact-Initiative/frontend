@@ -131,7 +131,7 @@ const columns: Array<GridColDef<any, any, any>> = [
 const TaskPage = () => {
     const [value, setValue] = useState('1')
     const [search, setSearch] = useState('')
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('All')
     // const [sortBy, setSortBy] = useState('')
     const [rows, setRows] = useState(taskPageData)
 
@@ -145,7 +145,7 @@ const TaskPage = () => {
         setSearch(event.target.value)
         setRows(taskPageData.filter(row => (
             row.assignment.includes(event.target.value) 
-            && (category === '' || row.category === category))
+            && (category === 'All' || row.category === category))
         ))
     }
 
@@ -153,7 +153,7 @@ const TaskPage = () => {
         setCategory(event.target.value)
         setRows(taskPageData.filter(row => (
             row.assignment.includes(search) 
-            && (event.target.value === '' || row.category === event.target.value))
+            && (event.target.value === 'All' || row.category === event.target.value))
         ))
     }
 
@@ -342,8 +342,8 @@ const TaskPage = () => {
                                             lineHeight: '24px',
                                         }}
                                     >
-                                        <MenuItem value=''>
-                                            <em>Select</em>
+                                        <MenuItem value='All'>
+                                            <em>All</em>
                                         </MenuItem>
                                         {categories.map((category) => (
                                             <MenuItem value={category}>
