@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { Box, Button, Modal, Typography, IconButton, Divider, Link } from '@mui/material'
 import FileUploadIcon from '@mui/icons-material/FileUpload'
 import { getFileIcon, formatFileSize } from '../../utils/fileUtils'
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 
 export interface FileUploadModalProps {
     isOpen: boolean;
@@ -19,11 +20,19 @@ const FileUploadModal = ({ isOpen, onClose, onFileChange, onSubmit }: FileUpload
     
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
+        if (event.target.files && event.target.files[0]) {
+            const allowedExtensions = /(\.pdf|\.zip)$/i
+
+            if (!allowedExtensions.exec(event.target.files[0].name)) {
+                setErrorMessage('The uploaded file type is not permitted.')
+                setFile(null)
+                onFileChange(null)
+                return
+            }
+            setErrorMessage(null)
             setFile(event.target.files[0])
             onFileChange(event.target.files[0])
         }
-        setErrorMessage(null)
     }
 
     // remove file detail in the modal
@@ -42,6 +51,10 @@ const FileUploadModal = ({ isOpen, onClose, onFileChange, onSubmit }: FileUpload
     }
 
     const handleSubmit = () => {
+        if (!file) {
+            setErrorMessage('Please upload a file.')
+            return
+        }
         handleRemoveFile() // remove file detail in the modal
         onSubmit() // submit file in the parent component
     }
@@ -73,27 +86,34 @@ const FileUploadModal = ({ isOpen, onClose, onFileChange, onSubmit }: FileUpload
                     borderRadius: '12px',
                 }}
             >
-                <Box sx={{ alignItems: 'center', marginBottom: '20px' }}>
-                    <Typography
-                        gutterBottom
-                        sx={{
-                            fontSize: '18px',
-                            fontWeight: '600',
-                            lineHeight: '28px',
-                            color: '#101828'
-                        }}>
+                <Box sx={{ alignItems: 'center', marginBottom: '20px', display: 'flex', justifyContent: 'space-between' }}>
+                    <Box sx={{alignItems: 'center'}}>
+                        <Typography
+                            gutterBottom
+                            sx={{
+                                fontSize: '18px',
+                                fontWeight: '600',
+                                lineHeight: '28px',
+                                color: '#101828'
+                            }}>
                         Media Upload
-                    </Typography>
-                    <Typography
-                        sx={{
-                            fontSize: '14px',
-                            fontWeight: '400',
-                            lineHeight: '20px',
-                            color: '#475467'
-                        }}
-                    >
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontSize: '14px',
+                                fontWeight: '400',
+                                lineHeight: '20px',
+                                color: '#475467'
+                            }}
+                        >
                         Add your documents here, and you can upload up to 5 files max
-                    </Typography>
+                        </Typography>
+                    </Box>
+                    <IconButton onClick={handleClose}>
+                        <CloseRoundedIcon />
+                    </IconButton>
+                    
+                    
                 </Box>
 
                 <Box
@@ -175,7 +195,7 @@ const FileUploadModal = ({ isOpen, onClose, onFileChange, onSubmit }: FileUpload
                     </Box>
                 )}
                 <Typography variant='body2' color='textSecondary' sx={{ marginBottom: '0' }}>
-                    Only support .pdf, .doc, .docx, and .zip files.
+                    Only support .pdf and .zip files.
                 </Typography>
                 <Typography variant='body2' color='textSecondary' sx={{ textDecoration: 'underline', marginBottom: '20px' }}>
                     Note: uploading a new file overwrites any previously submitted file.
