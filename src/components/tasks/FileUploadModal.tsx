@@ -106,7 +106,7 @@ const FileUploadModal = ({ isOpen, onClose, onFileChange, onSubmit }: FileUpload
                                 color: '#475467'
                             }}
                         >
-                        Add your documents here, and you can upload up to 5 files max
+                            Upload your document here. You may only upload one file.
                         </Typography>
                     </Box>
                     <IconButton onClick={handleClose}>

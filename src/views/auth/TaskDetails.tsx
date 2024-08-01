@@ -272,8 +272,8 @@ const TaskDetails = () => {
                                 sx={{
                                     border: renderChallengeGroupBorder(task.targetgroup),
                                     backgroundColor: renderChallengeGroupBackground(task.targetgroup),
-                                    width: { md: 'fit-content', xs: '100%' },
-                                    height: { md: '22px', xs: '100%' },
+                                    width: 'fit-content',
+                                    height: '22px',
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',

@@ -4,7 +4,6 @@ import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
-import { useNavigate } from 'react-router-dom'
 import { Add, Search, MoreHorizRounded, ArrowForwardRounded } from '@mui/icons-material'
 import { GridColDef, DataGrid } from '@mui/x-data-grid'
 import { taskPageData } from '../../utils/devUtils'
@@ -103,8 +102,8 @@ const columns: Array<GridColDef<any, any, any>> = [
                 sx={{
                     border: renderStatusTypeBorder(params.row.status as string),
                     backgroundColor: renderStatusTypeBackground(params.row.status as string),
-                    width: { md: '76px', xs: '100%' },
-                    height: { md: '22px', xs: '100%' },
+                    width:'76px',
+                    height:'22px',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -411,21 +410,16 @@ const TaskPage = () => {
                                 >
                                     Clear all
                                 </Button>
-
                             </Box>
 
-
-
-
-
                             <Box>
-
                                 <DataGrid
                                     className='pointer-cursor-datagrid'
                                     rows={rows}
                                     columns={columns}
                                     // onRowClick={handleRowClick}
                                     rowHeight={120}
+                                    rowSelection={false}
                                     autoHeight
                                     initialState={{
                                         pagination: {
