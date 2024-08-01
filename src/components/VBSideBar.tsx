@@ -168,7 +168,7 @@ const Sidebar = ({
                         </Box>
                     </Box>
 
-                    <Box sx={{ pl: '24px', pr: '24px', display: { xs: 'none', md: 'inherit' } }}>
+                    {/* <Box sx={{ pl: '24px', pr: '24px', display: { xs: 'none', md: 'inherit' } }}>
                         <Box sx={{
                             display: 'flex',
                             border: `1px solid ${searchBorderColor}`,
@@ -199,7 +199,7 @@ const Sidebar = ({
                                 />
                             </Box>
                         </Box>
-                    </Box>
+                    </Box> */}
 
                     <Box sx={{ pl: '16px', pr: '16px' }}>
                         <Box sx={{ height: '100%', display: 'flex', gap: '4px', flexDirection: 'column' }}>
