@@ -8,7 +8,7 @@ import avatar from '../assets/avatar.png'
 export const resourceVideoData = [
     {
         id: 1,
-        name: 'Start to Enterprise: Building Your Dream',
+        name: 'Start to Enterprise: Building Your Dream Start to Enterprise: Building  Building  Building  Building  Building',
         thumbnail: video,
         thumbnail2: article,
         authorImage: avatar,
@@ -17,6 +17,7 @@ export const resourceVideoData = [
         likes: '128',
         visible: false,
         action: '',
+        type: 'Operations',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
@@ -32,6 +33,7 @@ export const resourceVideoData = [
         likes: '128',
         visible: true,
         action: '',
+        type: 'Marketing',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
@@ -47,6 +49,7 @@ export const resourceVideoData = [
         likes: '128',
         visible: true,
         action: '',
+        type: 'Management',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
@@ -62,6 +65,7 @@ export const resourceVideoData = [
         likes: '128',
         visible: true,
         action: '',
+        type: 'Legal',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
@@ -77,6 +81,7 @@ export const resourceVideoData = [
         likes: '128',
         visible: true,
         action: '',
+        type: 'Product',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
@@ -92,6 +97,7 @@ export const resourceVideoData = [
         likes: '128',
         visible: false,
         action: '',
+        type: 'Marketing',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
@@ -107,6 +113,7 @@ export const resourceVideoData = [
         likes: '128',
         visible: true,
         action: '',
+        type: 'Marketing',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
@@ -122,6 +129,7 @@ export const resourceVideoData = [
         likes: '128',
         visible: false,
         action: '',
+        type: 'Marketing',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
@@ -368,7 +376,7 @@ export const resourceTemplateData = [
     },
     {
         id: 2,
-        name: 'Sample letter template',
+        name: 'Sample letter template Sample letter template Sample letter templat Sample letter templateSample letter templatee',
         thumbnail: article,
         type: 'Operations',
         details:
@@ -413,7 +421,7 @@ export const resourceArticleData = [
         date: '19 Jan 2023',
         description:
       'Linear helps streamline software projects, sprints, tasks, and bug tracking. Here’s how to get started.',
-        name: 'PM mental models',
+        name: 'PM mental models PM mental models PM mental models PM mentmodels PM mental models ',
         thumbnail: tempResource,
         type: 'Product',
         authorImage: avatar,

@@ -28,7 +28,7 @@ const ArticleResources = ({ resourceArticleData }: IArticleResources) => {
                         flexDirection: 'column',
                         rowGap: '10px',
                         width: '344px',
-                        cursor:'pointer'
+                        cursor: 'pointer'
                     }}
                     onClick={() => navigate(`/app/resources/article/${article.id}`)}
                 >
@@ -39,64 +39,34 @@ const ArticleResources = ({ resourceArticleData }: IArticleResources) => {
                             backgroundRepeat: 'no-repeat',
                             width: '344px',
                             height: '223px',
-                            borderRadius:'18px'
+                            borderRadius: '18px'
                         }}
                     ></Box>
-                    <Box sx={{ display: 'flex' }}>
-                        <Box>
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-
-                                    marginBottom: '4px',
-                                    color: 'rgba(181, 71, 8, 1)',
-                                }}
-                            >
-                                {article?.author}
-                            </Typography>
-                        </Box>
-                        <Box>
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-
-                                    marginBottom: '4px',
-                                    color: 'rgba(181, 71, 8, 1)',
-                                }}
-                            >
-                &#8226;
-                            </Typography>{' '}
-                        </Box>
-                        <Box>
-                            {' '}
-                            <Typography
-                                sx={{
-                                    fontFamily: 'Inter',
-                                    fontWeight: 600,
-                                    fontSize: '14px',
-                                    lineHeight: '20px',
-                                    color: 'rgba(181, 71, 8, 1)',
-                                    marginBottom: '4px',
-                                }}
-                            >
-                                {article?.date}
-                            </Typography>
-                        </Box>
-                    </Box>
                     <Box>
                         <Typography
                             sx={{
-                                fontFamily: 'Inter',
                                 fontWeight: 600,
                                 fontSize: '14px',
                                 lineHeight: '20px',
+                                color: 'rgba(181, 71, 8, 1)',
+                            }}
+                        >
+                            {article?.author} &#8226; {article?.date}
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Typography
+                            variant='body1'
+                            sx={{
+                                fontWeight: 600,
+                                fontSize: '18px',
+                                lineHeight: '28px',
                                 color: 'rgba(16, 24, 40, 1)',
+                                wordBreak: 'break-word',
+                                overflow: 'hidden',
+                                display: '-webkit-box',
+                                WebkitBoxOrient: 'vertical',
+                                WebkitLineClamp: 2,
                             }}
                         >
                             {article?.name}
@@ -105,7 +75,6 @@ const ArticleResources = ({ resourceArticleData }: IArticleResources) => {
                     <Box>
                         <Typography
                             sx={{
-                                fontFamily: 'Inter',
                                 fontWeight: 400,
                                 fontSize: '16px',
                                 lineHeight: '20px',
