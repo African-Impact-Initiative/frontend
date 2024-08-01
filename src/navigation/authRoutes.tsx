@@ -22,6 +22,7 @@ import PrivateViewUpdate from '../views/auth/PrivateViewUpdate'
 import PublicCompanyView from '../views/auth/PublicCompanyView'
 import Resources from '../views/auth/Resource'
 import ResourcesDetails from '../views/auth/ResourcesDetails'
+import TaskDetails from '../views/auth/TaskDetails'
 import Settings from '../views/auth/Settings'
 import TaskPage from '../views/auth/TaskPage'
 import TeamPage from '../views/auth/TeamPage'
@@ -66,6 +67,12 @@ export const authRoutes = [
         title: 'Resources Article Details',
         path: PathConstants.articles,
         Component: ComposeAuthLayout(ArticleDetails),
+        exact: true,
+    },
+    {
+        title: 'Task Details',
+        path: PathConstants.taskDetails,
+        Component: ComposeAuthLayout(TaskDetails),
         exact: true,
     },
     {

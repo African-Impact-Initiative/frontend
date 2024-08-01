@@ -35,6 +35,7 @@ const PathConstants: { [key: string]: string } = {
     adminSubmissions: `${adminPrefix}submissions`,
     dashboard: `${authPrefix}dashboard`,
     tasks: `${authPrefix}tasks`,
+    taskDetails: `${authPrefix}tasks/:id`,
     resources: `${authPrefix}resources`,
     videos: `${authPrefix}resources/video/:id`,
     templates: `${authPrefix}resources/template/:id`,
