@@ -178,20 +178,29 @@ const FileUploadModal = ({ isOpen, onClose, onFileChange, onSubmit }: FileUpload
                 {errorMessage && (
                     <Box
                         sx={{
-                            mt: 2,
-                            p: 1,
+                            padding: '15px',
                             backgroundColor: '#FFEFEF',
                             color: '#D32F2F',
-                            borderRadius: 1,
+                            borderRadius: '8px',
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
+                            marginBottom: '20px',
                         }}
                     >
                         <Typography variant='body2'>{errorMessage}</Typography>
-                        <Button onClick={() => setErrorMessage(null)} sx={{ color: '#D32F2F' }}>
+                        <Typography onClick={() => setErrorMessage(null)} 
+                            sx={{ 
+                                textDecoration: 'none', 
+                                fontSize: '14px', 
+                                fontWeight: 600, 
+                                color: '#D32F2F', 
+                                cursor: 'pointer', 
+                                '&:hover': {textDecoration: 'underline'} 
+                            }}
+                        >
                             Dismiss
-                        </Button>
+                        </Typography>
                     </Box>
                 )}
                 <Typography variant='body2' color='textSecondary' sx={{ marginBottom: '0' }}>
