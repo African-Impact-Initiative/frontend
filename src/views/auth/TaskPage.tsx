@@ -18,7 +18,6 @@ const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'assignment',
         headerName: 'Assignments',
-        // width: 240,
         flex: 1,
         renderCell: (params) => (
             <Typography
@@ -37,7 +36,6 @@ const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'category',
         headerName: 'Categories',
-        // width: 180,
         flex: 1,
         renderCell: (params) => (
             <Typography
@@ -58,7 +56,6 @@ const columns: Array<GridColDef<any, any, any>> = [
         field: 'postdate',
         headerName: 'Post date',
         width: 120,
-        // flex: 1,
         renderCell: (params) => (
             <Typography
                 sx={{
@@ -77,7 +74,6 @@ const columns: Array<GridColDef<any, any, any>> = [
         field: 'duedate',
         headerName: 'Due date',
         width: 120,
-        // flex: 1,
         renderCell: (params) => (
             <Typography
                 sx={{
@@ -96,7 +92,6 @@ const columns: Array<GridColDef<any, any, any>> = [
         field: 'status',
         headerName: 'Status',
         width: 120,
-        // flex: 1,
         renderCell: (params) => (
             <Box
                 sx={{
@@ -127,7 +122,6 @@ const columns: Array<GridColDef<any, any, any>> = [
         field: 'action',
         headerName: '',
         width: 120,
-        // flex: 1,
         renderCell: (params) => (
             <ActionIcons id={params.row.id}></ActionIcons>
         ),
@@ -150,7 +144,7 @@ const TaskPage = () => {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value)
         setRows(taskPageData.filter(row => (
-            row.assignment.includes(search) 
+            row.assignment.includes(event.target.value) 
             && (category === '' || row.category === category))
         ))
     }

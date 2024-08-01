@@ -145,6 +145,7 @@ export const resourceVideoData = [
         likes: '128999',
         visible: false,
         action: '',
+        type: 'Operations',
         timePosted: 'Oct 16, 2023',
         details:
       'Discover asdf asdf asdf asdf asdf asdfthe secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
