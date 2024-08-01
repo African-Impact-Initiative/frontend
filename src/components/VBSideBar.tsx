@@ -152,6 +152,7 @@ const Sidebar = ({
                             {isAdmin && (
                                 <Box
                                     sx={{
+                                        display: { md: 'inline-block', xs: 'none' },
                                         border: '1px solid #FEDF89',
                                         borderRadius: '6px',
                                         padding: '2px 6px 2px 6px',

@@ -57,7 +57,7 @@ const Resources = () => {
 
     useEffect(() => {
         filterData(topic)
-    }, [topic])
+    }, [topic, searchQuery])
 
     return (
         <Box sx={{ padding: '12px 32px 20px 32px' }}>

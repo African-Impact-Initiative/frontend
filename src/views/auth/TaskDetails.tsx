@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Box, Button, Divider, Link, Typography } from '@mui/material'
 import VBPageHeader from '../../components/VBPageHeader'
 import FileUploadModal from '../../components/tasks/FileUploadModal'
-import { getFileIcon } from '../../utils/fileUtils'
+import { getFileIcon } from '../../utils/fileUtils.tsx'
 import { renderChallengeGroupBackground, renderChallengeGroupBg, renderChallengeGroupBorder } from '../../components/utils/tableUtils.ts'
 
 // the task with this id should be retrieved from backend.
