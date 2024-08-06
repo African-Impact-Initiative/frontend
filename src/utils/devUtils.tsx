@@ -852,3 +852,130 @@ export const assignmentData = [
 
     },
 ]
+
+export const fundingPageData = [
+    {
+        id: 1,
+        name: 'Bright Futures',
+        alerttype: 'INDUSTRY',
+        fundrangestart: 15000,
+        fundrangeend: 20000,
+        rewardtype: 'Grant',
+        location: 'Remote',
+        duedate: 'May 15, 2024',
+        duetime: '10:00 AM'
+    },
+    {
+        id: 2,
+        name: 'Midas Touch',
+        alerttype: 'TECHNOLOGY',
+        fundrangestart: 30000,
+        fundrangeend: 35000,
+        rewardtype: 'Equity',
+        location: 'On-site',
+        duedate: 'Jul 20, 2024',
+        duetime: '11:30 AM'
+    },
+    {
+        id: 3,
+        name: 'Global Capital',
+        alerttype: 'FINANCE',
+        fundrangestart: 25000,
+        fundrangeend: 30000,
+        rewardtype: 'Loan',
+        location: 'Remote',
+        duedate: 'Aug 5, 2024',
+        duetime: '2:00 PM'
+    },
+    {
+        id: 4,
+        name: 'Future Ventures',
+        alerttype: 'STARTUP',
+        fundrangestart: 10000,
+        fundrangeend: 15000,
+        rewardtype: 'Grant',
+        location: 'Remote',
+        duedate: 'Sep 1, 2024',
+        duetime: '9:00 AM'
+    },
+    {
+        id: 5,
+        name: 'Innovation Hub',
+        alerttype: 'RESEARCH',
+        fundrangestart: 20000,
+        fundrangeend: 25000,
+        rewardtype: 'Grant',
+        location: 'Remote',
+        duedate: 'Oct 10, 2024',
+        duetime: '4:00 PM'
+    },
+    {
+        id: 6,
+        name: 'Tech Pioneers',
+        alerttype: 'TECHNOLOGY',
+        fundrangestart: 35000,
+        fundrangeend: 40000,
+        rewardtype: 'Equity',
+        location: 'Remote',
+        duedate: 'Nov 20, 2024',
+        duetime: '1:30 PM'
+    },
+    {
+        id: 7,
+        name: 'University of Toronto',
+        alerttype: 'EDUCATION',
+        fundrangestart: 5000,
+        fundrangeend: 10000,
+        rewardtype: 'Scholarship',
+        location: 'On-site',
+        duedate: 'Dec 5, 2024',
+        duetime: '3:00 PM'
+    },
+    {
+        id: 8,
+        name: 'Health Innovators',
+        alerttype: 'HEALTH',
+        fundrangestart: 25000,
+        fundrangeend: 30000,
+        rewardtype: 'Grant',
+        location: 'Remote',
+        duedate: 'Jan 15, 2025',
+        duetime: '10:00 AM'
+    },
+    {
+        id: 9,
+        name: 'Sustainable Solutions',
+        alerttype: 'ENVIRONMENT',
+        fundrangestart: 10000,
+        fundrangeend: 20000,
+        rewardtype: 'Grant',
+        location: 'Remote',
+        duedate: 'Feb 10, 2025',
+        duetime: '11:00 AM'
+    },
+    {
+        id: 10,
+        name: 'Community Builders',
+        alerttype: 'SOCIAL',
+        fundrangestart: 15000,
+        fundrangeend: 25000,
+        rewardtype: 'Grant',
+        location: 'On-site',
+        duedate: 'Mar 20, 2025',
+        duetime: '2:30 PM'
+    },
+    {
+        id: 11,
+        name: 'Bright Horizons',
+        alerttype: 'EDUCATION',
+        fundrangestart: 20000,
+        fundrangeend: 30000,
+        rewardtype: 'Scholarship',
+        location: 'Remote',
+        duedate: 'Apr 5, 2025',
+        duetime: '9:00 AM'
+    },
+]
+
+
+export type FundingType = typeof fundingPageData[0]

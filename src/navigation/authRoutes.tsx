@@ -21,6 +21,7 @@ import ComposeAuthLayout from './hoc/ComposeAuthLayout'
 import ComposeAuthWithNavBarLayout from './hoc/ComposeAuthWithNavBarLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute } from './types/route'
+import FundingOpportunitiesPage from '../views/auth/FundingOpportunitiesPage'
 
 // renders Component without any wrapper
 export const authRoutes = [
@@ -28,6 +29,12 @@ export const authRoutes = [
         title: 'Home',
         path: PathConstants.dashboard,
         Component: ComposeAuthLayout(Dashboard),
+        exact: true,
+    },
+    {
+        title: 'Funding',
+        path: PathConstants.funding,
+        Component: ComposeAuthLayout(FundingOpportunitiesPage),
         exact: true,
     },
     {
@@ -134,7 +141,7 @@ export const sideBarLinks = [
     { id: 1, name: 'Home', to: PathConstants.dashboard, icon: DashboardOutlined },
     { id: 2, name: 'Resources', to: PathConstants.resources, icon: BookOutlined },
     { id: 3, name: 'Tasks', to: PathConstants.tasks, icon: CalendarMonthOutlined },
-    { id: 4, name: 'Fundraising', to: '/app/#', icon: MoneyOutlined },
+    { id: 4, name: 'Funding Opportunities', to: PathConstants.funding, icon: MoneyOutlined },
     { id: 5, name: 'Team', to: PathConstants.teamPage, icon: PeopleAltOutlined },
     { id: 6, name: 'Support', to: '/app/#', icon: SupportAgentOutlined },
     { id: 7, name: 'Settings', to: PathConstants.settings, icon: SettingsOutlined },

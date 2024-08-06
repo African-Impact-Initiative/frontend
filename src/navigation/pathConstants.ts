@@ -41,6 +41,7 @@ const PathConstants: { [key: string]: string } = {
     articles: `${authPrefix}resources/article/:id`,
     settings: `${authPrefix}settings`,
     teamPage: `${authPrefix}team-page`,
+    funding: `${authPrefix}funding-opportunities`,
     companyEditPage: `${authPrefix}company-edit-page`,
     privateViewUpdate: `${authPrefix}private-view-update`,
     publicCompanyView: `${authPrefix}public-company-view`,
