@@ -16,6 +16,7 @@ const TemplateCard = ({ template }: ITemplateCard) => {
                 key={template.id}
                 style={{
                     marginBottom: '40px',
+                    width: '344px',
                     display: 'flex',
                     flexDirection: 'column',
                     rowGap: '10px',
@@ -35,10 +36,16 @@ const TemplateCard = ({ template }: ITemplateCard) => {
                 ></Box>
                 <Box>
                     <Typography
+                        variant='body1'
                         sx={{
                             // color: "rgba(2, 106, 162, 1)",
-                            fontWeight: '600',
+                            fontWeight: 600,
                             fontSize: '20px',
+                            wordBreak: 'break-word',
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitBoxOrient: 'vertical',
+                            WebkitLineClamp: 2,
                         }}
                     >
                         {template?.name}

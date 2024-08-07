@@ -1,4 +1,13 @@
 import { ArticleOutlined, CalendarTodayOutlined, DescriptionOutlined, DomainOutlined, HelpCenterOutlined, HomeOutlined, MoneyOutlined, PlayCircleOutline, PublishOutlined, SettingsOutlined } from '@mui/icons-material'
+import HomeIcon from '../assets/sidebar_icons/admin_home.svg'
+import TasksIcon from '../assets/sidebar_icons/admin_tasks.svg'
+import FundingIcon from '../assets/sidebar_icons/admin_funding.svg'
+import EventsIcon from '../assets/sidebar_icons/admin_events.svg'
+import VenturesIcon from '../assets/sidebar_icons/admin_ventures.svg'
+import ResourcesIcon from '../assets/sidebar_icons/admin_resources.svg'
+import AnnouncementsIcon from '../assets/sidebar_icons/admin_announcements.svg'
+import RequestsIcon from '../assets/sidebar_icons/admin_requests.svg'
+import SettingsIcon from '../assets/sidebar_icons/admin_settings.svg'
 import Article from '../views/admin/Article'
 import CreateArticle from '../views/admin/CreateArticle'
 import Events from '../views/admin/Events'
@@ -83,14 +92,13 @@ export const adminRoutes = [
 ]
 
 export const adminSideBarLinks = [
-    { id: 1, name: 'Home', to: PathConstants.adminHome, icon: HomeOutlined },
-    { id: 2, name: 'Ventures', to: PathConstants.adminVentures , icon: DomainOutlined },
-    { id: 3, name: 'Videos', to: PathConstants.adminVideos , icon: PlayCircleOutline },
-    { id: 4, name: 'Templates', to: PathConstants.adminTemplates, icon: DescriptionOutlined },
-    { id: 5, name: 'Articles', to: PathConstants.adminArticles, icon: ArticleOutlined },
-    { id: 6, name: 'Events', to: PathConstants.adminEvents, icon: CalendarTodayOutlined },
-    { id: 7, name: 'Support', to: '/#', icon: HelpCenterOutlined },
-    { id: 8, name: 'Settings', to: '/#', icon: SettingsOutlined },
-    { id: 9, name: 'Funding', to: PathConstants.adminFunding, icon: MoneyOutlined },
-    { id: 10, name: 'Submissions', to: PathConstants.adminSubmissions, icon: PublishOutlined },
+    { id: 1, name: 'Home', to: PathConstants.adminHome, icon: HomeIcon },
+    { id: 2, name: 'Ventures', to: PathConstants.adminVentures , icon: VenturesIcon },
+    { id: 3, name: 'Tasks', to: '/#' , icon: TasksIcon },
+    { id: 4, name: 'Resources', to: '/#' , icon: ResourcesIcon },
+    { id: 5, name: 'Funding', to: PathConstants.adminFunding, icon: FundingIcon },
+    { id: 6, name: 'Events', to: PathConstants.adminEvents, icon: EventsIcon },
+    { id: 7, name: 'Announcements', to: '/#', icon: AnnouncementsIcon },
+    { id: 8, name: 'Requests', to: '/#', icon: RequestsIcon },
+    { id: 9, name: 'Settings', to: '/#', icon: SettingsIcon },
 ]
