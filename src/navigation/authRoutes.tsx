@@ -164,20 +164,24 @@ export const sideBarLinks = [
 
 export const navPages: Array<BasicRoute> = [
     {
-        title: 'Home',
-        path: PathConstants.home
-    },
-    {
         title: 'Dashboard',
         path: PathConstants.dashboard
     },
     {
-        title: 'Resources',
-        path: PathConstants.resources
+        title: 'Venture directory',
+        path: PathConstants.ventureDirectory
     },
     {
-        title: 'Community',
-        path: PathConstants.community
+        title: 'What we offer',
+        path: PathConstants.offer
+    },
+    {
+        title: 'Why choose us',
+        path: PathConstants.about
+    },
+    {
+        title: 'Connect',
+        path: PathConstants.contactUs
     },
 
 ]
