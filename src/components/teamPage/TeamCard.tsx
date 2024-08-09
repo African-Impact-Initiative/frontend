@@ -11,7 +11,7 @@ import {
 
 const TeamCard = () => {
 
-    const  arrayOfImages= [
+    const arrayOfImages = [
         avatar,
         avatar,
         avatar,
@@ -27,7 +27,7 @@ const TeamCard = () => {
             iconUrl: LightModeOutlinedIcon,
             icon: MoreVertOutlined,
             name: 'Executive',
-            count: '6 updates',
+            memberCount: 1,
 
         },
         {
@@ -35,7 +35,7 @@ const TeamCard = () => {
             iconUrl: AnnouncementOutlined,
             icon: MoreVertOutlined,
             name: 'Advisory',
-            count: '5 updates',
+            memberCount: 5,
 
         },
         {
@@ -43,20 +43,20 @@ const TeamCard = () => {
             iconUrl: MenuOpenOutlined,
             icon: MoreVertOutlined,
             name: 'Operations',
-            count: '6 updates',
+            memberCount: 6,
 
         },
     ]
 
     return (
-        <Box sx={{marginBottom: '60px', marginTop: '40px'}}>
+        <Box sx={{ marginBottom: '60px', marginTop: '40px' }}>
             <Box
                 sx={{
 
                     display: 'flex',
-                    flexWrap:'wrap',
-                    columnGap:'30px',
-                    rowGap:'30px',
+                    flexWrap: 'wrap',
+                    columnGap: '24px',
+                    rowGap: '24px',
                     flex: 1,
                 }}
             >
@@ -66,7 +66,7 @@ const TeamCard = () => {
                             iconUrl={team.iconUrl}
                             icon={team.icon}
                             name={team.name}
-                            count={team.count}
+                            memberCount={team.memberCount}
                             arrayOfImages={arrayOfImages}
                         />
                     </Box>

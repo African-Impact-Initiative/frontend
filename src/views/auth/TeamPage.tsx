@@ -4,18 +4,25 @@ import {
     MailOutlineOutlined,
     ModeEditOutlineOutlined,
     MoreVertOutlined,
+    Search,
+    CheckRounded
 } from '@mui/icons-material'
 import {
     Button,
+    Checkbox,
+    CheckboxProps,
     Divider,
+    InputAdornment,
+    MenuItem,
+    TextField,
     Typography
 } from '@mui/material'
 import { Box } from '@mui/system'
-import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { DataGrid, DataGridProps, GridColDef } from '@mui/x-data-grid'
 import TeamCard from '../../components/teamPage/TeamCard'
 import VBPageHeader from '../../components/VBPageHeader'
-import VBSelectionRow from '../../components/VBSelectionRow'
 import { teamPageData } from '../../utils/devUtils'
+import { JSX } from 'react/jsx-runtime'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const columns: Array<GridColDef<any, any, any>> = [
@@ -130,13 +137,49 @@ const columns: Array<GridColDef<any, any, any>> = [
         ),
     },
 ]
-
 const rows = teamPageData
+const CustomCheckbox = (props: JSX.IntrinsicAttributes & CheckboxProps) => {
+    return (
+        <Checkbox
+            {...props}
+            sx={{
+                marginLeft: '10px',
+                '&.Mui-checked': {
+                    color: '#fff',
+                },
+                '&.MuiCheckbox-indeterminate': {
+                    color: '#DC6803',
+                }
+            }}
+            icon={
+                <span 
+                    style={{ 
+                        border: '1px solid #D0D5DD', 
+                        borderRadius: '6px',
+                        width: 20, 
+                        height: 20 
+                    }}
+                />
+            }
+            checkedIcon={
+                <CheckRounded
+                    sx={{ 
+                        backgroundColor: '#DC6803', 
+                        borderRadius: '6px',
+                        width: 20, 
+                        height: 20 
+                    }}
+                />
+            }
+        />
+    )
+}
+const statuses = ['Active', 'Invited', 'Pending']
+
 
 const TeamPage = () => {
-
     return (
-        <Box sx={{ padding: '20px', width: '100%' }}>
+        <Box sx={{ padding: '12px 32px 20px 32px', width: '100%' }}>
             <Box>
                 <VBPageHeader
                     title='Team'
@@ -150,6 +193,7 @@ const TeamPage = () => {
 
             <Box
                 sx={{
+                    border: '1px solid #EAECF0',
                     borderRadius: '16px',
                     width: '100%',
                     height: 'fit',
@@ -159,13 +203,13 @@ const TeamPage = () => {
                 <Box
                     sx={{
                         display: 'flex',
-                        marginTop: '10px',
+                        padding: '20px',
                         flexDirection: {md: 'row', xs: 'column'},
                     }}
                 >
                     <Box sx={{ width: '100%'}}>
                         <Box
-                            sx={{ display: 'flex', columnGap: '10px', marginBottom: '6px' }}
+                            sx={{ display: 'flex', columnGap: '8px', marginBottom: '6px' }}
                         >
                             <Typography
                                 variant='body1'
@@ -182,26 +226,19 @@ const TeamPage = () => {
                                 sx={{
                                     border: '1px solid #FEDF89',
                                     backgroundColor: '#FFFAEB',
-                                    height: '28px',
                                     borderRadius: '16px',
-                                    width: '100px',
-                                    paddingTop: '2px',
-                                    paddingBottom: '2px',
-                                    paddingLeft: '8px',
-                                    paddingRight: '8px',
+                                    padding: '2px 8px 2px 8px', 
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center'
                                 }}
                             >
                                 <Typography
-                                    variant='body1'
                                     sx={{
                                         color: '#B54708',
                                         fontWeight: '500',
                                         fontSize: '12px',
                                         lineHeight: '18px',
-
                                     }}
                                 >
                                     32 members
@@ -280,20 +317,148 @@ const TeamPage = () => {
                         <MoreVertOutlined sx={{ color: '#98A2B3', cursor: 'pointer' }} />
                     </Box>
                 </Box>
-                <Divider sx={{ marginTop: '30px' }}></Divider>
+                <Divider/>
 
-                <Box>
-                    <VBSelectionRow
-                        search={true}
-                        firstBox={true}
-                        secondBox={true}
-                        type='Search members'
-                        header1='Status'
-                        header2='Team'
-                        label1='Select'
-                        label2='Select'
-                    />
-                    <div style={{ height: 400, width: '100%' }}>
+                <Box sx={{}}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 2,
+                            flexWrap: 'wrap',
+                            padding: '20px',
+                        }}
+                    >
+                        <Box>
+                            <Typography
+                                variant='body1'
+                                sx={{
+                                    fontSize: '14px',
+                                    fontWeight: '500',
+                                    lineHeight: '20px',
+                                }}
+                                gutterBottom
+                            >
+                                        Search members
+                            </Typography>
+                            <TextField
+                                variant='outlined'
+                                placeholder='Search'
+                                // value={search}
+                                // onChange={handleSearchChange}
+                                size='small'
+                                sx={{
+                                    fontSize: '16px',
+                                    fontWeight: '400',
+                                    lineHeight: '24px'
+                                    // ask about the gray color here. is not exactly the same gray. 
+                                }}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position='start'>
+                                            <Search />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </Box>
+
+
+                        <Box>
+                            <Typography
+                                variant='body1'
+                                sx={{
+                                    fontSize: '14px',
+                                    fontWeight: '500',
+                                    lineHeight: '20px',
+                                }}
+                                gutterBottom
+                            >
+                                Status
+                            </Typography>
+                            <TextField
+                                select
+                                variant='outlined'
+                                // value={category}
+                                // onChange={handleCategoryChange}
+                                size='small'
+                                sx={{
+                                    width: '200px',
+                                    fontSize: '16px',
+                                    fontWeight: '400',
+                                    lineHeight: '24px',
+                                }}
+                            >
+                                <MenuItem value='All'>
+                                    <em style={{color: '#667085'}}>Select</em>
+                                </MenuItem>
+                                {statuses.map((category) => (
+                                    <MenuItem value={category}>
+                                        {category}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
+
+
+                        <Box>
+                            <Typography
+                                variant='body1'
+                                sx={{
+                                    fontSize: '14px',
+                                    fontWeight: '500',
+                                    lineHeight: '20px',
+                                }}
+                                gutterBottom
+                            >
+                                Team
+                            </Typography>
+                            <TextField
+                                select
+                                // value={sortBy}
+                                // placeholder='Select'
+                                // onChange={handleSortByChange}
+                                size='small'
+                                sx={{
+                                    // border: '1px solid #D0D5DD',
+                                    // borderRadius: '8px',
+                                    width: '200px',
+                                    fontSize: '16px',
+                                    fontWeight: '400',
+                                    lineHeight: '24px',
+                                }}
+                            >
+                                <MenuItem value='All'>
+                                    <em style={{color: '#667085'}}>Select</em>
+                                </MenuItem>
+                                <MenuItem value='Team 1'>Team 1</MenuItem>
+                                <MenuItem value='Team 2'>Team 2</MenuItem>
+                            </TextField>
+                        </Box>
+
+
+
+                        <Button
+                            // onClick={handleClearAll}
+                            sx={{
+                                ml: 'auto',
+                                mt: 'auto',
+                                height: '44px',
+                                width: '100px',
+                                fontSize: '16px',
+                                lineHeight: '24px',
+                                fontWeight: '600',
+                                textTransform: 'none',
+                                color: '#344054',
+                                border: '1px solid #D0D5DD',
+                                borderRadius: '8px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            Clear all
+                        </Button>
+                    </Box>
+                    <Box>
                         <DataGrid
                             className='pointer-cursor-datagrid'
                             rows={rows}
@@ -309,8 +474,33 @@ const TeamPage = () => {
                             }}
                             pageSizeOptions={[5, 10]}
                             checkboxSelection
+                            slots={{
+                                baseCheckbox: CustomCheckbox
+                            }}
+                            sx={{
+                                '.MuiDataGrid-columnSeparator': {
+                                    display: 'none',
+                                },
+                                '&.MuiDataGrid-root': {
+                                    border: 'none',
+                                },
+                                '.MuiDataGrid-columnHeader': {
+                                    fontSize: '12px',
+                                    lineheight: '18px',
+                                    fontWeight: '500',
+                                    // paddingLeft: '20px',
+                                    color: ' #475467'
+
+                                },
+                                '.MuiDataGrid-cell': {
+                                    // paddingLeft: '20px',
+                                },
+                                '& .MuiDataGrid-cell:focus-within': {
+                                    outline: 'none !important'
+                                },
+                            }}
                         />
-                    </div>
+                    </Box>
                 </Box>
 
             </Box>
