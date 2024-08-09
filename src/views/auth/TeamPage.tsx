@@ -23,6 +23,7 @@ import TeamCard from '../../components/teamPage/TeamCard'
 import VBPageHeader from '../../components/VBPageHeader'
 import { teamPageData } from '../../utils/devUtils'
 import { JSX } from 'react/jsx-runtime'
+import { useState } from 'react'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const columns: Array<GridColDef<any, any, any>> = [
@@ -137,7 +138,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         ),
     },
 ]
-const rows = teamPageData
+// const rows = teamPageData
 const CustomCheckbox = (props: JSX.IntrinsicAttributes & CheckboxProps) => {
     return (
         <Checkbox
@@ -174,10 +175,53 @@ const CustomCheckbox = (props: JSX.IntrinsicAttributes & CheckboxProps) => {
         />
     )
 }
-const statuses = ['Active', 'Invited', 'Pending']
+// const statuses = ['Active', 'Invited', 'Pending']
 
 
 const TeamPage = () => {
+    const [search, setSearch] = useState('')
+    const [status, setStatus] = useState('Select')
+    const [team, setTeam] = useState('Select')
+
+    const [rows, setRows] = useState(teamPageData)
+
+    const statusesList = [...new Set(teamPageData.map(row => row.status))]
+    const teamsList = [...new Set(teamPageData.map(row => row.team))]
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value)
+        setRows(teamPageData.filter(row => (
+            row.name.includes(event.target.value) 
+            && (status === 'Select' || row.status === status)
+            && (team === 'Select' || row.team === team)
+        )))
+    }
+
+    const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setStatus(event.target.value)
+        setRows(teamPageData.filter(row => (
+            row.name.includes(search) 
+            && (event.target.value === 'Select' || row.status === event.target.value)
+            && (team === 'Select' || row.team === team)
+        )))
+    }
+
+    const handleTeamChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTeam(event.target.value)
+        setRows(teamPageData.filter(row => (
+            row.name.includes(search) 
+            && (status === 'Select' || row.status === status)
+            && (event.target.value === 'Select' || row.team === event.target.value)
+        )))
+    }
+
+    const handleClearAll = () => {
+        setSearch('')
+        setStatus('Select')
+        setTeam('Select')
+        setRows(teamPageData)   // clear all button will also reset the filtered data back to original
+    }
+
     return (
         <Box sx={{ padding: '12px 32px 20px 32px', width: '100%' }}>
             <Box>
@@ -339,13 +383,13 @@ const TeamPage = () => {
                                 }}
                                 gutterBottom
                             >
-                                        Search members
+                                Search members
                             </Typography>
                             <TextField
                                 variant='outlined'
                                 placeholder='Search'
-                                // value={search}
-                                // onChange={handleSearchChange}
+                                value={search}
+                                onChange={handleSearchChange}
                                 size='small'
                                 sx={{
                                     fontSize: '16px',
@@ -379,8 +423,8 @@ const TeamPage = () => {
                             <TextField
                                 select
                                 variant='outlined'
-                                // value={category}
-                                // onChange={handleCategoryChange}
+                                value={status}
+                                onChange={handleStatusChange}
                                 size='small'
                                 sx={{
                                     width: '200px',
@@ -389,12 +433,12 @@ const TeamPage = () => {
                                     lineHeight: '24px',
                                 }}
                             >
-                                <MenuItem value='All'>
+                                <MenuItem value='Select'>
                                     <em style={{color: '#667085'}}>Select</em>
                                 </MenuItem>
-                                {statuses.map((category) => (
-                                    <MenuItem value={category}>
-                                        {category}
+                                {statusesList.map((status) => (
+                                    <MenuItem value={status}>
+                                        {status}
                                     </MenuItem>
                                 ))}
                             </TextField>
@@ -415,9 +459,9 @@ const TeamPage = () => {
                             </Typography>
                             <TextField
                                 select
-                                // value={sortBy}
+                                value={team}
                                 // placeholder='Select'
-                                // onChange={handleSortByChange}
+                                onChange={handleTeamChange}
                                 size='small'
                                 sx={{
                                     // border: '1px solid #D0D5DD',
@@ -428,18 +472,21 @@ const TeamPage = () => {
                                     lineHeight: '24px',
                                 }}
                             >
-                                <MenuItem value='All'>
+                                <MenuItem value='Select'>
                                     <em style={{color: '#667085'}}>Select</em>
                                 </MenuItem>
-                                <MenuItem value='Team 1'>Team 1</MenuItem>
-                                <MenuItem value='Team 2'>Team 2</MenuItem>
+                                {teamsList.map((team) => (
+                                    <MenuItem value={team}>
+                                        {team}
+                                    </MenuItem>
+                                ))}
                             </TextField>
                         </Box>
 
 
 
                         <Button
-                            // onClick={handleClearAll}
+                            onClick={handleClearAll}
                             sx={{
                                 ml: 'auto',
                                 mt: 'auto',
