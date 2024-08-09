@@ -18,7 +18,7 @@ import {
     Typography
 } from '@mui/material'
 import { Box } from '@mui/system'
-import { DataGrid, DataGridProps, GridColDef } from '@mui/x-data-grid'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import TeamCard from '../../components/teamPage/TeamCard'
 import VBPageHeader from '../../components/VBPageHeader'
 import { teamPageData } from '../../utils/devUtils'
@@ -32,8 +32,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         headerName: 'Name',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 290,
-        flex: 1,
+        width: 240,
         renderCell: (params) => (
             <div style={{ display: 'flex', columnGap: '10px', alignItems: 'center', textAlign: 'start' }}>
                 <div>
@@ -70,7 +69,6 @@ const columns: Array<GridColDef<any, any, any>> = [
         field: 'status',
         headerName: 'Status',
         width: 120,
-        flex: 1,
         renderCell: (params) => (
             <div style={{ display: 'flex' }}>
                 {params.row.status}
@@ -82,7 +80,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         field: 'role',
         headerName: 'Role',
         width: 180,
-        flex: 1,
+        
         renderCell: (params) => (
             <div style={{ color: '#475467', fontSize: '14px' }}>
                 {params.row.role}
@@ -93,8 +91,7 @@ const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'emailaddress',
         headerName: 'Email address',
-        width: 240,
-        flex: 1,
+        width: 280,
         renderCell: (params) => (
             <div style={{ color: '#475467', fontSize: '14px' }}>
                 {params.row.emailaddress}
@@ -104,7 +101,6 @@ const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'team',
         headerName: 'Team',
-        width: 120,
         flex: 1,
         renderCell: (params) => (
             <div style={{ color: '#475467', fontSize: '14px' }}>
@@ -120,6 +116,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         renderCell: () => (
             <div
                 style={{
+                    marginLeft: 'auto',
                     display: 'flex',
                     columnGap: '5px',
                     color: 'rgba(71, 84, 103, 1)',
