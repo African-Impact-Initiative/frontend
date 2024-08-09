@@ -40,6 +40,7 @@ const PathConstants: { [key: string]: string } = {
     videos: `${authPrefix}resources/video/:id`,
     templates: `${authPrefix}resources/template/:id`,
     articles: `${authPrefix}resources/article/:id`,
+    support: `${authPrefix}support`,
     settings: `${authPrefix}settings`,
     teamPage: `${authPrefix}team-page`,
     companyEditPage: `${authPrefix}company-edit-page`,
