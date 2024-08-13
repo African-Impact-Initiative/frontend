@@ -58,8 +58,8 @@ const SupportPage = () => {
     return (
         <Box sx={{ padding: '12px 32px 20px 32px' }}>
             <VBPageHeader
-                title='Contact us'
-                subTitle='Our friendly team would love to hear from you.'
+                title='Support'
+                subTitle='How can we help you today?'
                 noHr={false}
             />
             {/* <Typography>Please fill out this form.</Typography> */}
