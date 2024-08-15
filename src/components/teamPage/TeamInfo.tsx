@@ -6,20 +6,20 @@ interface TeamInfoProps {
     iconUrl: React.ComponentType<any>;
     name: string;
     memberCount: number;
-    arrayOfImages: string[];
+    memberImages: string[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     icon: React.ComponentType<any>;
 }
 
 const TeamInfo = (props: TeamInfoProps) => {
-    const { iconUrl: IconUrl, name, memberCount, arrayOfImages, icon: Icon } = props
+    const { iconUrl: IconUrl, name, memberCount, memberImages, icon: Icon } = props
 
     return (
         <Box sx={{ width: '100%' }}>
             <Card
                 sx={{
                     border: '1px solid #D0D5DD',
-                    width: {md: '349px', xs: '100%', },
+                    width: {md: '340px', xs: '100%', },
                     borderRadius: '18px',
                 }}
             >
@@ -87,7 +87,7 @@ const TeamInfo = (props: TeamInfoProps) => {
 
                             <Box sx={{ display: 'flex', paddingLeft: {xs: '20px', md: '0px'} }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center',  }}>
-                                    {arrayOfImages.map((image) => (
+                                    {memberImages.slice(-3).map((image) => (
                                         <Box sx={{ flexDirection: 'row' }} key={image}>
                                             <Box
                                                 sx={{
@@ -102,22 +102,24 @@ const TeamInfo = (props: TeamInfoProps) => {
                                     ))}
                                 </Box>
 
-                                <Box
-                                    sx={{
-                                        backgroundColor: '#EAECF0',
-                                        border: '1px solid ##EAECF0',
-                                        lineHeight: '24px',
-                                        borderRadius: '24px',
-                                        width: '24px',
-                                        height: '26px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        marginLeft: '-20px',
-                                    }}
-                                >
-                                    <Typography variant='body1' sx={{ fontSize: '12px', fontWeight: '600', lineHeight: '18px' }}> +9</Typography>
-                                </Box>
+                                { memberImages.length > 3 &&
+                                    <Box
+                                        sx={{
+                                            backgroundColor: '#EAECF0',
+                                            border: '1px solid ##EAECF0',
+                                            lineHeight: '24px',
+                                            borderRadius: '24px',
+                                            width: '24px',
+                                            height: '26px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginLeft: '-20px',
+                                        }}
+                                    >
+                                        <Typography variant='body1' sx={{ fontSize: '12px', fontWeight: '600', lineHeight: '18px' }}> +{memberImages.length - 3} </Typography>
+                                    </Box>
+                                }
                             </Box>
                         </Box>
                     </Box>

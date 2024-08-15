@@ -10,17 +10,6 @@ import {
 } from '@mui/icons-material'
 
 const TeamCard = () => {
-
-    const arrayOfImages = [
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-    ]
     const newTeamMembers = [
         {
             id: 1,
@@ -28,7 +17,7 @@ const TeamCard = () => {
             icon: MoreVertOutlined,
             name: 'Executive',
             memberCount: 1,
-
+            memberImages: [avatar, avatar]
         },
         {
             id: 2,
@@ -36,7 +25,7 @@ const TeamCard = () => {
             icon: MoreVertOutlined,
             name: 'Advisory',
             memberCount: 5,
-
+            memberImages: [avatar]
         },
         {
             id: 3,
@@ -44,7 +33,7 @@ const TeamCard = () => {
             icon: MoreVertOutlined,
             name: 'Operations',
             memberCount: 6,
-
+            memberImages: [avatar, avatar, avatar, avatar, avatar]
         },
     ]
 
@@ -67,7 +56,7 @@ const TeamCard = () => {
                             icon={team.icon}
                             name={team.name}
                             memberCount={team.memberCount}
-                            arrayOfImages={arrayOfImages}
+                            memberImages={team.memberImages}
                         />
                     </Box>
                 ))}
