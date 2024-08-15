@@ -67,8 +67,6 @@ const industries = [
 
 const FundingOpportunitiesPage = () => {
     const [search, setSearch] = useState('')
-    // const [category, setCategory] = useState('')
-    // const [sortBy, setSortBy] = useState('')
     const [fundings, setFundings] = useState(fundingPageData)
     const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null)
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null)
@@ -86,32 +84,17 @@ const FundingOpportunitiesPage = () => {
         const filteredFundings = fundingPageData.filter((funding) => {
             const industryMatch = !selectedIndustry || funding.industry === selectedIndustry
             const locationMatch = !selectedLocation || funding.location === selectedLocation
-            return industryMatch && locationMatch
+            const searchMatch = funding.name.includes(search)
+            return industryMatch && locationMatch && searchMatch
         })
 
         setFundings(filteredFundings)
-    }, [selectedIndustry, selectedLocation])
+    }, [search, selectedIndustry, selectedLocation])
 
-    // const categories = [...new Set(taskPageData.map(row => row.category))]
 
-    // const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setSearch(event.target.value)
-    //     setFundings((prevFundings) => (prevFundings.filter(funding => (
-    //         funding.name.includes(event.target.value) 
-    //     ))))
-    // }
-
-    // const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setCategory(event.target.value)
-    //     setRows(taskPageData.filter(row => (
-    //         row.assignment.includes(search) 
-    //         && (event.target.value === '' || row.category === event.target.value))
-    //     ))
-    // }
-
-    // const handleSortByChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setSortBy(event.target.value)
-    // }
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value)
+    }
 
     const handleClearAll = () => {
         setSearch('')
@@ -254,7 +237,7 @@ const FundingOpportunitiesPage = () => {
                                 variant='outlined'
                                 placeholder='Search'
                                 value={search}
-                                // onChange={handleSearchChange}
+                                onChange={handleSearchChange}
                                 size='small'
                                 sx={{
                                     fontSize: '16px',
