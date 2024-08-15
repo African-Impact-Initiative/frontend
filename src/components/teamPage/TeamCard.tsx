@@ -10,53 +10,42 @@ import {
 } from '@mui/icons-material'
 
 const TeamCard = () => {
-
-    const  arrayOfImages= [
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-        avatar,
-    ]
     const newTeamMembers = [
         {
             id: 1,
             iconUrl: LightModeOutlinedIcon,
             icon: MoreVertOutlined,
             name: 'Executive',
-            count: '6 updates',
-
+            memberCount: 1,
+            memberImages: [avatar, avatar]
         },
         {
             id: 2,
             iconUrl: AnnouncementOutlined,
             icon: MoreVertOutlined,
             name: 'Advisory',
-            count: '5 updates',
-
+            memberCount: 5,
+            memberImages: [avatar]
         },
         {
             id: 3,
             iconUrl: MenuOpenOutlined,
             icon: MoreVertOutlined,
             name: 'Operations',
-            count: '6 updates',
-
+            memberCount: 6,
+            memberImages: [avatar, avatar, avatar, avatar, avatar]
         },
     ]
 
     return (
-        <Box sx={{marginBottom: '60px', marginTop: '40px'}}>
+        <Box sx={{ marginBottom: '60px', marginTop: '40px' }}>
             <Box
                 sx={{
 
                     display: 'flex',
-                    flexWrap:'wrap',
-                    columnGap:'30px',
-                    rowGap:'30px',
+                    flexWrap: 'wrap',
+                    columnGap: '24px',
+                    rowGap: '24px',
                     flex: 1,
                 }}
             >
@@ -66,8 +55,8 @@ const TeamCard = () => {
                             iconUrl={team.iconUrl}
                             icon={team.icon}
                             name={team.name}
-                            count={team.count}
-                            arrayOfImages={arrayOfImages}
+                            memberCount={team.memberCount}
+                            memberImages={team.memberImages}
                         />
                     </Box>
                 ))}

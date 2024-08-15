@@ -123,7 +123,7 @@ const CompanyEditPage = () => {
 
     return (
         <Box>
-            <Modal
+            {/* <Modal
                 open={logoModal}
                 aria-labelledby='modal-title'
                 aria-describedby='modal-description'
@@ -132,7 +132,7 @@ const CompanyEditPage = () => {
                 }}
             >
                 <EditLogoModal />
-            </Modal>
+            </Modal> */}
 
             <Modal
                 open={leadershipModal}

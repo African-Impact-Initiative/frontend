@@ -4,22 +4,22 @@ import { Box } from '@mui/system'
 interface TeamInfoProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     iconUrl: React.ComponentType<any>;
-    name: string; 
-    count: string;
-    arrayOfImages: string[];
+    name: string;
+    memberCount: number;
+    memberImages: string[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     icon: React.ComponentType<any>;
 }
 
 const TeamInfo = (props: TeamInfoProps) => {
-    const { iconUrl: IconUrl, name, count, arrayOfImages, icon: Icon } = props
+    const { iconUrl: IconUrl, name, memberCount, memberImages, icon: Icon } = props
 
     return (
-        <Box sx={{width: '100%'}}>
+        <Box sx={{ width: '100%' }}>
             <Card
                 sx={{
                     border: '1px solid #D0D5DD',
-                    width: {md: '349px', xs: '100%', },
+                    width: {md: '340px', xs: '100%', },
                     borderRadius: '18px',
                 }}
             >
@@ -28,7 +28,7 @@ const TeamInfo = (props: TeamInfoProps) => {
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            rowGap: '25px'
+                            rowGap: '20px'
                         }}
                     >
                         <Box
@@ -87,7 +87,7 @@ const TeamInfo = (props: TeamInfoProps) => {
 
                             <Box sx={{ display: 'flex', paddingLeft: {xs: '20px', md: '0px'} }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center',  }}>
-                                    {arrayOfImages.map((image) => (
+                                    {memberImages.slice(-3).map((image) => (
                                         <Box sx={{ flexDirection: 'row' }} key={image}>
                                             <Box
                                                 sx={{
@@ -96,83 +96,51 @@ const TeamInfo = (props: TeamInfoProps) => {
                                                     marginLeft: '-26px',
                                                 }}
                                             >
-                                                <img src={image} alt='images' style={{ width: '24px', height: '24px' }} />
+                                                <img src={image} alt='images' style={{ width: '24px', height: '24px', borderRadius: '12px', border: '1.5px solid #ffffff' }} />
                                             </Box>
                                         </Box>
                                     ))}
                                 </Box>
 
-                                <Box
-                                    sx={{
-                                        backgroundColor: '#EAECF0',
-                                        border: '1px solid ##EAECF0',
-                                        lineHeight: '24px',
-                                        borderRadius: '24px',
-                                        width: '24px',
-                                        height: '26px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        marginLeft: '-20px',
-                                    }}
-                                >
-                                    <Typography variant='body1' sx={{ fontSize: '12px', fontWeight: '600', lineHeight: '18px' }}> +9</Typography>
-                                </Box>
+                                { memberImages.length > 3 &&
+                                    <Box
+                                        sx={{
+                                            backgroundColor: '#EAECF0',
+                                            border: '1px solid ##EAECF0',
+                                            lineHeight: '24px',
+                                            borderRadius: '24px',
+                                            width: '24px',
+                                            height: '26px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginLeft: '-20px',
+                                        }}
+                                    >
+                                        <Typography variant='body1' sx={{ fontSize: '12px', fontWeight: '600', lineHeight: '18px' }}> +{memberImages.length - 3} </Typography>
+                                    </Box>
+                                }
                             </Box>
                         </Box>
                     </Box>
                 </CardContent>
-                <Divider sx={{ width: '100%', marginTop: '20px' }} />
+                <Divider sx={{ width: '100%' }} />
 
                 <Box
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
                         padding: '16px',
                     }}>
                     <Box
                         sx={{
-                            border: '1px solid #D0D5DD',
-                            height: '28px',
-                            width: '100px',
-                            borderRadius: '6px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            columnGap: '6px',
-                            padding: '6px',
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                border: '1px solid green',
-                                height: '10px',
-                                width: '10px',
-                                backgroundColor: 'green',
-                                borderRadius: '20px',
-                            }}
-                        ></Box>
-                        <Box
-                            sx={{
-                                color: '#344054',
-                                fontWeight: '500',
-                                lineHeight: '20px',
-                                fontSize: '14px',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            {count}
-                        </Box>
-                    </Box>
-                    <Box
-                        sx={{
+                            ml: 'auto',
                             color: '#B54708',
                             lineHeight: '20px',
-                            fontweight: '600',
+                            fontWeight: '600',
                             fontSize: '14px',
-                            cursor: 'pointer'
                         }}
                     >
-                        See more
+                        {memberCount} member{memberCount > 1 ? 's' : ''}
                     </Box>
                 </Box>
             </Card>

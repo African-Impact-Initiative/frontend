@@ -26,6 +26,7 @@ import TaskDetails from '../views/auth/TaskDetails'
 import Settings from '../views/auth/Settings'
 import TaskPage from '../views/auth/TaskPage'
 import TeamPage from '../views/auth/TeamPage'
+import SupportPage from '../views/auth/SupportPage'
 import ComposeAuthLayout from './hoc/ComposeAuthLayout'
 import ComposeAuthWithNavBarLayout from './hoc/ComposeAuthWithNavBarLayout'
 import PathConstants from './pathConstants'
@@ -80,6 +81,12 @@ export const authRoutes = [
         title: 'Task Details',
         path: PathConstants.taskDetails,
         Component: ComposeAuthLayout(TaskDetails),
+        exact: true,
+    },
+    {
+        title: 'Support Page',
+        path: PathConstants.support,
+        Component: ComposeAuthLayout(SupportPage),
         exact: true,
     },
     {
@@ -158,26 +165,30 @@ export const sideBarLinks = [
     { id: 3, name: 'Tasks', to: PathConstants.tasks, icon: TasksIcon },
     { id: 4, name: 'Funding Opportunities', to: PathConstants.funding, icon: MoneyOutlined },
     { id: 5, name: 'Team', to: PathConstants.teamPage, icon: TeamIcon },
-    { id: 6, name: 'Support', to: '/#', icon: SupportIcon },
+    { id: 6, name: 'Support', to: PathConstants.support, icon: SupportIcon },
     { id: 7, name: 'Settings', to: PathConstants.settings, icon: SettingsIcon },
 ]
 
 export const navPages: Array<BasicRoute> = [
     {
-        title: 'Home',
-        path: PathConstants.home
-    },
-    {
         title: 'Dashboard',
         path: PathConstants.dashboard
     },
     {
-        title: 'Resources',
-        path: PathConstants.resources
+        title: 'Venture directory',
+        path: PathConstants.ventureDirectory
     },
     {
-        title: 'Community',
-        path: PathConstants.community
+        title: 'What we offer',
+        path: PathConstants.offer
+    },
+    {
+        title: 'Why choose us',
+        path: PathConstants.about
+    },
+    {
+        title: 'Connect',
+        path: PathConstants.contactUs
     },
 
 ]
