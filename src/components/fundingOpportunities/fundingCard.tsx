@@ -1,9 +1,11 @@
 import { Box, Typography, IconButton } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { FundingType } from '../../utils/devUtils'
-import { renderTeamtypeBorder, renderTeamtypeBg } from '../utils/tableUtils'
 import MapPin from '../../assets/fundingOpportunitiesPage/map_pin.svg'
 import Bookmark from '../../assets/fundingOpportunitiesPage/bookmark.svg'
+import ExternalLink from '../../assets/fundingOpportunitiesPage/external_link.svg'
+import { renderAlertTagIndustryColor, renderAlertTagIndustryBackground } from '../../components/utils/tableUtils.ts'
+
 
 export interface FundingCardInterface {
     funding: FundingType
@@ -29,48 +31,54 @@ const FundingCard = ({ funding }: FundingCardInterface) => {
 
         // onClick={() => navigate(`/app/resources/template/${template.id}`)}
         >
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    rowGap: '6px',
-                }}
-            >
-                <Typography
+            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+                <Box
                     sx={{
-                        fontWeight: '600',
-                        fontSize: '22px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        rowGap: '6px',
                     }}
                 >
-                    {funding?.name}
-                </Typography>
-                <Box sx={{ display: 'flex', gap: '8px' }} >
                     <Typography
                         sx={{
-                            backgroundColor: '#E7F6EA',
-                            padding: '4px 8px 4px 8px',
-                            borderRadius: '3px',
-                            fontSize: '12px',
                             fontWeight: '600',
-                            lineHeight: '12px',
-                            color: '#0BA02C'
+                            fontSize: '22px',
                         }}
                     >
-                        {funding.alerttype}
+                        {funding?.name}
                     </Typography>
-                    <Typography
-                        sx={{
-                            fontSize: '14px',
-                            fontWeight: '400',
-                            lineHeight: '20px',
-                            color: '#767F8C'
-                        }}
-                    >
-                        Fund: ${funding.fundrangestart.toLocaleString()} - ${funding.fundrangeend.toLocaleString()}
-                    </Typography>
+                    <Box sx={{ display: 'flex', gap: '8px' }} >
+                        <Typography
+                            sx={{
+                                backgroundColor: '#E7F6EA',
+                                padding: '4px 8px 4px 8px',
+                                borderRadius: '3px',
+                                fontSize: '12px',
+                                fontWeight: '600',
+                                lineHeight: '12px',
+                                color: '#0BA02C'
+                                // backgroundColor: renderAlertTagIndustryBackground(funding.industry),
+                                // color: renderAlertTagIndustryColor(funding.industry)
+                            }}
+                        >
+                            {funding.industry}
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontSize: '14px',
+                                fontWeight: '400',
+                                lineHeight: '20px',
+                                color: '#767F8C'
+                            }}
+                        >
+                            Fund: ${funding.fundrangestart.toLocaleString()} - ${funding.fundrangeend.toLocaleString()}
+                        </Typography>
+                    </Box>
                 </Box>
+                <IconButton onClick={() => window.open('https://www.example.com', '_blank', 'noopener,noreferrer')}>
+                    <img src={ExternalLink} alt='up-arrow-icon' />
+                </IconButton>
             </Box>
-
             
             <Box sx={{
                 display: 'flex',

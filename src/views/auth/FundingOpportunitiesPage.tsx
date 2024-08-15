@@ -1,32 +1,104 @@
 import { Box, Typography, Button, Divider, InputAdornment, TextField, MenuItem, IconButton, Icon, Grid } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Add, Search, MoreHorizRounded, ArrowForwardRounded } from '@mui/icons-material'
 import { fundingPageData } from '../../utils/devUtils'
-import {  } from '../../components/utils/tableUtils.ts'
 
 
 import VBPageHeader from '../../components/VBPageHeader'
 import FundingCard from '../../components/fundingOpportunities/fundingCard.tsx'
+const locations = [
+    {
+        name: 'South Africa',
+        borderColor: '#B2DDFF',
+        backgroundColor: '#EFF8FF',
+        color: '#175CD3'
+    },
+    {
+        name: 'Rwanda',
+        borderColor: '#ABEFC6',
+        backgroundColor: '#ECFDF3',
+        color: '#067647'
+    },
+    {
+        name: 'Chad',
+        borderColor: '#C7D7FE',
+        backgroundColor: '#EEF4FF',
+        color: '#3538CD'
+    },
+    {
+        name: 'Remote',
+        borderColor: '#F9DBAF',
+        backgroundColor: '#FEF6EE',
+        color: '#B93815'
+    }
+]
+const industries = [
+    {
+        name: 'Education',
+        borderColor: '#B2DDFF',
+        backgroundColor: '#EFF8FF',
+        color: '#175CD3'
+    },
+    {
+        name: 'Social',
+        borderColor: '#ABEFC6',
+        backgroundColor: '#ECFDF3',
+        color: '#067647'
+    },
+    {
+        name: 'Health',
+        borderColor: '#C7D7FE',
+        backgroundColor: '#EEF4FF',
+        color: '#3538CD'
+    },
+    {
+        name: 'Research',
+        borderColor: '#F9DBAF',
+        backgroundColor: '#FEF6EE',
+        color: '#B93815'
+    },
+    {
+        name: 'Technology',
+        borderColor: '#F9DBAF',
+        backgroundColor: '#FEF6EE',
+        color: '#B93815'
+    }
+]
 
 const FundingOpportunitiesPage = () => {
-    const [value, setValue] = useState('1')
     const [search, setSearch] = useState('')
-    const [category, setCategory] = useState('')
+    // const [category, setCategory] = useState('')
     // const [sortBy, setSortBy] = useState('')
     const [fundings, setFundings] = useState(fundingPageData)
+    const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null)
+    const [selectedLocation, setSelectedLocation] = useState<string | null>(null)
+
+
+    const toggleIndustry = (industry: string) => {
+        setSelectedIndustry((prevSelected) => (prevSelected === industry ? null : industry))
+    }
+
+    const toggleLocation = (location : string) => {
+        setSelectedLocation((prevSelected) => (prevSelected === location ? null : location))
+    }
+
+    useEffect(() => {
+        const filteredFundings = fundingPageData.filter((funding) => {
+            const industryMatch = !selectedIndustry || funding.industry === selectedIndustry
+            const locationMatch = !selectedLocation || funding.location === selectedLocation
+            return industryMatch && locationMatch
+        })
+
+        setFundings(filteredFundings)
+    }, [selectedIndustry, selectedLocation])
 
     // const categories = [...new Set(taskPageData.map(row => row.category))]
 
-    const handleChange = (_: React.SyntheticEvent<Element, Event>, newValue: string) => {
-        setValue(newValue)
-    }
-
     // const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //     setSearch(event.target.value)
-    //     setRows(taskPageData.filter(row => (
-    //         row.assignment.includes(search) 
-    //         && (category === '' || row.category === category))
-    //     ))
+    //     setFundings((prevFundings) => (prevFundings.filter(funding => (
+    //         funding.name.includes(event.target.value) 
+    //     ))))
     // }
 
     // const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,12 +113,12 @@ const FundingOpportunitiesPage = () => {
     //     setSortBy(event.target.value)
     // }
 
-    // const handleClearAll = () => {
-    //     setSearch('')
-    //     setCategory('')
-    //     // setSortBy('')
-    //     setRows(taskPageData)   // clear all button will also reset the filtered data back to original
-    // }
+    const handleClearAll = () => {
+        setSearch('')
+        setSelectedIndustry('')
+        setSelectedLocation('')
+        setFundings(fundingPageData)   // clear all button will also reset the filtered data back to original
+    }
 
     return (
         <Box sx={{ padding: '12px 32px 20px 32px' }}>
@@ -59,9 +131,10 @@ const FundingOpportunitiesPage = () => {
                 <Box sx={{ padding: '20px', border: '1px solid #EAECF0', borderRadius: '16px', marginBottom: '32px' }}>
                     <Box sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
+                        // justifyContent: 'space-between',
                         flexDirection: 'column',
-                        marginBottom: '12px',
+                        gap: '20px',
+                        marginBottom: '20px',
                         // backgroundColor: 'blue',
                     }}>
                         <Box>
@@ -82,100 +155,87 @@ const FundingOpportunitiesPage = () => {
                                         color: '#101828',
                                     }}
                                 >
-                                    Alert Tags
+                                    Alert Tags - Location
                                 </Typography>
                             </Box>
 
                             
                             <Box sx={{display: 'flex', flexWrap: 'wrap', gap: '20px'}}>
-                                <Typography 
-                                    sx={{
-                                        padding: '2px 8px 2px 8px',
-                                        borderRadius: '16px',
-                                        border: '1px solid #B2DDFF',
-                                        backgroundColor: '#EFF8FF',
-                                        color: '#175CD3',
-                                        fontSize: '12px',
-                                        fontWeight: '500',
-                                        lineHeight: '18px'
-
-                                    }}
-                                >
-                                    Product
-                                </Typography>
-                                <Typography 
-                                    sx={{
-                                        padding: '2px 8px 2px 8px',
-                                        borderRadius: '16px',
-                                        border: '1px solid #ABEFC6',
-                                        backgroundColor: '#ECFDF3',
-                                        color: '#067647',
-                                        fontSize: '12px',
-                                        fontWeight: '500',
-                                        lineHeight: '18px'
-
-                                    }}
-                                >
-                                    Marketing
-                                </Typography>
-                                <Typography 
-                                    sx={{
-                                        padding: '2px 8px 2px 8px',
-                                        borderRadius: '16px',
-                                        border: '1px solid #C7D7FE',
-                                        backgroundColor: '#EEF4FF',
-                                        color: '#3538CD',
-                                        fontSize: '12px',
-                                        fontWeight: '500',
-                                        lineHeight: '18px'
-
-                                    }}
-                                >
-                                    Management
-                                </Typography>
-                                <Typography 
-                                    sx={{
-                                        padding: '2px 8px 2px 8px',
-                                        borderRadius: '16px',
-                                        border: '1px solid #F9DBAF',
-                                        backgroundColor: '#FEF6EE',
-                                        color: '#B93815',
-                                        fontSize: '12px',
-                                        fontWeight: '500',
-                                        lineHeight: '18px'
-
-                                    }}
-                                >
-                                    Operations
-                                </Typography>
-                                <Typography 
-                                    sx={{
-                                        padding: '2px 8px 2px 8px',
-                                        borderRadius: '16px',
-                                        border: '1px solid #FECDCA',
-                                        backgroundColor: '#FEF3F2',
-                                        color: '#B42318',
-                                        fontSize: '12px',
-                                        fontWeight: '500',
-                                        lineHeight: '18px'
-
-                                    }}
-                                >
-                                    Add more...
-                                </Typography>
+                                {locations.map((loc, index) => (
+                                    <Typography
+                                        key={index}
+                                        onClick={() => toggleLocation(loc.name)}
+                                        sx={{
+                                            padding: '2px 8px',
+                                            borderRadius: '16px',
+                                            border: `1px solid ${loc.borderColor}`,
+                                            backgroundColor: loc.backgroundColor,
+                                            color: loc.color,
+                                            fontSize: '12px',
+                                            // fontWeight: '500',
+                                            lineHeight: '18px',
+                                            fontWeight: selectedLocation === loc.name ? '600' : '500',
+                                        }}
+                                    >
+                                        {loc.name}
+                                    </Typography>
+                                ))}
                             </Box>
                         </Box>
+                        <Box>
+                            <Box 
+                                sx={{ 
+                                    display: 'flex', 
+                                    width: '100%',
+                                    paddingBottom: '8px',
+                                    alignItems: 'center', 
+                                    justifyContent: 'space-between'
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        fontSize: '18px',
+                                        fontWeight: '600',
+                                        lineHeight: '28px',
+                                        color: '#101828',
+                                    }}
+                                >
+                                    Alert Tags - Industry
+                                </Typography>
+                            </Box>
+
+                            
+                            <Box sx={{display: 'flex', flexWrap: 'wrap', gap: '20px'}}>
+                                {industries.map((ind, index) => (
+                                    <Typography
+                                        key={index}
+                                        onClick={() => toggleIndustry(ind.name)}
+                                        sx={{
+                                            padding: '2px 8px',
+                                            borderRadius: '16px',
+                                            border: `1px solid ${ind.borderColor}`,
+                                            backgroundColor: ind.backgroundColor,
+                                            color: ind.color,
+                                            fontSize: '12px',
+                                            // fontWeight: '500',
+                                            lineHeight: '18px',
+                                            fontWeight: selectedIndustry === ind.name ? '600' : '500',
+                                        }}
+                                    >
+                                        {ind.name}
+                                    </Typography>
+                                ))}
+                            </Box>
+                        </Box>
+
                     </Box>
 
                     <Box
                         sx={{
-                            // backgroundColor: 'red',
                             display: 'flex',
                             alignItems: 'center',
                             gap: 2,
                             flexWrap: 'wrap',
-                            
-                            // justifyContent: 'space-between',
                         }}
                     >
                         <Box>
@@ -214,7 +274,7 @@ const FundingOpportunitiesPage = () => {
 
 
                         <Box>
-                            <Typography
+                            {/* <Typography
                                 variant='body1'
                                 sx={{
                                     fontSize: '14px',
@@ -241,16 +301,16 @@ const FundingOpportunitiesPage = () => {
                                 <MenuItem value=''>
                                     <em>Select</em>
                                 </MenuItem>
-                                {/* {categories.map((category) => (
+                                {{categories.map((category) => (
                                         <MenuItem value={category}>
                                             {category}
                                         </MenuItem>
-                                    ))} */}
-                            </TextField>
+                                    ))}}
+                            </TextField> */}
                         </Box>
 
                         <Button
-                            // onClick={handleClearAll}
+                            onClick={handleClearAll}
                             sx={{
                                 ml: 'auto',
                                 mt: 'auto',
@@ -281,7 +341,10 @@ const FundingOpportunitiesPage = () => {
                     justifyContent: 'center',
                     flexWrap: 'wrap'
                 }}>
-                    {fundings.map(funding => <FundingCard funding={funding} />) }
+                    {fundings.length > 0 ? fundings.map(funding => <FundingCard funding={funding} />)
+                        :
+                        <Typography>No funding opportunities found.</Typography>}
+                    {/* {fundings.map(funding => <FundingCard funding={funding} />) } */}
                     
                 </Box>
             </Box>
