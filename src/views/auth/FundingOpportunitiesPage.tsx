@@ -26,7 +26,7 @@ const locations = [
         color: '#3538CD'
     },
     {
-        name: 'Remote',
+        name: 'Global',
         borderColor: '#F9DBAF',
         backgroundColor: '#FEF6EE',
         color: '#B93815'

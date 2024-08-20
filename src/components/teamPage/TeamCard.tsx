@@ -16,7 +16,7 @@ const TeamCard = () => {
             iconUrl: LightModeOutlinedIcon,
             icon: MoreVertOutlined,
             name: 'Executive',
-            memberCount: 1,
+            memberCount: 2,
             memberImages: [avatar, avatar]
         },
         {
@@ -24,7 +24,7 @@ const TeamCard = () => {
             iconUrl: AnnouncementOutlined,
             icon: MoreVertOutlined,
             name: 'Advisory',
-            memberCount: 5,
+            memberCount: 1,
             memberImages: [avatar]
         },
         {
@@ -32,7 +32,7 @@ const TeamCard = () => {
             iconUrl: MenuOpenOutlined,
             icon: MoreVertOutlined,
             name: 'Operations',
-            memberCount: 6,
+            memberCount: 5,
             memberImages: [avatar, avatar, avatar, avatar, avatar]
         },
     ]

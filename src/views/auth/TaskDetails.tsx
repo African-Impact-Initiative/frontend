@@ -10,12 +10,12 @@ import { renderChallengeGroupBackground, renderChallengeGroupBg, renderChallenge
 // currently hardcoding just for front end development
 const task = {
     id: 2,
-    assignment: 'Brand harmony masterplan',
+    assignment: 'Financial horizon optimization proposal',
     author: 'John Johnson',
     category: 'Branding & Identity',
     postdate: '2024-11-12',
     duedate: '2024-11-28',
-    status: 'Submitted',
+    status: 'Due',
     action: '',
     attempts: 3,
     submissionformat: 'PDF',

@@ -431,7 +431,7 @@ const Dashboard = () => {
                                     color: '#101828',
                                 }}
                             >
-                                Resent tasks
+                                Recent tasks
                             </Typography>
                             <Button
                                 sx={{
