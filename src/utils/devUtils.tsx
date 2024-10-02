@@ -8,7 +8,7 @@ import avatar from '../assets/avatar.png'
 export const resourceVideoData = [
     {
         id: 1,
-        name: 'Start to Enterprise: Building Your Dream Start to Enterprise: Building  Building  Building  Building  Building',
+        name: 'Mastering Operations: Building Efficient Startups',
         thumbnail: video,
         thumbnail2: article,
         authorImage: avatar,
@@ -24,7 +24,7 @@ export const resourceVideoData = [
     },
     {
         id: 2,
-        name: 'Start to Enterprise: Building Your Dream',
+        name: 'Marketing Strategies for Startup Success',
         thumbnail: resourceBg,
         thumbnail2: article,
         authorImage: avatar,
@@ -36,11 +36,11 @@ export const resourceVideoData = [
         type: 'Marketing',
         timePosted: 'Oct 16, 2023',
         details:
-      'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
     {
         id: 3,
-        name: 'Startup Success: Step-by-Step Guide',
+        name: 'Effective Management: A Startup Guide',
         thumbnail: resourceBg,
         thumbnail2: article,
         authorImage: avatar,
@@ -52,27 +52,27 @@ export const resourceVideoData = [
         type: 'Management',
         timePosted: 'Oct 16, 2023',
         details:
-      'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
     {
         id: 4,
-        name: 'How to find and validate business ideas',
+        name: 'Legal Insights: Validating Your Startup Ideas',
         thumbnail: resourceBg,
         thumbnail2: article,
         authorImage: avatar,
         author: 'Maya Williams',
-        views: '16',
+        views: '8',
         likes: '128',
         visible: true,
         action: '',
         type: 'Legal',
         timePosted: 'Oct 16, 2023',
         details:
-      'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
     {
         id: 5,
-        name: 'Start to Enterprise: Building Your Dream',
+        name: 'Product Development Strategies for Startups',
         thumbnail: resourceBg,
         thumbnail2: article,
         authorImage: avatar,
@@ -84,11 +84,11 @@ export const resourceVideoData = [
         type: 'Product',
         timePosted: 'Oct 16, 2023',
         details:
-      'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
     {
         id: 6,
-        name: 'Legal Essentials for New Ventures',
+        name: 'Essential Marketing Tactics for New Ventures',
         thumbnail: resourceBg,
         thumbnail2: article,
         authorImage: avatar,
@@ -100,11 +100,11 @@ export const resourceVideoData = [
         type: 'Marketing',
         timePosted: 'Oct 16, 2023',
         details:
-      'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
     {
         id: 7,
-        name: 'Start to Enterprise: Building Your Dream',
+        name: 'Innovative Marketing Approaches for Startups',
         thumbnail: resourceBg,
         thumbnail2: article,
         authorImage: avatar,
@@ -116,11 +116,11 @@ export const resourceVideoData = [
         type: 'Marketing',
         timePosted: 'Oct 16, 2023',
         details:
-      'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
     {
         id: 8,
-        name: 'Legal Essentials for New Ventures',
+        name: 'Legal Foundations for Emerging Startups',
         thumbnail: resourceBg,
         thumbnail2: article,
         authorImage: avatar,
@@ -129,14 +129,14 @@ export const resourceVideoData = [
         likes: '128',
         visible: false,
         action: '',
-        type: 'Marketing',
+        type: 'Legal',
         timePosted: 'Oct 16, 2023',
         details:
-      'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover the secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
     {
         id: 9,
-        name: 'Legal hello there and there aasdfas a asdfa Essentialsasdfasdf asdf asdf asdf asd fasd fas dfa sdf asd fas dfa sdf asd fa sdf asd fa sdf asd fa sdf as ',
+        name: 'Optimizing Operations for Startup Success',
         thumbnail: resourceBg,
         thumbnail2: article,
         authorImage: avatar,
@@ -146,11 +146,12 @@ export const resourceVideoData = [
         visible: false,
         action: '',
         type: 'Operations',
-        timePosted: 'Oct 16, 2023',
+        timePosted: 'Oct 14, 2023',
         details:
-      'Discover asdf asdf asdf asdf asdf asdfthe secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
+        'Discover asdf asdf asdf asdf asdf asdfthe secrets to entrepreneurial triumph as seasoned founders share their invaluable insights and tips for navigating the challenging yet rewarding journey of building a successful startup. From identifying opportunities to scaling your venture, this video offers a roadmap to help you overcome obstacles, make informed decisions, and turn your startup vision into reality. Join us and learn from those who\'ve been there, done that, and emerged victorious in the world of entrepreneurship.',
     },
 ]
+
 
 export type ResourceVideoType = typeof resourceVideoData[0]
 
@@ -306,7 +307,7 @@ export const taskPageData = [
         category: 'Financial Planning',
         postdate: '2024-11-12',
         duedate: '2024-11-28',
-        status: 'Submitted',
+        status: 'Due',
         action: ''
     },
     {
@@ -546,7 +547,7 @@ export const resourceTemplateData = [
     },
     {
         id: 2,
-        name: 'Sample letter template Sample letter template Sample letter templat Sample letter templateSample letter templatee',
+        name: 'Sample letter template',
         thumbnail: article,
         type: 'Operations',
         details:
@@ -591,7 +592,7 @@ export const resourceArticleData = [
         date: '19 Jan 2023',
         description:
       'Linear helps streamline software projects, sprints, tasks, and bug tracking. Here’s how to get started.',
-        name: 'PM mental models PM mental models PM mental models PM mentmodels PM mental models ',
+        name: 'PM mental models',
         thumbnail: tempResource,
         type: 'Product',
         authorImage: avatar,
@@ -599,7 +600,7 @@ export const resourceArticleData = [
     {
         id: 2,
         author: 'Lana Steiner',
-        date: '19 Jan 2026',
+        date: '19 Jan 2023',
         description:
       'The rise of RESTful APIs has been met by a rise in tools for creating, testing, and managing them.',
         name: 'What is wireframing?',
@@ -614,14 +615,14 @@ export const resourceArticleData = [
         description:
       'Linear helps streamline software projects, sprints, tasks, and bug tracking. Here’s how to get started.',
         name: 'Business plan document template',
-        thumbnail: video,
+        thumbnail: tempResource,
         type: 'Legal',
         authorImage: avatar,
     },
     {
         id: 4,
         author: 'Candice Wu',
-        date: '19 Jan 2025',
+        date: '19 Jan 2023',
         description:
       'Linear helps streamline software projects, sprints, tasks, and bug tracking. Here’s how to get started.',
         name: 'Design document template',
@@ -1030,3 +1031,130 @@ export const assignmentData = [
 
     },
 ]
+
+export const fundingPageData = [
+    {
+        id: 1,
+        name: 'Bright Futures',
+        industry: 'Technology',
+        fundrangestart: 15000,
+        fundrangeend: 20000,
+        rewardtype: 'Grant',
+        location: 'Global',
+        duedate: 'May 15, 2024',
+        duetime: '10:00 AM'
+    },
+    {
+        id: 2,
+        name: 'Midas Touch',
+        industry: 'Technology',
+        fundrangestart: 30000,
+        fundrangeend: 35000,
+        rewardtype: 'Equity',
+        location: 'Chad',
+        duedate: 'Jul 20, 2024',
+        duetime: '11:30 AM'
+    },
+    {
+        id: 3,
+        name: 'Global Capital',
+        industry: 'Finance',
+        fundrangestart: 25000,
+        fundrangeend: 30000,
+        rewardtype: 'Loan',
+        location: 'Chad',
+        duedate: 'Aug 5, 2024',
+        duetime: '2:00 PM'
+    },
+    {
+        id: 4,
+        name: 'Future Ventures',
+        industry: 'Research',
+        fundrangestart: 10000,
+        fundrangeend: 15000,
+        rewardtype: 'Grant',
+        location: 'Rwanda',
+        duedate: 'Sep 1, 2024',
+        duetime: '9:00 AM'
+    },
+    {
+        id: 5,
+        name: 'Innovation Hub',
+        industry: 'Research',
+        fundrangestart: 20000,
+        fundrangeend: 25000,
+        rewardtype: 'Grant',
+        location: 'South Africa',
+        duedate: 'Oct 10, 2024',
+        duetime: '4:00 PM'
+    },
+    {
+        id: 6,
+        name: 'Tech Pioneers',
+        industry: 'Technology',
+        fundrangestart: 35000,
+        fundrangeend: 40000,
+        rewardtype: 'Equity',
+        location: 'Chad',
+        duedate: 'Nov 20, 2024',
+        duetime: '1:30 PM'
+    },
+    {
+        id: 7,
+        name: 'University of Toronto',
+        industry: 'Education',
+        fundrangestart: 5000,
+        fundrangeend: 10000,
+        rewardtype: 'Scholarship',
+        location: 'Global',
+        duedate: 'Dec 5, 2024',
+        duetime: '3:00 PM'
+    },
+    {
+        id: 8,
+        name: 'Health Innovators',
+        industry: 'Health',
+        fundrangestart: 25000,
+        fundrangeend: 30000,
+        rewardtype: 'Grant',
+        location: 'Global',
+        duedate: 'Jan 15, 2025',
+        duetime: '10:00 AM'
+    },
+    {
+        id: 9,
+        name: 'Sustainable Solutions',
+        industry: 'Health',
+        fundrangestart: 10000,
+        fundrangeend: 20000,
+        rewardtype: 'Grant',
+        location: 'Global',
+        duedate: 'Feb 10, 2025',
+        duetime: '11:00 AM'
+    },
+    {
+        id: 10,
+        name: 'Community Builders',
+        industry: 'Social',
+        fundrangestart: 15000,
+        fundrangeend: 25000,
+        rewardtype: 'Grant',
+        location: 'Global',
+        duedate: 'Mar 20, 2025',
+        duetime: '2:30 PM'
+    },
+    {
+        id: 11,
+        name: 'Bright Horizons',
+        industry: 'Education',
+        fundrangestart: 20000,
+        fundrangeend: 30000,
+        rewardtype: 'Scholarship',
+        location: 'Global',
+        duedate: 'Apr 5, 2025',
+        duetime: '9:00 AM'
+    },
+]
+
+
+export type FundingType = typeof fundingPageData[0]

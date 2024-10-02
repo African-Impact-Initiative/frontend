@@ -67,3 +67,49 @@ export const renderChallengeGroupBackground = (type: string) => {
 export const renderChallengeGroupBg = (type: string) => {
     return '#085D3A'
 }
+
+const industries = [
+    {
+        name: 'Education',
+        borderColor: '#B2DDFF',
+        backgroundColor: '#EFF8FF',
+        color: '#175CD3'
+    },
+    {
+        name: 'Social',
+        borderColor: '#ABEFC6',
+        backgroundColor: '#ECFDF3',
+        color: '#067647'
+    },
+    {
+        name: 'Health',
+        borderColor: '#C7D7FE',
+        backgroundColor: '#EEF4FF',
+        color: '#3538CD'
+    },
+    {
+        name: 'Research',
+        borderColor: '#F9DBAF',
+        backgroundColor: '#FEF6EE',
+        color: '#B93815'
+    },
+    {
+        name: 'Technology',
+        borderColor: '#F9DBAF',
+        backgroundColor: '#FEF6EE',
+        color: '#B93815'
+    }
+]
+export const renderAlertTagIndustryColor = (type: string) => {
+    const industry = industries.find((industry) => industry.name === type)
+    if (industry)
+        return industry.color
+    return '#bbb'
+}
+
+export const renderAlertTagIndustryBackground = (type: string) => {
+    const industry = industries.find((industry) => industry.name === type)
+    if (industry)
+        return industry.backgroundColor
+    return '#eee'
+}

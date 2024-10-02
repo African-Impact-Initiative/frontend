@@ -122,28 +122,28 @@ const Dashboard = () => {
                 'I don\'t really know if we should proceed with this idea, what do you think?',
             activityType: 'pdf',
         },
-        {
-            id: 6,
-            url: avatar,
-            name: 'Uche',
-            activity: 'Purchased SEO Masterclass',
-            activityType: 'pdf',
-        },
-        {
-            id: 7,
-            url: avatar,
-            name: 'Mary Black',
-            activity:
-                'I don\'t really know if we should proceed with this idea, what do you think?',
-            activityType: 'pdf',
-        },
-        {
-            id: 8,
-            url: avatar,
-            name: 'Uche',
-            activity: 'Purchased SEO Masterclass',
-            activityType: 'pdf',
-        },
+        // {
+        //     id: 6,
+        //     url: avatar,
+        //     name: 'Uche',
+        //     activity: 'Purchased SEO Masterclass',
+        //     activityType: 'pdf',
+        // },
+        // {
+        //     id: 7,
+        //     url: avatar,
+        //     name: 'Mary Black',
+        //     activity:
+        //         'I don\'t really know if we should proceed with this idea, what do you think?',
+        //     activityType: 'pdf',
+        // },
+        // {
+        //     id: 8,
+        //     url: avatar,
+        //     name: 'Uche',
+        //     activity: 'Purchased SEO Masterclass',
+        //     activityType: 'pdf',
+        // },
     ]
 
     return (
@@ -348,7 +348,7 @@ const Dashboard = () => {
 
                                                         }}
                                                     >
-                                                        <img src={member.url} alt='images' />
+                                                        <img src={member.url} alt='images' style={{ width: '40px', height: '40px', borderRadius: '20px', border: '1.5px solid #ffffff' }} />
                                                     </Box>
                                                 </Box>
                                             ))}
@@ -367,7 +367,7 @@ const Dashboard = () => {
                                                     marginBottom: '-10px'
                                                 }}
                                             >
-                                                +12
+                                                +27
                                             </Box>
                                         </Box>
                                     </Box>
@@ -431,7 +431,7 @@ const Dashboard = () => {
                                     color: '#101828',
                                 }}
                             >
-                                Resent tasks
+                                Recent tasks
                             </Typography>
                             <Button
                                 sx={{

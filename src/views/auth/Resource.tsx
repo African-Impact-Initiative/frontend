@@ -32,17 +32,17 @@ const Resources = () => {
     const filterData = (topicLabel: string) => {
         setFilteredVideoData(
             resourceVideoData.filter(video =>
-                (topicLabel === 'All Topics' || video.type.includes(topicLabel)) && video.name.includes(searchQuery)
+                (topicLabel === 'All Topics' || video.type.includes(topicLabel)) && video.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
         )
         setFilteredArticleData(
             resourceArticleData.filter(article =>
-                (topicLabel === 'All Topics' || article.type.includes(topicLabel)) && article.name.includes(searchQuery)
+                (topicLabel === 'All Topics' || article.type.includes(topicLabel)) && article.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
         )
         setFilteredTemplateData(
             resourceTemplateData.filter(template =>
-                (topicLabel === 'All Topics' || template.type.includes(topicLabel)) && template.name.includes(searchQuery)
+                (topicLabel === 'All Topics' || template.type.includes(topicLabel)) && template.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
         )
     }

@@ -4,18 +4,26 @@ import {
     MailOutlineOutlined,
     ModeEditOutlineOutlined,
     MoreVertOutlined,
+    Search,
+    CheckRounded
 } from '@mui/icons-material'
 import {
     Button,
+    Checkbox,
+    CheckboxProps,
     Divider,
+    InputAdornment,
+    MenuItem,
+    TextField,
     Typography
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import TeamCard from '../../components/teamPage/TeamCard'
 import VBPageHeader from '../../components/VBPageHeader'
-import VBSelectionRow from '../../components/VBSelectionRow'
 import { teamPageData } from '../../utils/devUtils'
+import { JSX } from 'react/jsx-runtime'
+import { useState } from 'react'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const columns: Array<GridColDef<any, any, any>> = [
@@ -24,8 +32,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         headerName: 'Name',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 290,
-        flex: 1,
+        width: 240,
         renderCell: (params) => (
             <div style={{ display: 'flex', columnGap: '10px', alignItems: 'center', textAlign: 'start' }}>
                 <div>
@@ -62,7 +69,6 @@ const columns: Array<GridColDef<any, any, any>> = [
         field: 'status',
         headerName: 'Status',
         width: 120,
-        flex: 1,
         renderCell: (params) => (
             <div style={{ display: 'flex' }}>
                 {params.row.status}
@@ -74,7 +80,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         field: 'role',
         headerName: 'Role',
         width: 180,
-        flex: 1,
+        
         renderCell: (params) => (
             <div style={{ color: '#475467', fontSize: '14px' }}>
                 {params.row.role}
@@ -85,8 +91,7 @@ const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'emailaddress',
         headerName: 'Email address',
-        width: 240,
-        flex: 1,
+        width: 280,
         renderCell: (params) => (
             <div style={{ color: '#475467', fontSize: '14px' }}>
                 {params.row.emailaddress}
@@ -96,7 +101,6 @@ const columns: Array<GridColDef<any, any, any>> = [
     {
         field: 'team',
         headerName: 'Team',
-        width: 120,
         flex: 1,
         renderCell: (params) => (
             <div style={{ color: '#475467', fontSize: '14px' }}>
@@ -112,6 +116,7 @@ const columns: Array<GridColDef<any, any, any>> = [
         renderCell: () => (
             <div
                 style={{
+                    marginLeft: 'auto',
                     display: 'flex',
                     columnGap: '5px',
                     color: 'rgba(71, 84, 103, 1)',
@@ -130,13 +135,92 @@ const columns: Array<GridColDef<any, any, any>> = [
         ),
     },
 ]
+// const rows = teamPageData
+const CustomCheckbox = (props: JSX.IntrinsicAttributes & CheckboxProps) => {
+    return (
+        <Checkbox
+            {...props}
+            sx={{
+                marginLeft: '10px',
+                '&.Mui-checked': {
+                    color: '#fff',
+                },
+                '&.MuiCheckbox-indeterminate': {
+                    color: '#DC6803',
+                }
+            }}
+            icon={
+                <span 
+                    style={{ 
+                        border: '1px solid #D0D5DD', 
+                        borderRadius: '6px',
+                        width: 20, 
+                        height: 20 
+                    }}
+                />
+            }
+            checkedIcon={
+                <CheckRounded
+                    sx={{ 
+                        backgroundColor: '#DC6803', 
+                        borderRadius: '6px',
+                        width: 20, 
+                        height: 20 
+                    }}
+                />
+            }
+        />
+    )
+}
+// const statuses = ['Active', 'Invited', 'Pending']
 
-const rows = teamPageData
 
 const TeamPage = () => {
+    const [search, setSearch] = useState('')
+    const [status, setStatus] = useState('Select')
+    const [team, setTeam] = useState('Select')
+
+    const [rows, setRows] = useState(teamPageData)
+
+    const statusesList = [...new Set(teamPageData.map(row => row.status))]
+    const teamsList = [...new Set(teamPageData.map(row => row.team))]
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value)
+        setRows(teamPageData.filter(row => (
+            row.name.includes(event.target.value) 
+            && (status === 'Select' || row.status === status)
+            && (team === 'Select' || row.team === team)
+        )))
+    }
+
+    const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setStatus(event.target.value)
+        setRows(teamPageData.filter(row => (
+            row.name.includes(search) 
+            && (event.target.value === 'Select' || row.status === event.target.value)
+            && (team === 'Select' || row.team === team)
+        )))
+    }
+
+    const handleTeamChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTeam(event.target.value)
+        setRows(teamPageData.filter(row => (
+            row.name.includes(search) 
+            && (status === 'Select' || row.status === status)
+            && (event.target.value === 'Select' || row.team === event.target.value)
+        )))
+    }
+
+    const handleClearAll = () => {
+        setSearch('')
+        setStatus('Select')
+        setTeam('Select')
+        setRows(teamPageData)   // clear all button will also reset the filtered data back to original
+    }
 
     return (
-        <Box sx={{ padding: '20px', width: '100%' }}>
+        <Box sx={{ padding: '12px 32px 20px 32px', width: '100%' }}>
             <Box>
                 <VBPageHeader
                     title='Team'
@@ -150,6 +234,7 @@ const TeamPage = () => {
 
             <Box
                 sx={{
+                    border: '1px solid #EAECF0',
                     borderRadius: '16px',
                     width: '100%',
                     height: 'fit',
@@ -159,13 +244,13 @@ const TeamPage = () => {
                 <Box
                     sx={{
                         display: 'flex',
-                        marginTop: '10px',
+                        padding: '20px',
                         flexDirection: {md: 'row', xs: 'column'},
                     }}
                 >
                     <Box sx={{ width: '100%'}}>
                         <Box
-                            sx={{ display: 'flex', columnGap: '10px', marginBottom: '6px' }}
+                            sx={{ display: 'flex', columnGap: '8px', marginBottom: '6px' }}
                         >
                             <Typography
                                 variant='body1'
@@ -182,26 +267,19 @@ const TeamPage = () => {
                                 sx={{
                                     border: '1px solid #FEDF89',
                                     backgroundColor: '#FFFAEB',
-                                    height: '28px',
                                     borderRadius: '16px',
-                                    width: '100px',
-                                    paddingTop: '2px',
-                                    paddingBottom: '2px',
-                                    paddingLeft: '8px',
-                                    paddingRight: '8px',
+                                    padding: '2px 8px 2px 8px', 
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center'
                                 }}
                             >
                                 <Typography
-                                    variant='body1'
                                     sx={{
                                         color: '#B54708',
                                         fontWeight: '500',
                                         fontSize: '12px',
                                         lineHeight: '18px',
-
                                     }}
                                 >
                                     32 members
@@ -280,20 +358,151 @@ const TeamPage = () => {
                         <MoreVertOutlined sx={{ color: '#98A2B3', cursor: 'pointer' }} />
                     </Box>
                 </Box>
-                <Divider sx={{ marginTop: '30px' }}></Divider>
+                <Divider/>
 
-                <Box>
-                    <VBSelectionRow
-                        search={true}
-                        firstBox={true}
-                        secondBox={true}
-                        type='Search members'
-                        header1='Status'
-                        header2='Team'
-                        label1='Select'
-                        label2='Select'
-                    />
-                    <div style={{ height: 400, width: '100%' }}>
+                <Box sx={{}}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 2,
+                            flexWrap: 'wrap',
+                            padding: '20px',
+                        }}
+                    >
+                        <Box>
+                            <Typography
+                                variant='body1'
+                                sx={{
+                                    fontSize: '14px',
+                                    fontWeight: '500',
+                                    lineHeight: '20px',
+                                }}
+                                gutterBottom
+                            >
+                                Search members
+                            </Typography>
+                            <TextField
+                                variant='outlined'
+                                placeholder='Search'
+                                value={search}
+                                onChange={handleSearchChange}
+                                size='small'
+                                sx={{
+                                    fontSize: '16px',
+                                    fontWeight: '400',
+                                    lineHeight: '24px'
+                                    // ask about the gray color here. is not exactly the same gray. 
+                                }}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position='start'>
+                                            <Search />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                        </Box>
+
+
+                        <Box>
+                            <Typography
+                                variant='body1'
+                                sx={{
+                                    fontSize: '14px',
+                                    fontWeight: '500',
+                                    lineHeight: '20px',
+                                }}
+                                gutterBottom
+                            >
+                                Status
+                            </Typography>
+                            <TextField
+                                select
+                                variant='outlined'
+                                value={status}
+                                onChange={handleStatusChange}
+                                size='small'
+                                sx={{
+                                    width: '200px',
+                                    fontSize: '16px',
+                                    fontWeight: '400',
+                                    lineHeight: '24px',
+                                }}
+                            >
+                                <MenuItem value='Select'>
+                                    <em style={{color: '#667085'}}>Select</em>
+                                </MenuItem>
+                                {statusesList.map((status) => (
+                                    <MenuItem value={status}>
+                                        {status}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
+
+
+                        <Box>
+                            <Typography
+                                variant='body1'
+                                sx={{
+                                    fontSize: '14px',
+                                    fontWeight: '500',
+                                    lineHeight: '20px',
+                                }}
+                                gutterBottom
+                            >
+                                Team
+                            </Typography>
+                            <TextField
+                                select
+                                value={team}
+                                // placeholder='Select'
+                                onChange={handleTeamChange}
+                                size='small'
+                                sx={{
+                                    // border: '1px solid #D0D5DD',
+                                    // borderRadius: '8px',
+                                    width: '200px',
+                                    fontSize: '16px',
+                                    fontWeight: '400',
+                                    lineHeight: '24px',
+                                }}
+                            >
+                                <MenuItem value='Select'>
+                                    <em style={{color: '#667085'}}>Select</em>
+                                </MenuItem>
+                                {teamsList.map((team) => (
+                                    <MenuItem value={team}>
+                                        {team}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Box>
+
+
+
+                        <Button
+                            onClick={handleClearAll}
+                            sx={{
+                                ml: 'auto',
+                                mt: 'auto',
+                                height: '44px',
+                                width: '100px',
+                                fontSize: '16px',
+                                lineHeight: '24px',
+                                fontWeight: '600',
+                                textTransform: 'none',
+                                color: '#344054',
+                                border: '1px solid #D0D5DD',
+                                borderRadius: '8px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            Clear all
+                        </Button>
+                    </Box>
+                    <Box>
                         <DataGrid
                             className='pointer-cursor-datagrid'
                             rows={rows}
@@ -309,8 +518,33 @@ const TeamPage = () => {
                             }}
                             pageSizeOptions={[5, 10]}
                             checkboxSelection
+                            slots={{
+                                baseCheckbox: CustomCheckbox
+                            }}
+                            sx={{
+                                '.MuiDataGrid-columnSeparator': {
+                                    display: 'none',
+                                },
+                                '&.MuiDataGrid-root': {
+                                    border: 'none',
+                                },
+                                '.MuiDataGrid-columnHeader': {
+                                    fontSize: '12px',
+                                    lineheight: '18px',
+                                    fontWeight: '500',
+                                    // paddingLeft: '20px',
+                                    color: ' #475467'
+
+                                },
+                                '.MuiDataGrid-cell': {
+                                    // paddingLeft: '20px',
+                                },
+                                '& .MuiDataGrid-cell:focus-within': {
+                                    outline: 'none !important'
+                                },
+                            }}
                         />
-                    </div>
+                    </Box>
                 </Box>
 
             </Box>
