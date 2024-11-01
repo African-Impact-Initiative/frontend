@@ -1,6 +1,6 @@
 import { Button, Container, Divider, Grid, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import PathConstants from '../../../navigation/pathConstants'
@@ -122,99 +122,224 @@ const VentureDirectory = () => {
 
     return (
         <>
-            <img style={{position: 'absolute', top: 0, right: 0, height: '100vh'}} src={ventureDirectory} />
-            <Container maxWidth='lg' sx={{padding: '0 40px 0 40px'}}>
-                <Box sx={{display: 'flex', height: '100vh', overflowX: 'hidden'}}>
-                    <Grid container spacing={0}>
-                        <Grid item md={5} height='100%' width='100%' display='flex !important' alignItems='left !important' justifyContent='center !important' sx={{flexDirection: 'column !important'}}>
-                            <Typography variant='h1' component='div' gutterBottom>
-                                Venture Directory
-                            </Typography>
-
-                            <Typography variant='subtitle1' component='div' gutterBottom>
-                                Discover a spectrum of pioneering startups with a reach extending from quantum computing to driving social change. These innovative ventures are reshaping industries and touching lives worldwide.
-                            </Typography>
-
-                            <Box sx={{display: 'flex', width: '100%', marginTop: '20px'}}>
-                                <Button onClick={scrollToSearch} size='large' variant='outlined' sx={{marginRight: '10px'}}>Browse all ventures</Button>
-                                <Link to={PathConstants.signUp}>
-                                    <Button size='large' variant='contained' sx={{color: '#fff', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
-                                </Link>
-                            </Box>
-                        </Grid>
-                    </Grid>
+            {/* Main Layout Container */}
+            <Box sx={{ 
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                width: '100%',
+                position: 'relative'
+            }}>
+                {/* Desktop Background Image */}
+                <Box sx={{
+                    display: { xs: 'none', md: 'block' },
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '55%',
+                    height: '100vh',
+                    '& img': {
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                    }
+                }}>
+                    <img src={ventureDirectory} />
                 </Box>
-
-                <Box sx={{marginTop: '40px'}}>
-                    <Typography variant='h2' gutterBottom>How far we've gone so far</Typography>
-                    <Typography variant='body1' gutterBottom>
-                        Venture Build is suited in one of Canada's fastest-growing startup incubation hub, committed to nurturing the creativity of young African innovators.
-                    </Typography>
-                    <Grid container spacing={2}>
-                        {stats.map(stat => <Grid item md={3} key={stat.title}><VentureStats {...stat} /></Grid>)}
-                    </Grid>
+    
+                {/* Mobile Background Image */}
+                <Box sx={{
+                    display: { xs: 'block', md: 'none' },
+                    width: '100%',
+                    '& img': {
+                        width: '100%',
+                        height: 'auto',
+                        objectFit: 'cover'
+                    }
+                }}>
+                    <img src={ventureDirectory} />
                 </Box>
-
-                <Divider sx={{marginTop: '40px', marginBottom: '40px'}} />
-
-                <Box sx={{marginTop: '30px', padding: '10px', borderRadius: '10px', backgroundColor: '#FAFAFA'}}>
-                    <Grid container spacing={2}>
-                        <Grid item md={4}>
-                            <Box display='flex' flexDirection='column' justifyContent='center'>
-                                <Typography>Search for venture</Typography>
-                                <VBTextField value={orgQuery} setter={setOrgQuery} required={false} label='Search'/>
-                            </Box>
+    
+                {/* Content Container */}
+                <Container maxWidth='lg' sx={{
+                    padding: { xs: '20px 20px 40px 20px', md: '0 40px' },
+                    width: '100%'
+                }}>
+                    {/* Hero Section */}
+                    <Box sx={{
+                        minHeight: { xs: 'auto', md: '100vh' },
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        overflow: 'visible'
+                    }}>
+                        <Grid container spacing={0}>
+                            <Grid item xs={12} md={5} sx={{
+                                width: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '20px',
+                                marginBottom: { xs: '20px', md: 0 }
+                            }}>
+                                {/* Title */}
+                                <Typography 
+                                    variant='h1' 
+                                    component='div' 
+                                    sx={{
+                                        marginBottom: '10px',
+                                        wordBreak: 'break-word' 
+                                    }}
+                                >
+                                    Venture Directory
+                                </Typography>
+    
+                                {/* Description */}
+                                <Typography variant='subtitle1' component='div'>
+                                    Discover a spectrum of pioneering startups with a reach 
+                                    extending from quantum computing to driving social change. 
+                                    These innovative ventures are reshaping industries and 
+                                    touching lives worldwide.
+                                </Typography>
+    
+                                {/* Action Buttons */}
+                                <Box sx={{
+                                    display: 'flex',
+                                    flexDirection: { xs: 'column', sm: 'row' },
+                                    gap: { xs: '10px', sm: '10px' },
+                                    width: '100%'
+                                }}>
+                                    <Button 
+                                        onClick={scrollToSearch} 
+                                        size='large' 
+                                        variant='outlined' 
+                                        fullWidth
+                                        sx={{ flex: { sm: 1 } }}
+                                    >
+                                        Browse all ventures
+                                    </Button>
+                                    <Button 
+                                        size='large' 
+                                        variant='contained'
+                                        fullWidth
+                                        component={Link}
+                                        to={PathConstants.signUp}
+                                        sx={{
+                                            flex: { sm: 1 },
+                                            color: '#fff', 
+                                            backgroundColor: '#DC6803', 
+                                            '&:hover': { backgroundColor: '#E8822A'}
+                                        }}
+                                    >
+                                        Join now
+                                    </Button>
+                                </Box>
+                            </Grid>
                         </Grid>
-                        <Grid item md={4}>
-                            <Box display='flex' flexDirection='column' justifyContent='center'>
-                                <Typography>Industry</Typography>
-                                <VBSelect
-                                    value={industryQuery}
-                                    size='medium'
-                                    required={false}
-                                    list={industriesList}
-                                    setter={setIndustryQuery}
-                                    gutter={false}
-                                    margin={false}
-                                />
-                            </Box>
-                        </Grid>
-                        <Grid item md={4}>
-                            <Box display='flex' flexDirection='column' justifyContent='center'>
-                                <Typography>Sort By</Typography>
-                                <VBSelect
-                                    value={sortBy}
-                                    size='medium'
-                                    required={false}
-                                    list={sortList}
-                                    setter={setSortBy}
-                                    gutter={false}
-                                    margin={false}
-                                    defaultValue={true}
-                                />
-                            </Box>
-                        </Grid>
-                    </Grid>
-                    <Box display='flex' justifyContent='end'>
-                        <Button onClick={handleSearch} variant='contained'>Search</Button>
                     </Box>
-                </Box>
-
-                {organizationsToDisplay.length == 0 && <Typography>No results found</Typography>}
-                <Grid id={searchId} container spacing={2} margin='20px 0 20px 0'>
-                    {organizationsToDisplay.map(org => <Grid item md={4} key={org.id}>
-                        <VentureCard
-                            name={org.name}
-                            category={org.industries[0]}
-                            logo={org.logo}
-                            caption={org.tagline}
-                            details={org.aboutUs}
-                            action={() => openInNewTab(org)}
-                        />
-                    </Grid>)}
-                </Grid>
-
-            </Container>
+    
+                    {/* Stats Section */}
+                    <Box sx={{ marginTop: '40px' }}>
+                        <Typography variant='h2' gutterBottom>
+                            How far we've gone so far
+                        </Typography>
+                        <Typography variant='body1' gutterBottom>
+                            Venture Build is suited in one of Canada's fastest-growing 
+                            startup incubation hub, committed to nurturing the creativity 
+                            of young African innovators.
+                        </Typography>
+                        <Grid container spacing={2}>
+                            {stats.map(stat => (
+                                <Grid item md={3} key={stat.title}>
+                                    <VentureStats {...stat} />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Box>
+    
+                    <Divider sx={{ marginTop: '40px', marginBottom: '40px' }} />
+    
+                    {/* Search Section */}
+                    <Box sx={{
+                        marginTop: '30px',
+                        padding: '10px',
+                        borderRadius: '10px',
+                        backgroundColor: '#FAFAFA'
+                    }}>
+                        <Grid container spacing={2}>
+                            {/* Search Input */}
+                            <Grid item md={4}>
+                                <Box display='flex' flexDirection='column' justifyContent='center'>
+                                    <Typography>Search for venture</Typography>
+                                    <VBTextField 
+                                        value={orgQuery} 
+                                        setter={setOrgQuery} 
+                                        required={false} 
+                                        label='Search'
+                                    />
+                                </Box>
+                            </Grid>
+    
+                            {/* Industry Select */}
+                            <Grid item md={4}>
+                                <Box display='flex' flexDirection='column' justifyContent='center'>
+                                    <Typography>Industry</Typography>
+                                    <VBSelect
+                                        value={industryQuery}
+                                        size='medium'
+                                        required={false}
+                                        list={industriesList}
+                                        setter={setIndustryQuery}
+                                        gutter={false}
+                                        margin={false}
+                                    />
+                                </Box>
+                            </Grid>
+    
+                            {/* Sort Select */}
+                            <Grid item md={4}>
+                                <Box display='flex' flexDirection='column' justifyContent='center'>
+                                    <Typography>Sort By</Typography>
+                                    <VBSelect
+                                        value={sortBy}
+                                        size='medium'
+                                        required={false}
+                                        list={sortList}
+                                        setter={setSortBy}
+                                        gutter={false}
+                                        margin={false}
+                                        defaultValue={true}
+                                    />
+                                </Box>
+                            </Grid>
+                        </Grid>
+    
+                        {/* Search Button */}
+                        <Box display='flex' justifyContent='end'>
+                            <Button onClick={handleSearch} variant='contained'>
+                                Search
+                            </Button>
+                        </Box>
+                    </Box>
+    
+                    {/* Results Section */}
+                    {organizationsToDisplay.length == 0 && (
+                        <Typography>No results found</Typography>
+                    )}
+                    <Grid id={searchId} container spacing={2} margin='20px 0 20px 0'>
+                        {organizationsToDisplay.map(org => (
+                            <Grid item md={4} key={org.id}>
+                                <VentureCard
+                                    name={org.name}
+                                    category={org.industries[0]}
+                                    logo={org.logo}
+                                    caption={org.tagline}
+                                    details={org.aboutUs}
+                                    action={() => openInNewTab(org)}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Container>
+            </Box>
         </>
     )
 }

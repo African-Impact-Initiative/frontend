@@ -128,7 +128,7 @@ const Home = () => {
                         </Typography>
 
                         <Box sx={{display: 'flex', justifyContent: 'flex-start', width: '100%', marginTop: '20px', alignItems: 'left'}}>
-                            <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button>
+                            {/* <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button> */} {/* Comment this button so far will implement in the future */}
                             <Link to={PathConstants.signUp}>
                                 <Button size='large' variant='contained' sx={{color: '#fff', alignItems: 'left', marginLeft: '100px', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Join now</Button>
                             </Link>

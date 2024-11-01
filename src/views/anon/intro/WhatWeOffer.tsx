@@ -57,7 +57,7 @@ const WhatWeOffer = () => {
                     </Typography>
 
                     <Box sx={{display: 'flex', justifyContent: 'center', width: '100%', alignItems: 'space-evenly', marginLeft: '30rem'}}>
-                        <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button>
+                        {/* <Button size='large' variant='outlined' sx={{color: '#000'}}>Demo</Button> */} {/* Comment it so far, after compeleting the*/}
                         <Link to={PathConstants.signUp}>
                             <Button size='large' variant='contained' sx={{color: '#fff', alignItems: 'left', marginLeft: '10px', backgroundColor: '#DC6803', '&:hover': { backgroundColor: '#E8822A'}}}>Sign up</Button>
                         </Link>
@@ -137,7 +137,7 @@ const WhatWeOffer = () => {
                                 <Typography sx={{ color: '#475467', fontSize: '16px', fontWeight: '400', lineHeight: '30px' }}>Join over 500+ startups already growing with Venture Build.</Typography>
                             </Box>
                             <Box sx={{ display: 'flex', columnGap: '16px' }}>
-                                <Button
+                                {/* <Button
                                     onClick={handleSendMessage}
                                     type='submit'
                                     variant='contained'
@@ -173,7 +173,7 @@ const WhatWeOffer = () => {
                                     }}
                                 >
                                 Join now
-                                </Button>
+                                </Button> */} {/* Comment those two buttons so far, waiting for the feature implements*/}
                             </Box>
                         </Box>
                     </Box>
