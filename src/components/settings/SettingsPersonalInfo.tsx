@@ -20,6 +20,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { EventInfo } from '@ckeditor/ckeditor5-utils'
 import { countryList } from '../../utils/countries'
+import { useFormWithHelper } from '../../hooks/form'
 
 const SettingsPersonalInfo = () => {
     const [formData] = useState({ name: '', email: '' })
@@ -29,6 +30,7 @@ const SettingsPersonalInfo = () => {
     const [, setEditorContent] = useState(
         '<p>Yeeeeh</p>'
     )
+    const [linkedin, setLinkedin, linkedinHelper, setLinkedinHelper] = useFormWithHelper('')
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFileChange = (e: any) => {
@@ -75,6 +77,21 @@ const SettingsPersonalInfo = () => {
         const content = editor.getData()
         setEditorContent(content)
         updateWordCount(content)
+    }
+
+
+    const validateLinkedIn = () => {
+        const re = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/in\/.*$/
+        if (linkedin === '') {
+            setLinkedinHelper('')
+            return true
+        } else if (!linkedin.match(re)) {
+            setLinkedinHelper('Invalid LinkedIn URL')
+            return false
+        } else {
+            setLinkedinHelper('')
+            return true
+        }
     }
 
 
@@ -450,6 +467,55 @@ const SettingsPersonalInfo = () => {
                                 <InputBase
                                     sx={{ ml: 2, flex: 1, fontSize: 16 }}
                                     placeholder='Founder'
+                                    inputProps={{ 'aria-label': 'company size' }}
+                                />
+                            </Paper>
+                        </Box>
+                    </Box>
+                </Box>
+                <Divider />
+                <Box
+                    sx={{
+                        display: 'flex',
+                        alignItems: { md: 'center', xs: 'none' },
+                        padding: { xs: '0px', md: '20px' },
+                        flexDirection: { xs: 'column', md: 'row' },
+                        marginTop: { xs: '20px', md: '0' },
+                        width: { md: '75.5%', xs: '100%' },
+                        justifyContent: { xs: 'flex-start', md: 'space-between' },
+
+                    }}
+                >
+                    <Box sx={{ textAlign: { md: 'left', xs: 'left' } }}>
+                        <Typography
+                            sx={{
+                                color: '#344054',
+                                fontWeight: '600',
+                                fontSize: '14px',
+                                lineHeight: '20px',
+                            }}
+                        >
+                            LinkedIn
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Box sx={{ marginTop: '12px', width: '100%', justifyContent: { xs: 'center', md: 'flex-center', width: '100%' } }}>
+                            <Paper
+                                component='form'
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    width: { xs: '100%', md: 512 },
+                                    height: 44,
+                                    borderRadius: 2,
+                                    boxShadow: 0,
+                                    border: '1px solid #D0D5DD',
+
+                                }}
+                            >
+                                <InputBase
+                                    sx={{ ml: 2, flex: 1, fontSize: 16 }}
+                                    placeholder='LinkedIn URL'
                                     inputProps={{ 'aria-label': 'company size' }}
                                 />
                             </Paper>

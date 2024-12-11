@@ -231,7 +231,7 @@ export const userAddToOrg = (id: Id) => {
 
 export const updatePersonalInfo = (personalInfo: UpdatePersonalInfo) => {
     return async (dispatch: AppDispatch) => {
-        await userService.updatePersonalInformation(personalInfo)
+        const response = await userService.updatePersonalInformation(personalInfo)
         dispatch(updateUserState(personalInfo))
         dispatch(setSuccessNotification('Personal information updated'))
     }

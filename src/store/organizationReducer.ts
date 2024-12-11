@@ -7,6 +7,8 @@ import { AppOrganizations, AppSetOrganizationsAction, AppDestroyOrganizationActi
 import Organization, { CompanyChallenges, CompanyFunding, CompanyStage } from '../types/organization'
 import { Id } from '../types/propertyTypes'
 import { AppDispatch } from './store'
+import { setUsers } from './usersReducer'
+import User from '../types/user'
 
 const initialState: AppOrganizations = {
     loading: true,
@@ -131,6 +133,39 @@ export const updateOrgChallenges = (id: Id, challenges: Array<CompanyChallenges>
         await organizationService.addChallenges(id, challenges)
         const organization = await organizationService.findByIdentifier(id)
         dispatch(changeOrganization(organization.data as Organization))
+    }
+}
+
+export const initializeOrganizationMembers = (organizationId: number) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const members = await organizationService.getOrganizationMembers(organizationId)
+            console.log('Fetched members:', members.data)
+            if (Array.isArray(members.data)) {
+                dispatch(setUsers(members.data)) 
+            } else {
+                dispatch(setUsers([members.data])) 
+            }
+        } catch (error) {
+            console.error('Error fetching members:', error)
+            dispatch(setErrorNotification('Error retrieving team members'))
+        }
+    }
+}
+
+
+export const updateMemberCoownerStatus = (organizationId: number, userId: number) => {
+    console.log(organizationId)
+    console.log(userId)
+    return async (dispatch: AppDispatch) => {
+        try {
+            await organizationService.updateMemberCoownerStatus(organizationId, userId)
+            await dispatch(initializeOrganizationMembers(organizationId))
+            dispatch(setSuccessNotification('Co-admin status updated successfully'))
+        } catch (error) {
+            console.error('Error updating coowner status:', error)
+            dispatch(setErrorNotification('Failed to update co-admin status'))
+        }
     }
 }
 

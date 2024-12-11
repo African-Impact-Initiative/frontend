@@ -63,6 +63,9 @@ const DevelopmentStage = () => {
 
     const handleStage = async (dispatch: AppDispatch, val: CompanyStage) => {
         try {
+            console.log(val)
+            console.log(searchParams.get(orgSearchParam))
+            console.log(`${PathConstants.developmentChallenges}?${orgSearchParam}=${searchParams.get(orgSearchParam)}`)
             await dispatch(updateOrgStage(searchParams.get(orgSearchParam) as Id, val))
             navigate(`${PathConstants.developmentChallenges}?${orgSearchParam}=${searchParams.get(orgSearchParam)}`)
             dispatch(setSuccessNotification('Organization stage set'))

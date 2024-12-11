@@ -11,6 +11,15 @@ const apiRoutes: { [key: string]: { [key:string]: string } } = {
         terms: 'onboarding/terms/',
         personalInfo: 'onboarding/personal-info/',
         addOrganization: 'onboarding/add-organization/',
+        teamStatus: 'users/team-status/', // Added for new team status endpoint 
+        userDetail: ':id/', // Added for UserViewUpdateDeleteAPIView
+        // Add invitation routes
+        invitations: 'invitations/',
+        processInvitation: 'invitations/process/:token/',
+        acceptInvitation: 'invitations/:id/accept/',
+        declineInvitation: 'invitations/:id/decline/',
+        withdrawInvitation: 'invitations/:id/withdraw/',
+        resendInvitation: 'invitations/:id/resend/',
     },
     organizationOperations: {
         baseUrl: 'organizations/',
@@ -18,6 +27,10 @@ const apiRoutes: { [key: string]: { [key:string]: string } } = {
         challengeUrl: 'challenges/',
         fundingUrl: 'funding/',
         findById: 'identifier/',
+        uploadLogo: 'upload-logo/', // Added for logo upload
+        organizationMembers: 'members/:organizationId/', 
+        updateMember: 'members/:organizationId/user/:userId/', // Added for member updates
+        updateMemberCoowner: 'members/:organizationId/user/:userId/coowner/'
     },
     authorizationOperations: {
         baseUrl: 'auth/',

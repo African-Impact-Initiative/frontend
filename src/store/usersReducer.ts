@@ -49,4 +49,5 @@ export const updateUser = (data: User) => {
     }
 }
 
+
 export default userSlice.reducer

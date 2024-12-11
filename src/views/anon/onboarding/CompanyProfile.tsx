@@ -6,9 +6,10 @@ import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import InputAdornment from '@mui/material/InputAdornment'
 import Typography from '@mui/material/Typography'
-
+import MenuItem from '@mui/material/MenuItem'
+import TextField from '@mui/material/TextField'
 import { MuiFileInput } from 'mui-file-input'
-
+import { countryList } from '../../../utils/countries'
 import { setErrorNotification, setSuccessNotification } from '../../../store/notificationReducer'
 import { createOrganization } from '../../../store/organizationReducer'
 import { industriesList } from '../../../utils/industries'
@@ -20,6 +21,7 @@ import { emptyOrganization } from '../../../types/organization'
 import { VBSelect, VBTextField } from '../../../components/VBForms'
 import VBLeftSidebarWithView from '../../../components/VBLeftSideBarWithView'
 import { companyProfile, orgSearchParam, userOnboardingOutline } from './utils'
+import organizationService from '../../../api/organizationService'
 
 const CompanyProfile = () => {
     const navigate = useNavigate()
@@ -35,6 +37,7 @@ const CompanyProfile = () => {
     const [industry, setIndustry] = useForm('')
     const [tagline, setTagline] = useForm('')
     const [file, setFile] = useForm<File | null>(null)
+    const [location, setLocation] = useForm('')
 
     const updateFile = (newFile: File | null) => {
         setFile(newFile)
@@ -46,6 +49,30 @@ const CompanyProfile = () => {
             if (!url)
                 identifier = companyName.toLowerCase().replace(' ', '-')
 
+            if (!companyName || !identifier || !industry || !location) {
+                dispatch(setErrorNotification('Please fill in all required fields (Company Name, URL Identifier, Location, Industry)'))
+                return
+            }
+            const existingOrgs = await organizationService.getAll()
+            if (existingOrgs.data) {
+                const isDuplicateName = existingOrgs.data.some(
+                    org => org.name.toLowerCase() === companyName.toLowerCase()
+                )
+                const isDuplicateIdentifier = existingOrgs.data.some(
+                    org => org.identifier.toLowerCase() === identifier.toLowerCase()
+                )
+
+                if (isDuplicateName) {
+                    dispatch(setErrorNotification('A company with this name already exists. Please choose a different name.'))
+                    return
+                }
+
+                if (isDuplicateIdentifier) {
+                    dispatch(setErrorNotification('This URL identifier is already taken. Please choose a different one.'))
+                    return
+                }
+            }
+
             const org = {...emptyOrganization}
             org.identifier = identifier
             org.name = companyName
@@ -56,7 +83,7 @@ const CompanyProfile = () => {
             org.facebook = `https://www.facebook.com/${facebook}`
             org.industry = industry
             org.tagline = tagline
-
+            org.location = location
             await dispatch(createOrganization(org))
             navigate(`${PathConstants.developmentStage}?${orgSearchParam}=${identifier}`)
         } catch {
@@ -83,7 +110,7 @@ const CompanyProfile = () => {
                 Update your company photo and details here.
             </Typography>
             <Divider light sx={{marginBottom: '20px', marginTop: '10px'}}/>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType='multipart/form-data' noValidate>
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography variant='h6' gutterBottom>Company Information</Typography>
@@ -107,6 +134,7 @@ const CompanyProfile = () => {
                             required={false}
                         />
                     </Grid>
+                    
                     <Grid item xs={12}>
                         <VBTextField
                             size='small'
@@ -114,18 +142,41 @@ const CompanyProfile = () => {
                             value={url}
                             helper='This will be the URL others see when viewing your company page, by default company name is used'
                             InputProps={{
-                                startAdornment: <InputAdornment position='start'>venturebuild.com/profile/</InputAdornment>,
+                                startAdornment: <InputAdornment position='start'></InputAdornment>,
                             }}
                             setter={setUrl}
                             required={false}
                         />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Divider light sx={{marginBottom: '10px'}}/>
+                        <Typography variant='h6' gutterBottom>Location</Typography>
+                            <TextField
+                                select
+                                fullWidth
+                                size='small'
+                                label='Location'
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
+                                required={false}
+                                placeholder='Select company location'
+                            >
+                                <MenuItem value=''>
+                                    <em>Select a country</em>
+                                </MenuItem>
+                                {countryList.map((country) => (
+                                    <MenuItem key={country.value} value={country.value}>
+                                        {country.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                     </Grid>
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
                         <Typography variant='h6' gutterBottom>Industry</Typography>
                         <VBSelect
                             value={industry}
-                            label='Industry'
                             size='small'
                             required={false}
                             list={industriesList}

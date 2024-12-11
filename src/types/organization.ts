@@ -1,3 +1,4 @@
+import { industriesList } from '../utils/industries'
 import { Id } from './propertyTypes'
 import User from './user'
 
@@ -17,6 +18,7 @@ type Organization = {
     logo: string | null,
     identifier: string,
     industries: Array<string>,
+    industry: string | null,
     linkedin: string | null,
     twitter: string | null,
     facebook: string | null,

@@ -61,6 +61,10 @@ const DevelopmentChallenges = () => {
 
     const handleChallenges = async (dispatch: AppDispatch) => {
         try {
+            if (formats.length < maxFormatsLen) {
+                dispatch(setErrorNotification('Please select exactly 3 options below!!'))
+                return
+            }
             if (formats.length)
                 await dispatch(updateOrgChallenges(searchParams.get(orgSearchParam) as Id, formats))
             navigate(`${PathConstants.developmentFundraising}?${orgSearchParam}=${searchParams.get(orgSearchParam)}`)
