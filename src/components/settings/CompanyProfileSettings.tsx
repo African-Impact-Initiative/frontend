@@ -17,19 +17,19 @@ const CompanyProfileSettings = () => {
     const org = useAppSelector((state) => state.userOrganization)
 
     const [companyName, setCompanyName] = useState('')
-    const [identifier, setIdentifier] = useState('')
+    const [website, setWebsite] = useState('')
 
     useEffect(() => {
         if (org.data) {
             setCompanyName(org.data.name || '')
-            setIdentifier(org.data.identifier || '')
+            setWebsite(org.data.website || '')
         }
     }, [org])
 
     const handleSubmit = () => {
         const updateOrg = {
             name: companyName,
-            identifier
+            website
         }
         if (org.data && org.data.id) 
             dispatch(updateOrganization(org.data.id, updateOrg as Organization))
@@ -134,7 +134,8 @@ const CompanyProfileSettings = () => {
                                 fontWeight: '600',
                                 fontSize: '14px',
                                 lineHeight: '20px',
-                                textAlign: 'left'
+                                textAlign: 'left',
+                                mb: 1
                             }}
                         >
                             Company name
@@ -144,10 +145,34 @@ const CompanyProfileSettings = () => {
                                 color: '#475467',
                                 fontWeight: '400',
                                 fontSize: '14px',
-                                lineHeight: '20px'
+                                lineHeight: '20px',
+                                mb: 3
                             }}
                         >
                             Choose a name for your company.
+                        </Typography>
+                        <Typography
+                            sx={{
+                                color: '#344054',
+                                fontWeight: '600',
+                                fontSize: '14px',
+                                lineHeight: '20px',
+                                textAlign: 'left',
+                                mb: 1
+                            }}
+                        >
+                            Company website
+                        </Typography>
+                        <Typography
+                            sx={{
+                                color: '#475467',
+                                fontWeight: '400',
+                                fontSize: '14px',
+                                lineHeight: '20px',
+                                mb: 3
+                            }}
+                        >
+                            Enter your company's website URL.
                         </Typography>
                     </Box>
                     <Box
@@ -159,9 +184,9 @@ const CompanyProfileSettings = () => {
                                 display: 'flex',
                                 rowGap: '20px',
                                 flexDirection: { xs: 'column', md: 'column' },
-
                             }}
                         >
+                            
                             <Paper
                                 component='form'
                                 sx={{
@@ -171,7 +196,8 @@ const CompanyProfileSettings = () => {
                                     height: 44,
                                     borderRadius: 2,
                                     boxShadow: 0,
-                                    border: '1px solid #D0D5DD'
+                                    border: '1px solid #D0D5DD',
+                                    mb: 3
                                 }}
                             >
                                 <InputBase
@@ -181,6 +207,7 @@ const CompanyProfileSettings = () => {
                                     onChange={(e) => setCompanyName(e.target.value)}
                                 />
                             </Paper>
+                            
                             <Paper
                                 component='form'
                                 sx={{
@@ -196,11 +223,11 @@ const CompanyProfileSettings = () => {
                                 {/* <IconButton sx={{ p: '10px' }} aria-label="menu">
                                     <HelpOutlineOutlined sx={{ color: '#98A2B3' }} />
                                 </IconButton> */}
-                                <Typography
+                                {/* <Typography
                                     sx={{
                                         padding: '10px',
                                         color: '#667085',
-                                        fontSize: '16px'
+                                        fontSize: '16px',
                                     }}
                                 >
                                    Venturebuild.com/profile/
@@ -208,12 +235,11 @@ const CompanyProfileSettings = () => {
                                 <Divider
                                     sx={{ ml: 2, height: 45, m: 0.5 }}
                                     orientation='vertical'
-                                />
+                                /> */}
                                 <InputBase
-                                    sx={{ flex: 1, fontSize: 16, ml: 1, color: '#667085' }}
-                                    placeholder={identifier}
-                                    inputProps={{ 'aria-label': 'company size' }}
-                                    onChange={(e) => setIdentifier(e.target.value)}
+                                    sx={{ ml: 2, flex: 1, fontSize: 16 }}
+                                    placeholder={website}
+                                    onChange={(e) => setWebsite(e.target.value)}
                                 />
                             </Paper>
                         </Box>

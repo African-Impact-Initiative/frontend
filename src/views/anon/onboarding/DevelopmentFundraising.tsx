@@ -42,6 +42,10 @@ const DevelopmentFundraising = () => {
 
     const handleFunding = async (dispatch: AppDispatch) => {
         try {
+            if (!value) {
+                dispatch(setErrorNotification('Please select exactly one option!!!'))
+                return
+            }
             await dispatch(updateOrgFunding(searchParams.get(orgSearchParam) as Id, value))
             navigate(PathConstants.home)
             dispatch(setSuccessNotification('Organization funding set'))

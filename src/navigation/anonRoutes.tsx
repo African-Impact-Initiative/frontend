@@ -10,6 +10,8 @@ import PathConstants from './pathConstants'
 import { BasicRoute, Route } from './types/route'
 import VentureDirectory from '../views/anon/intro/VentureDirectory'
 import PublicProfilePage from '../views/anon/intro/PublicProfilePage'
+import Privacy from '../views/anon/intro/Privacy'
+import JoinOrganization from '../views/auth/JoinOrganization'
 
 export const anonRoutes: Array<Route> = [
     {
@@ -58,6 +60,17 @@ export const anonRoutes: Array<Route> = [
         component: ComposeAnonLayout(<WhatWeOffer />)(),
 
     },
+    {
+        title: 'Privacy',
+        path: PathConstants.privacy,
+        component: ComposeAnonLayout(<Privacy />)(),
+
+    },
+    {
+        title: 'Join Organization',
+        path: PathConstants.joinOrganization,
+        component: ComposeAnonLayout(<JoinOrganization />)(),
+    },
 ]
 
 export const noUserPages: Array<BasicRoute> = [
@@ -76,6 +89,10 @@ export const noUserPages: Array<BasicRoute> = [
     {
         title: 'Connect',
         path: PathConstants.contactUs
+    },
+    {
+        title: 'Join Organization',
+        path: PathConstants.joinOrganization,
     },
 ]
 

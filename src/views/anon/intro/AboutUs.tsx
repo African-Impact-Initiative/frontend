@@ -63,7 +63,7 @@ const AboutUs = () => {
                     <Typography sx={{ fontSize: {md: '20px', xs: '12px'}, fontWeight: '400', lineHeight: {md: '30px', xs: '15px'}, color: '#EAECF0' }}>Our platform enables African youth on the continent and in Canada, <br/> to actively get involved in changing our narrative.</Typography>
                 </Box>
                 <Box sx={{ marginTop: '44px' }}>
-                    <Button
+                    {/* <Button
                         onClick={handleSendMessage}
                         type='submit'
                         variant='contained'
@@ -80,7 +80,7 @@ const AboutUs = () => {
                         }}
                     >
                         Connect with us
-                    </Button>
+                    </Button> */} {/* Comment this button so far, waiting for the feature implements*/}
                 </Box>
 
             </Box>
@@ -304,7 +304,7 @@ const AboutUs = () => {
                             <Typography sx={{ color: '#475467', fontSize: '16px', fontWeight: '400', lineHeight: '30px' }}>Join over 500+ startups already growing with Venture Build.</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', columnGap: '16px' }}>
-                            <Button
+                            {/* <Button
                                 onClick={handleSendMessage}
                                 type='submit'
                                 variant='contained'
@@ -340,7 +340,7 @@ const AboutUs = () => {
                                 }}
                             >
                                 Join now
-                            </Button>
+                            </Button> */} {/* Comment those two buttons so far, waiting for the feature implements*/}
                         </Box>
                     </Box>
                 </Box>

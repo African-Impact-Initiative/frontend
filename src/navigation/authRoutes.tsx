@@ -26,12 +26,14 @@ import TaskDetails from '../views/auth/TaskDetails'
 import Settings from '../views/auth/Settings'
 import TaskPage from '../views/auth/TaskPage'
 import TeamPage from '../views/auth/TeamPage'
+import TestTeamPage from '../views/auth/TestTeam'
 import SupportPage from '../views/auth/SupportPage'
 import ComposeAuthLayout from './hoc/ComposeAuthLayout'
 import ComposeAuthWithNavBarLayout from './hoc/ComposeAuthWithNavBarLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute } from './types/route'
 import FundingOpportunitiesPage from '../views/auth/FundingOpportunitiesPage'
+import JoinOrganization from '../views/auth/JoinOrganization'
 
 // renders Component without any wrapper
 export const authRoutes = [
@@ -99,6 +101,12 @@ export const authRoutes = [
         title: 'Team Page',
         path: PathConstants.teamPage,
         Component: ComposeAuthLayout(TeamPage),
+        exact: true,
+    },
+    {
+        title: 'Test Team Page',
+        path: PathConstants.testteamPage,
+        Component: ComposeAuthLayout(TestTeamPage),
         exact: true,
     },
     {

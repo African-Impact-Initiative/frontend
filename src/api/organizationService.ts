@@ -66,6 +66,22 @@ const findByIdentifier = async (id: Id): Promise<ServiceResponse<Organization>> 
     return await organizationService.request<Organization>(METHODS.get, undefined, `${apiRoutes.organizationOperations.findById}${id}/`)
 }
 
+const getOrganizationMembers = async (organizationId: number): Promise<ServiceResponse<Array<Organization>>> => {
+    const url = apiRoutes.organizationOperations.organizationMembers.replace(':organizationId', organizationId.toString())
+    return await organizationService.request<Array<Organization>>(METHODS.get, undefined, url)
+}
+
+const updateMemberCoownerStatus = async (organizationId: number, userId: number): Promise<ServiceResponse<any>> => {
+    const url = apiRoutes.organizationOperations.updateMemberCoowner
+        .replace(':organizationId', organizationId.toString())
+        .replace(':userId', userId.toString());
+    return await organizationService.request(METHODS.put, {}, url);
+}
+
+const getAll = async (): Promise<ServiceResponse<Organization>> => {
+    return await organizationService.requestWith<Organization, Empty>(METHODS.get, {}, '');
+}
+
 export default {
     retrieve,
     retrieveSingle,
@@ -76,5 +92,8 @@ export default {
     addStage,
     addChallenges,
     addFunding,
-    findByIdentifier
+    getOrganizationMembers,
+    findByIdentifier,
+    updateMemberCoownerStatus,
+    getAll
 }

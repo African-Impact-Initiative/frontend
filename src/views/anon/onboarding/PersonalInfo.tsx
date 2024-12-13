@@ -53,6 +53,15 @@ const PersonalInfo = () => {
 
     const actualSubmit = async (dispatch: AppDispatch) => {
         try {
+            // Validate required fields
+            if (!role || !country) {
+                dispatch(setErrorNotification('Please fill in all required fields (Role and Country)'))
+                return
+            }
+            if (linkedin && !validateLinkedIn()) {
+                dispatch(setErrorNotification('Please fix LinkedIn URL format'))
+                return
+            }
             const data = {
                 firstName: firstName,
                 lastName: lastName,
@@ -61,12 +70,10 @@ const PersonalInfo = () => {
                 bio: bio,
                 country: country,
             }
+            console.log(data)
 
-            if(validateLinkedIn()) {
-                await dispatch(updatePersonalInfo(data))
-                navigate(PathConstants.onboarding)
-            } else
-                dispatch(setErrorNotification('Please fix all form errors before submission'))
+            await dispatch(updatePersonalInfo(data))
+            navigate(PathConstants.onboarding)
 
         } catch {
             dispatch(setErrorNotification('Error updating personal information'))
@@ -92,7 +99,7 @@ const PersonalInfo = () => {
                 Provide your personal details here.
             </Typography>
             <Divider light sx={{marginBottom: '20px', marginTop: '10px'}}/>
-            <form onSubmit={handleSubmit} encType='multipart/form-data'>
+            <form onSubmit={handleSubmit} encType='multipart/form-data' noValidate>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
                         <Typography variant='h6' gutterBottom>First Name</Typography>
@@ -171,7 +178,7 @@ const PersonalInfo = () => {
                     </Grid>
                     <Grid item xs={12}>
                         <Divider light sx={{marginBottom: '10px'}}/>
-                        <Typography variant='h6' gutterBottom>Country</Typography>
+                        
                         <VBSelect
                             value={country}
                             label='Country'
