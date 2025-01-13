@@ -111,11 +111,8 @@ const Signup = () => {
                         })
                     }
                     if (error.response.data.password){
-                        error.response.data.password.forEach((item: string) => {
-                            dispatch(setErrorNotification(item))
-                        })
+                        dispatch(setErrorNotification('This password is too weak. Please use a mix of characters, letters and numbers.'))
                     }
-                    console.log(error.response.data.email[0])
                 } else {
                     dispatch(setErrorNotification('Error occurred please try again later'))
                 }
