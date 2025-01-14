@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import GoogleIcon from '@mui/icons-material/Google'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
@@ -102,8 +103,19 @@ const Signup = () => {
 
                 await dispatch(createUser(user))
                 navigate(PathConstants.signUpVerification, {state: {email: email}})
-            } catch {
-                dispatch(setErrorNotification('Error creating account, please try again later!'))
+            } catch (error) {
+                if (axios.isAxiosError(error) && error.response) {
+                    if (error.response.data.email){
+                        error.response.data.email.forEach((item: string) => {
+                            dispatch(setErrorNotification(item))
+                        })
+                    }
+                    if (error.response.data.password){
+                        dispatch(setErrorNotification('This password is too weak. Please use a mix of characters, letters and numbers.'))
+                    }
+                } else {
+                    dispatch(setErrorNotification('Error occurred please try again later'))
+                }
             }
         } else
             await dispatch(setErrorNotification('Please fix all form errors before submission'))
