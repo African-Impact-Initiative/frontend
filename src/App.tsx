@@ -37,16 +37,13 @@ const App = () => {
     }, [user, organizations])
 
     return (
-        <div>
-            <h1>Hello, World!</h1>
-        </div>
-        // <ThemeProvider theme={theme}>
-        //     <CssBaseline />
-        //     <SuccessNotification />
-        //     <ErrorNotification />
-        //     <InfoNotification />
-        //     {loading ? <VBLoading /> : <Router />}
-        // </ThemeProvider>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <SuccessNotification />
+            <ErrorNotification />
+            <InfoNotification />
+            {loading ? <VBLoading /> : <Router />}
+        </ThemeProvider>
     )
 }
 
