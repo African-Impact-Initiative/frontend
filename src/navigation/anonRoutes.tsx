@@ -90,10 +90,6 @@ export const noUserPages: Array<BasicRoute> = [
         title: 'Connect',
         path: PathConstants.contactUs
     },
-    {
-        title: 'Join Organization',
-        path: PathConstants.joinOrganization,
-    },
 ]
 
 export const noUserFooterPages: Array<BasicRoute> = [

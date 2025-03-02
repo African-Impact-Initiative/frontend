@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react';
 import { Box } from '@mui/system'
 import avatar from '../../assets/avatar.png'
 import dataprime from '../../assets/dataprime.png'
@@ -10,69 +10,89 @@ import { useNavigate } from 'react-router'
 import VBCalendar from '../../components/VBCalender'
 import VBPageHeader from '../../components/VBPageHeader'
 import VBEventTime from '../../components/VBEventTime'
-import DashboardTable from '../../components/dashboard/DashboardTable'
-import PathConstants from '../../navigation/pathConstants'
-import { useAppSelector } from '../../hooks/redux'
+import PathConstants from '../../navigation/pathConstants';
+import { useAppSelector, useAppDispatch } from '../../hooks/redux';
+import organizationService from '../../api/organizationService';
+import PendingApprovalBanner from '../../UI/PendingTeam';
+import PendingInvitationModal from './PendingInvitationModal';
+import { InvitationResponse } from '../../types/invitation';
+import userService from '../../api/userService';
+import { setSuccessNotification, setErrorNotification } from '../../store/notificationReducer';
 
-const headers = ['TaskName', 'Team', 'Progress', 'DueDate']
-const dataKeyAccessors = ['taskName', 'team', 'progress', 'dueDate']
-const data = [
-    {
-        id: 1,
-        taskName: 'Define MVP scope',
-        team: 'Product',
-        progress: '2/5',
-        dueDate: 'Wed, Jun 12',
-        teamType: 'product',
-    },
-    {
-        id: 2,
-        taskName: 'Implement SEO strategies',
-        team: 'Marketing',
-        progress: '1/3',
-        dueDate: 'Wed, Jun 12',
-        teamType: 'marketing',
-    },
-    {
-        id: 3,
-        taskName: 'Create non-disclosure agreements',
-        team: 'Legal',
-        progress: '4/6',
-        dueDate: 'Thur, Jun 13',
-        teamType: 'legal',
-    },
-    {
-        id: 4,
-        taskName: 'Set up social media profiles',
-        team: 'Finance',
-        progress: '1/2',
-        dueDate: 'Thur, Jun 13',
-        teamType: 'finance',
-    },
-    {
-        id: 5,
-        taskName: 'Establish contingency plans',
-        team: 'Management',
-        progress: '3/5',
-        dueDate: 'Fri, Jun 13',
-        teamType: 'management',
-    },
-    {
-        id: 6,
-        taskName: 'Develop an employee handbook',
-        team: 'Operations',
-        progress: '2/7',
-        dueDate: 'Mon, Jun 17',
-        teamType: 'operations',
-    },
-]
+// const headers = ['TaskName', 'Team', 'Progress', 'DueDate']
+// const dataKeyAccessors = ['taskName', 'team', 'progress', 'dueDate']
+// const data = [
+//     {
+//         id: 1,
+//         taskName: 'Define MVP scope',
+//         team: 'Product',
+//         progress: '2/5',
+//         dueDate: 'Wed, Jun 12',
+//         teamType: 'product',
+//     },
+//     {
+//         id: 2,
+//         taskName: 'Implement SEO strategies',
+//         team: 'Marketing',
+//         progress: '1/3',
+//         dueDate: 'Wed, Jun 12',
+//         teamType: 'marketing',
+//     },
+//     {
+//         id: 3,
+//         taskName: 'Create non-disclosure agreements',
+//         team: 'Legal',
+//         progress: '4/6',
+//         dueDate: 'Thur, Jun 13',
+//         teamType: 'legal',
+//     },
+//     {
+//         id: 4,
+//         taskName: 'Set up social media profiles',
+//         team: 'Finance',
+//         progress: '1/2',
+//         dueDate: 'Thur, Jun 13',
+//         teamType: 'finance',
+//     },
+//     {
+//         id: 5,
+//         taskName: 'Establish contingency plans',
+//         team: 'Management',
+//         progress: '3/5',
+//         dueDate: 'Fri, Jun 13',
+//         teamType: 'management',
+//     },
+//     {
+//         id: 6,
+//         taskName: 'Develop an employee handbook',
+//         team: 'Operations',
+//         progress: '2/7',
+//         dueDate: 'Mon, Jun 17',
+//         teamType: 'operations',
+//     },
+// ]
+
+
+interface JoinRequest {
+    id: number;
+    organization: number;
+    status: 'pending' | 'accepted' | 'declined';
+}
+
 
 const Dashboard = () => {
-    const [, setStatus] = useState('')
+    const [status, setStatus] = useState('');
 
     const navigate = useNavigate()
+    const dispatch = useAppDispatch();
 
     const org = useAppSelector((state) => state.userOrganization)
+    // We'll fetch the current join request to see if it's pending
+    const [joinRequest, setJoinRequest] = useState<JoinRequest | null>(null);
+    const [loadingJoinRequest, setLoadingJoinRequest] = useState(true);
+    const [requestedOrgName, setRequestedOrgName] = useState<string | null>(null);
+    const [pendingInvitation, setPendingInvitation] = useState<InvitationResponse | null>(null);
+    const [showInvitation, setShowInvitation] = useState(false);
 
     const filters = [
         { label: 'English', value: 'English' },
@@ -82,46 +102,46 @@ const Dashboard = () => {
         { label: 'Art', value: 'Art' },
     ]
 
-    const members = [
-        {
-            id: 1,
-            url: avatar,
-            name: 'Mary Black',
-            activity: 'Mentioned You',
-            activityDetail:
-                'I don\'t really know if we should proceed with this idea, what do you think?',
-            activityType: 'text',
-        },
-        {
-            id: 2,
-            url: avatar,
-            name: 'Uche',
-            activity: 'Purchased SEO Masterclass',
-            activityType: 'pdf',
-        },
-        {
-            id: 3,
-            url: avatar,
-            name: 'Mary Black',
-            activity:
-                'I don\'t really know if we should proceed with this idea, what do you think?',
-            activityType: 'pdf',
-        },
-        {
-            id: 4,
-            url: avatar,
-            name: 'Uche',
-            activity: 'Purchased SEO Masterclass',
-            activityType: 'pdf',
-        },
-        {
-            id: 5,
-            url: avatar,
-            name: 'Mary Black',
-            activity:
-                'I don\'t really know if we should proceed with this idea, what do you think?',
-            activityType: 'pdf',
-        },
+    // const members = [
+    //     {
+    //         id: 1,
+    //         url: avatar,
+    //         name: 'Mary Black',
+    //         activity: 'Mentioned You',
+    //         activityDetail:
+    //             'I don\'t really know if we should proceed with this idea, what do you think?',
+    //         activityType: 'text',
+    //     },
+    //     {
+    //         id: 2,
+    //         url: avatar,
+    //         name: 'Uche',
+    //         activity: 'Purchased SEO Masterclass',
+    //         activityType: 'pdf',
+    //     },
+    //     {
+    //         id: 3,
+    //         url: avatar,
+    //         name: 'Mary Black',
+    //         activity:
+    //             'I don\'t really know if we should proceed with this idea, what do you think?',
+    //         activityType: 'pdf',
+    //     },
+    //     {
+    //         id: 4,
+    //         url: avatar,
+    //         name: 'Uche',
+    //         activity: 'Purchased SEO Masterclass',
+    //         activityType: 'pdf',
+    //     },
+    //     {
+    //         id: 5,
+    //         url: avatar,
+    //         name: 'Mary Black',
+    //         activity:
+    //             'I don\'t really know if we should proceed with this idea, what do you think?',
+    //         activityType: 'pdf',
+    //     },
         // {
         //     id: 6,
         //     url: avatar,
@@ -144,7 +164,110 @@ const Dashboard = () => {
         //     activity: 'Purchased SEO Masterclass',
         //     activityType: 'pdf',
         // },
-    ]
+    // ]
+    // Fetch the current user's join request on mount
+    useEffect(() => {
+        organizationService
+        .getCurrentUserJoinRequest()
+        .then((res) => {
+            console.log(res)
+            if (res.success && res.data) {
+            setJoinRequest(res.data);
+            }
+        })
+        .catch(() => {
+            dispatch(setErrorNotification('Failed to fetch join request'));
+        })
+        .finally(() => {
+            setLoadingJoinRequest(false);
+        });
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (joinRequest && joinRequest.status === 'pending') {
+            console.log(joinRequest.organization);
+            // Suppose you have a service method e.g. `retrieveSingle(orgId)` that fetches org details
+            organizationService
+                .getAll()
+                .then((resp) => {
+                    console.log(resp);
+                    console.log(resp.data);
+                    if (resp.success && Array.isArray(resp.data)) {
+                        const foundOrg = resp.data.find((org) => org.id === joinRequest.organization);
+                        if (foundOrg) {
+                            console.log(foundOrg.name);
+                            setRequestedOrgName(foundOrg.name || 'Unknown Organization');
+                        } else {
+                            setRequestedOrgName('Unknown Organization');
+                        }
+                    } else {
+                        setRequestedOrgName('Unknown Organization');
+                    }
+                })
+                .catch(() => {
+                    // Just fallback if something goes wrong
+                    setRequestedOrgName('Unknown Organization');
+                });
+        }
+    }, [joinRequest]);
+
+    const checkPendingInvitations = async () => {
+        try {
+            const response = await userService.getInvitations();
+            if (response.success && response.data?.length > 0) {
+                const pending = response.data.find(inv => inv.status === 'pending');
+                console.log(pending)
+                if (pending) {
+                    setPendingInvitation(pending);
+                    setShowInvitation(true);
+                }
+            }
+        } catch (error) {
+            console.error('Error checking invitations:', error);
+        }
+    };
+
+    const handleAcceptInvitation = async () => {
+        if (!pendingInvitation) return;
+        
+        try {
+            const response = await userService.acceptInvitation(pendingInvitation.id);
+            if (response.success) {
+                dispatch(setSuccessNotification('Invitation accepted successfully'));
+                setShowInvitation(false);
+                window.location.reload();
+            }
+        } catch (error) {
+            dispatch(setErrorNotification('Failed to accept invitation'));
+        }
+    };
+
+    const handleDenyInvitation = async () => {
+        if (!pendingInvitation) return;
+        
+        try {
+            const response = await userService.declineInvitation(pendingInvitation.id);
+            if (response.success) {
+                dispatch(setSuccessNotification('Invitation declined'));
+                setShowInvitation(false);
+            }
+        } catch (error) {
+            dispatch(setErrorNotification('Failed to decline invitation'));
+        }
+    };
+
+    useEffect(() => {
+        if (!org.data) {
+            checkPendingInvitations();
+        }
+    }, [org.data]);
+    
+
+    // If still loading, show a basic placeholder (optional)
+    if (loadingJoinRequest) {
+        return <Typography>Loading...</Typography>;
+    }
+    console.log(joinRequest?.status == "pending")
 
     return (
         <Box sx={{ padding: '20px', width: '100%' }}>
@@ -153,6 +276,60 @@ const Dashboard = () => {
                 subTitle='Monitor recent activities and key metrics of your company here.'
                 noHr={false}
             />
+            {/**
+             * 1) If user has NO organization => show the "Join or create company" banner
+             */}
+            {!org.data && joinRequest?.status !== 'pending' && (
+                <Box
+                sx={{
+                    backgroundColor: '#FFF4E6',
+                    border: '1px solid #FAD4A6',
+                    borderRadius: '8px',
+                    padding: '16px',
+                    mt: 2,
+                    mb: 2, // add spacing below if you want
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}
+                >
+                <Typography sx={{ fontSize: '16px', color: '#344054' }}>
+                    <span style={{ color: '#DC6803', marginRight: 8 }}>!</span>
+                    <strong>Join or create a company</strong> to access dashboard features
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 2 }}>
+                    <Button
+                    variant="text"
+                    sx={{
+                        color: '#DC6803',
+                        fontWeight: 600,
+                        textTransform: 'none',
+                    }}
+                    onClick={() => navigate(PathConstants.jointeamPage)}
+                    >
+                    Join a company
+                    </Button>
+                    <Button
+                    variant="contained"
+                    sx={{
+                        backgroundColor: '#DC6803',
+                        textTransform: 'none',
+                        fontWeight: 600,
+                        '&:hover': { backgroundColor: '#E8822A' },
+                    }}
+                    onClick={() => navigate(PathConstants.companyCreatePage)}
+                    >
+                    Create a company
+                    </Button>
+                </Box>
+                </Box>
+            )}
+
+            
+
+            {!org.data && joinRequest?.status === 'pending' && (
+                <PendingApprovalBanner organizationName={requestedOrgName || 'Loading...'} />
+            )}
             <Box
                 sx={{
                     width: '100%',
@@ -223,7 +400,7 @@ const Dashboard = () => {
                                             display: 'flex',
                                         }}
                                     >
-                                        <img src={org.data?.logo || dataprime} style={{height: '30px', width: '30px'}} />
+                                        {/* <img src={org.data?.logo || dataprime} style={{height: '30px', width: '30px'}} /> */}
                                     </Box>
                                     <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'start' }}>
                                         <Typography
@@ -295,7 +472,6 @@ const Dashboard = () => {
                             <Box
                                 sx={{
                                     padding: '18px',
-
                                 }}
                             >
                                 <Box
@@ -322,7 +498,6 @@ const Dashboard = () => {
                                         marginTop: '20px',
                                         alignItems: 'center',
                                         justifyContent: 'space-between',
-
                                     }}
                                 >
                                     <Box
@@ -330,45 +505,56 @@ const Dashboard = () => {
                                             fontSize: '36px',
                                             fontWeight: '600',
                                             lineHeight: '44px',
-                                            letterSpacing: '-2%'
+                                            letterSpacing: '-2%',
                                         }}
                                     >
-                                        32
+                                        {org.data?.userSet?.length || 0} {/* Dynamically display the member count */}
                                     </Box>
                                     <Box sx={{ display: 'flex', justifyContent: { xs: 'center' } }}>
                                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            {members.map((member) => (
-                                                <Box key={member.id} sx={{ flexDirection: 'row' }}>
+                                            {/* Dynamically render the member avatars */}
+                                            {org.data?.userSet?.slice(0, 5).map((user, index) => (
+                                                <Box key={user.id || index} sx={{ flexDirection: 'row' }}>
                                                     <Box
                                                         sx={{
                                                             width: '32px',
                                                             height: '32px',
                                                             marginLeft: { md: '-10px', xs: '-20px' },
                                                             cursor: 'pointer',
-
                                                         }}
                                                     >
-                                                        <img src={member.url} alt='images' style={{ width: '40px', height: '40px', borderRadius: '20px', border: '1.5px solid #ffffff' }} />
+                                                        <img
+                                                            src={user.photo || avatar}
+                                                            alt={user.firstName || 'Member'}
+                                                            style={{
+                                                                width: '40px',
+                                                                height: '40px',
+                                                                borderRadius: '20px',
+                                                                border: '1.5px solid #ffffff',
+                                                            }}
+                                                        />
                                                     </Box>
                                                 </Box>
                                             ))}
-                                            <Box
-                                                sx={{
-                                                    backgroundColor: '#EAECF0',
-                                                    border: '1px solid ##EAECF0',
-                                                    lineHeight: '24px',
-                                                    borderRadius: '20px',
-                                                    width: '40px',
-                                                    height: '40px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    marginLeft: '-18px',
-                                                    marginBottom: '-10px'
-                                                }}
-                                            >
-                                                +27
-                                            </Box>
+                                            {org.data?.userSet?.length > 5 && (
+                                                <Box
+                                                    sx={{
+                                                        backgroundColor: '#EAECF0',
+                                                        border: '1px solid #EAECF0',
+                                                        lineHeight: '24px',
+                                                        borderRadius: '20px',
+                                                        width: '40px',
+                                                        height: '40px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        marginLeft: '-18px',
+                                                        marginBottom: '-10px',
+                                                    }}
+                                                >
+                                                    +{org.data.userSet.length - 5}
+                                                </Box>
+                                            )}
                                         </Box>
                                     </Box>
                                 </Box>
@@ -389,7 +575,7 @@ const Dashboard = () => {
                                 }}
                             >
                                 <Button
-                                    variant='text'
+                                    variant="text"
                                     sx={{
                                         display: 'flex',
                                         justifyContent: 'flex-end',
@@ -403,6 +589,7 @@ const Dashboard = () => {
                                 </Button>
                             </Box>
                         </Box>
+
                     </Box>
                     <Box
                         sx={{
@@ -589,11 +776,11 @@ const Dashboard = () => {
                             </Box>
                         </Box>
                         <Box>
-                            <DashboardTable
+                            {/* <DashboardTable
                                 data={data}
                                 headers={headers}
                                 dataKeyAccessors={dataKeyAccessors}
-                            />
+                            /> */}
                         </Box>
                     </Box>
                 </Box>
@@ -647,6 +834,11 @@ const Dashboard = () => {
                     </Box>
                 </Box>
             </Box>
+            <PendingInvitationModal 
+                open={showInvitation}
+                onClose={() => setShowInvitation(false)}
+                invitation={pendingInvitation}
+            />
         </Box>
     )
 }

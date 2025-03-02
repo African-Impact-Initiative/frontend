@@ -1,4 +1,3 @@
-import { industriesList } from '../utils/industries'
 import { Id } from './propertyTypes'
 import User from './user'
 
@@ -56,6 +55,7 @@ export const emptyOrganization: Organization = {
     logo: null,
     stage: null,
     funding: null,
+    industry: null,
     challenge1: null,
     challenge2: null,
     challenge3: null

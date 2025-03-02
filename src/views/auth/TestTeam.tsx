@@ -1,6 +1,5 @@
 import {
     AddOutlined,
-    CloudDownloadOutlined,
     MailOutlineOutlined,
     ModeEditOutlineOutlined,
     MoreVertOutlined,
@@ -22,23 +21,24 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import TeamCard from '../../components/teamPage/TeamCard'
-import VBPageHeader from '../../components/VBPageHeader'
-import { teamPageData } from '../../utils/devUtils'
 import { JSX } from 'react/jsx-runtime'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { initializeOrganizationMembers, updateMemberCoownerStatus } from '../../store/organizationReducer'
 import { IVBState, AppDispatch } from '../../store/store'
 import { IconButton } from '@mui/material'
-import ReactCountryFlag from 'react-country-flag';
 import User from '../../types/user'
 import countryList from 'react-select-country-list';
 import 'flag-icons/css/flag-icons.min.css';
-import { developmentStepperProps } from '../anon/onboarding/utils'
 import { useAppSelector } from '../../hooks/redux'
 import InvitationModal from './InvitationModel'
 import InvitationManager from './InvitationManager'
+import { useNavigate } from 'react-router'
+import PathConstants from '../../navigation/pathConstants'
+import organizationService from '../../api/organizationService'
+import { setErrorNotification } from '../../store/notificationReducer'
+import PendingApprovalBanner from '../../UI/PendingTeam'
+
 
 const getStatusColor = (status: string) => {
     switch (status?.toUpperCase()) {
@@ -53,7 +53,7 @@ const getStatusColor = (status: string) => {
     }
 }
 
-const getCountryCode = (countryName) => {
+const getCountryCode = (countryName: string) => {
     const country = countryList().getData().find(
         (country) => country.label === countryName
     );
@@ -61,114 +61,127 @@ const getCountryCode = (countryName) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const columns = (currentUser: any): Array<GridColDef> => [
-    {
-        field: 'name',
-        headerName: 'Name',
-        width: 240,
-        sortable: false,
-        renderCell: (params) => (
-            <div style={{ display: 'flex', columnGap: '10px', alignItems: 'center', textAlign: 'start' }}>
-                {params.row.photo && (
-                    <div>
-                        <img
-                            src={params.row.photo}
-                            alt='personImage'
-                            style={{ width: '40px', height: '40px', borderRadius: '50%' }}
-                        />
-                    </div>
-                )}
-                <div>
-                    <Typography sx={{
-                        fontSize: '14px',
-                        fontWeight: 610,
-                        color: 'rgba(16, 24, 40, 1)',
-                    }}>
-                        {`${params.row.firstName} ${params.row.lastName}`}
-                    </Typography>
-                    {(params.row.owner || params.row.coowner) && (
-                        <Typography sx={{
-                            fontSize: '12px',
-                            color: '#344054',
-                            backgroundColor: '#F9FAFB',
-                            padding: '2px 8px',
-                            borderRadius: '16px',
-                            border: '1px solid #D0D5DD',
-                            display: 'inline-block',
-                            marginTop: '4px'
-                        }}>
-                            {params.row.owner ? 'Admin' : 'Co-Admin'}
-                        </Typography>
-                    )}
-                </div>
+const columns = (currentUser: any, joinRequest: JoinRequest | null): Array<GridColDef> => {
+    const isJoinPending = joinRequest ? joinRequest.status === 'pending' : false;
+    const cols: GridColDef[] = [];
+  
+    // Name column always visible
+    cols.push({
+      field: 'name',
+      headerName: 'Name',
+      width: 350,
+      sortable: false,
+      renderCell: (params) => (
+        <div style={{ display: 'flex', columnGap: '10px', alignItems: 'center', textAlign: 'start' }}>
+          {params.row.photo && (
+            <div>
+              <img
+                src={params.row.photo}
+                alt='personImage'
+                style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+              />
             </div>
-        ),
-    },
-    {
+          )}
+          <div>
+            <Typography sx={{ fontSize: '14px', fontWeight: 610, color: 'rgba(16, 24, 40, 1)' }}>
+              {`${params.row.firstName} ${params.row.lastName}`}
+            </Typography>
+            {(params.row.owner || params.row.coowner) && (
+              <Typography
+                sx={{
+                  fontSize: '12px',
+                  color: '#344054',
+                  backgroundColor: '#F9FAFB',
+                  padding: '2px 8px',
+                  borderRadius: '16px',
+                  border: '1px solid #D0D5DD',
+                  display: 'inline-block',
+                  marginTop: '4px'
+                }}
+              >
+                {params.row.owner ? 'Admin' : 'Co-Admin'}
+              </Typography>
+            )}
+          </div>
+        </div>
+      )
+    });
+  
+    // Only include email if no pending join request
+    if (!isJoinPending) {
+      cols.push({
         field: 'email',
         headerName: 'Email address',
         width: 280,
         sortable: true,
         renderCell: (params) => (
-            <div style={{ color: '#475467', fontSize: '14px' }}>
-                {params.row.email}
-            </div>
-        ),
-    },
-    {
+          <div style={{ color: '#475467', fontSize: '14px' }}>
+            {params.row.email}
+          </div>
+        )
+      });
+    }
+  
+    // Only include teamStatus column if no pending join request
+    if (!isJoinPending) {
+      cols.push({
         field: 'teamStatus',
         headerName: 'Status',
         width: 120,
         sortable: true,
         renderCell: (params) => {
-            const colors = getStatusColor(params.row.teamStatus)
-            return (
-                <div style={{ 
-                    padding: '4px 12px',
-                    borderRadius: '16px',
-                    backgroundColor: colors.bg,
-                    color: colors.text,
-                    fontSize: '14px',
-                    fontWeight: 500,
-                }}>
-                    {params.row.teamStatus || 'Not specified'}
-                </div>
-            )
-        },
-    },
-    {
-        field: 'role',
-        headerName: 'Role',
-        width: 180,
-        sortable: true,
-        renderCell: (params) => (
-            <div style={{ color: '#475467', fontSize: '14px' }}>
-                {params.row.role || 'Not specified'}
+          const colors = getStatusColor(params.row.teamStatus);
+          return (
+            <div style={{ 
+                padding: '4px 12px',
+                borderRadius: '16px',
+                backgroundColor: colors.bg,
+                color: colors.text,
+                fontSize: '14px',
+                fontWeight: 500,
+            }}>
+              {params.row.teamStatus || 'Not specified'}
             </div>
-        ),
-    },
-    {
-        field: 'joined',
-        headerName: 'Date joined',
-        width: 150,
-        sortable: true,
-        renderCell: (params) => {
-            const joinDate = params.row.joined ? new Date(params.row.joined) : null;
-            const formattedDate = joinDate ? 
-                joinDate.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric'
-                }) : 'Not specified';
-
-            return (
-                <div style={{ color: '#475467', fontSize: '14px' }}>
-                    {formattedDate}
-                </div>
-            );
-        },
-    },
-    {
+          );
+        }
+      });
+    }
+  
+    // Role and Joined columns are always included
+    cols.push({
+      field: 'role',
+      headerName: 'Role',
+      width: 300,
+      sortable: true,
+      renderCell: (params) => (
+        <div style={{ color: '#475467', fontSize: '14px' }}>
+          {params.row.role || 'Not specified'}
+        </div>
+      )
+    });
+    cols.push({
+      field: 'joined',
+      headerName: 'Date joined',
+      width: 250,
+      sortable: true,
+      renderCell: (params) => {
+        const joinDate = params.row.joined ? new Date(params.row.joined) : null;
+        const formattedDate = joinDate ? joinDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        }) : 'Not specified';
+        return (
+          <div style={{ color: '#475467', fontSize: '14px' }}>
+            {formattedDate}
+          </div>
+        );
+      }
+    });
+  
+    // Only include country column if no pending join request
+    if (!isJoinPending) {
+      cols.push({
         field: 'country',
         headerName: 'Country',
         width: 180,
@@ -178,9 +191,7 @@ const columns = (currentUser: any): Array<GridColDef> => [
             {params.row.country && (
               <>
                 <span
-                  className={`fi fi-${getCountryCode(
-                    params.row.country
-                  ).toLowerCase()}`}
+                  className={`fi fi-${getCountryCode(params.row.country).toLowerCase()}`}
                   style={{ width: '20px', height: '15px' }}
                 ></span>
                 <span style={{ color: '#475467', fontSize: '14px' }}>
@@ -189,127 +200,122 @@ const columns = (currentUser: any): Array<GridColDef> => [
               </>
             )}
           </div>
-        ),
-    },
-    {
-        field: 'actions',
-        headerName: '',
-        width: 140,
-        renderCell: (params) => {
-            const dispatch = useDispatch<AppDispatch>();
-            const currentOrganization = useSelector((state: IVBState) => state.userOrganization);
-            const RenderActions = ({ params, currentUser }) => {
-                const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-                
-                const isCurrentUserOwner = currentUser?.data?.owner === true;
-                const isSameUser = params.row.id === currentUser?.data?.id;
-                const isTargetUserOwner = params.row.owner === true;
-                const isTargetUserCoowner = params.row.coowner === true;
-                
-                const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
-                    event.stopPropagation();
-                    setAnchorEl(event.currentTarget);
-                };
-                
-                const handleCloseMenu = () => {
-                    setAnchorEl(null);
-                };
-                
-                const handleCoownerChange = async () => {
-                    try {
-                        if (currentOrganization.data?.id) {
-                            await dispatch(updateMemberCoownerStatus(
-                                currentOrganization.data.id,
-                                params.row.id
-                            ));
-                        }
-                        handleCloseMenu();
-                    } catch (error) {
-                        console.error('Failed to update coowner status:', error);
-                    }
-                };
-
-                return (
-                    <div style={{
-                        display: 'flex',
-                        columnGap: '5px',
-                        color: 'rgba(71, 84, 103, 1)',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
-                        <IconButton
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                window.location.href = `mailto:${params.row.email}`;
-                            }}
-                        >
-                            <MailOutlineOutlined style={{ height: '20px', width: '20px' }} />
-                        </IconButton>
-                        <IconButton>
-                            <ModeEditOutlineOutlined style={{ height: '20px', width: '20px' }} />
-                        </IconButton>
-                        {isCurrentUserOwner && !isSameUser && !isTargetUserOwner && (
-                            <>
-                                <IconButton onClick={handleOpenMenu}>
-                                    <MoreVertOutlined style={{ height: '20px', width: '20px' }} />
-                                </IconButton>
-                                <Menu
-                                    anchorEl={anchorEl}
-                                    open={Boolean(anchorEl)}
-                                    onClose={handleCloseMenu}
-                                    PaperProps={{
-                                        sx: {
-                                            boxShadow: '0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08)',
-                                            borderRadius: '8px',
-                                            border: '1px solid #F2F4F7',
-                                        }
-                                    }}
-                                >
-                                    {params.row.coowner ? (
-                                        <MenuItem 
-                                            onClick={() => handleCoownerChange(false)}
-                                            sx={{ 
-                                                gap: 1,
-                                                padding: '10px 16px',
-                                                '&:hover': {
-                                                    backgroundColor: '#F9FAFB'
-                                                }
-                                            }}
-                                        >
-                                            <PersonRemoveOutlined sx={{ color: '#475467' }} />
-                                            <Typography sx={{ color: '#475467', fontSize: '14px' }}>
-                                                Remove Co-Admin
-                                            </Typography>
-                                        </MenuItem>
-                                    ) : (
-                                        <MenuItem 
-                                            onClick={() => handleCoownerChange(true)}
-                                            sx={{ 
-                                                gap: 1,
-                                                padding: '10px 16px',
-                                                '&:hover': {
-                                                    backgroundColor: '#F9FAFB'
-                                                }
-                                            }}
-                                        >
-                                            <PersonAddAlt1Outlined sx={{ color: '#475467' }} />
-                                            <Typography sx={{ color: '#475467', fontSize: '14px' }}>
-                                                Make Co-Admin
-                                            </Typography>
-                                        </MenuItem>
-                                    )}
-                                </Menu>
-                            </>
-                        )}
-                    </div>
-                );
-            };
-
-            return <RenderActions params={params} currentUser={currentUser} />;
-        },
-    }      
+        )
+      });
+    }
+  
+    // Actions column
+    cols.push({
+      field: 'actions',
+      headerName: '',
+      width: 140,
+      renderCell: (params) => {
+        // Use a helper component to render actions
+        const dispatch = useDispatch<AppDispatch>();
+        const currentOrganization = useSelector((state: IVBState) => state.userOrganization);
+        
+        const RenderActions = ({ params, currentUser }: { params: any, currentUser: any }) => {
+          const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+          
+          const isCurrentUserOwner = currentUser?.data?.owner === true;
+          const isSameUser = params.row.id === currentUser?.data?.id;
+          const isTargetUserOwner = params.row.owner === true;
+          
+          const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
+            event.stopPropagation();
+            setAnchorEl(event.currentTarget);
+          };
+          
+          const handleCloseMenu = () => {
+            setAnchorEl(null);
+          };
+          
+          const handleCoownerChange = async () => {
+            try {
+              if (currentOrganization.data?.id) {
+                await dispatch(updateMemberCoownerStatus(
+                  currentOrganization.data.id,
+                  params.row.id
+                ));
+              }
+              handleCloseMenu();
+            } catch (error) {
+              console.error('Failed to update coowner status:', error);
+            }
+          };
     
-]
+          return (
+            <div style={{
+              display: 'flex',
+              columnGap: '5px',
+              color: 'rgba(71,84,103,1)',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <IconButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.location.href = `mailto:${params.row.email}`;
+                }}
+                disabled={isJoinPending}
+              >
+                <MailOutlineOutlined style={{ height: '20px', width: '20px', opacity: isJoinPending ? 0.5 : 1 }} />
+                
+              </IconButton>
+              {/* Only show pencil icon if join request is not pending */}
+              {!isJoinPending && (
+                <IconButton>
+                  <ModeEditOutlineOutlined style={{ height: '20px', width: '20px' }} />
+                </IconButton>
+              )}
+              {isCurrentUserOwner && !isSameUser && !isTargetUserOwner && (
+                <>
+                  <IconButton onClick={handleOpenMenu}>
+                    <MoreVertOutlined style={{ height: '20px', width: '20px' }} />
+                  </IconButton>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleCloseMenu}
+                    PaperProps={{
+                      sx: {
+                        boxShadow: '0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08)',
+                        borderRadius: '8px',
+                        border: '1px solid #F2F4F7',
+                      }
+                    }}
+                  >
+                    {params.row.coowner ? (
+                      <MenuItem 
+                        onClick={() => handleCoownerChange()}
+                        sx={{ gap: 1, padding: '10px 16px', '&:hover': { backgroundColor: '#F9FAFB' } }}
+                      >
+                        <PersonRemoveOutlined sx={{ color: '#475467' }} />
+                        <Typography sx={{ color: '#475467', fontSize: '14px' }}>Remove Co-Admin</Typography>
+                      </MenuItem>
+                    ) : (
+                      <MenuItem 
+                        onClick={() => handleCoownerChange()}
+                        sx={{ gap: 1, padding: '10px 16px', '&:hover': { backgroundColor: '#F9FAFB' } }}
+                      >
+                        <PersonAddAlt1Outlined sx={{ color: '#475467' }} />
+                        <Typography sx={{ color: '#475467', fontSize: '14px' }}>Make Co-Admin</Typography>
+                      </MenuItem>
+                    )}
+                  </Menu>
+                </>
+              )}
+            </div>
+          );
+        };
+  
+        return <RenderActions params={params} currentUser={currentUser} />;
+      },
+    });
+  
+    return cols;
+};
+  
 // const rows = teamPageData
 const CustomCheckbox = (props: JSX.IntrinsicAttributes & CheckboxProps) => {
     return (
@@ -348,10 +354,15 @@ const CustomCheckbox = (props: JSX.IntrinsicAttributes & CheckboxProps) => {
     )
 }
 // const statuses = ['Active', 'Invited', 'Pending']
-
+interface JoinRequest {
+    id: number;
+    organization: number;
+    status: 'pending' | 'accepted' | 'declined';
+}
 
 const TestTeamPage = () => {
     const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
     const currentOrganization = useSelector((state: IVBState) => state.userOrganization)
     const members = useSelector((state: IVBState) => state.users)
     const [search, setSearch] = useState('')
@@ -361,13 +372,63 @@ const TestTeamPage = () => {
     const user = useAppSelector(state => state.user);
     const [inviteModalOpen, setInviteModalOpen] = useState(false);
     const isAuthorized = user?.data?.owner || (user?.data?.coowner === currentOrganization?.data?.id);
+    const [joinRequest, setJoinRequest] = useState<JoinRequest | null>(null);
+    const [loadingJoinRequest, setLoadingJoinRequest] = useState(true);
+    const [requestedOrgName, setRequestedOrgName] = useState<string | null>(null);
+
+    useEffect(() => {
+        organizationService
+        .getCurrentUserJoinRequest()
+        .then((res) => {
+            console.log(res)
+            if (res.success && res.data) {
+            setJoinRequest(res.data);
+            }
+        })
+        .catch(() => {
+            dispatch(setErrorNotification('Failed to fetch join request'));
+        })
+        .finally(() => {
+            setLoadingJoinRequest(false);
+        });
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (joinRequest && joinRequest.status === 'pending') {
+            console.log(joinRequest.organization);
+            organizationService
+                .getAll()
+                .then((resp) => {
+                    console.log(resp);
+                    console.log(resp.data);
+                    if (resp.success && Array.isArray(resp.data)) {
+                        const foundOrg = resp.data.find((org) => org.id === joinRequest.organization);
+                        if (foundOrg) {
+                            console.log(foundOrg.name);
+                            setRequestedOrgName(foundOrg.name || 'Unknown Organization');
+                        } else {
+                            setRequestedOrgName('Unknown Organization');
+                        }
+                    } else {
+                        setRequestedOrgName('Unknown Organization');
+                    }
+                })
+                .catch(() => {
+                    // Just fallback if something goes wrong
+                    setRequestedOrgName('Unknown Organization');
+                });
+        }
+    }, [joinRequest]);
     
 
     useEffect(() => {
-        if (currentOrganization.data?.id) {
-            dispatch(initializeOrganizationMembers(currentOrganization.data.id))
+        const orgId = currentOrganization.data?.id || 
+            (joinRequest && joinRequest.status === 'pending' ? joinRequest.organization : null);
+        if (orgId) {
+            dispatch(initializeOrganizationMembers(orgId));
         }
-    }, [currentOrganization.data?.id, dispatch])
+    }, [currentOrganization.data?.id, joinRequest, dispatch]);
+    
 
     useEffect(() => {
         if (members && Array.isArray(members)) {
@@ -446,7 +507,11 @@ const TestTeamPage = () => {
         setStatus('Select');
         setFilteredMembers(members);
     }
-    
+
+    const hasNoTeams = !currentOrganization.data?.id && members.length === 0;
+    console.log(hasNoTeams)
+    console.log(joinRequest?.status)
+    console.log(members.length)
 
     return (
         <Box sx={{ padding: '12px 32px 20px 32px', width: '100%' }}>
@@ -515,27 +580,6 @@ const TestTeamPage = () => {
 
                     {/* Action Buttons */}
                     <Box sx={{ display: 'flex', columnGap: '10px', marginTop: {xs: '20px', md: '0px'} , width: '100%', justifyContent: 'flex-end'}}>
-                        <Button sx={{
-                            width: {md:'167px', xs: '100%'},
-                            height: '40px',
-                            borderRadius: '8px',
-                            border: '1px solid #D0D5DD',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            columnGap: '10px'
-                        }}>
-                            <CloudDownloadOutlined sx={{ color: '#344054' }} />
-                            <Typography variant='body1' sx={{
-                                color: '#344054',
-                                lineHeight: '20px',
-                                fontWeight: '600',
-                                fontSize: {md:'14px', xs: '12px'},
-                                textTransform: 'none'
-                            }}>
-                                Download CSV
-                            </Typography>
-                        </Button>
                         <Button 
                             onClick={() => {
                                 if (user?.data?.owner || user?.data?.coowner === currentOrganization?.data?.id) {
@@ -572,6 +616,62 @@ const TestTeamPage = () => {
                         <MoreVertOutlined sx={{ color: '#98A2B3', cursor: 'pointer' }} />
                     </Box>
                 </Box>
+
+                {hasNoTeams && joinRequest?.status !== 'pending' &&(
+                    <>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                backgroundColor: '#FFFAEB',
+                                border: '1px solid #FEDF89',
+                                borderRadius: '8px',
+                                padding: '16px 24px',
+                                marginBottom: '24px',
+                            }}
+                        >
+                            <Typography sx={{ fontSize: '14px', fontWeight: '500', color: '#344054' }}>
+                                <Box component="span" sx={{ fontSize: '20px', fontWeight: 'bold', marginRight: '8px', color: '#B54708' }}>
+                                    !
+                                </Box>
+                                Join or create a company to access teams
+                            </Typography>
+                            <Box sx={{ display: 'flex', gap: '16px' }}>
+                                <Button
+                                    variant="outlined"
+                                    sx={{
+                                        border: '1px solid #D0D5DD',
+                                        color: '#344054',
+                                        textTransform: 'none',
+                                        fontWeight: '600',
+                                        borderRadius: '8px',
+                                    }}
+                                    onClick={() => navigate(PathConstants.jointeamPage)}
+                                >
+                                    Join a company
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        backgroundColor: '#DC6803',
+                                        color: 'white',
+                                        textTransform: 'none',
+                                        fontWeight: '600',
+                                        borderRadius: '8px',
+                                        '&:hover': { backgroundColor: '#E8822A' },
+                                    }}
+                                    onClick={() => alert("Redirect to create a company")}
+                                >
+                                    Create a company
+                                </Button>
+                            </Box>
+                        </Box>
+                    </>
+                )}
+                {!currentOrganization.data?.id && joinRequest?.status === 'pending' && (
+                    <PendingApprovalBanner organizationName={requestedOrgName || 'Loading...'} />
+                )}
                 <Divider/>
 
                 {/* Filters Section */}
@@ -660,7 +760,7 @@ const TestTeamPage = () => {
                         <DataGrid
                             className='pointer-cursor-datagrid'
                             rows={filteredMembers}
-                            columns={columns(user)} 
+                            columns={columns(user, joinRequest)} 
                             rowHeight={120}
                             autoHeight
                             sortingMode="client"
@@ -672,9 +772,12 @@ const TestTeamPage = () => {
                                 },
                             }}
                             pageSizeOptions={[5, 10]}
-                            checkboxSelection
+                            checkboxSelection={!joinRequest || joinRequest.status !== 'pending'}
                             slots={{
                                 baseCheckbox: CustomCheckbox
+                            }}
+                            localeText={{
+                                noRowsLabel: 'No team members',
                             }}
                             sx={{
                                 '.MuiDataGrid-columnSeparator': {

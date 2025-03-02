@@ -14,6 +14,7 @@ type User = {
     leadership: null | boolean,
     team: Array<string>,
     team_status: string,
+    coowner: null | Id,
 
     // only on creation
     password?: string
@@ -50,6 +51,7 @@ export const emptyUser: User = {
     admin: null,
     owner: null,
     anon: null,
+    coowner: null,
     termsOfUse: null,
     organization: null,
     team_status: '',

@@ -30,7 +30,10 @@ const apiRoutes: { [key: string]: { [key:string]: string } } = {
         uploadLogo: 'upload-logo/', // Added for logo upload
         organizationMembers: 'members/:organizationId/', 
         updateMember: 'members/:organizationId/user/:userId/', // Added for member updates
-        updateMemberCoowner: 'members/:organizationId/user/:userId/coowner/'
+        updateMemberCoowner: 'members/:organizationId/user/:userId/coowner/',
+        joinRequests: 'join-requests/',
+        acceptJoinRequest: 'join-requests/:id/accept/',
+        declineJoinRequest: 'join-requests/:id/decline/',
     },
     authorizationOperations: {
         baseUrl: 'auth/',

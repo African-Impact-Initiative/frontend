@@ -1,8 +1,6 @@
-import { BookOutlined, BookmarkOutlined, CalendarMonthOutlined, DashboardOutlined, MoneyOutlined, PeopleAltOutlined, SettingsOutlined, SupportAgentOutlined } from '@mui/icons-material'
+import { MoneyOutlined } from '@mui/icons-material'
 import HomeIcon from '../assets/sidebar_icons/home.svg'
 import TasksIcon from '../assets/sidebar_icons/tasks.svg'
-import FundraisingIcon from '../assets/sidebar_icons/fundraising.svg'
-import EventsIcon from '../assets/sidebar_icons/events.svg'
 import ResourcesIcon from '../assets/sidebar_icons/resources.svg'
 import SettingsIcon from '../assets/sidebar_icons/settings.svg'
 import SupportIcon from '../assets/sidebar_icons/support.svg'
@@ -33,7 +31,8 @@ import ComposeAuthWithNavBarLayout from './hoc/ComposeAuthWithNavBarLayout'
 import PathConstants from './pathConstants'
 import { BasicRoute } from './types/route'
 import FundingOpportunitiesPage from '../views/auth/FundingOpportunitiesPage'
-import JoinOrganization from '../views/auth/JoinOrganization'
+import OrganizationJoin from '../views/anon/onboarding/OnboardingJoinOrg'
+import OrgJoin from '../views/auth/JoinOrg'
 
 // renders Component without any wrapper
 export const authRoutes = [
@@ -110,6 +109,12 @@ export const authRoutes = [
         exact: true,
     },
     {
+        title: 'Join Team Page',
+        path: PathConstants.jointeamPage,
+        Component: ComposeAuthLayout(OrgJoin),
+        exact: true,
+    },
+    {
         title: 'Company Edit Page',
         path: PathConstants.companyEditPage,
         Component: ComposeAuthLayout(EditPublicProfilePage),
@@ -149,6 +154,11 @@ export const authNavBarRoutes = [
         title: 'Company Profile',
         path: PathConstants.companyProfile,
         component: ComposeAuthWithNavBarLayout(<CompanyProfile />)(),
+    },
+    {
+        title: 'Organization join',
+        path: PathConstants.onboardingJoin,
+        component: ComposeAuthWithNavBarLayout(<OrganizationJoin />)(),
     },
     {
         title: 'Development Stage',

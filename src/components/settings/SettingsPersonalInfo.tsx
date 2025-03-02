@@ -20,7 +20,6 @@ import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { EventInfo } from '@ckeditor/ckeditor5-utils'
 import { countryList } from '../../utils/countries'
-import { useFormWithHelper } from '../../hooks/form'
 
 const SettingsPersonalInfo = () => {
     const [formData] = useState({ name: '', email: '' })
@@ -30,7 +29,6 @@ const SettingsPersonalInfo = () => {
     const [, setEditorContent] = useState(
         '<p>Yeeeeh</p>'
     )
-    const [linkedin, setLinkedin, linkedinHelper, setLinkedinHelper] = useFormWithHelper('')
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleFileChange = (e: any) => {
@@ -80,19 +78,6 @@ const SettingsPersonalInfo = () => {
     }
 
 
-    const validateLinkedIn = () => {
-        const re = /^https:\/\/[a-z]{2,3}\.linkedin\.com\/in\/.*$/
-        if (linkedin === '') {
-            setLinkedinHelper('')
-            return true
-        } else if (!linkedin.match(re)) {
-            setLinkedinHelper('Invalid LinkedIn URL')
-            return false
-        } else {
-            setLinkedinHelper('')
-            return true
-        }
-    }
 
 
     return (

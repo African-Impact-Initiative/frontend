@@ -1,4 +1,3 @@
-import { ArticleOutlined, CalendarTodayOutlined, DescriptionOutlined, DomainOutlined, HelpCenterOutlined, HomeOutlined, MoneyOutlined, PlayCircleOutline, PublishOutlined, SettingsOutlined } from '@mui/icons-material'
 import HomeIcon from '../assets/sidebar_icons/admin_home.svg'
 import TasksIcon from '../assets/sidebar_icons/admin_tasks.svg'
 import FundingIcon from '../assets/sidebar_icons/admin_funding.svg'

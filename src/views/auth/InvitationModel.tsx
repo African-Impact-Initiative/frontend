@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
     Dialog,
     DialogTitle,
@@ -15,19 +15,23 @@ import {
     Close as CloseIcon,
     PersonAddAlt1Outlined,
 } from '@mui/icons-material';
-import { useDispatch, useSelector } from 'react-redux';
-import { IVBState, AppDispatch } from '../../store/store';
+import { useSelector } from 'react-redux';
+import { IVBState } from '../../store/store';
 import { useAppSelector } from '../../hooks/redux';
 import userService from '../../api/userService';
-const InvitationModal = ({ open, onClose }) => {
+interface InvitationModalProps {
+    open: boolean;
+    onClose: () => void;
+}
+
+const InvitationModal = ({ open, onClose }: InvitationModalProps) => {
     const [selectedEmail, setSelectedEmail] = useState('');
-    const [availableUsers, setAvailableUsers] = useState([]);
+    const [availableUsers, setAvailableUsers] = useState<{ email: string; firstName: string; lastName: string; organization: string | null }[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
     const currentOrganization = useSelector((state: IVBState) => state.userOrganization);
     const user = useAppSelector(state => state.user);
-    const members = useSelector((state: IVBState) => state.users);
 
     const isAuthorized = user?.data?.owner || (user?.data?.coowner === currentOrganization?.data?.id);
 
@@ -42,9 +46,11 @@ const InvitationModal = ({ open, onClose }) => {
             const response = await userService.getAll();
             if (response.success && response.data) {
                 const pendingInvitations = await userService.getInvitations();
-                const pendingEmails = pendingInvitations.data
-                    ?.filter(inv => inv.status === 'pending')
-                    .map(inv => inv.email) || [];
+                const pendingEmails = Array.isArray(pendingInvitations.data)
+                    ? pendingInvitations.data
+                        .filter(inv => inv.status === 'pending')
+                        .map(inv => inv.email)
+                    : [];
                 // Filter out users who are already in the organization
                 const availableUsers = Array.isArray(response.data) 
                     ? response.data.filter(user => 
@@ -58,7 +64,7 @@ const InvitationModal = ({ open, onClose }) => {
                 console.log(availableUsers)
                 setAvailableUsers(availableUsers);
             } else {
-                throw new Error(response.error || 'Failed to fetch users');
+                throw new Error('Failed to fetch users');
             }
         } catch (error) {
             console.error('Failed to fetch users:', error);
@@ -86,9 +92,11 @@ const InvitationModal = ({ open, onClose }) => {
                 onClose();
                 window.location.reload();
             } else {
-                throw new Error(response.error || 'Failed to send invitation');
+                console.log(1111);
+                throw new Error('Failed to send invitation');
             }
         } catch (error) {
+            console.log(222);
             setError('Failed to send invitation. Please try again.');
         } finally {
             setLoading(false);

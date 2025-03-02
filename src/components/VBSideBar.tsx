@@ -2,7 +2,6 @@ import { Link, NavLink } from 'react-router-dom'
 import { Box, Divider, Icon, Typography } from '@mui/material'
 import userAvatar from '../assets/avatar.png'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { SearchOutlined } from '@mui/icons-material'
 import { Link as LinkType } from '../navigation/types/sideBar'
 
 import LogoutIcon from '@mui/icons-material/Logout'
@@ -12,51 +11,6 @@ import { logout } from '../store/appUserReducer'
 import PathConstants from '../navigation/pathConstants'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
-
-const data = {
-    labels: ['Red', 'Blue'],
-    datasets: [
-        {
-            label: '# of Votes',
-            data: [12, 2],
-            backgroundColor: ['rgba(220, 104, 3, 1)', '#ccc'],
-            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
-            borderWidth: 0,
-            borderRadius: 10,
-        },
-    ],
-}
-
-const textCenter = {
-    id: 'Id Chart',
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    beforeDraw: (chart: any) => {
-        const ctx = chart.ctx
-        ctx.save()
-        ctx.font = '15px Roboto'
-        ctx.fillStyle = 'black'
-        ctx.textAlign = 'center'
-        ctx.fillText(
-            '80%',
-            chart.getDatasetMeta(0).data[0].x,
-            chart.getDatasetMeta(0).data[0].y - 0
-        )
-    },
-}
-
-const options = {
-    // reduce the thickness of the doughnut
-    cutout: '75%',
-    plugins: {
-        legend: {
-            display: false, // hide the legend (labels)
-        },
-        doughnutBackground: {
-            enabled: true,
-            color: '#000000', // set the background color of the doughnut.
-        },
-    },
-}
 
 export interface ISideBarProps {
     links: Array<LinkType>,
@@ -91,10 +45,6 @@ const Sidebar = ({
     sidebarBackgroundColor,
     rightBorderColor,
     logoTextColor,
-    searchTextColor,
-    searchIconColor,
-    searchBorderColor,
-    searchBackgroundColor,
     selectedItemBackgroundColor,
     selectedItemTextColor,
     itemTextColor,
@@ -104,7 +54,6 @@ const Sidebar = ({
     dividerColor,
     logoutIconColor,
     className,
-    searchClass,
     isAdmin,
 }: ISideBarProps) => {
     const user = useAppSelector(state => state.user)
