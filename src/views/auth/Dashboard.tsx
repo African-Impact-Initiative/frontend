@@ -85,7 +85,7 @@ const Dashboard = () => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch();
-
+    const currentUser = useAppSelector((state) => state.user);
     const org = useAppSelector((state) => state.userOrganization)
     // We'll fetch the current join request to see if it's pending
     const [joinRequest, setJoinRequest] = useState<JoinRequest | null>(null);
@@ -213,9 +213,13 @@ const Dashboard = () => {
 
     const checkPendingInvitations = async () => {
         try {
+            if (!currentUser.data?.email) {
+                return;
+            }
             const response = await userService.getInvitations();
             if (response.success && response.data?.length > 0) {
-                const pending = response.data.find(inv => inv.status === 'pending');
+                const pending = response.data.find(inv => inv.status === 'pending' && 
+                    inv.email.toLowerCase() === currentUser.data?.email.toLowerCase());
                 console.log(pending)
                 if (pending) {
                     setPendingInvitation(pending);
