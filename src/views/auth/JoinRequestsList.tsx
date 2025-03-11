@@ -47,6 +47,10 @@ function JoinRequestsList() {
   const fetchJoinRequests = async () => {
     setLoading(true);
     try {
+      if (!currentOrganization.data) {
+        console.log('No organization data available');
+        return;
+     }
       const response = await organizationService.getJoinRequestsForOrganization(currentOrganization.data.id);
       if (response.success && Array.isArray(response.data)) {
         setJoinRequests(response.data);
@@ -67,7 +71,9 @@ function JoinRequestsList() {
         dispatch(setSuccessNotification('Join request accepted successfully'));
         // Refresh join requests and organization members list.
         fetchJoinRequests();
-        dispatch(initializeOrganizationMembers(currentOrganization.data.id));
+        if (currentOrganization.data) {
+          dispatch(initializeOrganizationMembers(currentOrganization.data.id));
+        }
       } else {
         dispatch(setErrorNotification('Failed to accept join request'));
       }

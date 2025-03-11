@@ -136,7 +136,7 @@ export const updateOrgChallenges = (id: Id, challenges: Array<CompanyChallenges>
     }
 }
 
-export const initializeOrganizationMembers = (organizationId: number) => {
+export const initializeOrganizationMembers = (organizationId: number | Id | null) => {
     return async (dispatch: AppDispatch) => {
         try {
             const members = await organizationService.getOrganizationMembers(organizationId)

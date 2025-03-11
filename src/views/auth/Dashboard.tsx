@@ -218,7 +218,8 @@ const Dashboard = () => {
             }
             const response = await userService.getInvitations();
             if (response.success && response.data?.length > 0) {
-                const pending = response.data.find(inv => inv.status === 'pending' && 
+                const data = response.data as InvitationResponse[];
+                const pending = data.find((inv: InvitationResponse) => inv.status === 'pending' && 
                     inv.email.toLowerCase() === currentUser.data?.email.toLowerCase());
                 console.log(pending)
                 if (pending) {
@@ -272,6 +273,37 @@ const Dashboard = () => {
         return <Typography>Loading...</Typography>;
     }
     console.log(joinRequest?.status == "pending")
+    const formatInvitation = (invitation: InvitationResponse): {
+        id: number;
+        organization: {
+          id: number;
+          name: string;
+          organization_name: string;
+          invited_by_name: string;
+          invited_by_email: string;
+          logo?: string;
+        };
+        invited_by: {
+          firstName: string;
+          lastName: string;
+          email: string;
+        };
+      } => ({
+        id: invitation.id,
+        organization: {
+          id: invitation.organization,
+          name: invitation.organizationName || '',
+          organization_name: invitation.organizationName || '',
+          invited_by_name: invitation.invitedByName || '',
+          invited_by_email: invitation.invitedByEmail || '',
+          logo: invitation.logo,
+        },
+        invited_by: {
+          firstName: invitation.invitedByName ? invitation.invitedByName.split(' ')[0] : '',
+          lastName: invitation.invitedByName ? invitation.invitedByName.split(' ').slice(1).join(' ') : '',
+          email: invitation.invitedByEmail || '',
+        },
+    });
 
     return (
         <Box sx={{ padding: '20px', width: '100%' }}>
@@ -540,7 +572,7 @@ const Dashboard = () => {
                                                     </Box>
                                                 </Box>
                                             ))}
-                                            {org.data?.userSet?.length > 5 && (
+                                            {(org.data?.userSet?.length ?? 0) > 5 && (
                                                 <Box
                                                     sx={{
                                                         backgroundColor: '#EAECF0',
@@ -556,7 +588,7 @@ const Dashboard = () => {
                                                         marginBottom: '-10px',
                                                     }}
                                                 >
-                                                    +{org.data.userSet.length - 5}
+                                                    +{org.data?.userSet?.length ? org.data.userSet.length - 5 : 0}
                                                 </Box>
                                             )}
                                         </Box>
@@ -841,7 +873,7 @@ const Dashboard = () => {
             <PendingInvitationModal 
                 open={showInvitation}
                 onClose={() => setShowInvitation(false)}
-                invitation={pendingInvitation}
+                invitation={pendingInvitation ? formatInvitation(pendingInvitation) : null}
             />
         </Box>
     )

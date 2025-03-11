@@ -47,7 +47,7 @@ const PendingInvitationModal = ({ open, onClose, invitation }: PendingInvitation
                 onClose();
                 window.location.reload(); // Refresh to update organization status
             } else {
-                throw new Error(response.error || 'Failed to accept invitation');
+                throw new Error('Failed to accept invitation');
             }
         } catch (error) {
             dispatch(setErrorNotification('Failed to accept invitation'));
@@ -61,7 +61,7 @@ const PendingInvitationModal = ({ open, onClose, invitation }: PendingInvitation
                 dispatch(setSuccessNotification('Invitation declined'));
                 onClose();
             } else {
-                throw new Error(response.error || 'Failed to decline invitation');
+                throw new Error('Failed to decline invitation');
             }
         } catch (error) {
             dispatch(setErrorNotification('Failed to decline invitation'));
@@ -118,14 +118,14 @@ const PendingInvitationModal = ({ open, onClose, invitation }: PendingInvitation
                         fontWeight: '500',
                         color: '#344054'
                     }}>
-                        {invitation.organizationName.charAt(0)}
+                        {invitation.organization.organization_name.charAt(0)}
                     </Box>
 
                     <Typography variant="h6" sx={{
                         color: '#101828',
                         textAlign: 'center'
                     }}>
-                        {invitation.organizationName}
+                        {invitation.organization.organization_name}
                     </Typography>
 
                     <Typography sx={{
@@ -133,8 +133,8 @@ const PendingInvitationModal = ({ open, onClose, invitation }: PendingInvitation
                         textAlign: 'center',
                         fontSize: '14px'
                     }}>
-                        {invitation.invitedByName} ({invitation.invitedByEmail}) invited
-                        you to join <span style={{ color: '#DC6803' }}>{invitation.organizationName}</span>
+                        {`${invitation.invited_by.firstName} ${invitation.invited_by.lastName}`} ({invitation.invited_by.email}) invited
+                        you to join <span style={{ color: '#DC6803' }}>{invitation.organization.organization_name}</span>
                     </Typography>
                 </Box>
             </DialogContent>

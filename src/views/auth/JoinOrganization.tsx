@@ -10,23 +10,30 @@ import {
     Alert
 } from '@mui/material';
 import PathConstants from '../../navigation/pathConstants';
+import { InvitationResponse } from '../../types/invitation';
 
 const JoinOrganization = () => {
     const { token } = useParams();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const [invitation, setInvitation] = useState(null);
+    const [invitation, setInvitation] = useState<InvitationResponse | null>(null);
 
     useEffect(() => {
         verifyInvitation();
     }, [token]);
 
     const verifyInvitation = async () => {
+        if (!token) {
+            setError('Invalid invitation token');
+            setLoading(false);
+            return;
+        }
+    
         try {
             const response = await userService.getInvitation(token);
             if (response.success && response.data) {
-                setInvitation(response.data);
+                setInvitation(response.data as InvitationResponse);
             } else {
                 setError('Invalid or expired invitation');
             }
@@ -39,6 +46,11 @@ const JoinOrganization = () => {
 
     const handleJoin = async () => {
         try {
+            if (!token) {
+                setError('Invalid invitation token');
+                setLoading(false);
+                return;
+            }
             setLoading(true);
             const response = await userService.processInvitation(token, 'accept');
             if (response.success) {

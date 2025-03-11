@@ -61,25 +61,29 @@ const InvitationManager = () => {
     // Fetch Join Requests for the organization
     const fetchJoinRequests = async () => {
         try {
-          const response = await organizationService.getJoinRequestsForOrganization(currentOrganization.data.id);
-          if (response.success && Array.isArray(response.data)) {
-            const rawRequests: any[] = response.data; // raw join requests with user as number
-            // For each join request, if `user` is a number, fetch the user details.
-            const requestsWithUserData = await Promise.all(
-              rawRequests.map(async (req) => {
-                if (typeof req.user === 'number') {
-                  const userResponse = await userService.retrieveSingle(req.user);
-                  if (userResponse.success && userResponse.data) {
-                    return { ...req, user: userResponse.data };
-                  }
-                }
-                return req;
-              })
-            );
-            setJoinRequests(requestsWithUserData);
-          } else {
-            dispatch(setErrorNotification('Failed to fetch join requests'));
-          }
+            if (!currentOrganization.data) {
+                console.log('No organization data available');
+                return;
+            }
+            const response = await organizationService.getJoinRequestsForOrganization(currentOrganization.data.id);
+            if (response.success && Array.isArray(response.data)) {
+                const rawRequests: any[] = response.data; // raw join requests with user as number
+                // For each join request, if `user` is a number, fetch the user details.
+                const requestsWithUserData = await Promise.all(
+                rawRequests.map(async (req) => {
+                    if (typeof req.user === 'number') {
+                    const userResponse = await userService.retrieveSingle(req.user);
+                    if (userResponse.success && userResponse.data) {
+                        return { ...req, user: userResponse.data };
+                    }
+                    }
+                    return req;
+                })
+                );
+                setJoinRequests(requestsWithUserData);
+            } else {
+                dispatch(setErrorNotification('Failed to fetch join requests'));
+            }
         } catch (error) {
           dispatch(setErrorNotification('Failed to fetch join requests'));
         }

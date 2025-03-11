@@ -20,7 +20,7 @@ import {
     Menu
 } from '@mui/material'
 import { Box } from '@mui/system'
-import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridSortModel } from '@mui/x-data-grid'
 import { JSX } from 'react/jsx-runtime'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,6 +38,7 @@ import PathConstants from '../../navigation/pathConstants'
 import organizationService from '../../api/organizationService'
 import { setErrorNotification } from '../../store/notificationReducer'
 import PendingApprovalBanner from '../../UI/PendingTeam'
+
 
 
 const getStatusColor = (status: string) => {
@@ -234,7 +235,7 @@ const columns = (currentUser: any, joinRequest: JoinRequest | null): Array<GridC
             try {
               if (currentOrganization.data?.id) {
                 await dispatch(updateMemberCoownerStatus(
-                  currentOrganization.data.id,
+                  Number(currentOrganization.data.id),
                   params.row.id
                 ));
               }
@@ -368,7 +369,7 @@ const TestTeamPage = () => {
     const [search, setSearch] = useState('')
     const [status, setStatus] = useState('Select')
     const [filteredMembers, setFilteredMembers] = useState<User[]>([])
-    const [sortModel, setSortModel] = useState([]);
+    const [sortModel, setSortModel] = useState<GridSortModel>([]);
     const user = useAppSelector(state => state.user);
     const [inviteModalOpen, setInviteModalOpen] = useState(false);
     const isAuthorized = user?.data?.owner || (user?.data?.coowner === currentOrganization?.data?.id);
@@ -475,7 +476,7 @@ const TestTeamPage = () => {
         setFilteredMembers(filtered);
     }
 
-    const handleSortModelChange = (newModel) => {
+    const handleSortModelChange = (newModel: GridSortModel) => {
         setSortModel(newModel);
         
         if (newModel.length === 0) {
@@ -487,8 +488,8 @@ const TestTeamPage = () => {
         let sortedMembers = [...filteredMembers];
     
         sortedMembers.sort((a, b) => {
-            let valueA = (a[field] || 'Not specified').toString().toUpperCase();
-            let valueB = (b[field] || 'Not specified').toString().toUpperCase();
+            let valueA = (a[field as keyof User] || 'Not specified').toString().toUpperCase();
+            let valueB = (b[field as keyof User] || 'Not specified').toString().toUpperCase();
             console.log(valueA)
             console.log(valueB)
             if (sort === 'asc') {

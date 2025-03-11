@@ -4,7 +4,11 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { useNavigate } from 'react-router-dom';
 import PathConstants from '../navigation/pathConstants';
 
-const PendingApprovalBanner = ({ organizationName }) => {
+interface PendingApprovalBannerProps {
+  organizationName: string | null;
+}
+
+const PendingApprovalBanner = ({ organizationName }: PendingApprovalBannerProps) => {
   const navigate = useNavigate();
   
   return (
@@ -20,7 +24,7 @@ const PendingApprovalBanner = ({ organizationName }) => {
         overflow: 'hidden'
       }}
     >
-      {/* 顶部区域 */}
+
       <Box
         sx={{
           display: 'flex',
@@ -53,7 +57,7 @@ const PendingApprovalBanner = ({ organizationName }) => {
 
         <Typography
           sx={{
-            color: '#101828', // 改为黑色
+            color: '#101828',
             fontSize: '14px',
             fontWeight: 600
           }}
@@ -62,7 +66,6 @@ const PendingApprovalBanner = ({ organizationName }) => {
         </Typography>
       </Box>
 
-      {/* 主要内容区域 */}
       <Box
         sx={{
           display: 'flex',
@@ -77,7 +80,7 @@ const PendingApprovalBanner = ({ organizationName }) => {
             sx={{
               color: '#101828',
               fontSize: '16px',
-              fontWeight: 600, // 加粗
+              fontWeight: 600, 
               mb: 0.5
             }}
           >

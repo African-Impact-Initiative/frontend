@@ -31,8 +31,16 @@ interface JoinRequest {
     status: 'pending' | 'accepted' | 'declined';
 }
 
+interface Organization {
+    id: number;
+    name: string;
+    industry: string;
+    location: string;
+    userSet: { owner: boolean; firstName: string; lastName: string; email: string }[];
+}
+
 const OrganizationJoin = () => {
-    const [organizations, setOrganizations] = useState([]);
+    const [organizations, setOrganizations] = useState<Organization[]>([]);
     const [loading, setLoading] = useState(true);
     const [currentRequest, setCurrentRequest] = useState<JoinRequest | null>(null);
     const navigate = useNavigate();
@@ -61,7 +69,7 @@ const OrganizationJoin = () => {
             ]);
 
             if (orgsResponse.success && orgsResponse.data) {
-                setOrganizations(orgsResponse.data);
+                setOrganizations(orgsResponse.data as Organization[]);
             }
 
             if (requestResponse.success && requestResponse.data) {
@@ -154,7 +162,7 @@ const OrganizationJoin = () => {
                 // Optionally update the currentRequest state to reflect the new pending request
                 setCurrentRequest({ organization: selectedOrgId, status: 'pending' });
             } else {
-                throw new Error(response.error || 'Failed to send join request');
+                throw new Error('Failed to send join request');
             }
         } catch (err: any) {
             dispatch(setErrorNotification(err.message || 'Failed to send join request'));

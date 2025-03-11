@@ -83,9 +83,10 @@ const InvitationModal = ({ open, onClose }: InvitationModalProps) => {
         setError('');
 
         try {
+            
             const response = await userService.sendInvitation({
                 email: selectedEmail,
-                organization: currentOrganization.data?.id
+                organization: currentOrganization.data?.id ?? null
             });
 
             if (response.success) {

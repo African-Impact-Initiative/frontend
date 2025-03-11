@@ -67,7 +67,10 @@ const findByIdentifier = async (id: Id): Promise<ServiceResponse<Organization>> 
     return await organizationService.request<Organization>(METHODS.get, undefined, `${apiRoutes.organizationOperations.findById}${id}/`)
 }
 
-const getOrganizationMembers = async (organizationId: number): Promise<ServiceResponse<Array<Organization>>> => {
+const getOrganizationMembers = async (organizationId: number | Id | null): Promise<ServiceResponse<Array<Organization>>> => {
+    if (organizationId === null) {
+        throw new Error('organizationId cannot be null');
+    }
     const url = apiRoutes.organizationOperations.organizationMembers.replace(':organizationId', organizationId.toString())
     return await organizationService.request<Array<Organization>>(METHODS.get, undefined, url)
 }
@@ -101,7 +104,7 @@ const getCurrentUserJoinRequest = async (): Promise<ServiceResponse<any>> => {
 
 
 
-const getJoinRequestsForOrganization = async (organizationId: number): Promise<ServiceResponse<any[]>> => {
+const getJoinRequestsForOrganization = async (organizationId: Id | null): Promise<ServiceResponse<any[]>> => {
     const url = `${apiRoutes.organizationOperations.joinRequests}?organization=${organizationId}`;
     return (await organizationService.request(METHODS.get, {}, url)) as ServiceResponse<any[]>;
 };

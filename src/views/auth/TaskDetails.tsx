@@ -270,8 +270,8 @@ const TaskDetails = () => {
                             </Typography>
                             <Box
                                 sx={{
-                                    border: renderChallengeGroupBorder(task.targetgroup),
-                                    backgroundColor: renderChallengeGroupBackground(task.targetgroup),
+                                    border: renderChallengeGroupBorder(),
+                                    backgroundColor: renderChallengeGroupBackground(),
                                     width: 'fit-content',
                                     height: '22px',
                                     display: 'flex',
@@ -283,7 +283,7 @@ const TaskDetails = () => {
                             >
                                 <Typography
                                     sx={{
-                                        color: renderChallengeGroupBg(task.targetgroup),
+                                        color: renderChallengeGroupBg(),
                                         fontSize: '14px',
                                         fontWeight: '500',
                                         lineHeight: '20px'
