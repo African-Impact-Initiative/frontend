@@ -14,7 +14,7 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { useState } from 'react'
-import avatarimage from '../../assets/Avatar.png'
+import avatarimage from '../../assets/avatar.png'
 import MenuItem from '@mui/material/MenuItem'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
