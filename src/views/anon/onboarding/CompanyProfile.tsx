@@ -54,7 +54,7 @@ const CompanyProfile = () => {
                 return
             }
             const existingOrgs = await organizationService.getAll()
-            if (existingOrgs.data) {
+            if (Array.isArray(existingOrgs.data)) {
                 const isDuplicateName = existingOrgs.data.some(
                     org => org.name.toLowerCase() === companyName.toLowerCase()
                 )
@@ -76,7 +76,7 @@ const CompanyProfile = () => {
             const org = {...emptyOrganization}
             org.identifier = identifier
             org.name = companyName
-            org.owner = user.data!.id
+            org.owner = user.data!.owner
             org.website = companyWebsite
             org.linkedin = `https://www.linkedin.com/company/${linkedin}`
             org.twitter = `https://www.twitter.com/${twitter}`

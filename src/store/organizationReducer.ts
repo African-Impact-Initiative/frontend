@@ -8,7 +8,6 @@ import Organization, { CompanyChallenges, CompanyFunding, CompanyStage } from '.
 import { Id } from '../types/propertyTypes'
 import { AppDispatch } from './store'
 import { setUsers } from './usersReducer'
-import User from '../types/user'
 
 const initialState: AppOrganizations = {
     loading: true,
@@ -47,6 +46,7 @@ const organizationSlice = createSlice({
 export const { setOrganizations, appendOrganization, destroyOrganization, changeOrganization } = organizationSlice.actions
 
 export const createOrganization = (org: Organization) => {
+    console.log(org)
     return async (dispatch: AppDispatch) => {
         const organization = await organizationService.create(org)
         dispatch(appendOrganization(organization.data as Organization))
@@ -58,7 +58,7 @@ export const createOrganization = (org: Organization) => {
 export const initializeOrganizations = () => {
     return async (dispatch: AppDispatch) => {
         try {
-            const organizations = await organizationService.retrieve()
+            const organizations = await organizationService.retrieve(null, null)
             dispatch(setOrganizations(organizations.data as Array<Organization>))
         } catch {
             dispatch(setErrorNotification('Error retrieving organizations'))
@@ -93,7 +93,7 @@ export const updateOrganization = (id: Id, org: Organization) => {
 export const searchOrganizations = (query: string) => {
     return async (dispatch: AppDispatch) => {
         try {
-            const organizations = await organizationService.retrieve(query)
+            const organizations = await organizationService.retrieve(query, null)
             dispatch(setOrganizations(organizations.data as Array<Organization>))
         } catch {
             dispatch(setErrorNotification('Error fulfilling search'))
@@ -136,15 +136,15 @@ export const updateOrgChallenges = (id: Id, challenges: Array<CompanyChallenges>
     }
 }
 
-export const initializeOrganizationMembers = (organizationId: number) => {
+export const initializeOrganizationMembers = (organizationId: number | Id | null) => {
     return async (dispatch: AppDispatch) => {
         try {
             const members = await organizationService.getOrganizationMembers(organizationId)
             console.log('Fetched members:', members.data)
             if (Array.isArray(members.data)) {
-                dispatch(setUsers(members.data)) 
+                dispatch(setUsers(members.data as any[]))  
             } else {
-                dispatch(setUsers([members.data])) 
+                dispatch(setUsers([members.data] as any[])) 
             }
         } catch (error) {
             console.error('Error fetching members:', error)

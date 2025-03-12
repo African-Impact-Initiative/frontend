@@ -56,6 +56,7 @@ const addOrganizationToUser = async (id: Id): Promise<ServiceResponse<Empty>> =>
 
 // Add to your existing user service file
 const sendInvitation = async (invitationData: CreateInvitation): Promise<ServiceResponse<InvitationResponse>> => {
+    console.log(invitationData);
     return await userService.requestWith<InvitationResponse, CreateInvitation>(
         METHODS.post, 
         invitationData, 

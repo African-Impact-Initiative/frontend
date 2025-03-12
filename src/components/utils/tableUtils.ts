@@ -55,16 +55,16 @@ export const renderStatusTypeBg = (type: string) => {
 
 
 
-export const renderChallengeGroupBorder = (type: string) => {
+export const renderChallengeGroupBorder = () => {
     return '1px solid #ABEFC6'
 }
 
-export const renderChallengeGroupBackground = (type: string) => {
+export const renderChallengeGroupBackground = () => {
     
     return '#ECFDF3'
 }
 
-export const renderChallengeGroupBg = (type: string) => {
+export const renderChallengeGroupBg = () => {
     return '#085D3A'
 }
 

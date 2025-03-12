@@ -1,4 +1,3 @@
-import { SearchOutlined, SettingsOutlined } from '@mui/icons-material'
 import { Divider, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 

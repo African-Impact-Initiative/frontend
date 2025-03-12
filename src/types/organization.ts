@@ -1,4 +1,3 @@
-import { industriesList } from '../utils/industries'
 import { Id } from './propertyTypes'
 import User from './user'
 
@@ -30,6 +29,7 @@ type Organization = {
     email: string | null,
     stage: CompanyStage,
     funding: CompanyFunding,
+    owner: boolean | null,
     challenge1: CompanyChallenges,
     challenge2: CompanyChallenges,
     challenge3: CompanyChallenges,
@@ -53,9 +53,11 @@ export const emptyOrganization: Organization = {
     userSet: [],
     updated: '',
     created: '',
+    owner: null,
     logo: null,
     stage: null,
     funding: null,
+    industry: null,
     challenge1: null,
     challenge2: null,
     challenge3: null

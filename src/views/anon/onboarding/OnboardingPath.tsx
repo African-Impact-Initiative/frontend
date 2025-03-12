@@ -23,6 +23,7 @@ const OnboardingPath = () => {
     const nextPage = () => navigate(PathConstants.companyProfile)
     const cancel = () => navigate(PathConstants.home)
     const tempAction = () => console.log('Clicked button')
+    const join = () => navigate(PathConstants.onboardingJoin)
 
     const items = [
         {
@@ -35,7 +36,7 @@ const OnboardingPath = () => {
             primary: 'Join an existing organization',
             secondary: 'Become part of an existing organization with room to grow',
             Icon: PersonAddAlt1OutlinedIcon,
-            action: tempAction,
+            action: join,
         },
         {
             primary: 'Join as an investor',

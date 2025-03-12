@@ -1,10 +1,9 @@
 import { Box, Typography, IconButton } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
 import { FundingType } from '../../utils/devUtils'
 import MapPin from '../../assets/fundingOpportunitiesPage/map_pin.svg'
 import Bookmark from '../../assets/fundingOpportunitiesPage/bookmark.svg'
 import ExternalLink from '../../assets/fundingOpportunitiesPage/external_link.svg'
-import { renderAlertTagIndustryColor, renderAlertTagIndustryBackground } from '../../components/utils/tableUtils.ts'
+
 
 
 export interface FundingCardInterface {
@@ -12,7 +11,6 @@ export interface FundingCardInterface {
 }
 
 const FundingCard = ({ funding }: FundingCardInterface) => {
-    const navigate = useNavigate()
 
     return (
         <Box

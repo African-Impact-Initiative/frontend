@@ -25,6 +25,7 @@ const retrieveSingle = async (id: Id): Promise<ServiceResponse<Organization>> =>
 }
 
 const create = async (organization: Organization): Promise<ServiceResponse<Organization>> => {
+    console.log(organization)
     return await organizationService.create(organization)
 }
 
@@ -66,7 +67,10 @@ const findByIdentifier = async (id: Id): Promise<ServiceResponse<Organization>> 
     return await organizationService.request<Organization>(METHODS.get, undefined, `${apiRoutes.organizationOperations.findById}${id}/`)
 }
 
-const getOrganizationMembers = async (organizationId: number): Promise<ServiceResponse<Array<Organization>>> => {
+const getOrganizationMembers = async (organizationId: number | Id | null): Promise<ServiceResponse<Array<Organization>>> => {
+    if (organizationId === null) {
+        throw new Error('organizationId cannot be null');
+    }
     const url = apiRoutes.organizationOperations.organizationMembers.replace(':organizationId', organizationId.toString())
     return await organizationService.request<Array<Organization>>(METHODS.get, undefined, url)
 }
@@ -82,6 +86,41 @@ const getAll = async (): Promise<ServiceResponse<Organization>> => {
     return await organizationService.requestWith<Organization, Empty>(METHODS.get, {}, '');
 }
 
+const createJoinRequest = async (organizationId: number): Promise<ServiceResponse<any>> => {
+    return await organizationService.request(
+        METHODS.post, 
+        { organization: organizationId }, 
+        apiRoutes.organizationOperations.joinRequests
+    );
+}
+
+const getCurrentUserJoinRequest = async (): Promise<ServiceResponse<any>> => {
+    return await organizationService.request(
+        METHODS.get,
+        undefined,
+        `${apiRoutes.organizationOperations.joinRequests}current/`
+    );
+};
+
+
+
+const getJoinRequestsForOrganization = async (organizationId: Id | null): Promise<ServiceResponse<any[]>> => {
+    const url = `${apiRoutes.organizationOperations.joinRequests}?organization=${organizationId}`;
+    return (await organizationService.request(METHODS.get, {}, url)) as ServiceResponse<any[]>;
+};
+  
+  
+  
+const acceptJoinRequest = async (requestId: number): Promise<ServiceResponse<any>> => {
+    const url = apiRoutes.organizationOperations.acceptJoinRequest.replace(':id', requestId.toString());
+    return await organizationService.request(METHODS.post, {}, url);
+};
+  
+const declineJoinRequest = async (requestId: number): Promise<ServiceResponse<any>> => {
+    const url = apiRoutes.organizationOperations.declineJoinRequest.replace(':id', requestId.toString());
+    return await organizationService.request(METHODS.post, {}, url);
+};
+
 export default {
     retrieve,
     retrieveSingle,
@@ -95,5 +134,10 @@ export default {
     getOrganizationMembers,
     findByIdentifier,
     updateMemberCoownerStatus,
+    createJoinRequest,
+    getCurrentUserJoinRequest,
+    getJoinRequestsForOrganization,
+    acceptJoinRequest,
+    declineJoinRequest,
     getAll
 }
